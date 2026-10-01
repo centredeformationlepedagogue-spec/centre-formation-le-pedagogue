@@ -1,0 +1,3578 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<meta name="theme-color" content="#2563eb">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+<link rel="manifest" href="./manifest.json">
+
+<title>Centre de Formation Le Pédagogue</title>
+
+<style>
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:#f1f5f9;
+  color:#0f172a;
+}
+
+button,
+input,
+select,
+textarea{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+.hidden{
+  display:none!important;
+}
+
+/* AUTH */
+
+#authPage{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  background:linear-gradient(135deg,#2563eb,#1d4ed8,#0f172a);
+}
+
+.authBox{
+  width:100%;
+  max-width:430px;
+  background:white;
+  border-radius:22px;
+  padding:28px;
+  box-shadow:0 20px 60px rgba(0,0,0,.25);
+}
+
+.logo{
+  width:80px;
+  height:80px;
+  margin:0 auto 15px;
+  border-radius:20px;
+  background:#2563eb;
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:38px;
+  font-weight:bold;
+}
+
+.authBox h1{
+  text-align:center;
+  font-size:23px;
+  margin-bottom:7px;
+}
+
+.subtitle{
+  text-align:center;
+  color:#64748b;
+  margin-bottom:25px;
+}
+
+.authTabs{
+  display:flex;
+  gap:8px;
+  margin-bottom:18px;
+}
+
+.authTabs button{
+  flex:1;
+  border:0;
+  padding:12px;
+  border-radius:10px;
+  background:#e2e8f0;
+}
+
+.authTabs button.active{
+  background:#2563eb;
+  color:white;
+}
+
+.formGroup{
+  margin-bottom:14px;
+}
+
+.formGroup label{
+  display:block;
+  margin-bottom:6px;
+  font-weight:bold;
+  font-size:14px;
+}
+
+.formGroup input,
+.formGroup select,
+.formGroup textarea{
+  width:100%;
+  padding:12px;
+  border:1px solid #cbd5e1;
+  border-radius:10px;
+  outline:none;
+  background:white;
+}
+
+.formGroup input:focus,
+.formGroup select:focus,
+.formGroup textarea:focus{
+  border-color:#2563eb;
+}
+
+.btn{
+  width:100%;
+  border:0;
+  padding:13px;
+  border-radius:10px;
+  font-weight:bold;
+  margin-top:7px;
+}
+
+.btnPrimary{
+  background:#2563eb;
+  color:white;
+}
+
+.btnGoogle{
+  background:#fff;
+  color:#111827;
+  border:1px solid #cbd5e1;
+}
+
+.divider{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin:18px 0;
+  color:#94a3b8;
+  font-size:13px;
+}
+
+.divider:before,
+.divider:after{
+  content:"";
+  height:1px;
+  flex:1;
+  background:#e2e8f0;
+}
+
+#authMessage{
+  margin-top:15px;
+  padding:10px;
+  border-radius:9px;
+  display:none;
+  font-size:14px;
+}
+
+/* APP */
+
+#appPage{
+  min-height:100vh;
+}
+
+.header{
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  height:64px;
+  background:#2563eb;
+  color:white;
+  display:flex;
+  align-items:center;
+  padding:0 15px;
+  z-index:1000;
+  box-shadow:0 2px 10px rgba(0,0,0,.15);
+}
+
+.headerTitle{
+  font-weight:bold;
+  font-size:17px;
+  flex:1;
+}
+
+.headerUser{
+  font-size:12px;
+  margin-right:10px;
+  text-align:right;
+}
+
+.header select{
+  border:0;
+  border-radius:8px;
+  padding:7px;
+  margin-right:7px;
+}
+
+.installBtn,
+.logoutBtn{
+  border:0;
+  padding:8px 11px;
+  border-radius:8px;
+  margin-left:5px;
+}
+
+.installBtn{
+  background:#fff;
+  color:#2563eb;
+}
+
+.logoutBtn{
+  background:#dc2626;
+  color:white;
+}
+
+.menuBtn{
+  display:none;
+  background:none;
+  border:0;
+  color:white;
+  font-size:25px;
+  margin-right:10px;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+  position:fixed;
+  left:0;
+  top:64px;
+  bottom:0;
+  width:235px;
+  background:#0f172a;
+  color:white;
+  overflow-y:auto;
+  padding:12px;
+  z-index:900;
+}
+
+.sidebar button{
+  width:100%;
+  text-align:left;
+  border:0;
+  background:transparent;
+  color:#cbd5e1;
+  padding:12px;
+  border-radius:9px;
+  margin-bottom:3px;
+}
+
+.sidebar button:hover,
+.sidebar button.active{
+  background:#1e40af;
+  color:white;
+}
+
+.main{
+  margin-left:235px;
+  padding:84px 20px 30px;
+}
+
+.section{
+  display:none;
+}
+
+.section.active{
+  display:block;
+}
+
+.pageTitle{
+  font-size:25px;
+  margin-bottom:18px;
+}
+
+.cardGrid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+  gap:15px;
+}
+
+.statCard{
+  background:white;
+  padding:20px;
+  border-radius:15px;
+  box-shadow:0 2px 8px rgba(15,23,42,.08);
+}
+
+.statCard .icon{
+  font-size:28px;
+}
+
+.statCard h3{
+  color:#64748b;
+  margin:7px 0;
+  font-size:14px;
+}
+
+.statCard strong{
+  font-size:28px;
+}
+
+.panel{
+  background:white;
+  border-radius:15px;
+  padding:18px;
+  margin-bottom:18px;
+  box-shadow:0 2px 8px rgba(15,23,42,.07);
+}
+
+.panel h2{
+  margin-bottom:15px;
+  font-size:19px;
+}
+
+.toolbar{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-bottom:15px;
+}
+
+.toolbar button{
+  border:0;
+  padding:10px 13px;
+  border-radius:9px;
+  background:#2563eb;
+  color:white;
+}
+
+.tableWrap{
+  overflow-x:auto;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:650px;
+}
+
+th,
+td{
+  padding:11px;
+  border-bottom:1px solid #e2e8f0;
+  text-align:left;
+}
+
+th{
+  background:#f8fafc;
+}
+
+.badge{
+  display:inline-block;
+  padding:5px 9px;
+  border-radius:20px;
+  font-size:12px;
+  font-weight:bold;
+}
+
+.badgePending{
+  background:#fef3c7;
+  color:#92400e;
+}
+
+.badgeAccepted{
+  background:#dcfce7;
+  color:#166534;
+}
+
+.badgeRefused{
+  background:#fee2e2;
+  color:#991b1b;
+}
+
+.actionBtn{
+  border:0;
+  padding:7px 9px;
+  border-radius:7px;
+  margin:2px;
+}
+
+.acceptBtn{
+  background:#16a34a;
+  color:white;
+}
+
+.refuseBtn{
+  background:#dc2626;
+  color:white;
+}
+
+.deleteBtn{
+  background:#ef4444;
+  color:white;
+}
+
+.editBtn{
+  background:#2563eb;
+  color:white;
+}
+
+.empty{
+  text-align:center;
+  color:#64748b;
+  padding:30px;
+}
+
+.notice{
+  padding:13px;
+  background:#eff6ff;
+  border-left:4px solid #2563eb;
+  border-radius:8px;
+  margin-bottom:15px;
+}
+
+/* FORM GRID */
+
+.formGrid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:12px;
+}
+
+.formActions{
+  margin-top:12px;
+}
+
+/* MOBILE */
+
+@media(max-width:800px){
+
+  .headerUser{
+    display:none;
+  }
+
+  .menuBtn{
+    display:block;
+  }
+
+  .sidebar{
+    transform:translateX(-100%);
+    transition:.25s;
+  }
+
+  .sidebar.open{
+    transform:translateX(0);
+  }
+
+  .main{
+    margin-left:0;
+    padding-left:12px;
+    padding-right:12px;
+  }
+
+  .headerTitle{
+    font-size:14px;
+  }
+
+  .installBtn{
+    display:none;
+  }
+
+  .pageTitle{
+    font-size:21px;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ================= AUTH ================= -->
+
+<div id="authPage">
+
+  <div class="authBox">
+
+    <div class="logo">P</div>
+
+    <h1>Centre de Formation Le Pédagogue</h1>
+
+    <p class="subtitle">
+      Plateforme de gestion académique
+    </p>
+
+    <div class="authTabs">
+
+      <button
+        id="loginTab"
+        class="active"
+        onclick="showLogin()">
+        Connexion
+      </button>
+
+      <button
+        id="registerTab"
+        onclick="showRegister()">
+        Inscription
+      </button>
+
+    </div>
+
+    <!-- LOGIN -->
+
+    <div id="loginForm">
+
+      <div class="formGroup">
+        <label>Email</label>
+        <input
+          id="loginEmail"
+          type="email"
+          placeholder="Votre email">
+      </div>
+
+      <div class="formGroup">
+        <label>Mot de passe</label>
+        <input
+          id="loginPassword"
+          type="password"
+          placeholder="Votre mot de passe">
+      </div>
+
+      <button
+        class="btn btnPrimary"
+        onclick="connecter()">
+        Se connecter
+      </button>
+
+      <div class="divider">
+        OU
+      </div>
+
+      <button
+        class="btn btnGoogle"
+        onclick="connecterAvecGoogle()">
+        🔵 Continuer avec Google
+      </button>
+
+    </div>
+
+    <!-- REGISTER -->
+
+    <div id="registerForm" class="hidden">
+
+      <div class="formGroup">
+        <label>Nom complet</label>
+        <input
+          id="registerName"
+          type="text"
+          placeholder="Nom complet">
+      </div>
+
+      <div class="formGroup">
+        <label>Email</label>
+        <input
+          id="registerEmail"
+          type="email"
+          placeholder="Votre email">
+      </div>
+
+      <div class="formGroup">
+        <label>Mot de passe</label>
+        <input
+          id="registerPassword"
+          type="password"
+          placeholder="Minimum 6 caractères">
+      </div>
+
+      <button
+        class="btn btnPrimary"
+        onclick="registerAccount()">
+        Créer mon compte
+      </button>
+
+      <div class="divider">
+        OU
+      </div>
+
+      <button
+        class="btn btnGoogle"
+        onclick="registerGoogle()">
+        🔵 Inscription avec Google
+      </button>
+
+    </div>
+
+    <div id="authMessage"></div>
+
+  </div>
+
+</div>
+
+
+<!-- ================= APPLICATION ================= -->
+
+<div id="appPage" class="hidden">
+
+  <header class="header">
+
+    <button
+      class="menuBtn"
+      onclick="toggleSidebar()">
+      ☰
+    </button>
+
+    <div class="headerTitle">
+      🎓 Centre de Formation Le Pédagogue
+    </div>
+
+    <div class="headerUser">
+      <div id="userEmailDisplay"></div>
+      <div id="userRoleDisplay"></div>
+    </div>
+
+    <select
+      id="languageSelect"
+      onchange="changeLanguage(this.value)">
+      <option value="ht">🇭🇹 Kreyòl</option>
+      <option value="fr">🇫🇷 Français</option>
+    </select>
+
+    <button
+      id="installButton"
+      class="installBtn hidden"
+      onclick="installApp()">
+      📲 Installer
+    </button>
+
+    <button
+      class="logoutBtn"
+      onclick="logout()">
+      Sortir
+    </button>
+
+  </header>
+
+
+  <!-- SIDEBAR -->
+
+  <aside id="sidebar" class="sidebar">
+
+    <button onclick="showSection('home')">
+      🏠 Akèy
+    </button>
+
+    <button onclick="showSection('etudiants')">
+      👨‍🎓 Étudiants
+    </button>
+
+    <button onclick="showSection('professeurs')">
+      👨‍🏫 Professeurs
+    </button>
+
+    <button onclick="showSection('departements')">
+      🏢 Départements
+    </button>
+
+    <button onclick="showSection('programmes')">
+      📚 Programmes
+    </button>
+
+    <button onclick="showSection('cours')">
+      📖 Cours
+    </button>
+
+    <button onclick="showSection('classes')">
+      🏫 Classes
+    </button>
+
+    <button onclick="showSection('devoirs')">
+      📝 Devoirs
+    </button>
+
+    <button onclick="showSection('remises')">
+      📤 Remises
+    </button>
+
+    <button onclick="showSection('resultats')">
+      📊 Résultats
+    </button>
+
+    <button onclick="showSection('horaires')">
+      🕐 Horaires
+    </button>
+
+    <button onclick="showSection('statistiques')">
+      📈 Statistiques
+    </button>
+
+    <button
+      id="usersMenu"
+      onclick="showSection('users')">
+      👥 Utilisateurs
+    </button>
+
+  </aside>
+
+
+  <main class="main">
+
+
+    <!-- HOME -->
+
+    <section id="home" class="section active">
+
+      <h1 class="pageTitle">
+        🏠 Akèy
+      </h1>
+
+      <div class="panel">
+
+        <h2>
+          Byenveni nan Centre de Formation Le Pédagogue
+        </h2>
+
+        <p>
+          Sistèm nan pare pou jere fòmasyon,
+          étudiants, professeurs, cours, classes,
+          devoirs ak résultats.
+        </p>
+
+      </div>
+
+      <div class="cardGrid">
+
+        <div class="statCard">
+          <div class="icon">👨‍🎓</div>
+          <h3>Étudiants</h3>
+          <strong id="statEtudiants">0</strong>
+        </div>
+
+        <div class="statCard">
+          <div class="icon">👨‍🏫</div>
+          <h3>Professeurs</h3>
+          <strong id="statProfesseurs">0</strong>
+        </div>
+
+        <div class="statCard">
+          <div class="icon">📚</div>
+          <h3>Cours</h3>
+          <strong id="statCours">0</strong>
+        </div>
+
+        <div class="statCard">
+          <div class="icon">🏫</div>
+          <h3>Classes</h3>
+          <strong id="statClasses">0</strong>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ETUDIANTS -->
+
+    <section id="etudiants" class="section">
+
+      <h1 class="pageTitle">👨‍🎓 Étudiants</h1>
+
+      <div class="panel">
+
+        <div class="toolbar">
+
+          <button
+            onclick="toggleForm('studentForm')">
+            ➕ Ajouter étudiant
+          </button>
+
+        </div>
+
+        <div
+          id="studentForm"
+          class="hidden">
+
+          <div class="formGrid">
+
+            <div class="formGroup">
+              <label>Nom complet</label>
+              <input id="studentName">
+            </div>
+
+            <div class="formGroup">
+              <label>Email</label>
+              <input id="studentEmail" type="email">
+            </div>
+
+            <div class="formGroup">
+              <label>Téléphone</label>
+              <input id="studentPhone">
+            </div>
+
+            <div class="formGroup">
+              <label>Classe</label>
+              <input id="studentClass">
+            </div>
+
+          </div>
+
+          <div class="formActions">
+
+            <button
+              class="actionBtn acceptBtn"
+              onclick="addStudent()">
+              Enregistrer
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="panel">
+
+        <div
+          id="studentList"
+          class="empty">
+          Chargement...
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- PROFESSEURS -->
+
+    <section id="professeurs" class="section">
+
+      <h1 class="pageTitle">👨‍🏫 Professeurs</h1>
+
+      <div class="panel">
+
+        <div class="toolbar">
+
+          <button
+            onclick="toggleForm('teacherForm')">
+            ➕ Ajouter professeur
+          </button>
+
+        </div>
+
+        <div id="teacherForm" class="hidden">
+
+          <div class="formGrid">
+
+            <div class="formGroup">
+              <label>Nom complet</label>
+              <input id="teacherName">
+            </div>
+
+            <div class="formGroup">
+              <label>Email</label>
+              <input id="teacherEmail">
+            </div>
+
+            <div class="formGroup">
+              <label>Téléphone</label>
+              <input id="teacherPhone">
+            </div>
+
+            <div class="formGroup">
+              <label>Matière</label>
+              <input id="teacherSubject">
+            </div>
+
+          </div>
+
+          <button
+            class="actionBtn acceptBtn"
+            onclick="addTeacher()">
+            Enregistrer
+          </button>
+
+        </div>
+
+      </div>
+
+      <div class="panel">
+
+        <div id="teacherList" class="empty">
+          Chargement...
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- DEPARTEMENTS -->
+
+    <section id="departements" class="section">
+
+      <h1 class="pageTitle">🏢 Départements</h1>
+
+      <div class="panel">
+
+        <div class="formGrid">
+
+          <div class="formGroup">
+            <label>Nom du département</label>
+            <input id="departmentName">
+          </div>
+
+          <div class="formGroup">
+            <label>Description</label>
+            <input id="departmentDescription">
+          </div>
+
+        </div>
+
+        <button
+          class="actionBtn acceptBtn"
+          onclick="addDepartment()">
+          Ajouter
+        </button>
+
+      </div>
+
+      <div class="panel">
+        <div id="departmentList" class="empty">
+          Chargement...
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- PROGRAMMES -->
+
+    <section id="programmes" class="section">
+
+      <h1 class="pageTitle">📚 Programmes</h1>
+
+      <div class="panel">
+
+        <div class="formGrid">
+
+          <div class="formGroup">
+            <label>Nom du programme</label>
+            <input id="programName">
+          </div>
+
+          <div class="formGroup">
+            <label>Description</label>
+            <input id="programDescription">
+          </div>
+
+        </div>
+
+        <button
+          class="actionBtn acceptBtn"
+          onclick="addProgram()">
+          Ajouter
+        </button>
+
+      </div>
+
+      <div class="panel">
+        <div id="programList" class="empty">
+          Chargement...
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- COURS -->
+
+    <section id="cours" class="section">
+
+      <h1 class="pageTitle">📖 Cours</h1>
+
+      <div class="panel">
+
+        <div class="formGrid">
+
+          <div class="formGroup">
+            <label>Nom du cours</label>
+            <input id="courseName">
+          </div>
+
+          <div class="formGroup">
+            <label>Professeur</label>
+            <input id="courseTeacher">
+          </div>
+
+          <div class="formGroup">
+            <label>Classe</label>
+            <input id="courseClass">
+          </div>
+
+        </div>
+
+        <button
+          class="actionBtn acceptBtn"
+          onclick="addCourse()">
+          Ajouter
+        </button>
+
+      </div>
+
+      <div class="panel">
+        <div id="courseList" class="empty">
+          Chargement...
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- CLASSES -->
+
+    <section id="classes" class="section">
+
+      <h1 class="pageTitle">🏫 Classes</h1>
+
+      <div class="panel">
+
+        <div class="formGrid">
+
+          <div class="formGroup">
+            <label>Nom de la classe</label>
+            <input id="className">
+          </div>
+
+          <div class="formGroup">
+            <label>Niveau</label>
+            <input id="classLevel">
+          </div>
+
+        </div>
+
+        <button
+          class="actionBtn acceptBtn"
+          onclick="addClass()">
+          Ajouter
+        </button>
+
+      </div>
+
+      <div class="panel">
+        <div id="classList" class="empty">
+          Chargement...
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- DEVOIRS -->
+
+    <section id="devoirs" class="section">
+
+      <h1 class="pageTitle">📝 Devoirs</h1>
+
+      <div class="panel">
+
+        <div class="formGrid">
+
+          <div class="formGroup">
+            <label>Titre</label>
+            <input id="assignmentTitle">
+          </div>
+
+          <div class="formGroup">
+            <label>Cours</label>
+            <input id="assignmentCourse">
+          </div>
+
+          <div class="formGroup">
+            <label>Date limite</label>
+            <input id="assignmentDate" type="date">
+          </div>
+
+        </div>
+
+        <div class="formGroup">
+          <label>Description</label>
+          <textarea id="assignmentDescription"></textarea>
+        </div>
+
+        <button
+          class="actionBtn acceptBtn"
+          onclick="addAssignment()">
+          Ajouter devoir
+        </button>
+
+      </div>
+
+      <div class="panel">
+        <div id="assignmentList" class="empty">
+          Chargement...
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- REMISES -->
+
+    <section id="remises" class="section">
+
+      <h1 class="pageTitle">📤 Remises</h1>
+
+      <div class="panel">
+
+        <div class="formGrid">
+
+          <div class="formGroup">
+            <label>Étudiant</label>
+            <input id="submissionStudent">
+          </div>
+
+          <div class="formGroup">
+            <label>Devoir</label>
+            <input id="submissionAssignment">
+          </div>
+
+          <div class="formGroup">
+            <label>Note / 100</label>
+            <input
+              id="submissionNote"
+              type="number"
+              min="0"
+              max="100">
+          </div>
+
+        </div>
+
+        <div class="formGroup">
+          <label>Commentaire</label>
+          <textarea id="submissionComment"></textarea>
+        </div>
+
+        <button
+          class="actionBtn acceptBtn"
+          onclick="addSubmission()">
+          Enregistrer
+        </button>
+
+      </div>
+
+      <div class="panel">
+        <div id="submissionList" class="empty">
+          Chargement...
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- RESULTATS -->
+
+    <section id="resultats" class="section">
+
+      <h1 class="pageTitle">📊 Résultats</h1>
+
+      <div class="panel">
+
+        <div id="resultList" class="empty">
+          Chargement...
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- HORAIRES -->
+
+    <section id="horaires" class="section">
+
+      <h1 class="pageTitle">🕐 Horaires</h1>
+
+      <div class="panel">
+
+        <div class="formGrid">
+
+          <div class="formGroup">
+            <label>Jour</label>
+            <select id="scheduleDay">
+
+              <option>Lundi</option>
+              <option>Mardi</option>
+              <option>Mercredi</option>
+              <option>Jeudi</option>
+              <option>Vendredi</option>
+              <option>Samedi</option>
+
+            </select>
+          </div>
+
+          <div class="formGroup">
+            <label>Cours</label>
+            <input id="scheduleCourse">
+          </div>
+
+          <div class="formGroup">
+            <label>Heure</label>
+            <input id="scheduleTime" type="time">
+          </div>
+
+          <div class="formGroup">
+            <label>Classe</label>
+            <input id="scheduleClass">
+          </div>
+
+        </div>
+
+        <button
+          class="actionBtn acceptBtn"
+          onclick="addSchedule()">
+          Ajouter
+        </button>
+
+      </div>
+
+      <div class="panel">
+        <div id="scheduleList" class="empty">
+          Chargement...
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- STATISTIQUES -->
+
+    <section id="statistiques" class="section">
+
+      <h1 class="pageTitle">📈 Statistiques</h1>
+
+      <div class="cardGrid">
+
+        <div class="statCard">
+          <h3>Étudiants</h3>
+          <strong id="bigStudents">0</strong>
+        </div>
+
+        <div class="statCard">
+          <h3>Professeurs</h3>
+          <strong id="bigTeachers">0</strong>
+        </div>
+
+        <div class="statCard">
+          <h3>Cours</h3>
+          <strong id="bigCourses">0</strong>
+        </div>
+
+        <div class="statCard">
+          <h3>Classes</h3>
+          <strong id="bigClasses">0</strong>
+        </div>
+
+        <div class="statCard">
+          <h3>Devoirs</h3>
+          <strong id="bigAssignments">0</strong>
+        </div>
+
+        <div class="statCard">
+          <h3>Résultats</h3>
+          <strong id="bigResults">0</strong>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- USERS ADMIN -->
+
+    <section id="users" class="section">
+
+      <h1 class="pageTitle">
+        👥 Gestion des utilisateurs
+      </h1>
+
+      <div class="notice">
+
+        🔐 <strong>Administrateur uniquement.</strong>
+
+        Se administratè ki ka aksepte oswa refize
+        yon nouvo itilizatè.
+
+      </div>
+
+      <div class="panel">
+
+        <h2>⏳ Itilizatè an atant</h2>
+
+        <div id="pendingUsers" class="empty">
+          Chargement...
+        </div>
+
+      </div>
+
+      <div class="panel">
+
+        <h2>👤 Tout itilizatè</h2>
+
+        <div id="allUsers" class="empty">
+          Chargement...
+        </div>
+
+      </div>
+
+    </section>
+
+
+  </main>
+
+</div>
+
+
+<!-- ================= FIREBASE ================= -->
+
+<script type="module">
+
+import {
+  initializeApp
+} from
+"https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+
+import {
+  getAuth,
+  GoogleAuthProvider,
+  signInWithPopup,
+  signInWithRedirect,
+  getRedirectResult,
+  onAuthStateChanged,
+  signOut,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  updateProfile
+} from
+"https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+
+import {
+  getFirestore,
+  collection,
+  doc,
+  setDoc,
+  getDoc,
+  getDocs,
+  deleteDoc,
+  serverTimestamp
+} from
+"https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
+
+
+/* ================= FIREBASE CONFIG ================= */
+
+const firebaseConfig = {
+
+  apiKey:
+  "AIzaSyDx6Rpd31eaFVQ0BL17BXCnIniLd0Fk7cA",
+
+  authDomain:
+  "centre-de-formation-le-ped.firebaseapp.com",
+
+  projectId:
+  "centre-de-formation-le-ped",
+
+  storageBucket:
+  "centre-de-formation-le-ped.firebasestorage.app",
+
+  messagingSenderId:
+  "883893680829",
+
+  appId:
+  "1:883893680829:web:621cdf54d136cece6fd5d4"
+
+};
+
+
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+
+const db = getFirestore(app);
+
+const googleProvider = new GoogleAuthProvider();
+
+googleProvider.setCustomParameters({
+  prompt:"select_account"
+});
+
+
+/* ================= GLOBAL ================= */
+
+let currentUser = null;
+
+let currentUserData = null;
+
+let deferredPrompt = null;
+
+let currentLang =
+localStorage.getItem("pedagogueLang") || "ht";
+
+
+/* ================= INSTALL PWA ================= */
+
+window.addEventListener(
+  "beforeinstallprompt",
+  event => {
+
+    event.preventDefault();
+
+    deferredPrompt = event;
+
+    document
+      .getElementById("installButton")
+      ?.classList.remove("hidden");
+
+  }
+);
+
+window.installApp = async function(){
+
+  if(!deferredPrompt){
+
+    alert(
+      "Aplikasyon an poko disponib pou enstalasyon."
+    );
+
+    return;
+
+  }
+
+  deferredPrompt.prompt();
+
+  await deferredPrompt.userChoice;
+
+  deferredPrompt = null;
+
+};
+
+
+/* ================= AUTH UI ================= */
+
+window.showLogin = function(){
+
+  document
+    .getElementById("loginForm")
+    .classList.remove("hidden");
+
+  document
+    .getElementById("registerForm")
+    .classList.add("hidden");
+
+  document
+    .getElementById("loginTab")
+    .classList.add("active");
+
+  document
+    .getElementById("registerTab")
+    .classList.remove("active");
+
+};
+
+
+window.showRegister = function(){
+
+  document
+    .getElementById("loginForm")
+    .classList.add("hidden");
+
+  document
+    .getElementById("registerForm")
+    .classList.remove("hidden");
+
+  document
+    .getElementById("loginTab")
+    .classList.remove("active");
+
+  document
+    .getElementById("registerTab")
+    .classList.add("active");
+
+};
+
+
+/* ================= MESSAGE ================= */
+
+function authMessage(message,type="error"){
+
+  const box =
+  document.getElementById("authMessage");
+
+  box.style.display="block";
+
+  box.textContent=message;
+
+  box.style.background =
+  type==="success"
+  ? "#dcfce7"
+  : "#fee2e2";
+
+  box.style.color =
+  type==="success"
+  ? "#166534"
+  : "#991b1b";
+
+}
+
+
+/* ================= LOGIN ================= */
+
+window.connecter = async function(){
+
+  const email =
+  document.getElementById("loginEmail")
+  .value.trim();
+
+  const password =
+  document.getElementById("loginPassword")
+  .value;
+
+  if(!email || !password){
+
+    authMessage(
+      "Tanpri ranpli email ak mot de passe."
+    );
+
+    return;
+
+  }
+
+  try{
+
+    await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+
+  }catch(error){
+
+    console.error(error);
+
+    authMessage(
+      "Email oswa mot de passe pa kòrèk."
+    );
+
+  }
+
+};
+
+
+/* ================= GOOGLE LOGIN ================= */
+
+window.connecterAvecGoogle = async function(){
+
+  try{
+
+    await signInWithPopup(
+      auth,
+      googleProvider
+    );
+
+  }catch(error){
+
+    console.log(
+      "Popup echwe, redirect...",
+      error
+    );
+
+    try{
+
+      await signInWithRedirect(
+        auth,
+        googleProvider
+      );
+
+    }catch(e){
+
+      console.error(e);
+
+      authMessage(
+        "Connexion Google pa mache."
+      );
+
+    }
+
+  }
+
+};
+
+
+/* ================= CREATE ACCOUNT ================= */
+
+window.registerAccount = async function(){
+
+  const name =
+  document.getElementById("registerName")
+  .value.trim();
+
+  const email =
+  document.getElementById("registerEmail")
+  .value.trim();
+
+  const password =
+  document.getElementById("registerPassword")
+  .value;
+
+  if(!name || !email || !password){
+
+    authMessage(
+      "Tanpri ranpli tout chan yo."
+    );
+
+    return;
+
+  }
+
+  if(password.length < 6){
+
+    authMessage(
+      "Mot de passe la dwe gen omwen 6 karaktè."
+    );
+
+    return;
+
+  }
+
+  try{
+
+    const credential =
+    await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+
+    const user =
+    credential.user;
+
+    await updateProfile(
+      user,
+      {
+        displayName:name
+      }
+    );
+
+    await createUserProfile(
+      user,
+      name
+    );
+
+    /*
+      Premye kont lan ap vin administratè.
+      Tout lòt nouvo kont rete an attente.
+    */
+
+    await signOut(auth);
+
+    authMessage(
+      "Kont lan kreye. Si se premye kont lan, li vin administratè. Sinon li bezwen apwobasyon administratè.",
+      "success"
+    );
+
+    showLogin();
+
+  }catch(error){
+
+    console.error(error);
+
+    if(error.code==="auth/email-already-in-use"){
+
+      authMessage(
+        "Email sa deja gen yon kont."
+      );
+
+    }else{
+
+      authMessage(
+        "Erè pandan kreyasyon kont lan."
+      );
+
+    }
+
+  }
+
+};
+
+
+/* ================= GOOGLE REGISTER ================= */
+
+window.registerGoogle = async function(){
+
+  try{
+
+    const result =
+    await signInWithPopup(
+      auth,
+      googleProvider
+    );
+
+    const user =
+    result.user;
+
+    const ref =
+    doc(db,"users",user.uid);
+
+    const snap =
+    await getDoc(ref);
+
+    if(!snap.exists()){
+
+      await createUserProfile(
+        user,
+        user.displayName || ""
+      );
+
+    }
+
+    await signOut(auth);
+
+    authMessage(
+      "Kont Google la kreye. Li bezwen apwobasyon administratè, sof si se premye kont lan.",
+      "success"
+    );
+
+    showLogin();
+
+  }catch(error){
+
+    console.error(error);
+
+    authMessage(
+      "Enskripsyon Google pa mache."
+    );
+
+  }
+
+};
+
+
+/* ================= USER PROFILE ================= */
+
+async function createUserProfile(
+  user,
+  name=""
+){
+
+  const usersRef =
+  collection(db,"users");
+
+  const existing =
+  await getDocs(usersRef);
+
+  const isFirst =
+  existing.empty;
+
+  await setDoc(
+    doc(db,"users",user.uid),
+    {
+
+      uid:user.uid,
+
+      email:user.email || "",
+
+      nom:
+      name ||
+      user.displayName ||
+      "",
+
+      role:
+      isFirst
+      ? "administrateur"
+      : "étudiant",
+
+      status:
+      "accepted",
+
+      createdAt:
+      serverTimestamp()
+
+    }
+  );
+
+}
+
+
+/* ================= PROFILE LOAD ================= */
+
+async function loadUserProfile(user){
+
+  const ref =
+  doc(db,"users",user.uid);
+
+  const snap =
+  await getDoc(ref);
+
+  /*
+    Si pa gen profil,
+    kreye youn an attente.
+  */
+
+  if(!snap.exists()){
+
+    await setDoc(
+      ref,
+      {
+
+        uid:user.uid,
+
+        email:user.email || "",
+
+        nom:
+        user.displayName || "",
+
+        role:"étudiant",
+
+        status:"attente",
+
+        createdAt:
+        serverTimestamp()
+
+      }
+    );
+
+    await signOut(auth);
+
+    authMessage(
+      "Kont ou anrejistre. Tanpri tann administratè a apwouve kont ou."
+    );
+
+    return false;
+
+  }
+
+  currentUserData =
+  snap.data();
+
+  const status =
+  String(
+    currentUserData.status || ""
+  ).toLowerCase();
+
+  if(status!=="accepted"){
+
+    await signOut(auth);
+
+    authMessage(
+      "Kont ou poko apwouve pa administratè a."
+    );
+
+    return false;
+
+  }
+
+  return true;
+
+}
+
+
+/* ================= AUTH STATE ================= */
+
+onAuthStateChanged(
+  auth,
+  async user => {
+
+    if(!user){
+
+      currentUser=null;
+
+      currentUserData=null;
+
+      document
+        .getElementById("authPage")
+        .classList.remove("hidden");
+
+      document
+        .getElementById("appPage")
+        .classList.add("hidden");
+
+      return;
+
+    }
+
+    currentUser=user;
+
+    const accepted =
+    await loadUserProfile(user);
+
+    if(accepted){
+
+      openApp();
+
+    }
+
+  }
+);
+
+
+/* ================= OPEN APP ================= */
+
+async function openApp(){
+
+  document
+    .getElementById("authPage")
+    .classList.add("hidden");
+
+  document
+    .getElementById("appPage")
+    .classList.remove("hidden");
+
+  document
+    .getElementById("userEmailDisplay")
+    .textContent =
+    currentUser.email || "";
+
+  document
+    .getElementById("userRoleDisplay")
+    .textContent =
+    "Wòl: " +
+    (currentUserData.role || "");
+
+  document
+    .getElementById("languageSelect")
+    .value=currentLang;
+
+  const admin =
+  isAdmin();
+
+  document
+    .getElementById("usersMenu")
+    .classList.toggle(
+      "hidden",
+      !admin
+    );
+
+  /*
+    Admin kreye estrikti debaz yo.
+  */
+
+  if(admin){
+
+    await initializeCollections();
+
+  }
+
+  await loadAllData();
+
+}
+
+
+/* ================= ROLE ================= */
+
+function role(){
+
+  return String(
+    currentUserData?.role || ""
+  )
+  .trim()
+  .toLowerCase();
+
+}
+
+function isAdmin(){
+
+  return role()==="administrateur";
+
+}
+
+
+/* ================= SECURITY UI ================= */
+
+function requireAdmin(){
+
+  if(!isAdmin()){
+
+    alert(
+      "Aksè sa rezève pou administratè sèlman."
+    );
+
+    return false;
+
+  }
+
+  return true;
+
+}
+
+
+/* ================= AUTOMATIC COLLECTIONS ================= */
+
+async function initializeCollections(){
+
+  const collections = [
+
+    "etudiants",
+    "professeurs",
+    "departements",
+    "programmes",
+    "cours",
+    "classes",
+    "devoirs",
+    "remises",
+    "resultats",
+    "emplois_du_temps"
+
+  ];
+
+  /*
+    Firestore kreye collection lè premye
+    document lan ekri.
+  */
+
+  for(
+    const name of collections
+  ){
+
+    const ref =
+    doc(
+      db,
+      name,
+      "_system"
+    );
+
+    const snap =
+    await getDoc(ref);
+
+    if(!snap.exists()){
+
+      await setDoc(
+        ref,
+        {
+
+          system:true,
+
+          createdAt:
+          serverTimestamp()
+
+        }
+      );
+
+    }
+
+  }
+
+}
+
+
+/* ================= NAVIGATION ================= */
+
+window.showSection =
+function(id){
+
+  document
+    .querySelectorAll(".section")
+    .forEach(
+      section =>
+      section.classList.remove("active")
+    );
+
+  const target =
+  document.getElementById(id);
+
+  if(target){
+
+    target.classList.add("active");
+
+  }
+
+  document
+    .querySelectorAll(".sidebar button")
+    .forEach(
+      button =>
+      button.classList.remove("active")
+    );
+
+  if(window.innerWidth<=800){
+
+    document
+      .getElementById("sidebar")
+      .classList.remove("open");
+
+  }
+
+};
+
+
+window.toggleSidebar =
+function(){
+
+  document
+    .getElementById("sidebar")
+    .classList.toggle("open");
+
+};
+
+
+window.toggleForm =
+function(id){
+
+  document
+    .getElementById(id)
+    .classList.toggle("hidden");
+
+};
+
+
+/* ================= LANGUAGE ================= */
+
+window.changeLanguage =
+function(lang){
+
+  currentLang=lang;
+
+  localStorage.setItem(
+    "pedagogueLang",
+    lang
+  );
+
+};
+
+
+/* ================= GENERIC ADD ================= */
+
+async function addDocument(
+  collectionName,
+  data
+){
+
+  if(!currentUser){
+
+    return;
+
+  }
+
+  await setDoc(
+    doc(
+      collection(db,collectionName)
+    ),
+    {
+
+      ...data,
+
+      createdBy:
+      currentUser.uid,
+
+      createdAt:
+      serverTimestamp()
+
+    }
+  );
+
+}
+
+
+/* ================= STUDENTS ================= */
+
+window.addStudent =
+async function(){
+
+  const name =
+  document.getElementById("studentName")
+  .value.trim();
+
+  const email =
+  document.getElementById("studentEmail")
+  .value.trim();
+
+  const phone =
+  document.getElementById("studentPhone")
+  .value.trim();
+
+  const classe =
+  document.getElementById("studentClass")
+  .value.trim();
+
+  if(!name){
+
+    alert("Mete non elèv la.");
+
+    return;
+
+  }
+
+  await addDocument(
+    "etudiants",
+    {
+      nom:name,
+      email,
+      telephone:phone,
+      classe
+    }
+  );
+
+  alert("Étudiant ajoute.");
+
+  document
+    .getElementById("studentName")
+    .value="";
+
+  document
+    .getElementById("studentEmail")
+    .value="";
+
+  document
+    .getElementById("studentPhone")
+    .value="";
+
+  document
+    .getElementById("studentClass")
+    .value="";
+
+  loadStudents();
+
+};
+
+
+/* ================= TEACHERS ================= */
+
+window.addTeacher =
+async function(){
+
+  const name =
+  document.getElementById("teacherName")
+  .value.trim();
+
+  const email =
+  document.getElementById("teacherEmail")
+  .value.trim();
+
+  const phone =
+  document.getElementById("teacherPhone")
+  .value.trim();
+
+  const subject =
+  document.getElementById("teacherSubject")
+  .value.trim();
+
+  if(!name){
+
+    alert("Mete non professeur la.");
+
+    return;
+
+  }
+
+  await addDocument(
+    "professeurs",
+    {
+
+      nom:name,
+
+      email,
+
+      telephone:phone,
+
+      matiere:subject
+
+    }
+  );
+
+  alert("Professeur ajoute.");
+
+  loadTeachers();
+
+};
+
+
+/* ================= DEPARTMENT ================= */
+
+window.addDepartment =
+async function(){
+
+  const name =
+  document.getElementById("departmentName")
+  .value.trim();
+
+  const description =
+  document.getElementById("departmentDescription")
+  .value.trim();
+
+  if(!name){
+
+    alert(
+      "Mete non département lan."
+    );
+
+    return;
+
+  }
+
+  await addDocument(
+    "departements",
+    {
+
+      nom:name,
+
+      description
+
+    }
+  );
+
+  alert("Département ajoute.");
+
+  loadDepartments();
+
+};
+
+
+/* ================= PROGRAM ================= */
+
+window.addProgram =
+async function(){
+
+  const name =
+  document.getElementById("programName")
+  .value.trim();
+
+  const description =
+  document.getElementById("programDescription")
+  .value.trim();
+
+  if(!name){
+
+    alert(
+      "Mete non programme lan."
+    );
+
+    return;
+
+  }
+
+  await addDocument(
+    "programmes",
+    {
+
+      nom:name,
+
+      description
+
+    }
+  );
+
+  alert("Programme ajoute.");
+
+  loadPrograms();
+
+};
+
+
+/* ================= COURSE ================= */
+
+window.addCourse =
+async function(){
+
+  const name =
+  document.getElementById("courseName")
+  .value.trim();
+
+  const teacher =
+  document.getElementById("courseTeacher")
+  .value.trim();
+
+  const classe =
+  document.getElementById("courseClass")
+  .value.trim();
+
+  if(!name){
+
+    alert("Mete non cours la.");
+
+    return;
+
+  }
+
+  await addDocument(
+    "cours",
+    {
+
+      nom:name,
+
+      professeur:teacher,
+
+      classe
+
+    }
+  );
+
+  alert("Cours ajoute.");
+
+  loadCourses();
+
+};
+
+
+/* ================= CLASS ================= */
+
+window.addClass =
+async function(){
+
+  const name =
+  document.getElementById("className")
+  .value.trim();
+
+  const level =
+  document.getElementById("classLevel")
+  .value.trim();
+
+  if(!name){
+
+    alert("Mete non classe la.");
+
+    return;
+
+  }
+
+  await addDocument(
+    "classes",
+    {
+
+      nom:name,
+
+      niveau:level
+
+    }
+  );
+
+  alert("Classe ajoute.");
+
+  loadClasses();
+
+};
+
+
+/* ================= ASSIGNMENT ================= */
+
+window.addAssignment =
+async function(){
+
+  const title =
+  document.getElementById("assignmentTitle")
+  .value.trim();
+
+  const course =
+  document.getElementById("assignmentCourse")
+  .value.trim();
+
+  const date =
+  document.getElementById("assignmentDate")
+  .value;
+
+  const description =
+  document.getElementById("assignmentDescription")
+  .value.trim();
+
+  if(!title){
+
+    alert("Mete tit devoir la.");
+
+    return;
+
+  }
+
+  await addDocument(
+    "devoirs",
+    {
+
+      titre:title,
+
+      cours:course,
+
+      dateLimite:date,
+
+      description
+
+    }
+  );
+
+  alert("Devoir ajoute.");
+
+  loadAssignments();
+
+};
+
+
+/* ================= SUBMISSION ================= */
+
+window.addSubmission =
+async function(){
+
+  const student =
+  document.getElementById("submissionStudent")
+  .value.trim();
+
+  const assignment =
+  document.getElementById("submissionAssignment")
+  .value.trim();
+
+  const note =
+  Number(
+    document.getElementById("submissionNote")
+    .value
+  );
+
+  const comment =
+  document.getElementById("submissionComment")
+  .value.trim();
+
+  if(!student || !assignment){
+
+    alert(
+      "Mete étudiant ak devoir la."
+    );
+
+    return;
+
+  }
+
+  if(note<0 || note>100){
+
+    alert(
+      "Nòt la dwe ant 0 ak 100."
+    );
+
+    return;
+
+  }
+
+  await addDocument(
+    "remises",
+    {
+
+      etudiant:student,
+
+      devoir:assignment,
+
+      note:note,
+
+      commentaire:comment
+
+    }
+  );
+
+  await addDocument(
+    "resultats",
+    {
+
+      etudiant:student,
+
+      devoir:assignment,
+
+      note:note,
+
+      commentaire:comment
+
+    }
+  );
+
+  alert(
+    "Remise ak résultat anrejistre."
+  );
+
+  loadSubmissions();
+
+  loadResults();
+
+};
+
+
+/* ================= SCHEDULE ================= */
+
+window.addSchedule =
+async function(){
+
+  const day =
+  document.getElementById("scheduleDay")
+  .value;
+
+  const course =
+  document.getElementById("scheduleCourse")
+  .value.trim();
+
+  const time =
+  document.getElementById("scheduleTime")
+  .value;
+
+  const classe =
+  document.getElementById("scheduleClass")
+  .value.trim();
+
+  if(!course){
+
+    alert("Mete cours la.");
+
+    return;
+
+  }
+
+  await addDocument(
+    "emplois_du_temps",
+    {
+
+      jour:day,
+
+      cours:course,
+
+      heure:time,
+
+      classe
+
+    }
+  );
+
+  alert("Horaire ajoute.");
+
+  loadSchedules();
+
+};
+
+
+/* ================= LOAD GENERIC ================= */
+
+async function getCollection(name){
+
+  const snap =
+  await getDocs(
+    collection(db,name)
+  );
+
+  return snap.docs
+    .filter(
+      d => d.id !== "_system"
+    )
+    .map(
+      d => ({
+        id:d.id,
+        ...d.data()
+      })
+    );
+
+}
+
+
+/* ================= STUDENT LIST ================= */
+
+async function loadStudents(){
+
+  const box =
+  document.getElementById("studentList");
+
+  if(!box)return;
+
+  try{
+
+    const data =
+    await getCollection("etudiants");
+
+    if(!data.length){
+
+      box.innerHTML =
+      '<div class="empty">Pa gen étudiant ankò.</div>';
+
+      return;
+
+    }
+
+    box.innerHTML =
+    `<div class="tableWrap">
+    <table>
+    <tr>
+    <th>Nom</th>
+    <th>Email</th>
+    <th>Téléphone</th>
+    <th>Classe</th>
+    <th>Action</th>
+    </tr>
+    ${
+      data.map(
+        x =>
+        `<tr>
+        <td>${esc(x.nom)}</td>
+        <td>${esc(x.email)}</td>
+        <td>${esc(x.telephone)}</td>
+        <td>${esc(x.classe)}</td>
+        <td>
+        <button
+        class="actionBtn deleteBtn"
+        onclick="deleteData('etudiants','${x.id}')">
+        Efase
+        </button>
+        </td>
+        </tr>`
+      ).join("")
+    }
+    </table>
+    </div>`;
+
+  }catch(error){
+
+    console.error(error);
+
+    box.innerHTML =
+    "Erè pandan chajman étudiant yo.";
+
+  }
+
+}
+
+
+/* ================= TEACHER LIST ================= */
+
+async function loadTeachers(){
+
+  const box =
+  document.getElementById("teacherList");
+
+  if(!box)return;
+
+  try{
+
+    const data =
+    await getCollection("professeurs");
+
+    if(!data.length){
+
+      box.innerHTML =
+      '<div class="empty">Pa gen professeur ankò.</div>';
+
+      return;
+
+    }
+
+    box.innerHTML =
+    `<div class="tableWrap">
+    <table>
+    <tr>
+    <th>Nom</th>
+    <th>Email</th>
+    <th>Téléphone</th>
+    <th>Matière</th>
+    <th>Action</th>
+    </tr>
+    ${
+      data.map(
+        x =>
+        `<tr>
+        <td>${esc(x.nom)}</td>
+        <td>${esc(x.email)}</td>
+        <td>${esc(x.telephone)}</td>
+        <td>${esc(x.matiere)}</td>
+        <td>
+        <button
+        class="actionBtn deleteBtn"
+        onclick="deleteData('professeurs','${x.id}')">
+        Efase
+        </button>
+        </td>
+        </tr>`
+      ).join("")
+    }
+    </table>
+    </div>`;
+
+  }catch(error){
+
+    console.error(error);
+
+    box.innerHTML =
+    "Erè pandan chajman professeur yo.";
+
+  }
+
+}
+
+
+/* ================= GENERIC LIST ================= */
+
+async function simpleList(
+  collectionName,
+  elementId,
+  fields
+){
+
+  const box =
+  document.getElementById(elementId);
+
+  if(!box)return;
+
+  try{
+
+    const data =
+    await getCollection(
+      collectionName
+    );
+
+    if(!data.length){
+
+      box.innerHTML =
+      '<div class="empty">Pa gen done ankò.</div>';
+
+      return;
+
+    }
+
+    box.innerHTML =
+    `<div class="tableWrap">
+    <table>
+    <tr>
+    ${fields.map(
+      f => `<th>${f.label}</th>`
+    ).join("")}
+    <th>Action</th>
+    </tr>
+    ${
+      data.map(
+        x =>
+        `<tr>
+        ${
+          fields.map(
+            f =>
+            `<td>${esc(x[f.key])}</td>`
+          ).join("")
+        }
+        <td>
+        <button
+        class="actionBtn deleteBtn"
+        onclick="deleteData('${collectionName}','${x.id}')">
+        Efase
+        </button>
+        </td>
+        </tr>`
+      ).join("")
+    }
+    </table>
+    </div>`;
+
+  }catch(error){
+
+    console.error(error);
+
+    box.innerHTML =
+    "Erè pandan chajman done yo.";
+
+  }
+
+}
+
+
+async function loadDepartments(){
+
+  simpleList(
+    "departements",
+    "departmentList",
+    [
+      {
+        key:"nom",
+        label:"Nom"
+      },
+      {
+        key:"description",
+        label:"Description"
+      }
+    ]
+  );
+
+}
+
+
+async function loadPrograms(){
+
+  simpleList(
+    "programmes",
+    "programList",
+    [
+      {
+        key:"nom",
+        label:"Nom"
+      },
+      {
+        key:"description",
+        label:"Description"
+      }
+    ]
+  );
+
+}
+
+
+async function loadCourses(){
+
+  simpleList(
+    "cours",
+    "courseList",
+    [
+      {
+        key:"nom",
+        label:"Cours"
+      },
+      {
+        key:"professeur",
+        label:"Professeur"
+      },
+      {
+        key:"classe",
+        label:"Classe"
+      }
+    ]
+  );
+
+}
+
+
+async function loadClasses(){
+
+  simpleList(
+    "classes",
+    "classList",
+    [
+      {
+        key:"nom",
+        label:"Classe"
+      },
+      {
+        key:"niveau",
+        label:"Niveau"
+      }
+    ]
+  );
+
+}
+
+
+async function loadAssignments(){
+
+  simpleList(
+    "devoirs",
+    "assignmentList",
+    [
+      {
+        key:"titre",
+        label:"Titre"
+      },
+      {
+        key:"cours",
+        label:"Cours"
+      },
+      {
+        key:"dateLimite",
+        label:"Date limite"
+      }
+    ]
+  );
+
+}
+
+
+async function loadSubmissions(){
+
+  simpleList(
+    "remises",
+    "submissionList",
+    [
+      {
+        key:"etudiant",
+        label:"Étudiant"
+      },
+      {
+        key:"devoir",
+        label:"Devoir"
+      },
+      {
+        key:"note",
+        label:"Nòt / 100"
+      },
+      {
+        key:"commentaire",
+        label:"Commentaire"
+      }
+    ]
+  );
+
+}
+
+
+async function loadResults(){
+
+  simpleList(
+    "resultats",
+    "resultList",
+    [
+      {
+        key:"etudiant",
+        label:"Étudiant"
+      },
+      {
+        key:"devoir",
+        label:"Devoir"
+      },
+      {
+        key:"note",
+        label:"Nòt / 100"
+      },
+      {
+        key:"commentaire",
+        label:"Commentaire"
+      }
+    ]
+  );
+
+}
+
+
+async function loadSchedules(){
+
+  simpleList(
+    "emplois_du_temps",
+    "scheduleList",
+    [
+      {
+        key:"jour",
+        label:"Jour"
+      },
+      {
+        key:"cours",
+        label:"Cours"
+      },
+      {
+        key:"heure",
+        label:"Heure"
+      },
+      {
+        key:"classe",
+        label:"Classe"
+      }
+    ]
+  );
+
+}
+
+
+/* ================= USERS ADMIN ================= */
+
+async function loadUsers(){
+
+  if(!isAdmin())return;
+
+  const pendingBox =
+  document.getElementById("pendingUsers");
+
+  const allBox =
+  document.getElementById("allUsers");
+
+  try{
+
+    const data =
+    await getCollection("users");
+
+    const pending =
+    data.filter(
+      x =>
+      String(x.status || "")
+      .toLowerCase()
+      ===
+      "attente"
+    );
+
+    if(!pending.length){
+
+      pendingBox.innerHTML =
+      '<div class="empty">Pa gen itilizatè an atant.</div>';
+
+    }else{
+
+      pendingBox.innerHTML =
+      `<div class="tableWrap">
+      <table>
+      <tr>
+      <th>Nom</th>
+      <th>Email</th>
+      <th>Wòl</th>
+      <th>Action</th>
+      </tr>
+      ${
+        pending.map(
+          x =>
+          `<tr>
+
+          <td>${esc(x.nom)}</td>
+
+          <td>${esc(x.email)}</td>
+
+          <td>
+          <select id="role_${x.id}">
+          <option value="étudiant">
+          Étudiant
+          </option>
+          <option value="professeur">
+          Professeur
+          </option>
+          <option value="secretariat">
+          Secrétariat
+          </option>
+          <option value="administrateur">
+          Administrateur
+          </option>
+          </select>
+          </td>
+
+          <td>
+
+          <button
+          class="actionBtn acceptBtn"
+          onclick="approveUser('${x.id}')">
+          Accepter
+          </button>
+
+          <button
+          class="actionBtn refuseBtn"
+          onclick="refuseUser('${x.id}')">
+          Refize
+          </button>
+
+          </td>
+
+          </tr>`
+        ).join("")
+      }
+      </table>
+      </div>`;
+
+    }
+
+
+    if(!data.length){
+
+      allBox.innerHTML =
+      '<div class="empty">Pa gen itilizatè.</div>';
+
+    }else{
+
+      allBox.innerHTML =
+      `<div class="tableWrap">
+      <table>
+      <tr>
+      <th>Nom</th>
+      <th>Email</th>
+      <th>Wòl</th>
+      <th>Status</th>
+      </tr>
+      ${
+        data.map(
+          x =>
+          `<tr>
+
+          <td>${esc(x.nom)}</td>
+
+          <td>${esc(x.email)}</td>
+
+          <td>${esc(x.role)}</td>
+
+          <td>
+          <span class="badge ${
+            x.status==="accepted"
+            ? "badgeAccepted"
+            : "badgePending"
+          }">
+          ${esc(x.status)}
+          </span>
+          </td>
+
+          </tr>`
+        ).join("")
+      }
+      </table>
+      </div>`;
+
+    }
+
+  }catch(error){
+
+    console.error(error);
+
+    pendingBox.innerHTML =
+    "Pa kapab chaje itilizatè yo.";
+
+  }
+
+}
+
+
+/* ================= APPROVE ================= */
+
+window.approveUser =
+async function(uid){
+
+  if(!requireAdmin())return;
+
+  const roleSelect =
+  document.getElementById(
+    "role_"+uid
+  );
+
+  const selectedRole =
+  roleSelect
+  ? roleSelect.value
+  : "étudiant";
+
+  await setDoc(
+    doc(db,"users",uid),
+    {
+
+      role:selectedRole,
+
+      status:"accepted",
+
+      approvedBy:
+      currentUser.uid,
+
+      approvedAt:
+      serverTimestamp()
+
+    },
+    {
+      merge:true
+    }
+  );
+
+  alert(
+    "Itilizatè a apwouve."
+  );
+
+  loadUsers();
+
+};
+
+
+/* ================= REFUSE ================= */
+
+window.refuseUser =
+async function(uid){
+
+  if(!requireAdmin())return;
+
+  const ok =
+  confirm(
+    "Èske ou vle refize itilizatè sa a?"
+  );
+
+  if(!ok)return;
+
+  await setDoc(
+    doc(db,"users",uid),
+    {
+
+      status:"refused",
+
+      approvedBy:
+      currentUser.uid,
+
+      approvedAt:
+      serverTimestamp()
+
+    },
+    {
+      merge:true
+    }
+  );
+
+  alert(
+    "Itilizatè a refize."
+  );
+
+  loadUsers();
+
+};
+
+
+/* ================= DELETE ================= */
+
+window.deleteData =
+async function(
+  collectionName,
+  id
+){
+
+  if(!requireAdmin())return;
+
+  const ok =
+  confirm(
+    "Èske ou sèten ou vle efase done sa a?"
+  );
+
+  if(!ok)return;
+
+  try{
+
+    await deleteDoc(
+      doc(
+        db,
+        collectionName,
+        id
+      )
+    );
+
+    alert("Done a efase.");
+
+    await loadAllData();
+
+  }catch(error){
+
+    console.error(error);
+
+    alert(
+      "Pa kapab efase done a."
+    );
+
+  }
+
+};
+
+
+/* ================= LOAD EVERYTHING ================= */
+
+async function loadAllData(){
+
+  await loadStudents();
+
+  await loadTeachers();
+
+  await loadDepartments();
+
+  await loadPrograms();
+
+  await loadCourses();
+
+  await loadClasses();
+
+  await loadAssignments();
+
+  await loadSubmissions();
+
+  await loadResults();
+
+  await loadSchedules();
+
+  await updateStats();
+
+  if(isAdmin()){
+
+    await loadUsers();
+
+  }
+
+}
+
+
+/* ================= STATS ================= */
+
+async function countCollection(name){
+
+  try{
+
+    const data =
+    await getCollection(name);
+
+    return data.length;
+
+  }catch(e){
+
+    return 0;
+
+  }
+
+}
+
+
+async function updateStats(){
+
+  const students =
+  await countCollection(
+    "etudiants"
+  );
+
+  const teachers =
+  await countCollection(
+    "professeurs"
+  );
+
+  const courses =
+  await countCollection(
+    "cours"
+  );
+
+  const classes =
+  await countCollection(
+    "classes"
+  );
+
+  const assignments =
+  await countCollection(
+    "devoirs"
+  );
+
+  const results =
+  await countCollection(
+    "resultats"
+  );
+
+
+  document.getElementById(
+    "statEtudiants"
+  ).textContent=students;
+
+  document.getElementById(
+    "statProfesseurs"
+  ).textContent=teachers;
+
+  document.getElementById(
+    "statCours"
+  ).textContent=courses;
+
+  document.getElementById(
+    "statClasses"
+  ).textContent=classes;
+
+
+  document.getElementById(
+    "bigStudents"
+  ).textContent=students;
+
+  document.getElementById(
+    "bigTeachers"
+  ).textContent=teachers;
+
+  document.getElementById(
+    "bigCourses"
+  ).textContent=courses;
+
+  document.getElementById(
+    "bigClasses"
+  ).textContent=classes;
+
+  document.getElementById(
+    "bigAssignments"
+  ).textContent=assignments;
+
+  document.getElementById(
+    "bigResults"
+  ).textContent=results;
+
+}
+
+
+/* ================= ESCAPE HTML ================= */
+
+function esc(value){
+
+  if(value===undefined ||
+     value===null){
+
+    return "";
+
+  }
+
+  return String(value)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+
+}
+
+
+/* ================= LOGOUT ================= */
+
+window.logout =
+async function(){
+
+  await signOut(auth);
+
+};
+
+
+/* ================= REDIRECT RESULT ================= */
+
+getRedirectResult(auth)
+.then(
+  result => {
+
+    if(result?.user){
+
+      console.log(
+        "Google redirect OK"
+      );
+
+    }
+
+  }
+)
+.catch(
+  error => {
+
+    console.error(
+      "Redirect error:",
+      error
+    );
+
+  }
+);
+
+
+/* ================= EXPOSE ================= */
+
+window.loadUsers =
+loadUsers;
+
+</script>
+
+
+<!-- SERVICE WORKER -->
+
+<script>
+
+if(
+  "serviceWorker" in navigator
+){
+
+  window.addEventListener(
+    "load",
+    () => {
+
+      navigator.serviceWorker
+      .register(
+        "./service-worker.js"
+      )
+      .catch(
+        error =>
+        console.log(
+          "Service Worker:",
+          error
+        )
+      );
+
+    }
+  );
+
+}
+
+</script>
+
+</body>
+</html>
