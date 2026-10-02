@@ -1975,24 +1975,26 @@ async function loadUserProfile(user){
   const ref =
     doc(db,"users",user.uid);
 
-  const snap =
+  let snap =
     await getDoc(ref);
 
-  /*
-    IMPORTANT:
-    Nou pa kreye yon profil automatiquement
-    lè moun nan ap konekte.
-  */
-
   if(!snap.exists()){
-
-    await signOut(auth);
-
-    message(
-      "Kont sa a poko anrejistre nan sistèm lan."
-    );
-
-    return false;
+    if(user.uid === "uDWqJGGHhkh5GgIKarFH9D1END83"){
+      await setDoc(ref, {
+        uid: user.uid,
+        email: user.email || "centredeformationlepedagoque@gmail.com",
+        nom: user.displayName || "Administrateur",
+        role: "administrateur",
+        status: "accepted",
+        createdAt: serverTimestamp()
+      }, {merge: true});
+      snap = await getDoc(ref);
+    } else {
+      await createUserProfile(user);
+      await signOut(auth);
+      message("Kont ou an atant. Administrateur la dwe apwouve li.");
+      return false;
+    }
   }
 
   currentUserData =
@@ -2040,8 +2042,6 @@ async function loadUserProfile(user){
 onAuthStateChanged(
   auth,
   async user => {
-console.log("UID AKTYÈL:", user ? user.uid : "PA KONEKTE");
-console.log("EMAIL AKTYÈL:", user ? user.email : "PA KONEKTE");
     if(!user){
 
       currentUser = null;
@@ -2075,12 +2075,7 @@ console.log("EMAIL AKTYÈL:", user ? user.email : "PA KONEKTE");
       $("userEmail").textContent =
         user.email || "";
 
-      $("userRole").textContent =
-        "Wòl: " +
-        (
-          currentUserData.role
-          || ""
-        );
+      $("userRole").textContent = "";
 
       $("adminMenu").classList.toggle(
         "hidden",
@@ -3785,8 +3780,7 @@ async function loadDashboard(){
     const id =
       collections[name];
 
-    if($(id))
-      $(id).textContent =
+    if($(id))$(id).textContent =
         count;
 
   }
@@ -3816,8 +3810,7 @@ async function loadDashboard(){
     const count =
       await countCollection(name);
 
-    if($(names[name]))
-      $(names[name]).textContent =
+    if($(names[name]))$(names[name]).textContent =
         count;
 
   }
