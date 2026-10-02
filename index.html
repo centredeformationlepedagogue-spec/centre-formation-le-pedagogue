@@ -2040,7 +2040,8 @@ async function loadUserProfile(user){
 onAuthStateChanged(
   auth,
   async user => {
-
+console.log("UID AKTYÈL:", user ? user.uid : "PA KONEKTE");
+console.log("EMAIL AKTYÈL:", user ? user.email : "PA KONEKTE");
     if(!user){
 
       currentUser = null;
