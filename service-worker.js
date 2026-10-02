@@ -1,4 +1,4 @@
-const CACHE_NAME = "cfp-v1";
+const CACHE_NAME = "pedagogue-v2";
 
 const FILES = [
   "./",
@@ -7,17 +7,39 @@ const FILES = [
 ];
 
 self.addEventListener("install", event => {
+  self.skipWaiting();
+
   event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(cache => cache.addAll(FILES))
+    caches.open(CACHE_NAME).then(cache => {
+      return cache.addAll(FILES);
+    })
+  );
+});
+
+self.addEventListener("activate", event => {
+  event.waitUntil(
+    caches.keys().then(keys => {
+      return Promise.all(
+        keys
+          .filter(key => key !== CACHE_NAME)
+          .map(key => caches.delete(key))
+      );
+    }).then(() => self.clients.claim())
   );
 });
 
 self.addEventListener("fetch", event => {
   event.respondWith(
-    caches.match(event.request)
+    fetch(event.request)
       .then(response => {
-        return response || fetch(event.request);
+        const copy = response.clone();
+
+        caches.open(CACHE_NAME).then(cache => {
+          cache.put(event.request, copy);
+        });
+
+        return response;
       })
+      .catch(() => caches.match(event.request))
   );
 });
