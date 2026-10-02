@@ -206,7 +206,7 @@ footer{text-align:center;padding:25px;color:#64748b}
     </div>
 
     <button class="headerBtn logoutBtn"
-            onclick="deconnecter"
+            onclick="deconnecter()"
             data-i18n="logout">
       Déconnexion
     </button>
@@ -260,24 +260,19 @@ footer{text-align:center;padding:25px;color:#64748b}
 
   <div class="card">
     <h3>Byenveni nan Centre de Formation Le Pédagogue</h3>
-    <p>
-      Sistèm nan konekte ak Firebase pou jere done sant fòmasyon an.
-    </p>
+    <p>Sistèm nan konekte ak Firebase pou jere done sant fòmasyon an.</p>
   </div>
 </section>
 
 <section id="eleves" class="section">
-
   <div class="pageTitle">
     <h2 data-i18n="students">Elèv</h2>
   </div>
 
   <div class="card" id="studentFormCard">
-
     <h3 data-i18n="addStudent">Ajoute yon elèv</h3>
 
     <div class="formGrid">
-
       <div class="formGroup">
         <label data-i18n="lastName">Nom</label>
         <input id="eleveNom">
@@ -297,23 +292,14 @@ footer{text-align:center;padding:25px;color:#64748b}
         <label data-i18n="class">Klas</label>
         <select id="eleveClasse"></select>
       </div>
-
     </div>
 
-    <button class="smallBtn"
-            onclick="ajouterEleve()"
-            data-i18n="add">
-      Ajoute
-    </button>
-
+    <button class="smallBtn" onclick="ajouterEleve()" data-i18n="add">Ajoute</button>
   </div>
 
   <div class="card">
-
     <div class="tableWrap">
-
       <table>
-
         <thead>
           <tr>
             <th>Nom</th>
@@ -323,29 +309,21 @@ footer{text-align:center;padding:25px;color:#64748b}
             <th>Aksyon</th>
           </tr>
         </thead>
-
         <tbody id="listeEleves"></tbody>
-
       </table>
-
     </div>
-
   </div>
-
 </section>
 
 <section id="professeurs" class="section">
-
   <div class="pageTitle">
     <h2 data-i18n="teachers">Pwofesè</h2>
   </div>
 
   <div class="card" id="teacherFormCard">
-
     <h3 data-i18n="addTeacher">Ajoute yon pwofesè</h3>
 
     <div class="formGrid">
-
       <div class="formGroup">
         <label data-i18n="lastName">Nom</label>
         <input id="profNom">
@@ -365,23 +343,14 @@ footer{text-align:center;padding:25px;color:#64748b}
         <label data-i18n="subject">Matyè</label>
         <select id="profMatiere"></select>
       </div>
-
     </div>
 
-    <button class="smallBtn"
-            onclick="ajouterProfesseur()"
-            data-i18n="add">
-      Ajoute
-    </button>
-
+    <button class="smallBtn" onclick="ajouterProfesseur()" data-i18n="add">Ajoute</button>
   </div>
 
   <div class="card">
-
     <div class="tableWrap">
-
       <table>
-
         <thead>
           <tr>
             <th>Nom</th>
@@ -391,29 +360,21 @@ footer{text-align:center;padding:25px;color:#64748b}
             <th>Aksyon</th>
           </tr>
         </thead>
-
         <tbody id="listeProfesseurs"></tbody>
-
       </table>
-
     </div>
-
   </div>
-
 </section>
 
 <section id="classes" class="section">
-
   <div class="pageTitle">
     <h2 data-i18n="classes">Klas</h2>
   </div>
 
   <div class="card">
-
     <h3 data-i18n="addClass">Ajoute yon klas</h3>
 
     <div class="formGrid">
-
       <div class="formGroup">
         <label data-i18n="className">Non klas</label>
         <input id="classeNom">
@@ -423,23 +384,14 @@ footer{text-align:center;padding:25px;color:#64748b}
         <label data-i18n="level">Nivo</label>
         <input id="classeNiveau">
       </div>
-
     </div>
 
-    <button class="smallBtn"
-            onclick="ajouterClasse()"
-            data-i18n="add">
-      Ajoute
-    </button>
-
+    <button class="smallBtn" onclick="ajouterClasse()" data-i18n="add">Ajoute</button>
   </div>
 
   <div class="card">
-
     <div class="tableWrap">
-
       <table>
-
         <thead>
           <tr>
             <th>Non</th>
@@ -447,25 +399,18 @@ footer{text-align:center;padding:25px;color:#64748b}
             <th>Aksyon</th>
           </tr>
         </thead>
-
         <tbody id="listeClasses"></tbody>
-
       </table>
-
     </div>
-
   </div>
-
 </section>
 
 <section id="matieres" class="section">
-
   <div class="pageTitle">
     <h2 data-i18n="subjects">Matyè</h2>
   </div>
 
   <div class="card">
-
     <h3 data-i18n="addSubject">Ajoute yon matyè</h3>
 
     <div class="formGroup">
@@ -473,49 +418,33 @@ footer{text-align:center;padding:25px;color:#64748b}
       <input id="matiereNom">
     </div>
 
-    <button class="smallBtn"
-            onclick="ajouterMatiere()"
-            data-i18n="add">
-      Ajoute
-    </button>
-
+    <button class="smallBtn" onclick="ajouterMatiere()" data-i18n="add">Ajoute</button>
   </div>
 
   <div class="card">
-
     <div class="tableWrap">
-
       <table>
-
         <thead>
           <tr>
             <th>Non matyè</th>
             <th>Aksyon</th>
           </tr>
         </thead>
-
         <tbody id="listeMatieres"></tbody>
-
       </table>
-
     </div>
-
   </div>
-
 </section>
 
 <section id="devoirs" class="section">
-
   <div class="pageTitle">
     <h2 data-i18n="homework">Devwa</h2>
   </div>
 
   <div class="card" id="homeworkFormCard">
-
     <h3 data-i18n="addHomework">Ajoute yon devwa</h3>
 
     <div class="formGrid">
-
       <div class="formGroup">
         <label data-i18n="title">Tit</label>
         <input id="devoirTitre">
@@ -540,23 +469,14 @@ footer{text-align:center;padding:25px;color:#64748b}
         <label data-i18n="description">Deskripsyon</label>
         <input id="devoirDescription">
       </div>
-
     </div>
 
-    <button class="smallBtn"
-            onclick="ajouterDevoir()"
-            data-i18n="add">
-      Ajoute
-    </button>
-
+    <button class="smallBtn" onclick="ajouterDevoir()" data-i18n="add">Ajoute</button>
   </div>
 
   <div class="card">
-
     <div class="tableWrap">
-
       <table>
-
         <thead>
           <tr>
             <th>Tit</th>
@@ -566,35 +486,22 @@ footer{text-align:center;padding:25px;color:#64748b}
             <th>Aksyon</th>
           </tr>
         </thead>
-
         <tbody id="listeDevoirs"></tbody>
-
       </table>
-
     </div>
-
   </div>
-
 </section>
 
 <section id="remises" class="section">
-
   <div class="pageTitle">
-
     <h2 data-i18n="submissions">Remèt devwa</h2>
-
-    <p>
-      Nòt yo antre sou 20 epi sistèm nan montre ekivalan sou 100.
-    </p>
-
+    <p>Nòt yo antre sou 20 epi sistèm nan montre ekivalan sou 100.</p>
   </div>
 
   <div class="card" id="submissionFormCard">
-
     <h3 data-i18n="addSubmission">Ajoute yon remèt</h3>
 
     <div class="formGrid">
-
       <div class="formGroup">
         <label data-i18n="student">Elèv</label>
         <select id="remiseEleve"></select>
@@ -607,34 +514,21 @@ footer{text-align:center;padding:25px;color:#64748b}
 
       <div class="formGroup">
         <label>Nòt /20</label>
-        <input id="remiseNote"
-               type="number"
-               min="0"
-               max="20"
-               step="0.01">
+        <input id="remiseNote" type="number" min="0" max="20" step="0.01">
       </div>
 
       <div class="formGroup">
         <label>Kòmantè</label>
         <input id="remiseCommentaire">
       </div>
-
     </div>
 
-    <button class="smallBtn"
-            onclick="ajouterRemise()"
-            data-i18n="add">
-      Ajoute
-    </button>
-
+    <button class="smallBtn" onclick="ajouterRemise()" data-i18n="add">Ajoute</button>
   </div>
 
   <div class="card">
-
     <div class="tableWrap">
-
       <table>
-
         <thead>
           <tr>
             <th>Elèv</th>
@@ -645,45 +539,33 @@ footer{text-align:center;padding:25px;color:#64748b}
             <th>Aksyon</th>
           </tr>
         </thead>
-
         <tbody id="listeRemises"></tbody>
-
       </table>
-
     </div>
-
   </div>
-
 </section>
 
 <section id="resultats" class="section">
-
   <div class="pageTitle">
     <h2 data-i18n="results">Rezilta</h2>
   </div>
 
   <div class="card">
-
     <div class="formGroup">
       <label>Elèv</label>
-      <select id="resultatEleve"
-              onchange="afficherResultatEleve()"></select>
+      <select id="resultatEleve" onchange="afficherResultatEleve()"></select>
     </div>
 
     <div id="resultatEleveDetails"></div>
-
   </div>
-
 </section>
 
 <section id="statistiques" class="section">
-
   <div class="pageTitle">
     <h2 data-i18n="statistics">Estatistik</h2>
   </div>
 
   <div class="statsGrid">
-
     <div class="statCard">
       <span>Elèv</span>
       <strong id="statBigEleves">0</strong>
@@ -703,33 +585,20 @@ footer{text-align:center;padding:25px;color:#64748b}
       <span>Matyè</span>
       <strong id="statBigMatieres">0</strong>
     </div>
-
   </div>
-
 </section>
 
 <section id="utilisateurs" class="section">
-
   <div class="pageTitle">
-
-    <h2 data-i18n="users">
-      Itilizatè
-    </h2>
-
-    <p>
-      Se administratè a ki valide nouvo kont yo.
-    </p>
-
+    <h2 data-i18n="users">Itilizatè</h2>
+    <p>Se administratè a ki valide nouvo kont yo.</p>
   </div>
 
   <div class="card">
-
     <h3>Demann an attente</h3>
 
     <div class="tableWrap">
-
       <table>
-
         <thead>
           <tr>
             <th>Non</th>
@@ -739,23 +608,16 @@ footer{text-align:center;padding:25px;color:#64748b}
             <th>Aksyon</th>
           </tr>
         </thead>
-
         <tbody id="listeDemandes"></tbody>
-
       </table>
-
     </div>
-
   </div>
 
   <div class="card">
-
     <h3>Tout itilizatè</h3>
 
     <div class="tableWrap">
-
       <table>
-
         <thead>
           <tr>
             <th>Non</th>
@@ -764,45 +626,25 @@ footer{text-align:center;padding:25px;color:#64748b}
             <th>Estati</th>
           </tr>
         </thead>
-
         <tbody id="listeUtilisateurs"></tbody>
-
       </table>
-
     </div>
-
   </div>
-
 </section>
 
 <section id="sauvegarde" class="section">
-
   <div class="pageTitle">
     <h2 data-i18n="backup">Done / Sauvegarde</h2>
   </div>
 
   <div class="card">
-
-    <p>
-      Done prensipal yo konsève nan Firebase.
-    </p>
+    <p>Done prensipal yo konsève nan Firebase.</p>
 
     <div class="actionRow">
-
-      <button class="smallBtn"
-              onclick="exporterDonnees()">
-        📤 Ekspòte done
-      </button>
-
-      <button class="smallBtn warningBtn"
-              onclick="importerDonnees()">
-        📥 Enpòte done
-      </button>
-
+      <button class="smallBtn" onclick="exporterDonnees()">📤 Ekspòte done</button>
+      <button class="smallBtn warningBtn" onclick="importerDonnees()">📥 Enpòte done</button>
     </div>
-
   </div>
-
 </section>
 
 </main>
@@ -894,57 +736,40 @@ let deferredPrompt = null;
 
 
 /* ==========================================================
-   FIRESTORE COLLECTIONS OTOMATIK
+   FIRESTORE COLLECTIONS
 ========================================================== */
 
 const FIREBASE_COLLECTION_MAP = {
 
   eleves:"etudiants",
-
   professeurs:"professeurs",
-
   classes:"classes",
-
   matieres:"cours",
-
   devoirs:"devoirs",
-
   remises:"remises"
 
 };
 
-
 const AUTO_COLLECTIONS = [
 
   "etudiants",
-
   "professeurs",
-
   "departements",
-
   "programmes",
-
   "cours",
-
   "classes",
-
   "devoirs",
-
   "remises",
-
   "resultats",
-
   "emplois_du_temps"
 
 ];
-
 
 function firebaseCollectionName(name){
 
   return FIREBASE_COLLECTION_MAP[name] || name;
 
 }
-
 
 function isAdmin(){
 
@@ -956,23 +781,13 @@ function isAdmin(){
 
 }
 
-
 async function initializeCollections(){
 
-  if(
-    !isAdmin()
-    ||
-    !currentUser
-  ){
-
+  if(!isAdmin() || !currentUser){
     return;
-
   }
 
-
-  for(
-    const name of AUTO_COLLECTIONS
-  ){
+  for(const name of AUTO_COLLECTIONS){
 
     try{
 
@@ -983,10 +798,8 @@ async function initializeCollections(){
           "__meta"
         );
 
-
       const snap =
         await getDoc(ref);
-
 
       if(!snap.exists()){
 
@@ -1025,370 +838,148 @@ const translations = {
 
   ht:{
 
-    authSub:
-      "Konekte pou antre nan sistèm nan",
+    authSub:"Konekte pou antre nan sistèm nan",
+    loginTab:"Konekte",
+    registerTab:"Kreye kont",
+    email:"E-mail",
+    password:"Mot de passe",
+    confirmPassword:"Confirmation mot de passe",
+    firstName:"Prénom",
+    lastName:"Nom",
+    role:"Wòl",
+    createAccount:"Kreye kont",
+    login:"Konekte",
+    logout:"Déconnexion",
 
-    loginTab:
-      "Konekte",
+    navHome:"🏠 Akèy",
+    navStudents:"👨‍🎓 Elèv",
+    navTeachers:"👨‍🏫 Pwofesè",
+    navClasses:"🏫 Klas",
+    navSubjects:"📚 Matyè",
+    navHomework:"📝 Devwa",
+    navSubmissions:"📤 Remèt",
+    navResults:"📊 Rezilta",
+    navStats:"📈 Estatistik",
+    navUsers:"👥 Itilizatè",
+    navBackup:"💾 Done",
 
-    registerTab:
-      "Kreye kont",
+    dashboardTitle:"Akèy",
+    dashboardSub:"Rezime sistèm nan",
 
-    email:
-      "E-mail",
+    students:"Elèv",
+    teachers:"Pwofesè",
+    classes:"Klas",
+    homework:"Devwa",
 
-    password:
-      "Mot de passe",
+    welcome:"Byenveni nan Centre de Formation Le Pédagogue",
+    welcomeText:"Sistèm nan konekte ak Firebase pou jere done sant fòmasyon an.",
 
-    confirmPassword:
-      "Confirmation mot de passe",
+    addStudent:"Ajoute yon elèv",
+    addTeacher:"Ajoute yon pwofesè",
+    addClass:"Ajoute yon klas",
+    addSubject:"Ajoute yon matyè",
+    addHomework:"Ajoute yon devwa",
+    addSubmission:"Ajoute yon remèt",
+    add:"Ajoute",
+    actions:"Aksyon",
+    class:"Klas",
+    subject:"Matyè",
+    className:"Non klas",
+    level:"Nivo",
+    subjectName:"Non matyè",
+    title:"Tit",
+    date:"Dat",
+    description:"Deskripsyon",
+    student:"Elèv",
+    note20:"Nòt /20",
+    note100:"Ekivalan /100",
+    comment:"Kòmantè",
+    submissions:"Remèt devwa",
+    results:"Rezilta",
+    statistics:"Estatistik",
+    average:"Mwayèn /20",
+    users:"Itilizatè",
+    backup:"Done / Sauvegarde",
 
-    firstName:
-      "Prénom",
-
-    lastName:
-      "Nom",
-
-    role:
-      "Wòl",
-
-    createAccount:
-      "Kreye kont",
-
-    login:
-      "Konekte",
-
-    logout:
-      "Déconnexion",
-
-    navHome:
-      "🏠 Akèy",
-
-    navStudents:
-      "👨‍🎓 Elèv",
-
-    navTeachers:
-      "👨‍🏫 Pwofesè",
-
-    navClasses:
-      "🏫 Klas",
-
-    navSubjects:
-      "📚 Matyè",
-
-    navHomework:
-      "📝 Devwa",
-
-    navSubmissions:
-      "📤 Remèt",
-
-    navResults:
-      "📊 Rezilta",
-
-    navStats:
-      "📈 Estatistik",
-
-    navUsers:
-      "👥 Itilizatè",
-
-    navBackup:
-      "💾 Done",
-
-    dashboardTitle:
-      "Akèy",
-
-    dashboardSub:
-      "Rezime sistèm nan",
-
-    students:
-      "Elèv",
-
-    teachers:
-      "Pwofesè",
-
-    classes:
-      "Klas",
-
-    homework:
-      "Devwa",
-
-    welcome:
-      "Byenveni nan Centre de Formation Le Pédagogue",
-
-    welcomeText:
-      "Sistèm nan konekte ak Firebase pou jere done lekòl la.",
-
-    addStudent:
-      "Ajoute yon elèv",
-
-    addTeacher:
-      "Ajoute yon pwofesè",
-
-    addClass:
-      "Ajoute yon klas",
-
-    addSubject:
-      "Ajoute yon matyè",
-
-    addHomework:
-      "Ajoute yon devwa",
-
-    addSubmission:
-      "Ajoute yon remèt",
-
-    add:
-      "Ajoute",
-
-    actions:
-      "Aksyon",
-
-    class:
-      "Klas",
-
-    subject:
-      "Matyè",
-
-    className:
-      "Non klas",
-
-    level:
-      "Nivo",
-
-    subjectName:
-      "Non matyè",
-
-    title:
-      "Tit",
-
-    date:
-      "Dat",
-
-    description:
-      "Deskripsyon",
-
-    student:
-      "Elèv",
-
-    note20:
-      "Nòt /20",
-
-    note100:
-      "Ekivalan /100",
-
-    comment:
-      "Kòmantè",
-
-    submissions:
-      "Remèt devwa",
-
-    results:
-      "Rezilta",
-
-    statistics:
-      "Estatistik",
-
-    average:
-      "Mwayèn /20",
-
-    users:
-      "Itilizatè",
-
-    backup:
-      "Done / Sauvegarde",
-
-    pendingInfo:
-      "Nouvo kont yo rete an attente jiskaske yon administratè valide demann lan."
+    pendingInfo:"Nouvo kont yo rete an attente jiskaske yon administratè valide demann lan."
 
   },
 
-
   fr:{
 
-    authSub:
-      "Connectez-vous pour entrer dans le système",
+    authSub:"Connectez-vous pour entrer dans le système",
+    loginTab:"Connexion",
+    registerTab:"Créer un compte",
+    email:"E-mail",
+    password:"Mot de passe",
+    confirmPassword:"Confirmation du mot de passe",
+    firstName:"Prénom",
+    lastName:"Nom",
+    role:"Rôle",
+    createAccount:"Créer le compte",
+    login:"Connexion",
+    logout:"Déconnexion",
 
-    loginTab:
-      "Connexion",
+    navHome:"🏠 Accueil",
+    navStudents:"👨‍🎓 Élèves",
+    navTeachers:"👨‍🏫 Professeurs",
+    navClasses:"🏫 Classes",
+    navSubjects:"📚 Matières",
+    navHomework:"📝 Devoirs",
+    navSubmissions:"📤 Remises",
+    navResults:"📊 Résultats",
+    navStats:"📈 Statistiques",
+    navUsers:"👥 Utilisateurs",
+    navBackup:"💾 Données",
 
-    registerTab:
-      "Créer un compte",
+    dashboardTitle:"Accueil",
+    dashboardSub:"Résumé du système",
 
-    email:
-      "E-mail",
+    students:"Élèves",
+    teachers:"Professeurs",
+    classes:"Classes",
+    homework:"Devoirs",
 
-    password:
-      "Mot de passe",
+    welcome:"Bienvenue dans Centre de Formation Le Pédagogue",
+    welcomeText:"Le système est connecté à Firebase pour gérer les données scolaires.",
 
-    confirmPassword:
-      "Confirmation du mot de passe",
+    addStudent:"Ajouter un élève",
+    addTeacher:"Ajouter un professeur",
+    addClass:"Ajouter une classe",
+    addSubject:"Ajouter une matière",
+    addHomework:"Ajouter un devoir",
+    addSubmission:"Ajouter une remise",
+    add:"Ajouter",
+    actions:"Actions",
+    class:"Classe",
+    subject:"Matière",
+    className:"Nom de la classe",
+    level:"Niveau",
+    subjectName:"Nom de la matière",
+    title:"Titre",
+    date:"Date",
+    description:"Description",
+    student:"Élève",
+    note20:"Note /20",
+    note100:"Équivalent /100",
+    comment:"Commentaire",
+    submissions:"Remises de devoirs",
+    results:"Résultats",
+    statistics:"Statistiques",
+    average:"Moyenne /20",
+    users:"Utilisateurs",
+    backup:"Données / Sauvegarde",
 
-    firstName:
-      "Prénom",
-
-    lastName:
-      "Nom",
-
-    role:
-      "Rôle",
-
-    createAccount:
-      "Créer le compte",
-
-    login:
-      "Connexion",
-
-    logout:
-      "Déconnexion",
-
-    navHome:
-      "🏠 Accueil",
-
-    navStudents:
-      "👨‍🎓 Élèves",
-
-    navTeachers:
-      "👨‍🏫 Professeurs",
-
-    navClasses:
-      "🏫 Classes",
-
-    navSubjects:
-      "📚 Matières",
-
-    navHomework:
-      "📝 Devoirs",
-
-    navSubmissions:
-      "📤 Remises",
-
-    navResults:
-      "📊 Résultats",
-
-    navStats:
-      "📈 Statistiques",
-
-    navUsers:
-      "👥 Utilisateurs",
-
-    navBackup:
-      "💾 Données",
-
-    dashboardTitle:
-      "Accueil",
-
-    dashboardSub:
-      "Résumé du système",
-
-    students:
-      "Élèves",
-
-    teachers:
-      "Professeurs",
-
-    classes:
-      "Classes",
-
-    homework:
-      "Devoirs",
-
-    welcome:
-      "Bienvenue dans Centre de Formation Le Pédagogue",
-
-    welcomeText:
-      "Le système est connecté à Firebase pour gérer les données scolaires.",
-
-    addStudent:
-      "Ajouter un élève",
-
-    addTeacher:
-      "Ajouter un professeur",
-
-    addClass:
-      "Ajouter une classe",
-
-    addSubject:
-      "Ajouter une matière",
-
-    addHomework:
-      "Ajouter un devoir",
-
-    addSubmission:
-      "Ajouter une remise",
-
-    add:
-      "Ajouter",
-
-    actions:
-      "Actions",
-
-    class:
-      "Classe",
-
-    subject:
-      "Matière",
-
-    className:
-      "Nom de la classe",
-
-    level:
-      "Niveau",
-
-    subjectName:
-      "Nom de la matière",
-
-    title:
-      "Titre",
-
-    date:
-      "Date",
-
-    description:
-      "Description",
-
-    student:
-      "Élève",
-
-    note20:
-      "Note /20",
-
-    note100:
-      "Équivalent /100",
-
-    comment:
-      "Commentaire",
-
-    submissions:
-      "Remises de devoirs",
-
-    results:
-      "Résultats",
-
-    statistics:
-      "Statistiques",
-
-    average:
-      "Moyenne /20",
-
-    users:
-      "Utilisateurs",
-
-    backup:
-      "Données / Sauvegarde",
-
-    pendingInfo:
-      "Les nouveaux comptes restent en attente jusqu'à leur validation par un administrateur."
+    pendingInfo:"Les nouveaux comptes restent en attente jusqu'à leur validation par un administrateur."
 
   }
 
 };
 
-
 function t(key){
 
   const lang =
-    localStorage.getItem(
-      "appLanguage"
-    ) || "ht";
+    localStorage.getItem("appLanguage") || "ht";
 
   return (
     translations[lang]?.[key]
@@ -1400,7 +991,6 @@ function t(key){
 
 }
 
-
 window.changerLangue =
 function(lang){
 
@@ -1409,21 +999,24 @@ function(lang){
     lang
   );
 
-  document
-    .getElementById("languageSelect")
-    .value = lang;
+  const select =
+    document.getElementById(
+      "languageSelect"
+    );
+
+  if(select){
+    select.value = lang;
+  }
 
   document
     .querySelectorAll("[data-i18n]")
     .forEach(el=>{
 
       const key =
-        el.getAttribute(
-          "data-i18n"
-        );
+        el.getAttribute("data-i18n");
 
       if(
-        translations[lang][key]
+        translations[lang]?.[key]
       ){
 
         el.textContent =
@@ -1435,13 +1028,10 @@ function(lang){
 
 };
 
-
 function initLanguage(){
 
   const lang =
-    localStorage.getItem(
-      "appLanguage"
-    ) || "ht";
+    localStorage.getItem("appLanguage") || "ht";
 
   changerLangue(lang);
 
@@ -1466,7 +1056,6 @@ function uid(){
 
 }
 
-
 function escapeHTML(value){
 
   return String(
@@ -1486,19 +1075,13 @@ function escapeHTML(value){
 
 }
 
-
 function showToast(msg){
 
   const el =
-    document.getElementById(
-      "toast"
-    );
+    document.getElementById("toast");
 
-  el.textContent =
-    msg;
-
-  el.style.display =
-    "block";
+  el.textContent = msg;
+  el.style.display = "block";
 
   setTimeout(
     ()=>el.style.display="none",
@@ -1507,25 +1090,18 @@ function showToast(msg){
 
 }
 
-
 function showAuthMsg(
   msg,
   type="error"
 ){
 
   const el =
-    document.getElementById(
-      "authMsg"
-    );
+    document.getElementById("authMsg");
 
-  el.textContent =
-    msg;
-
-  el.className =
-    "authMsg " + type;
+  el.textContent = msg;
+  el.className = "authMsg " + type;
 
 }
-
 
 function hideLoading(){
 
@@ -1535,61 +1111,40 @@ function hideLoading(){
 
 }
 
-
 function roleLabel(role){
 
-  if(
-    role==="administrateur"
-  ){
-
+  if(role==="administrateur"){
     return "Administratè";
-
   }
 
-  if(
-    role==="professeur"
-  ){
-
+  if(role==="professeur"){
     return "Pwofesè";
-
   }
 
   return "Elèv";
 
 }
 
-
 function roleClass(role){
 
-  if(
-    role==="administrateur"
-  ){
-
+  if(role==="administrateur"){
     return "badgeAdmin";
-
   }
 
-  if(
-    role==="professeur"
-  ){
-
+  if(role==="professeur"){
     return "badgeProf";
-
   }
 
   return "badgeEleve";
 
 }
 
-
 function getData(key){
 
   try{
 
     return JSON.parse(
-      localStorage.getItem(key)
-      ||
-      "[]"
+      localStorage.getItem(key) || "[]"
     );
 
   }catch{
@@ -1599,7 +1154,6 @@ function getData(key){
   }
 
 }
-
 
 function saveData(
   key,
@@ -1611,9 +1165,7 @@ function saveData(
     JSON.stringify(data)
   );
 
-  if(
-    window.firebaseSaveData
-  ){
+  if(window.firebaseSaveData){
 
     window.firebaseSaveData(
       key,
@@ -1624,18 +1176,13 @@ function saveData(
 
 }
 
-
 function canAccess(section){
 
   const role =
     currentUserProfile?.role;
 
-  if(
-    role==="administrateur"
-  ){
-
+  if(role==="administrateur"){
     return true;
-
   }
 
   const permissions={
@@ -1661,18 +1208,14 @@ function canAccess(section){
   };
 
   return (
-    permissions[role]
-      ?.includes(section)
+    permissions[role]?.includes(section)
     ||
     false
   );
 
 }
 
-
-function requireRole(
-  roles
-){
+function requireRole(roles){
 
   if(
     !currentUserProfile
@@ -1736,7 +1279,6 @@ function(tab){
 
 };
 
-
 window.creerCompte =
 async function(){
 
@@ -1768,9 +1310,6 @@ async function(){
       .getElementById("regPassword2")
       .value;
 
-  const role =
-    "eleve";
-
 
   if(
     !nom ||
@@ -1788,10 +1327,7 @@ async function(){
 
   }
 
-
-  if(
-    password!==password2
-  ){
+  if(password!==password2){
 
     showAuthMsg(
       "De mot de passe yo pa menm."
@@ -1801,10 +1337,7 @@ async function(){
 
   }
 
-
-  if(
-    password.length<6
-  ){
+  if(password.length<6){
 
     showAuthMsg(
       "Mot de passe a dwe gen omwen 6 karaktè."
@@ -1813,7 +1346,6 @@ async function(){
     return;
 
   }
-
 
   try{
 
@@ -1846,23 +1378,14 @@ async function(){
       {
 
         uid:user.uid,
-
         nom,
-
         prenom,
-
         displayName,
-
         email:user.email,
-
         role:"eleve",
-
         status:"pending",
-
         provider:"password",
-
-        createdAt:
-          serverTimestamp()
+        createdAt:serverTimestamp()
 
       },
       {merge:true}
@@ -1880,9 +1403,7 @@ async function(){
     showAuthTab("login");
 
     document
-      .getElementById(
-        "loginEmail"
-      )
+      .getElementById("loginEmail")
       .value=email;
 
 
@@ -1891,8 +1412,7 @@ async function(){
     console.error(error);
 
     showAuthMsg(
-      "Erè lè y ap kreye kont lan: "
-      +
+      "Erè lè y ap kreye kont lan: " +
       error.message
     );
 
@@ -1900,30 +1420,22 @@ async function(){
 
 };
 
-
 window.connexionEmail =
 async function(){
 
   const email =
     document
-      .getElementById(
-        "loginEmail"
-      )
+      .getElementById("loginEmail")
       .value
       .trim();
 
   const password =
     document
-      .getElementById(
-        "loginPassword"
-      )
+      .getElementById("loginPassword")
       .value;
 
 
-  if(
-    !email ||
-    !password
-  ){
+  if(!email || !password){
 
     showAuthMsg(
       "Antre e-mail ak mot de passe ou."
@@ -1947,15 +1459,13 @@ async function(){
     console.error(error);
 
     showAuthMsg(
-      "Erè connexion: "
-      +
+      "Erè connexion: " +
       error.message
     );
 
   }
 
 };
-
 
 window.connecterAvecGoogle =
 async function(){
@@ -1981,8 +1491,7 @@ async function(){
     }catch(e){
 
       showAuthMsg(
-        "Google connexion pa mache: "
-        +
+        "Google connexion pa mache: " +
         e.message
       );
 
@@ -1993,14 +1502,16 @@ async function(){
 };
 
 
-async function handleUser(
-  user
-){
+/* ==========================================================
+   KORÈKSYON PRINCIPAL AUTH
+   Pa transfòme erè Firestore an "pending"
+========================================================== */
+
+async function handleUser(user){
 
   if(!user){
 
     currentUser=null;
-
     currentUserProfile=null;
 
     document
@@ -2014,16 +1525,17 @@ async function handleUser(
     hideLoading();
 
     return;
-
   }
 
 
-  currentUser =
-    user;
+  currentUser=user;
 
 
-  let profile={};
+  let profile=null;
+  let profileReadError=null;
 
+
+  /* Li pwofil itilizatè a */
 
   try{
 
@@ -2036,26 +1548,56 @@ async function handleUser(
         )
       );
 
-    if(
-      snap.exists()
-    ){
 
-      profile =
-        snap.data();
+    if(snap.exists()){
+
+      profile=snap.data();
 
     }
 
   }catch(error){
 
+    profileReadError=error;
+
     console.error(
-      "Profile read:",
+      "ERÈ LI PWOFIL FIRESTORE:",
       error
     );
 
   }
 
 
-  if(!profile.uid){
+  /* Si Firebase pa kite app la li pwofil la,
+     PA montre "pending". Montre vrè erè a. */
+
+  if(profileReadError){
+
+    document
+      .getElementById("app")
+      .style.display="none";
+
+    document
+      .getElementById("loginBox")
+      .style.display="flex";
+
+    showAuthTab("login");
+
+    showAuthMsg(
+      "Firebase pa ka li pwofil ou. Verifye Firestore Rules yo. Erè: " +
+      profileReadError.message,
+      "error"
+    );
+
+    hideLoading();
+
+    return;
+  }
+
+
+  /* Si dokiman an vrèman pa egziste,
+     se la sèlman nou kreye yon nouvo pwofil. */
+
+  if(!profile){
 
     profile={
 
@@ -2066,30 +1608,29 @@ async function handleUser(
       prenom:
         user.displayName
         ||
-        user.email
-          ?.split("@")[0]
+        user.email?.split("@")[0]
         ||
         "",
 
       displayName:
         user.displayName
         ||
-        user.email
-          ?.split("@")[0]
+        user.email?.split("@")[0]
         ||
         "Utilisateur",
 
-      email:
-        user.email || "",
+      email:user.email || "",
 
       role:"eleve",
 
       status:"pending",
 
-      provider:"google",
+      provider:
+        user.providerData?.[0]?.providerId==="google.com"
+          ? "google"
+          : "password",
 
-      createdAt:
-        serverTimestamp()
+      createdAt:serverTimestamp()
 
     };
 
@@ -2109,22 +1650,69 @@ async function handleUser(
     }catch(error){
 
       console.error(
-        "Profile create:",
+        "ERÈ KREYE PWOFIL:",
         error
       );
 
+      document
+        .getElementById("app")
+        .style.display="none";
+
+      document
+        .getElementById("loginBox")
+        .style.display="flex";
+
+      showAuthTab("login");
+
+      showAuthMsg(
+        "Nou pa kapab kreye pwofil ou nan Firebase. Erè: " +
+        error.message,
+        "error"
+      );
+
+      hideLoading();
+
+      return;
     }
 
   }
 
 
-  currentUserProfile =
-    profile;
+  /* Netwaye role/status pou evite espas oswa majiskil */
+
+  const cleanRole =
+    String(
+      profile.role || ""
+    )
+    .trim()
+    .toLowerCase();
 
 
-  if(
-    profile.status!=="accepted"
-  ){
+  const cleanStatus =
+    String(
+      profile.status || ""
+    )
+    .trim()
+    .toLowerCase();
+
+
+  profile={
+
+    ...profile,
+
+    role:cleanRole,
+
+    status:cleanStatus
+
+  };
+
+
+  currentUserProfile=profile;
+
+
+  /* Kont lan dwe accepted */
+
+  if(cleanStatus!=="accepted"){
 
     document
       .getElementById("app")
@@ -2136,19 +1724,42 @@ async function handleUser(
 
     showAuthTab("login");
 
-    showAuthMsg(
-      "Kont ou an attente. Se yon administratè ki ka aksepte demann ou.",
-      "error"
-    );
+
+    if(cleanStatus==="pending"){
+
+      showAuthMsg(
+        "Kont ou an attente. Se yon administratè ki ka aksepte demann ou.",
+        "error"
+      );
+
+    }else if(cleanStatus==="rejected"){
+
+      showAuthMsg(
+        "Demann kont ou a te refize.",
+        "error"
+      );
+
+    }else{
+
+      showAuthMsg(
+        "Kont ou poko aksepte. Kontakte administratè a.",
+        "error"
+      );
+
+    }
+
 
     await signOut(auth);
 
     hideLoading();
 
     return;
-
   }
 
+
+  /* ========================================================
+     AKSÈ APP LA
+  ======================================================== */
 
   document
     .getElementById("loginBox")
@@ -2192,47 +1803,40 @@ async function handleUser(
       "userPhoto"
     );
 
-  photo.src =
-    user.photoURL
-    ||
-    "https://ui-avatars.com/api/?name="
-    +
-    encodeURIComponent(
-      profile.displayName
+
+  if(photo){
+
+    photo.src =
+      user.photoURL
       ||
-      "U"
-    );
+      "https://ui-avatars.com/api/?name=" +
+      encodeURIComponent(
+        profile.displayName || "U"
+      );
+
+  }
 
 
   applyRoleUI();
 
-
   await initializeCollections();
-
 
   await chargerDonneesFirebase();
 
-
   convertirNotesAnciennes();
-
 
   actualiserTout();
 
 
   const first =
     profile.role==="administrateur"
-      ?
-      "accueil"
-      :
-    profile.role==="professeur"
-      ?
-      "eleves"
-      :
-      "devoirs";
+      ? "accueil"
+      : profile.role==="professeur"
+        ? "eleves"
+        : "devoirs";
 
 
   showSection(first);
-
 
   hideLoading();
 
@@ -2248,7 +1852,12 @@ onAuthStateChanged(
 getRedirectResult(
   auth
 ).catch(
-  console.error
+  error=>{
+    console.error(
+      "Redirect result:",
+      error
+    );
+  }
 );
 
 
@@ -2263,7 +1872,18 @@ setPersistence(
 window.deconnecter =
 async function(){
 
-  await signOut(auth);
+  try{
+
+    await signOut(auth);
+
+  }catch(error){
+
+    console.error(
+      "Déconnexion:",
+      error
+    );
+
+  }
 
 };
 
@@ -2281,24 +1901,26 @@ function applyRoleUI(){
 
       btn.style.display =
         canAccess(section)
-        ?
-        "block"
-        :
-        "none";
+        ? "block"
+        : "none";
 
     });
 
 
-  document
-    .getElementById(
+  const usersSection =
+    document.getElementById(
       "utilisateurs"
-    )
-    .style.display =
+    );
+
+
+  if(usersSection){
+
+    usersSection.style.display =
       isAdmin()
-      ?
-      ""
-      :
-      "none";
+      ? ""
+      : "none";
+
+  }
 
 }
 
@@ -2310,15 +1932,10 @@ function applyRoleUI(){
 const collections = [
 
   "eleves",
-
   "professeurs",
-
   "classes",
-
   "matieres",
-
   "devoirs",
-
   "remises"
 
 ];
@@ -2337,9 +1954,7 @@ async function(
   try{
 
     const firestoreName =
-      firebaseCollectionName(
-        key
-      );
+      firebaseCollectionName(key);
 
 
     for(
@@ -2348,8 +1963,7 @@ async function(
 
       if(!item.id){
 
-        item.id =
-          uid();
+        item.id=uid();
 
       }
 
@@ -2392,9 +2006,7 @@ async function chargerDonneesFirebase(){
     try{
 
       const firestoreName =
-        firebaseCollectionName(
-          key
-        );
+        firebaseCollectionName(key);
 
 
       const snap =
@@ -2412,9 +2024,7 @@ async function chargerDonneesFirebase(){
       snap.forEach(
         d=>{
 
-          if(
-            d.id==="__meta"
-          )
+          if(d.id==="__meta")
             return;
 
 
@@ -2427,9 +2037,7 @@ async function chargerDonneesFirebase(){
       );
 
 
-      if(
-        data.length>0
-      ){
+      if(data.length>0){
 
         localStorage.setItem(
           key,
@@ -2451,9 +2059,7 @@ async function chargerDonneesFirebase(){
   }
 
 
-  if(
-    isAdmin()
-  ){
+  if(isAdmin()){
 
     await chargerUtilisateurs();
 
@@ -2475,10 +2081,7 @@ async function chargerUtilisateurs(){
     );
 
 
-  if(
-    !tbody ||
-    !demandes
-  )
+  if(!tbody || !demandes)
     return;
 
 
@@ -2503,12 +2106,14 @@ async function chargerUtilisateurs(){
     snap.forEach(
       d=>{
 
-        const u =
-          d.data();
+        const u=d.data();
 
         const status =
-          u.status ||
-          "pending";
+          String(
+            u.status || "pending"
+          )
+          .trim()
+          .toLowerCase();
 
 
         tbody.innerHTML += `
@@ -2545,9 +2150,7 @@ async function chargerUtilisateurs(){
         `;
 
 
-        if(
-          status==="pending"
-        ){
+        if(status==="pending"){
 
           pending++;
 
@@ -2626,40 +2229,45 @@ async function chargerUtilisateurs(){
   }catch(error){
 
     console.error(
+      "Users read:",
       error
     );
+
+    demandes.innerHTML = `
+
+      <tr>
+
+        <td
+          colspan="5"
+          class="empty">
+          Firebase pa pèmèt administratè a li lis itilizatè yo.
+        </td>
+
+      </tr>
+
+    `;
 
   }
 
 }
 
 
-function statusBadge(
-  status
-){
+function statusBadge(status){
 
   const s =
     status==="accepted"
-      ?
-      "Aksepte"
-      :
-    status==="rejected"
-      ?
-      "Refize"
-      :
-      "An attente";
+      ? "Aksepte"
+      : status==="rejected"
+        ? "Refize"
+        : "An attente";
 
 
   const c =
     status==="accepted"
-      ?
-      "badgeAccepted"
-      :
-    status==="rejected"
-      ?
-      "badgeRejected"
-      :
-      "badgePending";
+      ? "badgeAccepted"
+      : status==="rejected"
+        ? "badgeRejected"
+        : "badgePending";
 
 
   return `
@@ -2674,9 +2282,7 @@ function statusBadge(
 window.accepterDemande =
 async function(uidUser){
 
-  if(
-    !isAdmin()
-  )
+  if(!isAdmin())
     return;
 
 
@@ -2712,12 +2318,11 @@ async function(uidUser){
 
   }catch(error){
 
-    console.error(
-      error
-    );
+    console.error(error);
 
     showToast(
-      "Erè pandan akseptasyon an."
+      "Erè pandan akseptasyon an: " +
+      error.message
     );
 
   }
@@ -2728,9 +2333,7 @@ async function(uidUser){
 window.refuserDemande =
 async function(uidUser){
 
-  if(
-    !isAdmin()
-  )
+  if(!isAdmin())
     return;
 
 
@@ -2766,8 +2369,11 @@ async function(uidUser){
 
   }catch(error){
 
-    console.error(
-      error
+    console.error(error);
+
+    showToast(
+      "Erè pandan refi a: " +
+      error.message
     );
 
   }
@@ -2782,9 +2388,7 @@ async function(uidUser){
 window.showSection =
 function(id){
 
-  if(
-    !canAccess(id)
-  ){
+  if(!canAccess(id)){
 
     showToast(
       "⛔ Ou pa gen aksè ak seksyon sa a."
@@ -2796,36 +2400,27 @@ function(id){
 
 
   document
-    .querySelectorAll(
-      ".section"
-    )
+    .querySelectorAll(".section")
     .forEach(
-      s=>s.classList.remove(
-        "active"
-      )
+      s=>s.classList.remove("active")
     );
 
 
   const section =
-    document.getElementById(
-      id
-    );
+    document.getElementById(id);
 
 
-  if(section)
-    section.classList.add(
-      "active"
-    );
+  if(section){
+
+    section.classList.add("active");
+
+  }
 
 
   document
-    .querySelectorAll(
-      "nav button"
-    )
+    .querySelectorAll("nav button")
     .forEach(
-      b=>b.classList.remove(
-        "active"
-      )
+      b=>b.classList.remove("active")
     );
 
 
@@ -2835,10 +2430,11 @@ function(id){
     );
 
 
-  if(btn)
-    btn.classList.add(
-      "active"
-    );
+  if(btn){
+
+    btn.classList.add("active");
+
+  }
 
 
   if(
@@ -2872,18 +2468,14 @@ function(){
 
   const nom =
     document
-      .getElementById(
-        "classeNom"
-      )
+      .getElementById("classeNom")
       .value
       .trim();
 
 
   const niveau =
     document
-      .getElementById(
-        "classeNiveau"
-      )
+      .getElementById("classeNiveau")
       .value
       .trim();
 
@@ -2906,9 +2498,7 @@ function(){
   data.push({
 
     id:uid(),
-
     nom,
-
     niveau
 
   });
@@ -2921,16 +2511,12 @@ function(){
 
 
   document
-    .getElementById(
-      "classeNom"
-    )
+    .getElementById("classeNom")
     .value="";
 
 
   document
-    .getElementById(
-      "classeNiveau"
-    )
+    .getElementById("classeNiveau")
     .value="";
 
 
@@ -2960,36 +2546,28 @@ function(){
 
   const nom =
     document
-      .getElementById(
-        "profNom"
-      )
+      .getElementById("profNom")
       .value
       .trim();
 
 
   const prenom =
     document
-      .getElementById(
-        "profPrenom"
-      )
+      .getElementById("profPrenom")
       .value
       .trim();
 
 
   const email =
     document
-      .getElementById(
-        "profEmail"
-      )
+      .getElementById("profEmail")
       .value
       .trim();
 
 
   const matiere =
     document
-      .getElementById(
-        "profMatiere"
-      )
+      .getElementById("profMatiere")
       .value;
 
 
@@ -3005,21 +2583,15 @@ function(){
 
 
   const data =
-    getData(
-      "professeurs"
-    );
+    getData("professeurs");
 
 
   data.push({
 
     id:uid(),
-
     nom,
-
     prenom,
-
     email,
-
     matiere
 
   });
@@ -3032,23 +2604,17 @@ function(){
 
 
   document
-    .getElementById(
-      "profNom"
-    )
+    .getElementById("profNom")
     .value="";
 
 
   document
-    .getElementById(
-      "profPrenom"
-    )
+    .getElementById("profPrenom")
     .value="";
 
 
   document
-    .getElementById(
-      "profEmail"
-    )
+    .getElementById("profEmail")
     .value="";
 
 
@@ -3074,9 +2640,7 @@ function(){
 
   const nom =
     document
-      .getElementById(
-        "matiereNom"
-      )
+      .getElementById("matiereNom")
       .value
       .trim();
 
@@ -3093,15 +2657,12 @@ function(){
 
 
   const data =
-    getData(
-      "matieres"
-    );
+    getData("matieres");
 
 
   data.push({
 
     id:uid(),
-
     nom
 
   });
@@ -3114,9 +2675,7 @@ function(){
 
 
   document
-    .getElementById(
-      "matiereNom"
-    )
+    .getElementById("matiereNom")
     .value="";
 
 
@@ -3145,36 +2704,28 @@ function(){
 
   const nom =
     document
-      .getElementById(
-        "eleveNom"
-      )
+      .getElementById("eleveNom")
       .value
       .trim();
 
 
   const prenom =
     document
-      .getElementById(
-        "elevePrenom"
-      )
+      .getElementById("elevePrenom")
       .value
       .trim();
 
 
   const email =
     document
-      .getElementById(
-        "eleveEmail"
-      )
+      .getElementById("eleveEmail")
       .value
       .trim();
 
 
   const classe =
     document
-      .getElementById(
-        "eleveClasse"
-      )
+      .getElementById("eleveClasse")
       .value;
 
 
@@ -3190,21 +2741,15 @@ function(){
 
 
   const data =
-    getData(
-      "eleves"
-    );
+    getData("eleves");
 
 
   data.push({
 
     id:uid(),
-
     nom,
-
     prenom,
-
     email,
-
     classe
 
   });
@@ -3217,23 +2762,17 @@ function(){
 
 
   document
-    .getElementById(
-      "eleveNom"
-    )
+    .getElementById("eleveNom")
     .value="";
 
 
   document
-    .getElementById(
-      "elevePrenom"
-    )
+    .getElementById("elevePrenom")
     .value="";
 
 
   document
-    .getElementById(
-      "eleveEmail"
-    )
+    .getElementById("eleveEmail")
     .value="";
 
 
@@ -3262,42 +2801,32 @@ function(){
 
   const titre =
     document
-      .getElementById(
-        "devoirTitre"
-      )
+      .getElementById("devoirTitre")
       .value
       .trim();
 
 
   const matiere =
     document
-      .getElementById(
-        "devoirMatiere"
-      )
+      .getElementById("devoirMatiere")
       .value;
 
 
   const classe =
     document
-      .getElementById(
-        "devoirClasse"
-      )
+      .getElementById("devoirClasse")
       .value;
 
 
   const date =
     document
-      .getElementById(
-        "devoirDate"
-      )
+      .getElementById("devoirDate")
       .value;
 
 
   const description =
     document
-      .getElementById(
-        "devoirDescription"
-      )
+      .getElementById("devoirDescription")
       .value
       .trim();
 
@@ -3314,23 +2843,16 @@ function(){
 
 
   const data =
-    getData(
-      "devoirs"
-    );
+    getData("devoirs");
 
 
   data.push({
 
     id:uid(),
-
     titre,
-
     matiere,
-
     classe,
-
     date,
-
     description
 
   });
@@ -3343,16 +2865,12 @@ function(){
 
 
   document
-    .getElementById(
-      "devoirTitre"
-    )
+    .getElementById("devoirTitre")
     .value="";
 
 
   document
-    .getElementById(
-      "devoirDescription"
-    )
+    .getElementById("devoirDescription")
     .value="";
 
 
@@ -3383,43 +2901,32 @@ function(){
 
   const eleve =
     document
-      .getElementById(
-        "remiseEleve"
-      )
+      .getElementById("remiseEleve")
       .value;
 
 
   const devoir =
     document
-      .getElementById(
-        "remiseDevoir"
-      )
+      .getElementById("remiseDevoir")
       .value;
 
 
   const note =
     Number(
       document
-        .getElementById(
-          "remiseNote"
-        )
+        .getElementById("remiseNote")
         .value
     );
 
 
   const commentaire =
     document
-      .getElementById(
-        "remiseCommentaire"
-      )
+      .getElementById("remiseCommentaire")
       .value
       .trim();
 
 
-  if(
-    !eleve ||
-    !devoir
-  ){
+  if(!eleve || !devoir){
 
     showToast(
       "Chwazi elèv ak devwa."
@@ -3448,9 +2955,7 @@ function(){
 
 
   const data =
-    getData(
-      "remises"
-    );
+    getData("remises");
 
 
   data.push({
@@ -3463,8 +2968,7 @@ function(){
 
     note20:note,
 
-    note100:
-      note * 5,
+    note100:note*5,
 
     commentaire
 
@@ -3478,16 +2982,12 @@ function(){
 
 
   document
-    .getElementById(
-      "remiseNote"
-    )
+    .getElementById("remiseNote")
     .value="";
 
 
   document
-    .getElementById(
-      "remiseCommentaire"
-    )
+    .getElementById("remiseCommentaire")
     .value="";
 
 
@@ -3503,18 +3003,14 @@ function(){
 function afficherClasses(){
 
   const tbody =
-    document.getElementById(
-      "listeClasses"
-    );
+    document.getElementById("listeClasses");
 
   if(!tbody)
     return;
 
 
   const data =
-    getData(
-      "classes"
-    );
+    getData("classes");
 
 
   tbody.innerHTML="";
@@ -3528,15 +3024,11 @@ function afficherClasses(){
         <tr>
 
           <td>
-            ${escapeHTML(
-              item.nom
-            )}
+            ${escapeHTML(item.nom)}
           </td>
 
           <td>
-            ${escapeHTML(
-              item.niveau
-            )}
+            ${escapeHTML(item.niveau)}
           </td>
 
           <td>
@@ -3561,8 +3053,7 @@ function afficherClasses(){
 
     tbody.innerHTML =
       `<tr>
-        <td colspan="3"
-            class="empty">
+        <td colspan="3" class="empty">
           Pa gen klas.
         </td>
       </tr>`;
@@ -3584,9 +3075,7 @@ function afficherProfesseurs(){
 
 
   const data =
-    getData(
-      "professeurs"
-    );
+    getData("professeurs");
 
 
   tbody.innerHTML="";
@@ -3637,8 +3126,7 @@ function afficherProfesseurs(){
 
     tbody.innerHTML =
       `<tr>
-        <td colspan="5"
-            class="empty">
+        <td colspan="5" class="empty">
           Pa gen pwofesè.
         </td>
       </tr>`;
@@ -3660,9 +3148,7 @@ function afficherMatieres(){
 
 
   const data =
-    getData(
-      "matieres"
-    );
+    getData("matieres");
 
 
   tbody.innerHTML="";
@@ -3676,9 +3162,7 @@ function afficherMatieres(){
         <tr>
 
           <td>
-            ${escapeHTML(
-              item.nom
-            )}
+            ${escapeHTML(item.nom)}
           </td>
 
           <td>
@@ -3703,8 +3187,7 @@ function afficherMatieres(){
 
     tbody.innerHTML =
       `<tr>
-        <td colspan="2"
-            class="empty">
+        <td colspan="2" class="empty">
           Pa gen matyè.
         </td>
       </tr>`;
@@ -3726,9 +3209,7 @@ function afficherEleves(){
 
 
   const data =
-    getData(
-      "eleves"
-    );
+    getData("eleves");
 
 
   tbody.innerHTML="";
@@ -3779,8 +3260,7 @@ function afficherEleves(){
 
     tbody.innerHTML =
       `<tr>
-        <td colspan="5"
-            class="empty">
+        <td colspan="5" class="empty">
           Pa gen elèv.
         </td>
       </tr>`;
@@ -3802,9 +3282,7 @@ function afficherDevoirs(){
 
 
   const data =
-    getData(
-      "devoirs"
-    );
+    getData("devoirs");
 
 
   tbody.innerHTML="";
@@ -3855,8 +3333,7 @@ function afficherDevoirs(){
 
     tbody.innerHTML =
       `<tr>
-        <td colspan="5"
-            class="empty">
+        <td colspan="5" class="empty">
           Pa gen devwa.
         </td>
       </tr>`;
@@ -3878,9 +3355,7 @@ function afficherRemises(){
 
 
   const data =
-    getData(
-      "remises"
-    );
+    getData("remises");
 
 
   tbody.innerHTML="";
@@ -3898,7 +3373,7 @@ function afficherRemises(){
 
 
       const note100 =
-        note20 * 5;
+        note20*5;
 
 
       tbody.innerHTML += `
@@ -3927,9 +3402,7 @@ function afficherRemises(){
 
           <td>
             ${escapeHTML(
-              item.commentaire
-              ||
-              ""
+              item.commentaire || ""
             )}
           </td>
 
@@ -3955,8 +3428,7 @@ function afficherRemises(){
 
     tbody.innerHTML =
       `<tr>
-        <td colspan="6"
-            class="empty">
+        <td colspan="6" class="empty">
           Pa gen remèt.
         </td>
       </tr>`;
@@ -3985,19 +3457,14 @@ function remplirSelects(){
     getData("devoirs");
 
 
-  const classeSelects=[
+  [
     "eleveClasse",
     "devoirClasse"
-  ];
-
-
-  classeSelects.forEach(
+  ].forEach(
     id=>{
 
       const el =
-        document.getElementById(
-          id
-        );
+        document.getElementById(id);
 
       if(!el)
         return;
@@ -4024,19 +3491,14 @@ function remplirSelects(){
   );
 
 
-  const matiereSelects=[
+  [
     "profMatiere",
     "devoirMatiere"
-  ];
-
-
-  matiereSelects.forEach(
+  ].forEach(
     id=>{
 
       const el =
-        document.getElementById(
-          id
-        );
+        document.getElementById(id);
 
       if(!el)
         return;
@@ -4063,19 +3525,14 @@ function remplirSelects(){
   );
 
 
-  const eleveSelects=[
+  [
     "remiseEleve",
     "resultatEleve"
-  ];
-
-
-  eleveSelects.forEach(
+  ].forEach(
     id=>{
 
       const el =
-        document.getElementById(
-          id
-        );
+        document.getElementById(id);
 
       if(!el)
         return;
@@ -4189,7 +3646,13 @@ async function(
   }catch(error){
 
     console.error(
+      "Firebase delete:",
       error
+    );
+
+    showToast(
+      "Done lokal la efase, men Firebase voye yon erè: " +
+      error.message
     );
 
   }
@@ -4209,9 +3672,7 @@ function(){
 
   const eleve =
     document
-      .getElementById(
-        "resultatEleve"
-      )
+      .getElementById("resultatEleve")
       .value;
 
 
@@ -4238,15 +3699,13 @@ function(){
 
 
   const remises =
-    getData(
-      "remises"
-    )
-    .filter(
-      r=>
-        String(r.eleve)
-        ===
-        String(eleve)
-    );
+    getData("remises")
+      .filter(
+        r=>
+          String(r.eleve)
+          ===
+          String(eleve)
+      );
 
 
   if(!remises.length){
@@ -4290,7 +3749,7 @@ function(){
 
 
       const n100 =
-        n20 * 5;
+        n20*5;
 
 
       total += n20;
@@ -4301,9 +3760,7 @@ function(){
         <tr>
 
           <td>
-            ${escapeHTML(
-              r.devoir
-            )}
+            ${escapeHTML(r.devoir)}
           </td>
 
           <td>
@@ -4316,9 +3773,7 @@ function(){
 
           <td>
             ${escapeHTML(
-              r.commentaire
-              ||
-              ""
+              r.commentaire || ""
             )}
           </td>
 
@@ -4331,7 +3786,7 @@ function(){
 
 
   const average =
-    total / remises.length;
+    total/remises.length;
 
 
   html += `
@@ -4366,7 +3821,7 @@ function(){
 
 
 /* ==========================================================
-   STATISTIQUES / DASHBOARD
+   DASHBOARD
 ========================================================== */
 
 function actualiserDashboard(){
@@ -4391,26 +3846,19 @@ function actualiserDashboard(){
 
     statEleves:eleves,
 
-    statProfesseurs:
-      professeurs,
+    statProfesseurs:professeurs,
 
-    statClasses:
-      classes,
+    statClasses:classes,
 
-    statDevoirs:
-      devoirs,
+    statDevoirs:devoirs,
 
-    statBigEleves:
-      eleves,
+    statBigEleves:eleves,
 
-    statBigProfesseurs:
-      professeurs,
+    statBigProfesseurs:professeurs,
 
-    statBigClasses:
-      classes,
+    statBigClasses:classes,
 
-    statBigMatieres:
-      matieres
+    statBigMatieres:matieres
 
   };
 
@@ -4420,13 +3868,10 @@ function actualiserDashboard(){
       ([id,value])=>{
 
         const el =
-          document.getElementById(
-            id
-          );
+          document.getElementById(id);
 
         if(el)
-          el.textContent =
-            value;
+          el.textContent=value;
 
       }
     );
@@ -4458,9 +3903,7 @@ function actualiserTout(){
 function convertirNotesAnciennes(){
 
   const data =
-    getData(
-      "remises"
-    );
+    getData("remises");
 
 
   let changed=false;
@@ -4470,16 +3913,16 @@ function convertirNotesAnciennes(){
     item=>{
 
       if(
-        item.note20 === undefined
+        item.note20===undefined
         &&
-        item.note !== undefined
+        item.note!==undefined
       ){
 
-        item.note20 =
+        item.note20=
           Number(item.note);
 
-        item.note100 =
-          Number(item.note) * 5;
+        item.note100=
+          Number(item.note)*5;
 
         changed=true;
 
@@ -4531,22 +3974,17 @@ function(){
         )
       ],
       {
-        type:
-          "application/json"
+        type:"application/json"
       }
     );
 
 
   const url =
-    URL.createObjectURL(
-      blob
-    );
+    URL.createObjectURL(blob);
 
 
   const a =
-    document.createElement(
-      "a"
-    );
+    document.createElement("a");
 
 
   a.href=url;
@@ -4557,9 +3995,7 @@ function(){
   a.click();
 
 
-  URL.revokeObjectURL(
-    url
-  );
+  URL.revokeObjectURL(url);
 
 };
 
@@ -4568,9 +4004,7 @@ window.importerDonnees =
 function(){
 
   const input =
-    document.createElement(
-      "input"
-    );
+    document.createElement("input");
 
 
   input.type="file";
@@ -4604,9 +4038,7 @@ function(){
             key=>{
 
               if(
-                collections.includes(
-                  key
-                )
+                collections.includes(key)
               ){
 
                 localStorage.setItem(
@@ -4631,6 +4063,8 @@ function(){
 
       }catch(error){
 
+        console.error(error);
+
         showToast(
           "❌ Fichye a pa valab."
         );
@@ -4646,7 +4080,7 @@ function(){
 
 
 /* ==========================================================
-   PWA INSTALLATION
+   PWA
 ========================================================== */
 
 window.installerApp =
@@ -4665,9 +4099,7 @@ async function(){
 
   deferredPrompt.prompt();
 
-
   await deferredPrompt.userChoice;
-
 
   deferredPrompt=null;
 
@@ -4679,8 +4111,7 @@ async function(){
 
 
   if(btn)
-    btn.style.display=
-      "none";
+    btn.style.display="none";
 
 };
 
@@ -4691,8 +4122,7 @@ window.addEventListener(
 
     event.preventDefault();
 
-    deferredPrompt =
-      event;
+    deferredPrompt=event;
 
 
     const btn =
@@ -4720,8 +4150,7 @@ window.addEventListener(
 
 
     if(btn)
-      btn.style.display=
-        "none";
+      btn.style.display="none";
 
   }
 );
@@ -4736,10 +4165,7 @@ initLanguage();
 actualiserTout();
 
 
-if(
-  "serviceWorker"
-  in navigator
-){
+if("serviceWorker" in navigator){
 
   navigator.serviceWorker
     .register(
