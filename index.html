@@ -4,11 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta name="theme-color" content="#2563eb">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-
+<meta name="description" content="Centre de Formation Le Pédagogue">
 <link rel="manifest" href="./manifest.json">
-
 <title>Centre de Formation Le Pédagogue</title>
 
 <style>
@@ -18,19 +15,28 @@
   padding:0;
 }
 
+:root{
+  --blue:#2563eb;
+  --blue2:#1d4ed8;
+  --dark:#0f172a;
+  --text:#1e293b;
+  --muted:#64748b;
+  --bg:#f1f5f9;
+  --white:#fff;
+  --border:#e2e8f0;
+  --green:#16a34a;
+  --red:#dc2626;
+  --orange:#ea580c;
+  --shadow:0 8px 25px rgba(15,23,42,.08);
+}
+
 body{
-  font-family:Arial,sans-serif;
-  background:#f1f5f9;
-  color:#172033;
+  font-family:Arial,Helvetica,sans-serif;
+  background:var(--bg);
+  color:var(--text);
 }
 
-.hidden{
-  display:none!important;
-}
-
-button,
-input,
-select{
+button,input,select,textarea{
   font:inherit;
 }
 
@@ -38,64 +44,55 @@ button{
   cursor:pointer;
 }
 
-/* AUTH */
-
-.auth-page{
-  min-height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-  background:linear-gradient(135deg,#2563eb,#1e40af);
+.hidden{
+  display:none!important;
 }
 
-.auth-box{
+/* AUTH */
+
+#authPage{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+  background:
+    linear-gradient(135deg,#1d4ed8,#2563eb,#0f172a);
+}
+
+.authCard{
   width:100%;
-  max-width:430px;
-  background:white;
-  padding:30px;
-  border-radius:22px;
-  box-shadow:0 20px 50px rgba(0,0,0,.20);
+  max-width:450px;
+  background:#fff;
+  border-radius:24px;
+  padding:28px;
+  box-shadow:0 20px 60px rgba(0,0,0,.25);
 }
 
 .logo{
-  width:150px;
-  min-height:120px;
-  margin:0 auto 20px;
-  border-radius:24px;
+  width:78px;
+  height:78px;
+  border-radius:22px;
+  background:linear-gradient(135deg,#2563eb,#0f172a);
+  color:#fff;
   display:flex;
-  flex-direction:column;
   align-items:center;
   justify-content:center;
-  background:linear-gradient(135deg,#2563eb,#1e40af);
-  color:white;
+  font-weight:900;
+  font-size:25px;
+  margin:0 auto 15px;
+}
+
+.authTitle{
   text-align:center;
-  padding:12px;
-  box-shadow:0 8px 20px rgba(37,99,235,.30);
+  font-size:25px;
+  font-weight:800;
 }
 
-.logo strong{
-  font-size:34px;
-  line-height:1;
-  margin-bottom:8px;
-}
-
-.logo span{
-  font-size:10px;
-  line-height:1.3;
-  font-weight:bold;
-}
-
-.auth-box h1{
+.authSub{
   text-align:center;
-  font-size:22px;
-  margin-bottom:8px;
-}
-
-.auth-subtitle{
-  text-align:center;
-  color:#64748b;
-  margin-bottom:20px;
+  color:var(--muted);
+  margin:8px 0 22px;
 }
 
 .tabs{
@@ -104,182 +101,224 @@ button{
   margin-bottom:20px;
 }
 
-.tabs button{
+.tab{
   flex:1;
-  padding:11px;
   border:0;
-  border-radius:10px;
+  padding:12px;
+  border-radius:12px;
   background:#e2e8f0;
+  color:#334155;
+  font-weight:700;
 }
 
-.tabs button.active{
-  background:#2563eb;
+.tab.active{
+  background:var(--blue);
   color:white;
 }
 
-.form-group{
-  margin-bottom:15px;
+.formGroup{
+  margin-bottom:14px;
 }
 
-.form-group label{
+.formGroup label{
   display:block;
   margin-bottom:6px;
-  font-weight:bold;
-}
-
-.form-group input,
-.form-group select,
-.form-group textarea{
-  width:100%;
-  padding:12px;
-  border:1px solid #cbd5e1;
-  border-radius:10px;
-  outline:none;
-}
-
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus{
-  border-color:#2563eb;
-}
-
-.primary-btn{
-  width:100%;
-  padding:12px;
-  border:0;
-  border-radius:10px;
-  background:#2563eb;
-  color:white;
-  font-weight:bold;
-}
-
-.google-btn{
-  width:100%;
-  padding:12px;
-  border:1px solid #cbd5e1;
-  border-radius:10px;
-  background:white;
-  margin-top:10px;
-  font-weight:bold;
-}
-
-.auth-message{
-  margin-top:15px;
-  text-align:center;
-  color:#dc2626;
+  font-weight:700;
   font-size:14px;
+}
+
+.formGroup input,
+.formGroup select,
+.formGroup textarea{
+  width:100%;
+  padding:12px;
+  border:1px solid var(--border);
+  border-radius:12px;
+  outline:none;
+  background:#fff;
+}
+
+.formGroup input:focus,
+.formGroup select:focus,
+.formGroup textarea:focus{
+  border-color:var(--blue);
+}
+
+.btn{
+  border:0;
+  border-radius:12px;
+  padding:12px 16px;
+  font-weight:700;
+  transition:.2s;
+}
+
+.btn:hover{
+  transform:translateY(-1px);
+}
+
+.btnPrimary{
+  background:var(--blue);
+  color:#fff;
+}
+
+.btnGoogle{
+  background:#fff;
+  color:#111827;
+  border:1px solid var(--border);
+  width:100%;
+  margin-top:10px;
+}
+
+.btnDanger{
+  background:#fee2e2;
+  color:#991b1b;
+}
+
+.btnGreen{
+  background:#dcfce7;
+  color:#166534;
+}
+
+.btnOrange{
+  background:#ffedd5;
+  color:#9a3412;
+}
+
+.authMessage{
+  margin-top:12px;
+  text-align:center;
+  font-weight:700;
+  color:var(--red);
 }
 
 /* APP */
 
 #app{
-  display:none;
+  min-height:100vh;
 }
 
-.app-header{
-  position:fixed;
-  top:0;
-  left:0;
-  right:0;
-  height:64px;
-  z-index:1000;
-  background:white;
-  border-bottom:1px solid #e2e8f0;
+.topbar{
+  height:68px;
+  background:#fff;
+  border-bottom:1px solid var(--border);
   display:flex;
   align-items:center;
-  gap:12px;
-  padding:8px 15px;
+  justify-content:space-between;
+  padding:0 18px;
+  position:sticky;
+  top:0;
+  z-index:50;
 }
 
-.menu-btn{
-  border:0;
-  background:#2563eb;
-  color:white;
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-weight:900;
+  color:var(--dark);
+}
+
+.brandLogo{
   width:42px;
   height:42px;
-  border-radius:10px;
-  font-size:22px;
-}
-
-.app-title{
-  font-weight:bold;
-  color:#1e40af;
-  flex:1;
-}
-
-.user-info{
-  font-size:11px;
-  text-align:right;
-}
-
-#userRole{
-  color:#64748b;
-}
-
-.header-actions{
+  border-radius:12px;
+  background:var(--blue);
+  color:#fff;
   display:flex;
   align-items:center;
-  gap:7px;
+  justify-content:center;
+  font-weight:900;
 }
 
-.header-actions select{
-  border:1px solid #cbd5e1;
-  border-radius:8px;
-  padding:7px;
-  background:white;
+.topActions{
+  display:flex;
+  align-items:center;
+  gap:8px;
 }
 
-.install-btn{
-  display:none;
-  border:0;
-  background:#16a34a;
-  color:white;
-  border-radius:8px;
-  padding:8px 10px;
+.userInfo{
+  display:flex;
+  flex-direction:column;
+  text-align:right;
+  margin-right:6px;
 }
 
-.logout-btn{
-  border:0;
-  background:#dc2626;
-  color:white;
-  border-radius:8px;
-  padding:8px 10px;
+.userEmail{
+  font-size:12px;
+  color:var(--muted);
 }
 
-/* SIDEBAR */
+.userRole{
+  font-size:12px;
+  font-weight:800;
+  color:var(--blue);
+}
+
+.langSelect{
+  padding:9px;
+  border:1px solid var(--border);
+  border-radius:10px;
+  background:#fff;
+}
+
+.installBtn{
+  background:#dbeafe;
+  color:#1d4ed8;
+}
+
+.logoutBtn{
+  background:#fee2e2;
+  color:#991b1b;
+}
+
+/* LAYOUT */
+
+.layout{
+  display:flex;
+  min-height:calc(100vh - 68px);
+}
 
 .sidebar{
+  width:250px;
+  background:#0f172a;
+  color:#fff;
+  padding:16px 12px;
   position:fixed;
-  top:64px;
-  left:0;
+  top:68px;
   bottom:0;
-  width:240px;
-  background:#172033;
-  padding:15px 10px;
   overflow-y:auto;
-  z-index:999;
 }
 
-.sidebar button{
+.navTitle{
+  font-size:11px;
+  color:#94a3b8;
+  margin:14px 10px 7px;
+  text-transform:uppercase;
+  font-weight:800;
+}
+
+.navBtn{
   width:100%;
   text-align:left;
   border:0;
   background:transparent;
-  color:white;
-  padding:12px;
-  border-radius:9px;
-  margin-bottom:4px;
+  color:#cbd5e1;
+  padding:11px 12px;
+  border-radius:10px;
+  margin-bottom:3px;
+  font-weight:700;
 }
 
-.sidebar button:hover{
-  background:#2563eb;
+.navBtn:hover,
+.navBtn.active{
+  background:#1d4ed8;
+  color:#fff;
 }
-
-/* MAIN */
 
 .main{
-  margin-left:240px;
-  padding:85px 25px 30px;
+  margin-left:250px;
+  padding:22px;
+  width:calc(100% - 250px);
 }
 
 .section{
@@ -290,251 +329,288 @@ button{
   display:block;
 }
 
-.page-title{
-  margin-bottom:20px;
-}
-
-.page-title h2{
+.pageTitle{
+  font-size:27px;
+  font-weight:900;
   margin-bottom:5px;
 }
 
-.page-title p{
-  color:#64748b;
+.pageSubtitle{
+  color:var(--muted);
+  margin-bottom:20px;
 }
 
-/* CARDS */
+/* DASHBOARD */
 
-.stats-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:15px;
-  margin-bottom:25px;
+.hero{
+  background:linear-gradient(135deg,#1d4ed8,#2563eb,#0f172a);
+  color:#fff;
+  padding:28px;
+  border-radius:22px;
+  margin-bottom:20px;
+  box-shadow:var(--shadow);
 }
 
-.stat-card{
-  background:white;
-  border-radius:15px;
-  padding:20px;
-  border:1px solid #e2e8f0;
-}
-
-.stat-card .number{
+.hero h1{
   font-size:30px;
-  font-weight:bold;
-  color:#2563eb;
+  margin-bottom:8px;
 }
 
-.stat-card .label{
-  color:#64748b;
-  margin-top:5px;
+.hero p{
+  color:#dbeafe;
 }
 
-/* QUICK MENU */
+.dashboardGrid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+  margin-bottom:20px;
+}
 
-.quick-menu{
+.statCard{
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:20px;
+  box-shadow:var(--shadow);
+}
+
+.statIcon{
+  font-size:27px;
+  margin-bottom:10px;
+}
+
+.statNumber{
+  font-size:30px;
+  font-weight:900;
+}
+
+.statLabel{
+  color:var(--muted);
+  font-weight:700;
+}
+
+.quickGrid{
   display:grid;
   grid-template-columns:repeat(4,1fr);
   gap:12px;
 }
 
-.quick-menu button{
-  border:1px solid #e2e8f0;
-  background:white;
-  border-radius:12px;
-  padding:18px 8px;
-  color:#172033;
-  font-weight:bold;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:8px;
+.quickBtn{
+  border:1px solid var(--border);
+  background:#fff;
+  border-radius:15px;
+  padding:18px;
+  text-align:left;
+  font-weight:800;
+  box-shadow:var(--shadow);
 }
 
-.quick-menu button:hover{
-  background:#2563eb;
-  color:white;
+.quickBtn:hover{
+  border-color:var(--blue);
+  color:var(--blue);
 }
 
-.quick-menu span{
-  font-size:13px;
-}
-
-/* PANELS */
+/* CONTENT */
 
 .panel{
-  background:white;
-  border:1px solid #e2e8f0;
-  border-radius:15px;
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:18px;
   padding:20px;
   margin-bottom:20px;
+  box-shadow:var(--shadow);
 }
 
-.panel h3{
-  margin-bottom:15px;
+.panelHeader{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  margin-bottom:16px;
 }
 
-.grid-form{
+.panelTitle{
+  font-size:19px;
+  font-weight:900;
+}
+
+.formGrid{
   display:grid;
   grid-template-columns:repeat(2,1fr);
-  gap:15px;
+  gap:12px;
 }
 
-.full{
+.formFull{
   grid-column:1/-1;
 }
 
-.add-btn{
-  border:0;
-  background:#2563eb;
-  color:white;
-  border-radius:9px;
-  padding:11px 18px;
-  margin-top:5px;
-}
-
-.list{
+.dataGrid{
   display:grid;
-  gap:10px;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
 }
 
-.item{
-  border:1px solid #e2e8f0;
-  border-radius:12px;
-  padding:15px;
+.dataCard{
+  border:1px solid var(--border);
+  border-radius:15px;
+  padding:16px;
   background:#fff;
 }
 
-.item-header{
-  display:flex;
-  justify-content:space-between;
-  gap:10px;
-  align-items:center;
+.dataCard h3{
+  margin-bottom:8px;
 }
 
-.item-title{
-  font-weight:bold;
+.dataCard p{
+  margin:5px 0;
+  color:#475569;
 }
 
-.item-info{
-  color:#64748b;
-  font-size:14px;
-  margin-top:5px;
-}
-
-.item-actions{
+.cardActions{
   display:flex;
   gap:7px;
+  margin-top:12px;
   flex-wrap:wrap;
-  margin-top:10px;
-}
-
-.delete-btn{
-  border:0;
-  background:#dc2626;
-  color:white;
-  border-radius:7px;
-  padding:7px 10px;
-}
-
-.approve-btn{
-  border:0;
-  background:#16a34a;
-  color:white;
-  border-radius:7px;
-  padding:7px 10px;
-}
-
-.reject-btn{
-  border:0;
-  background:#dc2626;
-  color:white;
-  border-radius:7px;
-  padding:7px 10px;
 }
 
 .empty{
-  padding:20px;
+  padding:30px;
   text-align:center;
-  color:#64748b;
+  color:var(--muted);
+  background:#f8fafc;
+  border-radius:14px;
+}
+
+.badge{
+  display:inline-block;
+  padding:5px 9px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:800;
+}
+
+.badgeGreen{
+  background:#dcfce7;
+  color:#166534;
+}
+
+.badgeOrange{
+  background:#ffedd5;
+  color:#9a3412;
+}
+
+.badgeRed{
+  background:#fee2e2;
+  color:#991b1b;
+}
+
+.loading{
+  padding:25px;
+  text-align:center;
+  color:var(--muted);
 }
 
 /* MOBILE */
 
+.mobileMenu{
+  display:none;
+  border:0;
+  background:#dbeafe;
+  color:#1d4ed8;
+  padding:9px 12px;
+  border-radius:10px;
+  font-weight:900;
+}
+
 @media(max-width:900px){
-
-  .stats-grid{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .quick-menu{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .main{
-    margin-left:0;
-  }
 
   .sidebar{
     transform:translateX(-100%);
     transition:.25s;
+    z-index:100;
   }
 
   .sidebar.open{
     transform:translateX(0);
   }
 
-  .user-info{
+  .main{
+    margin-left:0;
+    width:100%;
+    padding:14px;
+  }
+
+  .mobileMenu{
+    display:block;
+  }
+
+  .brand span{
     display:none;
   }
 
-  .app-title{
-    font-size:14px;
-  }
-}
-
-@media(max-width:600px){
-
-  .stats-grid,
-  .grid-form{
-    grid-template-columns:1fr;
+  .userInfo{
+    display:none;
   }
 
-  .app-title{
-    font-size:12px;
-  }
-
-  .header-actions select{
-    display:block;
-    max-width:85px;
-    font-size:10px;
-    padding:5px 2px;
-  }
-
-  .install-btn{
-    display:block;
-    font-size:10px;
-    padding:6px 7px;
-  }
-
-  .logout-btn{
-    font-size:10px;
-    padding:6px 7px;
-  }
-
-  .main{
-    padding:80px 12px 25px;
-  }
-
-  .panel{
-    padding:15px;
-  }
-
-  .quick-menu{
+  .dashboardGrid{
     grid-template-columns:repeat(2,1fr);
   }
 
-  .quick-menu button{
-    padding:15px 5px;
+  .quickGrid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .dataGrid{
+    grid-template-columns:1fr;
+  }
+
+  .formGrid{
+    grid-template-columns:1fr;
+  }
+}
+
+@media(max-width:550px){
+
+  .topbar{
+    padding:0 10px;
+  }
+
+  .topActions{
+    gap:4px;
+  }
+
+  .installBtn{
+    display:none;
+  }
+
+  .hero{
+    padding:20px;
+  }
+
+  .hero h1{
+    font-size:23px;
+  }
+
+  .dashboardGrid{
+    grid-template-columns:1fr 1fr;
+    gap:9px;
+  }
+
+  .statCard{
+    padding:14px;
+  }
+
+  .statNumber{
+    font-size:24px;
+  }
+
+  .quickGrid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .panel{
+    padding:14px;
   }
 }
 </style>
@@ -542,964 +618,961 @@ button{
 
 <body>
 
-<!-- AUTH -->
-<div id="authPage" class="auth-page">
+<!-- ================= AUTH ================= -->
 
-  <div class="auth-box">
+<div id="authPage">
 
-    <div class="logo">
-      <strong>CFP</strong>
-      <span>
-        Centre de Formation<br>
-        Le Pédagogue
-      </span>
+  <div class="authCard">
+
+    <div class="logo">CFP</div>
+
+    <div class="authTitle">
+      Centre de Formation Le Pédagogue
     </div>
 
-    <h1>Centre de Formation Le Pédagogue</h1>
-
-    <p class="auth-subtitle">
-      Sistèm Jesyon Akademik
-    </p>
+    <div class="authSub">
+      Système de gestion et d'apprentissage
+    </div>
 
     <div class="tabs">
-      <button id="loginTab"
-        class="active"
-        onclick="showLogin()">
+      <button class="tab active" id="loginTab">
         Connexion
       </button>
 
-      <button id="registerTab"
-        onclick="showRegister()">
+      <button class="tab" id="registerTab">
         Inscription
       </button>
     </div>
 
-    <div id="loginForm">
+    <!-- LOGIN -->
 
-      <div class="form-group">
+    <form id="loginForm">
+
+      <div class="formGroup">
         <label>Email</label>
         <input
           id="loginEmail"
           type="email"
-          placeholder="Email">
+          required
+          autocomplete="email"
+        >
       </div>
 
-      <div class="form-group">
+      <div class="formGroup">
         <label>Mot de passe</label>
         <input
           id="loginPassword"
           type="password"
-          placeholder="Mot de passe">
+          required
+          autocomplete="current-password"
+        >
       </div>
 
-      <button
-        class="primary-btn"
-        onclick="connecter()">
+      <button class="btn btnPrimary" style="width:100%">
         Se connecter
       </button>
 
       <button
-        class="google-btn"
-        onclick="connecterAvecGoogle()">
-        🔵 Continuer avec Google
+        type="button"
+        class="btn btnGoogle"
+        id="googleLoginBtn"
+      >
+        🇬 Connexion avec Google
       </button>
 
-    </div>
+    </form>
 
-    <div id="registerForm" class="hidden">
+    <!-- REGISTER -->
 
-      <div class="form-group">
+    <form id="registerForm" class="hidden">
+
+      <div class="formGroup">
         <label>Nom complet</label>
-        <input
-          id="registerName"
-          type="text"
-          placeholder="Nom complet">
+        <input id="registerName" type="text" required>
       </div>
 
-      <div class="form-group">
+      <div class="formGroup">
         <label>Email</label>
-        <input
-          id="registerEmail"
-          type="email"
-          placeholder="Email">
+        <input id="registerEmail" type="email" required>
       </div>
 
-      <div class="form-group">
+      <div class="formGroup">
         <label>Mot de passe</label>
         <input
           id="registerPassword"
           type="password"
-          placeholder="Mot de passe">
+          minlength="6"
+          required
+        >
       </div>
 
-      <button
-        class="primary-btn"
-        onclick="inscrire()">
+      <button class="btn btnPrimary" style="width:100%">
         Créer mon compte
       </button>
 
       <button
-        class="google-btn"
-        onclick="inscrireAvecGoogle()">
-        🔵 Inscription avec Google
+        type="button"
+        class="btn btnGoogle"
+        id="googleRegisterBtn"
+      >
+        🇬 Inscription avec Google
       </button>
 
-    </div>
+    </form>
 
-    <div id="authMessage" class="auth-message"></div>
+    <div id="authMessage" class="authMessage"></div>
 
   </div>
+
 </div>
 
 
-<!-- APP -->
+<!-- ================= APPLICATION ================= -->
 
-<div id="app">
+<div id="app" class="hidden">
 
-<header class="app-header">
+  <header class="topbar">
 
-  <button
-    class="menu-btn"
-    onclick="toggleSidebar()">
-    ☰
-  </button>
-
-  <div class="app-title">
-    Centre de Formation Le Pédagogue
-  </div>
-
-  <div class="user-info">
-    <div id="userEmail"></div>
-    <div id="userRole"></div>
-  </div>
-
-  <div class="header-actions">
-
-    <select
-      id="languageSelect"
-      onchange="changeLanguage(this.value)">
-
-      <option value="ht">
-        🇭🇹 Kreyòl
-      </option>
-
-      <option value="fr">
-        🇫🇷 Français
-      </option>
-
-    </select>
-
-    <button
-      id="installBtn"
-      class="install-btn">
-      Installer
+    <button class="mobileMenu" id="mobileMenu">
+      ☰
     </button>
 
-    <button
-      class="logout-btn"
-      onclick="logout()">
-      Sortir
-    </button>
-
-  </div>
-
-</header>
-
-
-<aside id="sidebar" class="sidebar">
-
-  <button onclick="showSection('home')">
-    🏠 Akèy
-  </button>
-
-  <button onclick="showSection('etudiants')">
-    👨‍🎓 Étudiants
-  </button>
-
-  <button onclick="showSection('professeurs')">
-    👨‍🏫 Professeurs
-  </button>
-
-  <button onclick="showSection('departements')">
-    🏢 Départements
-  </button>
-
-  <button onclick="showSection('programmes')">
-    📚 Programmes
-  </button>
-
-  <button onclick="showSection('cours')">
-    📖 Cours
-  </button>
-
-  <button onclick="showSection('classes')">
-    🏫 Classes
-  </button>
-
-  <button onclick="showSection('devoirs')">
-    📝 Devoirs
-  </button>
-
-  <button onclick="showSection('remises')">
-    📤 Remises
-  </button>
-
-  <button onclick="showSection('resultats')">
-    📊 Résultats
-  </button>
-
-  <button onclick="showSection('horaires')">
-    🕐 Horaires
-  </button>
-
-  <button onclick="showSection('statistiques')">
-    📈 Statistiques
-  </button>
-
-  <button
-    id="usersMenu"
-    class="hidden"
-    onclick="showSection('users')">
-    👥 Utilisateurs
-  </button>
-
-</aside>
-
-
-<main class="main">
-
-<!-- HOME -->
-
-<section
-  id="home"
-  class="section active">
-
-  <div class="page-title">
-
-    <h2>
-      Bienvenue au Centre de Formation Le Pédagogue
-    </h2>
-
-    <p>
-      Tableau de bord
-    </p>
-
-  </div>
-
-  <div class="stats-grid">
-
-    <div class="stat-card">
-      <div
-        id="statStudents"
-        class="number">
-        0
-      </div>
-      <div class="label">
-        Étudiants
-      </div>
+    <div class="brand">
+      <div class="brandLogo">CFP</div>
+      <span>Centre de Formation Le Pédagogue</span>
     </div>
 
-    <div class="stat-card">
-      <div
-        id="statTeachers"
-        class="number">
-        0
+    <div class="topActions">
+
+      <div class="userInfo">
+        <div class="userEmail" id="userEmail"></div>
+        <div class="userRole" id="userRole"></div>
       </div>
-      <div class="label">
-        Professeurs
-      </div>
-    </div>
 
-    <div class="stat-card">
-      <div
-        id="statClasses"
-        class="number">
-        0
-      </div>
-      <div class="label">
-        Classes
-      </div>
-    </div>
+      <select id="languageSelect" class="langSelect">
+        <option value="ht">🇭🇹 Kreyòl</option>
+        <option value="fr">🇫🇷 Français</option>
+      </select>
 
-    <div class="stat-card">
-      <div
-        id="statCourses"
-        class="number">
-        0
-      </div>
-      <div class="label">
-        Cours
-      </div>
-    </div>
-
-  </div>
-
-
-  <div class="panel">
-
-    <h3>
-      Menu rapide
-    </h3>
-
-    <div class="quick-menu">
-
-      <button onclick="showSection('etudiants')">
-        👨‍🎓
-        <span>Étudiants</span>
+      <button id="installBtn" class="btn installBtn hidden">
+        📲 Installer
       </button>
 
-      <button onclick="showSection('professeurs')">
-        👨‍🏫
-        <span>Professeurs</span>
-      </button>
-
-      <button onclick="showSection('departements')">
-        🏢
-        <span>Départements</span>
-      </button>
-
-      <button onclick="showSection('programmes')">
-        📚
-        <span>Programmes</span>
-      </button>
-
-      <button onclick="showSection('cours')">
-        📖
-        <span>Cours</span>
-      </button>
-
-      <button onclick="showSection('classes')">
-        🏫
-        <span>Classes</span>
-      </button>
-
-      <button onclick="showSection('devoirs')">
-        📝
-        <span>Devoirs</span>
-      </button>
-
-      <button onclick="showSection('remises')">
-        📤
-        <span>Remises</span>
-      </button>
-
-      <button onclick="showSection('resultats')">
-        📊
-        <span>Résultats</span>
-      </button>
-
-      <button onclick="showSection('horaires')">
-        🕐
-        <span>Horaires</span>
-      </button>
-
-      <button onclick="showSection('statistiques')">
-        📈
-        <span>Statistiques</span>
-      </button>
-
-      <button
-        id="homeUsersMenu"
-        class="hidden"
-        onclick="showSection('users')">
-        👥
-        <span>Utilisateurs</span>
+      <button id="logoutBtn" class="btn logoutBtn">
+        Déconnexion
       </button>
 
     </div>
 
-  </div>
-
-</section>
+  </header>
 
 
-<!-- ETUDIANTS -->
+  <div class="layout">
 
-<section
-  id="etudiants"
-  class="section">
+    <!-- SIDEBAR -->
 
-  <div class="page-title">
-    <h2>👨‍🎓 Étudiants</h2>
-    <p>Gestion des étudiants</p>
-  </div>
+    <aside class="sidebar" id="sidebar">
 
-  <div class="panel">
+      <div class="navTitle">Principal</div>
 
-    <h3>Ajouter un étudiant</h3>
+      <button class="navBtn active" data-section="home">
+        🏠 Akèy
+      </button>
 
-    <div class="grid-form">
+      <button class="navBtn" data-section="etudiants">
+        👨‍🎓 Étudiants
+      </button>
 
-      <div class="form-group">
-        <label>Nom complet</label>
-        <input id="studentName">
+      <button class="navBtn" data-section="professeurs">
+        👨‍🏫 Professeurs
+      </button>
+
+      <div class="navTitle">Formation</div>
+
+      <button class="navBtn" data-section="departements">
+        🏢 Départements
+      </button>
+
+      <button class="navBtn" data-section="programmes">
+        📚 Programmes
+      </button>
+
+      <button class="navBtn" data-section="cours">
+        📖 Cours
+      </button>
+
+      <button class="navBtn" data-section="classes">
+        🏫 Classes
+      </button>
+
+      <div class="navTitle">Évaluation</div>
+
+      <button class="navBtn" data-section="devoirs">
+        📝 Devoirs
+      </button>
+
+      <button class="navBtn" data-section="remises">
+        📤 Remises
+      </button>
+
+      <button class="navBtn" data-section="resultats">
+        📊 Résultats
+      </button>
+
+      <button class="navBtn" data-section="horaires">
+        🕐 Horaires
+      </button>
+
+      <button class="navBtn" data-section="statistiques">
+        📈 Statistiques
+      </button>
+
+      <div id="adminMenu">
+
+        <div class="navTitle">Administration</div>
+
+        <button class="navBtn" data-section="users">
+          👥 Utilisateurs
+        </button>
+
       </div>
 
-      <div class="form-group">
-        <label>Email</label>
-        <input id="studentEmail" type="email">
-      </div>
+    </aside>
 
-      <div class="form-group">
-        <label>Téléphone</label>
-        <input id="studentPhone">
-      </div>
 
-      <div class="form-group">
-        <label>Classe</label>
-        <input id="studentClass">
-      </div>
+    <!-- MAIN -->
 
-    </div>
+    <main class="main">
 
-    <button
-      class="add-btn"
-      onclick="addStudent()">
-      Ajouter
-    </button>
+      <!-- HOME -->
+
+      <section id="home" class="section active">
+
+        <div class="hero">
+
+          <h1 id="welcomeTitle">
+            Bienvenue au Centre de Formation Le Pédagogue
+          </h1>
+
+          <p id="todayText"></p>
+
+        </div>
+
+        <div class="dashboardGrid">
+
+          <div class="statCard">
+            <div class="statIcon">👨‍🎓</div>
+            <div class="statNumber" id="statEtudiants">0</div>
+            <div class="statLabel">Étudiants</div>
+          </div>
+
+          <div class="statCard">
+            <div class="statIcon">👨‍🏫</div>
+            <div class="statNumber" id="statProfesseurs">0</div>
+            <div class="statLabel">Professeurs</div>
+          </div>
+
+          <div class="statCard">
+            <div class="statIcon">🏫</div>
+            <div class="statNumber" id="statClasses">0</div>
+            <div class="statLabel">Classes</div>
+          </div>
+
+          <div class="statCard">
+            <div class="statIcon">📖</div>
+            <div class="statNumber" id="statCours">0</div>
+            <div class="statLabel">Cours</div>
+          </div>
+
+          <div class="statCard">
+            <div class="statIcon">📝</div>
+            <div class="statNumber" id="statDevoirs">0</div>
+            <div class="statLabel">Devoirs</div>
+          </div>
+
+          <div class="statCard">
+            <div class="statIcon">📤</div>
+            <div class="statNumber" id="statRemises">0</div>
+            <div class="statLabel">Remises</div>
+          </div>
+
+        </div>
+
+
+        <div class="panel">
+
+          <div class="panelHeader">
+            <div class="panelTitle">
+              Actions rapides
+            </div>
+          </div>
+
+          <div class="quickGrid">
+
+            <button class="quickBtn" data-go="etudiants">
+              ➕ Ajouter un étudiant
+            </button>
+
+            <button class="quickBtn" data-go="professeurs">
+              ➕ Ajouter un professeur
+            </button>
+
+            <button class="quickBtn" data-go="cours">
+              ➕ Ajouter un cours
+            </button>
+
+            <button class="quickBtn" data-go="classes">
+              ➕ Ajouter une classe
+            </button>
+
+            <button class="quickBtn" data-go="devoirs">
+              ➕ Ajouter un devoir
+            </button>
+
+            <button class="quickBtn" data-go="resultats">
+              ➕ Ajouter un résultat
+            </button>
+
+            <button class="quickBtn" data-go="horaires">
+              ➕ Ajouter un horaire
+            </button>
+
+            <button class="quickBtn" data-go="statistiques">
+              📊 Voir statistiques
+            </button>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- ETUDIANTS -->
+
+      <section id="etudiants" class="section">
+
+        <div class="pageTitle">Étudiants</div>
+        <div class="pageSubtitle">
+          Gestion des étudiants du centre.
+        </div>
+
+        <div class="panel">
+
+          <div class="panelHeader">
+            <div class="panelTitle">Ajouter un étudiant</div>
+          </div>
+
+          <form id="studentForm" class="formGrid">
+
+            <div class="formGroup">
+              <label>Nom complet</label>
+              <input id="studentName" required>
+            </div>
+
+            <div class="formGroup">
+              <label>Email</label>
+              <input id="studentEmail" type="email">
+            </div>
+
+            <div class="formGroup">
+              <label>Téléphone</label>
+              <input id="studentPhone">
+            </div>
+
+            <div class="formGroup">
+              <label>Classe</label>
+              <input id="studentClass">
+            </div>
+
+            <div class="formGroup formFull">
+              <button class="btn btnPrimary">
+                Ajouter l'étudiant
+              </button>
+            </div>
+
+          </form>
+
+        </div>
+
+        <div class="panel">
+
+          <div class="panelHeader">
+            <div class="panelTitle">Liste des étudiants</div>
+            <button class="btn btnPrimary" onclick="loadCollection('etudiants')">
+              Actualiser
+            </button>
+          </div>
+
+          <div id="listeEtudiants" class="dataGrid">
+            <div class="loading">Chargement...</div>
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- PROFESSEURS -->
+
+      <section id="professeurs" class="section">
+
+        <div class="pageTitle">Professeurs</div>
+        <div class="pageSubtitle">
+          Gestion des professeurs.
+        </div>
+
+        <div class="panel">
+
+          <form id="teacherForm" class="formGrid">
+
+            <div class="formGroup">
+              <label>Nom complet</label>
+              <input id="teacherName" required>
+            </div>
+
+            <div class="formGroup">
+              <label>Email</label>
+              <input id="teacherEmail" type="email">
+            </div>
+
+            <div class="formGroup">
+              <label>Téléphone</label>
+              <input id="teacherPhone">
+            </div>
+
+            <div class="formGroup">
+              <label>Spécialité</label>
+              <input id="teacherSpecialty">
+            </div>
+
+            <div class="formFull">
+              <button class="btn btnPrimary">
+                Ajouter le professeur
+              </button>
+            </div>
+
+          </form>
+
+        </div>
+
+        <div class="panel">
+          <div class="panelHeader">
+            <div class="panelTitle">Liste des professeurs</div>
+          </div>
+          <div id="listeProfesseurs" class="dataGrid"></div>
+        </div>
+
+      </section>
+
+
+      <!-- DEPARTEMENTS -->
+
+      <section id="departements" class="section">
+
+        <div class="pageTitle">Départements</div>
+
+        <div class="panel">
+
+          <form id="departmentForm" class="formGrid">
+
+            <div class="formGroup">
+              <label>Nom du département</label>
+              <input id="departmentName" required>
+            </div>
+
+            <div class="formGroup">
+              <label>Description</label>
+              <input id="departmentDescription">
+            </div>
+
+            <div class="formFull">
+              <button class="btn btnPrimary">
+                Ajouter le département
+              </button>
+            </div>
+
+          </form>
+
+        </div>
+
+        <div class="panel">
+          <div class="panelHeader">
+            <div class="panelTitle">Liste des départements</div>
+          </div>
+          <div id="listeDepartements" class="dataGrid"></div>
+        </div>
+
+      </section>
+
+
+      <!-- PROGRAMMES -->
+
+      <section id="programmes" class="section">
+
+        <div class="pageTitle">Programmes</div>
+
+        <div class="panel">
+
+          <form id="programForm" class="formGrid">
+
+            <div class="formGroup">
+              <label>Nom du programme</label>
+              <input id="programName" required>
+            </div>
+
+            <div class="formGroup">
+              <label>Département</label>
+              <input id="programDepartment">
+            </div>
+
+            <div class="formGroup formFull">
+              <label>Description</label>
+              <textarea id="programDescription"></textarea>
+            </div>
+
+            <div class="formFull">
+              <button class="btn btnPrimary">
+                Ajouter le programme
+              </button>
+            </div>
+
+          </form>
+
+        </div>
+
+        <div class="panel">
+          <div class="panelHeader">
+            <div class="panelTitle">Liste des programmes</div>
+          </div>
+          <div id="listeProgrammes" class="dataGrid"></div>
+        </div>
+
+      </section>
+
+
+      <!-- COURS -->
+
+      <section id="cours" class="section">
+
+        <div class="pageTitle">Cours</div>
+
+        <div class="panel">
+
+          <form id="courseForm" class="formGrid">
+
+            <div class="formGroup">
+              <label>Nom du cours</label>
+              <input id="courseName" required>
+            </div>
+
+            <div class="formGroup">
+              <label>Code du cours</label>
+              <input id="courseCode">
+            </div>
+
+            <div class="formGroup">
+              <label>Professeur</label>
+              <input id="courseTeacher">
+            </div>
+
+            <div class="formGroup">
+              <label>Programme</label>
+              <input id="courseProgram">
+            </div>
+
+            <div class="formFull">
+              <button class="btn btnPrimary">
+                Ajouter le cours
+              </button>
+            </div>
+
+          </form>
+
+        </div>
+
+        <div class="panel">
+          <div class="panelHeader">
+            <div class="panelTitle">Liste des cours</div>
+          </div>
+          <div id="listeCours" class="dataGrid"></div>
+        </div>
+
+      </section>
+
+
+      <!-- CLASSES -->
+
+      <section id="classes" class="section">
+
+        <div class="pageTitle">Classes</div>
+
+        <div class="panel">
+
+          <form id="classForm" class="formGrid">
+
+            <div class="formGroup">
+              <label>Nom de la classe</label>
+              <input id="className" required>
+            </div>
+
+            <div class="formGroup">
+              <label>Niveau</label>
+              <input id="classLevel">
+            </div>
+
+            <div class="formGroup">
+              <label>Année académique</label>
+              <input id="classYear">
+            </div>
+
+            <div class="formFull">
+              <button class="btn btnPrimary">
+                Ajouter la classe
+              </button>
+            </div>
+
+          </form>
+
+        </div>
+
+        <div class="panel">
+          <div class="panelHeader">
+            <div class="panelTitle">Liste des classes</div>
+          </div>
+          <div id="listeClasses" class="dataGrid"></div>
+        </div>
+
+      </section>
+
+
+      <!-- DEVOIRS -->
+
+      <section id="devoirs" class="section">
+
+        <div class="pageTitle">Devoirs</div>
+
+        <div class="panel">
+
+          <form id="assignmentForm" class="formGrid">
+
+            <div class="formGroup">
+              <label>Titre du devoir</label>
+              <input id="assignmentTitle" required>
+            </div>
+
+            <div class="formGroup">
+              <label>Cours</label>
+              <input id="assignmentCourse">
+            </div>
+
+            <div class="formGroup">
+              <label>Classe</label>
+              <input id="assignmentClass">
+            </div>
+
+            <div class="formGroup">
+              <label>Date limite</label>
+              <input id="assignmentDate" type="date">
+            </div>
+
+            <div class="formGroup formFull">
+              <label>Description</label>
+              <textarea id="assignmentDescription"></textarea>
+            </div>
+
+            <div class="formFull">
+              <button class="btn btnPrimary">
+                Ajouter le devoir
+              </button>
+            </div>
+
+          </form>
+
+        </div>
+
+        <div class="panel">
+          <div class="panelHeader">
+            <div class="panelTitle">Liste des devoirs</div>
+          </div>
+          <div id="listeDevoirs" class="dataGrid"></div>
+        </div>
+
+      </section>
+
+
+      <!-- REMISES -->
+
+      <section id="remises" class="section">
+
+        <div class="pageTitle">Remises</div>
+
+        <div class="panel">
+
+          <form id="submissionForm" class="formGrid">
+
+            <div class="formGroup">
+              <label>Étudiant</label>
+              <input id="submissionStudent" required>
+            </div>
+
+            <div class="formGroup">
+              <label>Devoir</label>
+              <input id="submissionAssignment" required>
+            </div>
+
+            <div class="formGroup">
+              <label>Nòt /100</label>
+              <input
+                id="submissionGrade"
+                type="number"
+                min="0"
+                max="100"
+              >
+            </div>
+
+            <div class="formGroup">
+              <label>Date de remise</label>
+              <input id="submissionDate" type="date">
+            </div>
+
+            <div class="formGroup formFull">
+              <label>Correction / commentaire</label>
+              <textarea id="submissionCorrection"></textarea>
+            </div>
+
+            <div class="formFull">
+              <button class="btn btnPrimary">
+                Enregistrer la remise
+              </button>
+            </div>
+
+          </form>
+
+        </div>
+
+        <div class="panel">
+          <div class="panelHeader">
+            <div class="panelTitle">Liste des remises</div>
+          </div>
+          <div id="listeRemises" class="dataGrid"></div>
+        </div>
+
+      </section>
+
+
+      <!-- RESULTATS -->
+
+      <section id="resultats" class="section">
+
+        <div class="pageTitle">Résultats</div>
+
+        <div class="panel">
+
+          <form id="resultForm" class="formGrid">
+
+            <div class="formGroup">
+              <label>Étudiant</label>
+              <input id="resultStudent" required>
+            </div>
+
+            <div class="formGroup">
+              <label>Cours</label>
+              <input id="resultCourse">
+            </div>
+
+            <div class="formGroup">
+              <label>Nòt /100</label>
+              <input
+                id="resultGrade"
+                type="number"
+                min="0"
+                max="100"
+                required
+              >
+            </div>
+
+            <div class="formGroup">
+              <label>Session</label>
+              <input id="resultSession">
+            </div>
+
+            <div class="formGroup formFull">
+              <label>Commentaire</label>
+              <textarea id="resultComment"></textarea>
+            </div>
+
+            <div class="formFull">
+              <button class="btn btnPrimary">
+                Ajouter le résultat
+              </button>
+            </div>
+
+          </form>
+
+        </div>
+
+        <div class="panel">
+          <div class="panelHeader">
+            <div class="panelTitle">Résultats</div>
+          </div>
+          <div id="listeResultats" class="dataGrid"></div>
+        </div>
+
+      </section>
+
+
+      <!-- HORAIRES -->
+
+      <section id="horaires" class="section">
+
+        <div class="pageTitle">Horaires</div>
+
+        <div class="panel">
+
+          <form id="scheduleForm" class="formGrid">
+
+            <div class="formGroup">
+              <label>Jour</label>
+              <select id="scheduleDay">
+                <option>Lundi</option>
+                <option>Mardi</option>
+                <option>Mercredi</option>
+                <option>Jeudi</option>
+                <option>Vendredi</option>
+                <option>Samedi</option>
+              </select>
+            </div>
+
+            <div class="formGroup">
+              <label>Cours</label>
+              <input id="scheduleCourse">
+            </div>
+
+            <div class="formGroup">
+              <label>Classe</label>
+              <input id="scheduleClass">
+            </div>
+
+            <div class="formGroup">
+              <label>Professeur</label>
+              <input id="scheduleTeacher">
+            </div>
+
+            <div class="formGroup">
+              <label>Heure début</label>
+              <input id="scheduleStart" type="time">
+            </div>
+
+            <div class="formGroup">
+              <label>Heure fin</label>
+              <input id="scheduleEnd" type="time">
+            </div>
+
+            <div class="formFull">
+              <button class="btn btnPrimary">
+                Ajouter l'horaire
+              </button>
+            </div>
+
+          </form>
+
+        </div>
+
+        <div class="panel">
+          <div class="panelHeader">
+            <div class="panelTitle">Emploi du temps</div>
+          </div>
+          <div id="listeHoraires" class="dataGrid"></div>
+        </div>
+
+      </section>
+
+
+      <!-- STATISTIQUES -->
+
+      <section id="statistiques" class="section">
+
+        <div class="pageTitle">Statistiques</div>
+
+        <div class="panel">
+
+          <div class="dashboardGrid">
+
+            <div class="statCard">
+              <div class="statIcon">👨‍🎓</div>
+              <div class="statNumber" id="bigStatEtudiants">0</div>
+              <div class="statLabel">Étudiants</div>
+            </div>
+
+            <div class="statCard">
+              <div class="statIcon">👨‍🏫</div>
+              <div class="statNumber" id="bigStatProfesseurs">0</div>
+              <div class="statLabel">Professeurs</div>
+            </div>
+
+            <div class="statCard">
+              <div class="statIcon">🏫</div>
+              <div class="statNumber" id="bigStatClasses">0</div>
+              <div class="statLabel">Classes</div>
+            </div>
+
+            <div class="statCard">
+              <div class="statIcon">📚</div>
+              <div class="statNumber" id="bigStatCours">0</div>
+              <div class="statLabel">Cours</div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- USERS -->
+
+      <section id="users" class="section">
+
+        <div class="pageTitle">Utilisateurs</div>
+
+        <div class="pageSubtitle">
+          Cette partie est réservée à l'administrateur.
+        </div>
+
+        <div class="panel">
+
+          <div class="panelHeader">
+            <div class="panelTitle">
+              Demandes d'accès
+            </div>
+
+            <button
+              class="btn btnPrimary"
+              onclick="loadUsers()"
+            >
+              Actualiser
+            </button>
+          </div>
+
+          <div id="listeUsers" class="dataGrid"></div>
+
+        </div>
+
+      </section>
+
+    </main>
 
   </div>
 
-  <div class="panel">
-
-    <h3>Liste des étudiants</h3>
-
-    <div
-      id="studentList"
-      class="list">
-      <div class="empty">
-        Chargement...
-      </div>
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- PROFESSEURS -->
-
-<section
-  id="professeurs"
-  class="section">
-
-  <div class="page-title">
-    <h2>👨‍🏫 Professeurs</h2>
-    <p>Gestion des professeurs</p>
-  </div>
-
-  <div class="panel">
-
-    <h3>Ajouter un professeur</h3>
-
-    <div class="grid-form">
-
-      <div class="form-group">
-        <label>Nom complet</label>
-        <input id="teacherName">
-      </div>
-
-      <div class="form-group">
-        <label>Email</label>
-        <input id="teacherEmail" type="email">
-      </div>
-
-      <div class="form-group">
-        <label>Téléphone</label>
-        <input id="teacherPhone">
-      </div>
-
-      <div class="form-group">
-        <label>Matière</label>
-        <input id="teacherSubject">
-      </div>
-
-    </div>
-
-    <button
-      class="add-btn"
-      onclick="addTeacher()">
-      Ajouter
-    </button>
-
-  </div>
-
-  <div class="panel">
-
-    <h3>Liste des professeurs</h3>
-
-    <div
-      id="teacherList"
-      class="list">
-      <div class="empty">
-        Chargement...
-      </div>
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- DEPARTEMENTS -->
-
-<section
-  id="departements"
-  class="section">
-
-  <div class="page-title">
-    <h2>🏢 Départements</h2>
-  </div>
-
-  <div class="panel">
-
-    <div class="form-group">
-      <label>Nom du département</label>
-      <input id="departmentName">
-    </div>
-
-    <div class="form-group">
-      <label>Description</label>
-      <textarea id="departmentDescription"></textarea>
-    </div>
-
-    <button
-      class="add-btn"
-      onclick="addDepartment()">
-      Ajouter
-    </button>
-
-  </div>
-
-  <div class="panel">
-    <div
-      id="departmentList"
-      class="list">
-    </div>
-  </div>
-
-</section>
-
-
-<!-- PROGRAMMES -->
-
-<section
-  id="programmes"
-  class="section">
-
-  <div class="page-title">
-    <h2>📚 Programmes</h2>
-  </div>
-
-  <div class="panel">
-
-    <div class="form-group">
-      <label>Nom du programme</label>
-      <input id="programName">
-    </div>
-
-    <div class="form-group">
-      <label>Description</label>
-      <textarea id="programDescription"></textarea>
-    </div>
-
-    <button
-      class="add-btn"
-      onclick="addProgram()">
-      Ajouter
-    </button>
-
-  </div>
-
-  <div class="panel">
-    <div
-      id="programList"
-      class="list">
-    </div>
-  </div>
-
-</section>
-
-
-<!-- COURS -->
-
-<section
-  id="cours"
-  class="section">
-
-  <div class="page-title">
-    <h2>📖 Cours</h2>
-  </div>
-
-  <div class="panel">
-
-    <div class="grid-form">
-
-      <div class="form-group">
-        <label>Nom du cours</label>
-        <input id="courseName">
-      </div>
-
-      <div class="form-group">
-        <label>Professeur</label>
-        <input id="courseTeacher">
-      </div>
-
-      <div class="form-group">
-        <label>Programme</label>
-        <input id="courseProgram">
-      </div>
-
-    </div>
-
-    <button
-      class="add-btn"
-      onclick="addCourse()">
-      Ajouter
-    </button>
-
-  </div>
-
-  <div class="panel">
-    <div
-      id="courseList"
-      class="list">
-    </div>
-  </div>
-
-</section>
-
-
-<!-- CLASSES -->
-
-<section
-  id="classes"
-  class="section">
-
-  <div class="page-title">
-    <h2>🏫 Classes</h2>
-  </div>
-
-  <div class="panel">
-
-    <div class="grid-form">
-
-      <div class="form-group">
-        <label>Nom de la classe</label>
-        <input id="className">
-      </div>
-
-      <div class="form-group">
-        <label>Niveau</label>
-        <input id="classLevel">
-      </div>
-
-    </div>
-
-    <button
-      class="add-btn"
-      onclick="addClass()">
-      Ajouter
-    </button>
-
-  </div>
-
-  <div class="panel">
-
-    <div
-      id="classList"
-      class="list">
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- DEVOIRS -->
-
-<section
-  id="devoirs"
-  class="section">
-
-  <div class="page-title">
-    <h2>📝 Devoirs</h2>
-  </div>
-
-  <div class="panel">
-
-    <div class="grid-form">
-
-      <div class="form-group">
-        <label>Titre</label>
-        <input id="assignmentTitle">
-      </div>
-
-      <div class="form-group">
-        <label>Cours</label>
-        <input id="assignmentCourse">
-      </div>
-
-      <div class="form-group full">
-        <label>Description</label>
-        <textarea id="assignmentDescription"></textarea>
-      </div>
-
-    </div>
-
-    <button
-      class="add-btn"
-      onclick="addAssignment()">
-      Ajouter le devoir
-    </button>
-
-  </div>
-
-  <div class="panel">
-
-    <div
-      id="assignmentList"
-      class="list">
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- REMISES -->
-
-<section
-  id="remises"
-  class="section">
-
-  <div class="page-title">
-    <h2>📤 Remises</h2>
-  </div>
-
-  <div class="panel">
-
-    <div class="grid-form">
-
-      <div class="form-group">
-        <label>Étudiant</label>
-        <input id="submissionStudent">
-      </div>
-
-      <div class="form-group">
-        <label>Devoir</label>
-        <input id="submissionAssignment">
-      </div>
-
-      <div class="form-group">
-        <label>Nòt / 100</label>
-        <input
-          id="submissionGrade"
-          type="number"
-          min="0"
-          max="100">
-      </div>
-
-      <div class="form-group">
-        <label>Correction / Commentaire</label>
-        <input id="submissionCorrection">
-      </div>
-
-    </div>
-
-    <button
-      class="add-btn"
-      onclick="addSubmission()">
-      Enregistrer
-    </button>
-
-  </div>
-
-  <div class="panel">
-
-    <div
-      id="submissionList"
-      class="list">
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- RESULTATS -->
-
-<section
-  id="resultats"
-  class="section">
-
-  <div class="page-title">
-    <h2>📊 Résultats</h2>
-  </div>
-
-  <div class="panel">
-
-    <div
-      id="resultList"
-      class="list">
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- HORAIRES -->
-
-<section
-  id="horaires"
-  class="section">
-
-  <div class="page-title">
-    <h2>🕐 Horaires</h2>
-  </div>
-
-  <div class="panel">
-
-    <div class="grid-form">
-
-      <div class="form-group">
-        <label>Jour</label>
-        <select id="scheduleDay">
-          <option>Lundi</option>
-          <option>Mardi</option>
-          <option>Mercredi</option>
-          <option>Jeudi</option>
-          <option>Vendredi</option>
-          <option>Samedi</option>
-        </select>
-      </div>
-
-      <div class="form-group">
-        <label>Heure</label>
-        <input id="scheduleTime">
-      </div>
-
-      <div class="form-group">
-        <label>Cours</label>
-        <input id="scheduleCourse">
-      </div>
-
-      <div class="form-group">
-        <label>Classe</label>
-        <input id="scheduleClass">
-      </div>
-
-    </div>
-
-    <button
-      class="add-btn"
-      onclick="addSchedule()">
-      Ajouter
-    </button>
-
-  </div>
-
-  <div class="panel">
-
-    <div
-      id="scheduleList"
-      class="list">
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- STATISTIQUES -->
-
-<section
-  id="statistiques"
-  class="section">
-
-  <div class="page-title">
-    <h2>📈 Statistiques</h2>
-  </div>
-
-  <div class="stats-grid">
-
-    <div class="stat-card">
-      <div
-        id="statsStudents"
-        class="number">
-        0
-      </div>
-      <div class="label">
-        Étudiants
-      </div>
-    </div>
-
-    <div class="stat-card">
-      <div
-        id="statsTeachers"
-        class="number">
-        0
-      </div>
-      <div class="label">
-        Professeurs
-      </div>
-    </div>
-
-    <div class="stat-card">
-      <div
-        id="statsClasses"
-        class="number">
-        0
-      </div>
-      <div class="label">
-        Classes
-      </div>
-    </div>
-
-    <div class="stat-card">
-      <div
-        id="statsCourses"
-        class="number">
-        0
-      </div>
-      <div class="label">
-        Cours
-      </div>
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- USERS -->
-
-<section
-  id="users"
-  class="section">
-
-  <div class="page-title">
-    <h2>👥 Utilisateurs</h2>
-    <p>Validation des comptes</p>
-  </div>
-
-  <div class="panel">
-
-    <div
-      id="usersList"
-      class="list">
-    </div>
-
-  </div>
-
-</section>
-
-</main>
 </div>
 
 
 <script type="module">
+
+/* =====================================================
+   FIREBASE
+===================================================== */
 
 import {
   initializeApp
@@ -1530,89 +1603,76 @@ import {
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
 
 
-/* FIREBASE */
-
 const firebaseConfig = {
 
   apiKey:
-  "AIzaSyDx6Rpd31eaFVQ0BL17BXCnIniLd0Fk7cA",
+    "AIzaSyDx6Rpd31eaFVQ0BL17BXCnIniLd0Fk7cA",
 
   authDomain:
-  "centre-de-formation-le-ped.firebaseapp.com",
+    "centre-de-formation-le-ped.firebaseapp.com",
 
   projectId:
-  "centre-de-formation-le-ped",
+    "centre-de-formation-le-ped",
 
   storageBucket:
-  "centre-de-formation-le-ped.firebasestorage.app",
+    "centre-de-formation-le-ped.firebasestorage.app",
 
   messagingSenderId:
-  "883893680829",
+    "883893680829",
 
   appId:
-  "1:883893680829:web:621cdf54d136cece6fd5d4"
+    "1:883893680829:web:621cdf54d136cece6fd5d4"
 
 };
 
 
-const appFirebase =
+const firebaseApp =
   initializeApp(firebaseConfig);
 
 const auth =
-  getAuth(appFirebase);
+  getAuth(firebaseApp);
 
 const db =
-  getFirestore(appFirebase);
+  getFirestore(firebaseApp);
 
-const provider =
+const googleProvider =
   new GoogleAuthProvider();
 
-provider.setCustomParameters({
+googleProvider.setCustomParameters({
   prompt:"select_account"
 });
 
 
 let currentUser = null;
 let currentUserData = null;
-let deferredPrompt = null;
+let deferredInstallPrompt = null;
 
 
-/* HELPERS */
+/* =====================================================
+   HELPERS
+===================================================== */
 
-function message(text){
-  const box =
-    document.getElementById("authMessage");
+function $(id){
+  return document.getElementById(id);
+}
 
-  if(box){
-    box.textContent = text;
-  }
+function clean(value){
+  return String(value ?? "").trim();
 }
 
 function role(){
-
-  return String(
-    currentUserData?.role || ""
-  )
-  .trim()
-  .toLowerCase();
-
+  return clean(currentUserData?.role)
+    .toLowerCase();
 }
 
 function status(){
-
-  return String(
-    currentUserData?.status || ""
-  )
-  .trim()
-  .toLowerCase();
-
+  return clean(currentUserData?.status)
+    .toLowerCase();
 }
 
 function isAdmin(){
-
-  return role() ===
-    "administrateur";
-
+  return role() === "administrateur"
+      && status() === "accepted";
 }
 
 function requireAdmin(){
@@ -1632,52 +1692,46 @@ function requireAdmin(){
   return true;
 }
 
+function message(txt){
+  $("authMessage").textContent = txt;
+}
 
-/* AUTH TABS */
+function makeId(){
+  return crypto.randomUUID();
+}
 
-window.showLogin = function(){
 
-  document
-    .getElementById("loginForm")
-    .classList.remove("hidden");
+/* =====================================================
+   AUTH TABS
+===================================================== */
 
-  document
-    .getElementById("registerForm")
-    .classList.add("hidden");
+$("loginTab").onclick = () => {
 
-  document
-    .getElementById("loginTab")
-    .classList.add("active");
+  $("loginTab").classList.add("active");
+  $("registerTab").classList.remove("active");
 
-  document
-    .getElementById("registerTab")
-    .classList.remove("active");
+  $("loginForm").classList.remove("hidden");
+  $("registerForm").classList.add("hidden");
 
+  message("");
 };
 
 
-window.showRegister = function(){
+$("registerTab").onclick = () => {
 
-  document
-    .getElementById("loginForm")
-    .classList.add("hidden");
+  $("registerTab").classList.add("active");
+  $("loginTab").classList.remove("active");
 
-  document
-    .getElementById("registerForm")
-    .classList.remove("hidden");
+  $("registerForm").classList.remove("hidden");
+  $("loginForm").classList.add("hidden");
 
-  document
-    .getElementById("loginTab")
-    .classList.remove("active");
-
-  document
-    .getElementById("registerTab")
-    .classList.add("active");
-
+  message("");
 };
 
 
-/* CREATE PROFILE */
+/* =====================================================
+   CREATE USER PROFILE
+===================================================== */
 
 async function createUserProfile(
   user,
@@ -1692,259 +1746,278 @@ async function createUserProfile(
     {
       uid:user.uid,
       email:user.email || "",
-      nom:
-        name ||
-        user.displayName ||
-        "",
+      nom:name || user.displayName || "",
       role:"étudiant",
       status:"attente",
       createdAt:serverTimestamp()
     },
     {merge:true}
   );
-
 }
 
 
-/* EMAIL REGISTER */
+/* =====================================================
+   REGISTER EMAIL
+===================================================== */
 
-window.inscrire = async function(){
+$("registerForm").addEventListener(
+  "submit",
+  async event => {
 
-  const name =
-    document
-    .getElementById("registerName")
-    .value
-    .trim();
+    event.preventDefault();
 
-  const email =
-    document
-    .getElementById("registerEmail")
-    .value
-    .trim();
-
-  const password =
-    document
-    .getElementById("registerPassword")
-    .value;
-
-  if(!name || !email || !password){
-
-    message(
-      "Ranpli tout chan yo."
-    );
-
-    return;
-  }
-
-  try{
-
-    message("Kreyasyon kont...");
-
-    const result =
-      await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-
-    await updateProfile(
-      result.user,
-      {
-        displayName:name
-      }
-    );
-
-    await createUserProfile(
-      result.user,
-      name
-    );
-
-    await signOut(auth);
-
-    message(
-      "Kont lan kreye. Tann administrateur apwouve li."
-    );
-
-  }catch(error){
-
-    console.error(error);
-
-    message(
-      "Erè: " + error.message
-    );
-
-  }
-
-};
-
-
-/* GOOGLE REGISTER */
-
-window.inscrireAvecGoogle =
-async function(){
-
-  try{
-
-    await signInWithPopup(
-      auth,
-      provider
-    );
-
-  }catch(error){
-
-    console.error(error);
-
-    message(
-      "Google: " +
-      error.message
-    );
-
-  }
-
-};
-
-
-/* EMAIL LOGIN */
-
-window.connecter = async function(){
-
-  const email =
-    document
-    .getElementById("loginEmail")
-    .value
-    .trim();
-
-  const password =
-    document
-    .getElementById("loginPassword")
-    .value;
-
-  if(!email || !password){
-
-    message(
-      "Antre email ak modpas."
-    );
-
-    return;
-  }
-
-  try{
-
-    message("Connexion...");
-
-    await signInWithEmailAndPassword(
-      auth,
-      email,
-      password
-    );
-
-  }catch(error){
-
-    console.error(error);
-
-    message(
-      "Connexion echwe: " +
-      error.message
-    );
-
-  }
-
-};
-
-
-/* GOOGLE LOGIN */
-
-window.connecterAvecGoogle =
-async function(){
-
-  try{
-
-    await signInWithPopup(
-      auth,
-      provider
-    );
-
-  }catch(error){
-
-    console.error(error);
+    message("Création du compte...");
 
     try{
 
-      await signInWithRedirect(
-        auth,
-        provider
+      const name =
+        clean($("registerName").value);
+
+      const email =
+        clean($("registerEmail").value);
+
+      const password =
+        $("registerPassword").value;
+
+      const result =
+        await createUserWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
+
+      await updateProfile(
+        result.user,
+        {
+          displayName:name
+        }
       );
 
-    }catch(error2){
+      await createUserProfile(
+        result.user,
+        name
+      );
 
-      console.error(error2);
+      await signOut(auth);
 
       message(
-        "Google echwe: " +
-        error2.message
+        "Compte créé. Attendez l'approbation de l'administrateur."
+      );
+
+      $("registerForm").reset();
+
+      $("loginTab").click();
+
+    }catch(error){
+
+      console.error(error);
+
+      message(
+        translateFirebaseError(error)
       );
 
     }
 
   }
-
-};
-
-
-/* REDIRECT */
-
-getRedirectResult(auth)
-.catch(error=>{
-  console.log(
-    "Redirect:",
-    error
-  );
-});
+);
 
 
-/* LOAD PROFILE */
+/* =====================================================
+   LOGIN EMAIL
+===================================================== */
+
+$("loginForm").addEventListener(
+  "submit",
+  async event => {
+
+    event.preventDefault();
+
+    message("Connexion...");
+
+    try{
+
+      await signInWithEmailAndPassword(
+        auth,
+        clean($("loginEmail").value),
+        $("loginPassword").value
+      );
+
+    }catch(error){
+
+      console.error(error);
+
+      message(
+        translateFirebaseError(error)
+      );
+
+    }
+
+  }
+);
+
+
+/* =====================================================
+   GOOGLE
+===================================================== */
+
+async function loginGoogle(){
+
+  message("Connexion avec Google...");
+
+  try{
+
+    await signInWithPopup(
+      auth,
+      googleProvider
+    );
+
+  }catch(error){
+
+    console.error(error);
+
+    if(
+      error.code ===
+      "auth/popup-blocked"
+      ||
+      error.code ===
+      "auth/popup-closed-by-user"
+    ){
+
+      try{
+
+        await signInWithRedirect(
+          auth,
+          googleProvider
+        );
+
+      }catch(err){
+
+        message(
+          translateFirebaseError(err)
+        );
+
+      }
+
+    }else{
+
+      message(
+        translateFirebaseError(error)
+      );
+
+    }
+
+  }
+}
+
+
+$("googleLoginBtn").onclick =
+  loginGoogle;
+
+$("googleRegisterBtn").onclick =
+  loginGoogle;
+
+
+/* =====================================================
+   FIREBASE ERROR
+===================================================== */
+
+function translateFirebaseError(error){
+
+  const code =
+    error?.code || "";
+
+  const messages = {
+
+    "auth/invalid-credential":
+      "Email oswa modpas la pa kòrèk.",
+
+    "auth/invalid-login-credentials":
+      "Email oswa modpas la pa kòrèk.",
+
+    "auth/email-already-in-use":
+      "Email sa a deja itilize.",
+
+    "auth/weak-password":
+      "Modpas la dwe genyen omwen 6 karaktè.",
+
+    "auth/invalid-email":
+      "Email la pa valab.",
+
+    "auth/popup-closed-by-user":
+      "Fenèt Google la fèmen.",
+
+    "auth/popup-blocked":
+      "Navigatè a bloke fenèt Google la.",
+
+    "auth/unauthorized-domain":
+      "Domèn GitHub Pages la poko otorize nan Firebase.",
+
+    "permission-denied":
+      "Firebase pa bay kont sa a pèmisyon.",
+
+    "auth/network-request-failed":
+      "Pwoblèm rezo. Verifye entènèt la."
+
+  };
+
+  return messages[code]
+    || error?.message
+    || "Yon erè rive.";
+}
+
+
+/* =====================================================
+   LOAD USER PROFILE
+===================================================== */
 
 async function loadUserProfile(user){
 
   const ref =
     doc(db,"users",user.uid);
 
-  let snap =
+  const snap =
     await getDoc(ref);
+
+  /*
+    IMPORTANT:
+    Nou pa kreye yon profil automatiquement
+    lè moun nan ap konekte.
+  */
 
   if(!snap.exists()){
 
-    await createUserProfile(
-      user,
-      user.displayName || ""
+    await signOut(auth);
+
+    message(
+      "Kont sa a poko anrejistre nan sistèm lan."
     );
 
-    snap =
-      await getDoc(ref);
-
+    return false;
   }
 
   currentUserData =
     snap.data();
 
   const currentStatus =
-    String(
-      currentUserData.status || ""
-    )
-    .trim()
-    .toLowerCase();
+    clean(currentUserData.status)
+      .toLowerCase();
 
   const currentRole =
-    String(
-      currentUserData.role || ""
-    )
-    .trim()
-    .toLowerCase();
+    clean(currentUserData.role)
+      .toLowerCase();
+
 
   if(
-    currentStatus !== "accepted" &&
-    currentRole !== "administrateur"
+    currentRole === "administrateur"
+    &&
+    currentStatus === "accepted"
   ){
+
+    return true;
+  }
+
+
+  if(currentStatus !== "accepted"){
 
     await signOut(auth);
 
@@ -1955,34 +2028,35 @@ async function loadUserProfile(user){
     return false;
   }
 
-  return true;
 
+  return true;
 }
 
 
-/* AUTH STATE */
+/* =====================================================
+   AUTH STATE
+===================================================== */
 
 onAuthStateChanged(
   auth,
-  async user=>{
+  async user => {
 
     if(!user){
 
-      currentUser=null;
-      currentUserData=null;
+      currentUser = null;
+      currentUserData = null;
 
-      document
-        .getElementById("authPage")
-        .style.display="flex";
+      $("authPage")
+        .classList.remove("hidden");
 
-      document
-        .getElementById("app")
-        .style.display="none";
+      $("app")
+        .classList.add("hidden");
 
       return;
     }
 
-    currentUser=user;
+
+    currentUser = user;
 
     try{
 
@@ -1991,7 +2065,34 @@ onAuthStateChanged(
 
       if(!ok) return;
 
-      openApp();
+      $("authPage")
+        .classList.add("hidden");
+
+      $("app")
+        .classList.remove("hidden");
+
+      $("userEmail").textContent =
+        user.email || "";
+
+      $("userRole").textContent =
+        "Wòl: " +
+        (
+          currentUserData.role
+          || ""
+        );
+
+      $("adminMenu").classList.toggle(
+        "hidden",
+        !isAdmin()
+      );
+
+      updateToday();
+
+      await loadDashboard();
+
+      if(isAdmin()){
+        await loadUsers();
+      }
 
     }catch(error){
 
@@ -2000,8 +2101,8 @@ onAuthStateChanged(
       await signOut(auth);
 
       message(
-        "Erè Firebase: " +
-        error.message
+        "Erè pandan verifikasyon kont lan: "
+        + error.message
       );
 
     }
@@ -2010,136 +2111,187 @@ onAuthStateChanged(
 );
 
 
-/* OPEN APP */
+/* =====================================================
+   REDIRECT RESULT
+===================================================== */
 
-function openApp(){
+getRedirectResult(auth)
+  .catch(error => {
 
-  document
-    .getElementById("authPage")
-    .style.display="none";
+    if(error){
 
-  document
-    .getElementById("app")
-    .style.display="block";
-
-  document
-    .getElementById("userEmail")
-    .textContent =
-      currentUser?.email || "";
-
-  document
-    .getElementById("userRole")
-    .textContent =
-      "Wòl: " +
-      (
-        currentUserData?.role ||
-        ""
+      console.error(
+        "Redirect error:",
+        error
       );
 
-  document
-    .getElementById("usersMenu")
-    .classList.toggle(
-      "hidden",
-      !isAdmin()
-    );
+      message(
+        translateFirebaseError(error)
+      );
 
-  document
-    .getElementById("homeUsersMenu")
-    .classList.toggle(
-      "hidden",
-      !isAdmin()
-    );
+    }
 
-  loadAllData();
-
-}
+  });
 
 
-/* LOGOUT */
+/* =====================================================
+   LOGOUT
+===================================================== */
 
-window.logout = async function(){
+$("logoutBtn").onclick =
+  async () => {
 
-  await signOut(auth);
+    try{
 
-};
+      await signOut(auth);
 
+    }catch(error){
 
-/* SIDEBAR */
+      alert(error.message);
 
-window.toggleSidebar =
-function(){
+    }
 
-  document
-    .getElementById("sidebar")
-    .classList.toggle("open");
-
-};
+  };
 
 
-/* SECTION */
+/* =====================================================
+   NAVIGATION
+===================================================== */
 
-window.showSection =
-function(id){
+document.querySelectorAll(
+  ".navBtn"
+).forEach(btn => {
 
-  document
-    .querySelectorAll(".section")
-    .forEach(section=>{
-      section.classList.remove("active");
-    });
+  btn.addEventListener(
+    "click",
+    () => {
+
+      const id =
+        btn.dataset.section;
+
+      showSection(id);
+
+    }
+  );
+
+});
+
+
+document.querySelectorAll(
+  ".quickBtn"
+).forEach(btn => {
+
+  btn.addEventListener(
+    "click",
+    () => {
+
+      showSection(
+        btn.dataset.go
+      );
+
+    }
+  );
+
+});
+
+
+function showSection(id){
+
+  document.querySelectorAll(
+    ".section"
+  ).forEach(section => {
+
+    section.classList.remove("active");
+
+  });
+
 
   const section =
-    document.getElementById(id);
+    $(id);
 
   if(section){
     section.classList.add("active");
   }
 
-  if(
-    window.innerWidth <= 900
-  ){
 
-    document
-      .getElementById("sidebar")
-      .classList.remove("open");
+  document.querySelectorAll(
+    ".navBtn"
+  ).forEach(btn => {
 
-  }
+    btn.classList.toggle(
+      "active",
+      btn.dataset.section === id
+    );
 
-};
-
-
-/* LANGUAGE */
-
-window.changeLanguage =
-function(lang){
-
-  document.documentElement.lang =
-    lang === "fr"
-      ? "fr"
-      : "ht";
-
-  localStorage.setItem(
-    "appLanguage",
-    lang
-  );
-
-};
+  });
 
 
-/* ADD GENERIC */
+  $("sidebar")
+    .classList.remove("open");
+
+
+  if(id === "etudiants")
+    loadCollection("etudiants");
+
+  if(id === "professeurs")
+    loadCollection("professeurs");
+
+  if(id === "departements")
+    loadCollection("departements");
+
+  if(id === "programmes")
+    loadCollection("programmes");
+
+  if(id === "cours")
+    loadCollection("cours");
+
+  if(id === "classes")
+    loadCollection("classes");
+
+  if(id === "devoirs")
+    loadCollection("devoirs");
+
+  if(id === "remises")
+    loadCollection("remises");
+
+  if(id === "resultats")
+    loadCollection("resultats");
+
+  if(id === "horaires")
+    loadCollection("emplois_du_temps");
+
+  if(id === "users" && isAdmin())
+    loadUsers();
+
+}
+
+
+/* =====================================================
+   MOBILE MENU
+===================================================== */
+
+$("mobileMenu").onclick =
+  () => {
+
+    $("sidebar")
+      .classList.toggle("open");
+
+  };
+
+
+/* =====================================================
+   ADD DOCUMENT
+===================================================== */
 
 async function addDocument(
   collectionName,
   data
 ){
 
-  if(!currentUser){
-    throw new Error(
-      "Utilisateur non connecté."
-    );
-  }
+  if(!requireAdmin()) return;
 
   const id =
-    crypto.randomUUID();
+    makeId();
 
   await setDoc(
     doc(
@@ -2157,7 +2309,9 @@ async function addDocument(
 }
 
 
-/* DELETE */
+/* =====================================================
+   DELETE
+===================================================== */
 
 window.deleteDocument =
 async function(
@@ -2167,12 +2321,13 @@ async function(
 
   if(!requireAdmin()) return;
 
-  const ok =
-    confirm(
+  if(
+    !confirm(
       "Èske ou sèten ou vle efase eleman sa a?"
-    );
-
-  if(!ok) return;
+    )
+  ){
+    return;
+  }
 
   try{
 
@@ -2184,15 +2339,18 @@ async function(
       )
     );
 
-    await loadAllData();
+    await loadCollection(
+      collectionName
+    );
+
+    await loadDashboard();
 
   }catch(error){
 
     console.error(error);
 
     alert(
-      "Efase echwe: " +
-      error.message
+      "Erè: " + error.message
     );
 
   }
@@ -2200,1686 +2358,74 @@ async function(
 };
 
 
-/* STUDENTS */
+/* =====================================================
+   GENERIC DISPLAY
+===================================================== */
 
-window.addStudent =
-async function(){
+function card(
+  title,
+  lines,
+  collectionName,
+  id
+){
 
-  if(!requireAdmin()) return;
+  const div =
+    document.createElement("div");
 
-  const name =
-    document
-    .getElementById("studentName")
-    .value
-    .trim();
+  div.className =
+    "dataCard";
 
-  const email =
-    document
-    .getElementById("studentEmail")
-    .value
-    .trim();
+  let html =
+    "<h3>" +
+    escapeHtml(title) +
+    "</h3>";
 
-  const phone =
-    document
-    .getElementById("studentPhone")
-    .value
-    .trim();
+  lines.forEach(
+    line => {
 
-  const classe =
-    document
-    .getElementById("studentClass")
-    .value
-    .trim();
+      if(
+        line.value !== undefined
+        &&
+        line.value !== ""
+      ){
 
-  if(!name){
+        html +=
+          "<p><strong>" +
+          escapeHtml(line.label) +
+          ":</strong> " +
+          escapeHtml(line.value) +
+          "</p>";
 
-    alert(
-      "Antre non elèv la."
-    );
-
-    return;
-  }
-
-  try{
-
-    await addDocument(
-      "etudiants",
-      {
-        nom:name,
-        email,
-        telephone:phone,
-        classe
       }
-    );
 
-    document
-      .getElementById("studentName")
-      .value="";
-
-    document
-      .getElementById("studentEmail")
-      .value="";
-
-    document
-      .getElementById("studentPhone")
-      .value="";
-
-    document
-      .getElementById("studentClass")
-      .value="";
-
-    await loadStudents();
-
-  }catch(error){
-
-    alert(
-      "Erreur: " +
-      error.message
-    );
-
-  }
-
-};
-
-
-async function loadStudents(){
-
-  const box =
-    document.getElementById(
-      "studentList"
-    );
-
-  if(!box) return;
-
-  try{
-
-    const snap =
-      await getDocs(
-        collection(
-          db,
-          "etudiants"
-        )
-      );
-
-    box.innerHTML="";
-
-    document
-      .getElementById("statStudents")
-      .textContent =
-        snap.size;
-
-    document
-      .getElementById("statsStudents")
-      .textContent =
-        snap.size;
-
-    if(snap.empty){
-
-      box.innerHTML =
-        `<div class="empty">
-          Pa gen etidyan.
-        </div>`;
-
-      return;
     }
+  );
 
-    snap.forEach(item=>{
-
-      const d =
-        item.data();
-
-      box.innerHTML +=
-        `
-        <div class="item">
-
-          <div class="item-header">
-            <div class="item-title">
-              👨‍🎓 ${escapeHTML(d.nom || "")}
-            </div>
-          </div>
-
-          <div class="item-info">
-            Email: ${escapeHTML(d.email || "-")}
-          </div>
-
-          <div class="item-info">
-            Téléphone: ${escapeHTML(d.telephone || "-")}
-          </div>
-
-          <div class="item-info">
-            Classe: ${escapeHTML(d.classe || "-")}
-          </div>
-
-          ${
-            isAdmin()
-            ?
-            `<div class="item-actions">
-              <button
-                class="delete-btn"
-                onclick="deleteDocument('etudiants','${item.id}')">
-                Efase
-              </button>
-            </div>`
-            :
-            ""
-          }
-
-        </div>
-        `;
-
-    });
-
-  }catch(error){
-
-    box.innerHTML =
-      `<div class="empty">
-        Erè: ${escapeHTML(error.message)}
-      </div>`;
-
-  }
-
-}
-
-
-/* TEACHERS */
-
-window.addTeacher =
-async function(){
-
-  if(!requireAdmin()) return;
-
-  const name =
-    document
-    .getElementById("teacherName")
-    .value
-    .trim();
-
-  const email =
-    document
-    .getElementById("teacherEmail")
-    .value
-    .trim();
-
-  const phone =
-    document
-    .getElementById("teacherPhone")
-    .value
-    .trim();
-
-  const subject =
-    document
-    .getElementById("teacherSubject")
-    .value
-    .trim();
-
-  if(!name){
-
-    alert(
-      "Antre non professeur la."
-    );
-
-    return;
-  }
-
-  try{
-
-    await addDocument(
-      "professeurs",
-      {
-        nom:name,
-        email,
-        telephone:phone,
-        matiere:subject
-      }
-    );
-
-    document
-      .getElementById("teacherName")
-      .value="";
-
-    document
-      .getElementById("teacherEmail")
-      .value="";
-
-    document
-      .getElementById("teacherPhone")
-      .value="";
-
-    document
-      .getElementById("teacherSubject")
-      .value="";
-
-    await loadTeachers();
-
-  }catch(error){
-
-    alert(
-      error.message
-    );
-
-  }
-
-};
-
-
-async function loadTeachers(){
-
-  const box =
-    document.getElementById(
-      "teacherList"
-    );
-
-  if(!box) return;
-
-  try{
-
-    const snap =
-      await getDocs(
-        collection(
-          db,
-          "professeurs"
-        )
-      );
-
-    box.innerHTML="";
-
-    document
-      .getElementById("statTeachers")
-      .textContent =
-        snap.size;
-
-    document
-      .getElementById("statsTeachers")
-      .textContent =
-        snap.size;
-
-    if(snap.empty){
-
-      box.innerHTML =
-        `<div class="empty">
-          Pa gen professeur.
-        </div>`;
-
-      return;
-    }
-
-    snap.forEach(item=>{
-
-      const d =
-        item.data();
-
-      box.innerHTML +=
-        `
-        <div class="item">
-
-          <div class="item-title">
-            👨‍🏫 ${escapeHTML(d.nom || "")}
-          </div>
-
-          <div class="item-info">
-            Email: ${escapeHTML(d.email || "-")}
-          </div>
-
-          <div class="item-info">
-            Téléphone: ${escapeHTML(d.telephone || "-")}
-          </div>
-
-          <div class="item-info">
-            Matière: ${escapeHTML(d.matiere || "-")}
-          </div>
-
-          ${
-            isAdmin()
-            ?
-            `<div class="item-actions">
-              <button
-                class="delete-btn"
-                onclick="deleteDocument('professeurs','${item.id}')">
-                Efase
-              </button>
-            </div>`
-            :
-            ""
-          }
-
-        </div>
-        `;
-
-    });
-
-  }catch(error){
-
-    box.innerHTML =
-      `<div class="empty">
-        Erè: ${escapeHTML(error.message)}
-      </div>`;
-
-  }
-
-}
-
-
-/* DEPARTMENTS */
-
-window.addDepartment =
-async function(){
-
-  if(!requireAdmin()) return;
-
-  const name =
-    document
-    .getElementById("departmentName")
-    .value
-    .trim();
-
-  const description =
-    document
-    .getElementById("departmentDescription")
-    .value
-    .trim();
-
-  if(!name){
-
-    alert(
-      "Antre non département la."
-    );
-
-    return;
-  }
-
-  try{
-
-    await addDocument(
-      "departements",
-      {
-        nom:name,
-        description
-      }
-    );
-
-    document
-      .getElementById("departmentName")
-      .value="";
-
-    document
-      .getElementById("departmentDescription")
-      .value="";
-
-    await loadDepartments();
-
-  }catch(error){
-
-    alert(error.message);
-
-  }
-
-};
-
-
-async function loadDepartments(){
-
-  const box =
-    document.getElementById(
-      "departmentList"
-    );
-
-  if(!box) return;
-
-  const snap =
-    await getDocs(
-      collection(
-        db,
-        "departements"
-      )
-    );
-
-  box.innerHTML="";
-
-  if(snap.empty){
-
-    box.innerHTML =
-      `<div class="empty">
-        Pa gen département.
-      </div>`;
-
-    return;
-  }
-
-  snap.forEach(item=>{
-
-    const d =
-      item.data();
-
-    box.innerHTML +=
-      `
-      <div class="item">
-
-        <div class="item-title">
-          🏢 ${escapeHTML(d.nom || "")}
-        </div>
-
-        <div class="item-info">
-          ${escapeHTML(d.description || "")}
-        </div>
-
-        ${
-          isAdmin()
-          ?
-          `<div class="item-actions">
-            <button
-              class="delete-btn"
-              onclick="deleteDocument('departements','${item.id}')">
-              Efase
-            </button>
-          </div>`
-          :
-          ""
-        }
-
-      </div>
-      `;
-
-  });
-
-}
-
-
-/* PROGRAMS */
-
-window.addProgram =
-async function(){
-
-  if(!requireAdmin()) return;
-
-  const name =
-    document
-    .getElementById("programName")
-    .value
-    .trim();
-
-  const description =
-    document
-    .getElementById("programDescription")
-    .value
-    .trim();
-
-  if(!name){
-
-    alert(
-      "Antre non programme lan."
-    );
-
-    return;
-  }
-
-  try{
-
-    await addDocument(
-      "programmes",
-      {
-        nom:name,
-        description
-      }
-    );
-
-    document
-      .getElementById("programName")
-      .value="";
-
-    document
-      .getElementById("programDescription")
-      .value="";
-
-    await loadPrograms();
-
-  }catch(error){
-
-    alert(error.message);
-
-  }
-
-};
-
-
-async function loadPrograms(){
-
-  const box =
-    document.getElementById(
-      "programList"
-    );
-
-  if(!box) return;
-
-  const snap =
-    await getDocs(
-      collection(
-        db,
-        "programmes"
-      )
-    );
-
-  box.innerHTML="";
-
-  if(snap.empty){
-
-    box.innerHTML =
-      `<div class="empty">
-        Pa gen programme.
-      </div>`;
-
-    return;
-  }
-
-  snap.forEach(item=>{
-
-    const d =
-      item.data();
-
-    box.innerHTML +=
-      `
-      <div class="item">
-
-        <div class="item-title">
-          📚 ${escapeHTML(d.nom || "")}
-        </div>
-
-        <div class="item-info">
-          ${escapeHTML(d.description || "")}
-        </div>
-
-        ${
-          isAdmin()
-          ?
-          `<div class="item-actions">
-            <button
-              class="delete-btn"
-              onclick="deleteDocument('programmes','${item.id}')">
-              Efase
-            </button>
-          </div>`
-          :
-          ""
-        }
-
-      </div>
-      `;
-
-  });
-
-}
-
-
-/* COURSES */
-
-window.addCourse =
-async function(){
-
-  if(!requireAdmin()) return;
-
-  const name =
-    document
-    .getElementById("courseName")
-    .value
-    .trim();
-
-  const teacher =
-    document
-    .getElementById("courseTeacher")
-    .value
-    .trim();
-
-  const program =
-    document
-    .getElementById("courseProgram")
-    .value
-    .trim();
-
-  if(!name){
-
-    alert(
-      "Antre non cours la."
-    );
-
-    return;
-  }
-
-  try{
-
-    await addDocument(
-      "cours",
-      {
-        nom:name,
-        professeur:teacher,
-        programme:program
-      }
-    );
-
-    document
-      .getElementById("courseName")
-      .value="";
-
-    document
-      .getElementById("courseTeacher")
-      .value="";
-
-    document
-      .getElementById("courseProgram")
-      .value="";
-
-    await loadCourses();
-
-  }catch(error){
-
-    alert(error.message);
-
-  }
-
-};
-
-
-async function loadCourses(){
-
-  const box =
-    document.getElementById(
-      "courseList"
-    );
-
-  if(!box) return;
-
-  const snap =
-    await getDocs(
-      collection(
-        db,
-        "cours"
-      )
-    );
-
-  box.innerHTML="";
-
-  document
-    .getElementById("statCourses")
-    .textContent =
-      snap.size;
-
-  document
-    .getElementById("statsCourses")
-    .textContent =
-      snap.size;
-
-  if(snap.empty){
-
-    box.innerHTML =
-      `<div class="empty">
-        Pa gen cours.
-      </div>`;
-
-    return;
-  }
-
-  snap.forEach(item=>{
-
-    const d =
-      item.data();
-
-    box.innerHTML +=
-      `
-      <div class="item">
-
-        <div class="item-title">
-          📖 ${escapeHTML(d.nom || "")}
-        </div>
-
-        <div class="item-info">
-          Professeur:
-          ${escapeHTML(d.professeur || "-")}
-        </div>
-
-        <div class="item-info">
-          Programme:
-          ${escapeHTML(d.programme || "-")}
-        </div>
-
-        ${
-          isAdmin()
-          ?
-          `<div class="item-actions">
-            <button
-              class="delete-btn"
-              onclick="deleteDocument('cours','${item.id}')">
-              Efase
-            </button>
-          </div>`
-          :
-          ""
-        }
-
-      </div>
-      `;
-
-  });
-
-}
-
-
-/* CLASSES */
-
-window.addClass =
-async function(){
-
-  if(!requireAdmin()) return;
-
-  const name =
-    document
-    .getElementById("className")
-    .value
-    .trim();
-
-  const level =
-    document
-    .getElementById("classLevel")
-    .value
-    .trim();
-
-  if(!name){
-
-    alert(
-      "Antre non classe la."
-    );
-
-    return;
-  }
-
-  try{
-
-    await addDocument(
-      "classes",
-      {
-        nom:name,
-        niveau:level
-      }
-    );
-
-    document
-      .getElementById("className")
-      .value="";
-
-    document
-      .getElementById("classLevel")
-      .value="";
-
-    await loadClasses();
-
-  }catch(error){
-
-    alert(error.message);
-
-  }
-
-};
-
-
-async function loadClasses(){
-
-  const box =
-    document.getElementById(
-      "classList"
-    );
-
-  if(!box) return;
-
-  const snap =
-    await getDocs(
-      collection(
-        db,
-        "classes"
-      )
-    );
-
-  box.innerHTML="";
-
-  document
-    .getElementById("statClasses")
-    .textContent =
-      snap.size;
-
-  document
-    .getElementById("statsClasses")
-    .textContent =
-      snap.size;
-
-  if(snap.empty){
-
-    box.innerHTML =
-      `<div class="empty">
-        Pa gen classe.
-      </div>`;
-
-    return;
-  }
-
-  snap.forEach(item=>{
-
-    const d =
-      item.data();
-
-    box.innerHTML +=
-      `
-      <div class="item">
-
-        <div class="item-title">
-          🏫 ${escapeHTML(d.nom || "")}
-        </div>
-
-        <div class="item-info">
-          Niveau:
-          ${escapeHTML(d.niveau || "-")}
-        </div>
-
-        ${
-          isAdmin()
-          ?
-          `<div class="item-actions">
-            <button
-              class="delete-btn"
-              onclick="deleteDocument('classes','${item.id}')">
-              Efase
-            </button>
-          </div>`
-          :
-          ""
-        }
-
-      </div>
-      `;
-
-  });
-
-}
-
-
-/* ASSIGNMENTS */
-
-window.addAssignment =
-async function(){
-
-  if(!requireAdmin()) return;
-
-  const title =
-    document
-    .getElementById("assignmentTitle")
-    .value
-    .trim();
-
-  const course =
-    document
-    .getElementById("assignmentCourse")
-    .value
-    .trim();
-
-  const description =
-    document
-    .getElementById("assignmentDescription")
-    .value
-    .trim();
-
-  if(!title){
-
-    alert(
-      "Antre tit devoir la."
-    );
-
-    return;
-  }
-
-  try{
-
-    await addDocument(
-      "devoirs",
-      {
-        titre:title,
-        cours:course,
-        description
-      }
-    );
-
-    document
-      .getElementById("assignmentTitle")
-      .value="";
-
-    document
-      .getElementById("assignmentCourse")
-      .value="";
-
-    document
-      .getElementById("assignmentDescription")
-      .value="";
-
-    await loadAssignments();
-
-  }catch(error){
-
-    alert(error.message);
-
-  }
-
-};
-
-
-async function loadAssignments(){
-
-  const box =
-    document.getElementById(
-      "assignmentList"
-    );
-
-  if(!box) return;
-
-  const snap =
-    await getDocs(
-      collection(
-        db,
-        "devoirs"
-      )
-    );
-
-  box.innerHTML="";
-
-  if(snap.empty){
-
-    box.innerHTML =
-      `<div class="empty">
-        Pa gen devoir.
-      </div>`;
-
-    return;
-  }
-
-  snap.forEach(item=>{
-
-    const d =
-      item.data();
-
-    box.innerHTML +=
-      `
-      <div class="item">
-
-        <div class="item-title">
-          📝 ${escapeHTML(d.titre || "")}
-        </div>
-
-        <div class="item-info">
-          Cours:
-          ${escapeHTML(d.cours || "-")}
-        </div>
-
-        <div class="item-info">
-          ${escapeHTML(d.description || "")}
-        </div>
-
-        ${
-          isAdmin()
-          ?
-          `<div class="item-actions">
-            <button
-              class="delete-btn"
-              onclick="deleteDocument('devoirs','${item.id}')">
-              Efase
-            </button>
-          </div>`
-          :
-          ""
-        }
-
-      </div>
-      `;
-
-  });
-
-}
-
-
-/* SUBMISSIONS */
-
-window.addSubmission =
-async function(){
-
-  if(!currentUser){
-
-    alert(
-      "Ou dwe konekte."
-    );
-
-    return;
-  }
-
-  const student =
-    document
-    .getElementById("submissionStudent")
-    .value
-    .trim();
-
-  const assignment =
-    document
-    .getElementById("submissionAssignment")
-    .value
-    .trim();
-
-  const grade =
-    Number(
-      document
-      .getElementById("submissionGrade")
-      .value
-    );
-
-  const correction =
-    document
-    .getElementById("submissionCorrection")
-    .value
-    .trim();
 
   if(
-    !student ||
-    !assignment ||
-    Number.isNaN(grade)
+    isAdmin()
   ){
 
-    alert(
-      "Ranpli enfòmasyon yo."
-    );
-
-    return;
-  }
-
-  if(
-    grade < 0 ||
-    grade > 100
-  ){
-
-    alert(
-      "Nòt la dwe ant 0 ak 100."
-    );
-
-    return;
-  }
-
-  try{
-
-    await addDocument(
-      "remises",
-      {
-        etudiant:student,
-        devoir:assignment,
-        note:grade,
-        correction
-      }
-    );
-
-    document
-      .getElementById("submissionStudent")
-      .value="";
-
-    document
-      .getElementById("submissionAssignment")
-      .value="";
-
-    document
-      .getElementById("submissionGrade")
-      .value="";
-
-    document
-      .getElementById("submissionCorrection")
-      .value="";
-
-    await loadSubmissions();
-
-  }catch(error){
-
-    alert(error.message);
-
-  }
-
-};
-
-
-async function loadSubmissions(){
-
-  const box =
-    document.getElementById(
-      "submissionList"
-    );
-
-  if(!box) return;
-
-  const snap =
-    await getDocs(
-      collection(
-        db,
-        "remises"
-      )
-    );
-
-  box.innerHTML="";
-
-  if(snap.empty){
-
-    box.innerHTML =
-      `<div class="empty">
-        Pa gen remise.
-      </div>`;
-
-    return;
-  }
-
-  snap.forEach(item=>{
-
-    const d =
-      item.data();
-
-    box.innerHTML +=
-      `
-      <div class="item">
-
-        <div class="item-title">
-          📤 ${escapeHTML(d.etudiant || "")}
-        </div>
-
-        <div class="item-info">
-          Devoir:
-          ${escapeHTML(d.devoir || "-")}
-        </div>
-
-        <div class="item-info">
-          <strong>
-            Nòt ${Number(d.note || 0)}/100
-          </strong>
-        </div>
-
-        <div class="item-info">
-          Correction:
-          ${escapeHTML(d.correction || "-")}
-        </div>
-
-        ${
-          isAdmin()
-          ?
-          `<div class="item-actions">
-            <button
-              class="delete-btn"
-              onclick="deleteDocument('remises','${item.id}')">
-              Efase
-            </button>
-          </div>`
-          :
-          ""
-        }
-
-      </div>
-      `;
-
-  });
-
-}
-
-
-/* RESULTS */
-
-async function loadResults(){
-
-  const box =
-    document.getElementById(
-      "resultList"
-    );
-
-  if(!box) return;
-
-  const snap =
-    await getDocs(
-      collection(
-        db,
-        "resultats"
-      )
-    );
-
-  box.innerHTML="";
-
-  if(snap.empty){
-
-    box.innerHTML =
-      `<div class="empty">
-        Pa gen rezilta.
-      </div>`;
-
-    return;
-  }
-
-  snap.forEach(item=>{
-
-    const d =
-      item.data();
-
-    box.innerHTML +=
-      `
-      <div class="item">
-
-        <div class="item-title">
-          📊 ${escapeHTML(d.etudiant || "-")}
-        </div>
-
-        <div class="item-info">
-          Matière:
-          ${escapeHTML(d.matiere || "-")}
-        </div>
-
-        <div class="item-info">
-          Nòt:
-          <strong>
-            ${Number(d.note || 0)}/100
-          </strong>
-        </div>
-
-        ${
-          isAdmin()
-          ?
-          `<div class="item-actions">
-            <button
-              class="delete-btn"
-              onclick="deleteDocument('resultats','${item.id}')">
-              Efase
-            </button>
-          </div>`
-          :
-          ""
-        }
-
-      </div>
-      `;
-
-  });
-
-}
-
-
-/* SCHEDULE */
-
-window.addSchedule =
-async function(){
-
-  if(!requireAdmin()) return;
-
-  const day =
-    document
-    .getElementById("scheduleDay")
-    .value;
-
-  const time =
-    document
-    .getElementById("scheduleTime")
-    .value
-    .trim();
-
-  const course =
-    document
-    .getElementById("scheduleCourse")
-    .value
-    .trim();
-
-  const classe =
-    document
-    .getElementById("scheduleClass")
-    .value
-    .trim();
-
-  if(!time || !course){
-
-    alert(
-      "Ranpli lè ak cours."
-    );
-
-    return;
-  }
-
-  try{
-
-    await addDocument(
-      "emplois_du_temps",
-      {
-        jour:day,
-        heure:time,
-        cours:course,
-        classe
-      }
-    );
-
-    document
-      .getElementById("scheduleTime")
-      .value="";
-
-    document
-      .getElementById("scheduleCourse")
-      .value="";
-
-    document
-      .getElementById("scheduleClass")
-      .value="";
-
-    await loadSchedules();
-
-  }catch(error){
-
-    alert(error.message);
-
-  }
-
-};
-
-
-async function loadSchedules(){
-
-  const box =
-    document.getElementById(
-      "scheduleList"
-    );
-
-  if(!box) return;
-
-  const snap =
-    await getDocs(
-      collection(
-        db,
-        "emplois_du_temps"
-      )
-    );
-
-  box.innerHTML="";
-
-  if(snap.empty){
-
-    box.innerHTML =
-      `<div class="empty">
-        Pa gen horaire.
-      </div>`;
-
-    return;
-  }
-
-  snap.forEach(item=>{
-
-    const d =
-      item.data();
-
-    box.innerHTML +=
-      `
-      <div class="item">
-
-        <div class="item-title">
-          🕐 ${escapeHTML(d.jour || "")}
-        </div>
-
-        <div class="item-info">
-          Heure:
-          ${escapeHTML(d.heure || "-")}
-        </div>
-
-        <div class="item-info">
-          Cours:
-          ${escapeHTML(d.cours || "-")}
-        </div>
-
-        <div class="item-info">
-          Classe:
-          ${escapeHTML(d.classe || "-")}
-        </div>
-
-        ${
-          isAdmin()
-          ?
-          `<div class="item-actions">
-            <button
-              class="delete-btn"
-              onclick="deleteDocument('emplois_du_temps','${item.id}')">
-              Efase
-            </button>
-          </div>`
-          :
-          ""
-        }
-
-      </div>
-      `;
-
-  });
-
-}
-
-
-/* USERS */
-
-async function loadUsers(){
-
-  const box =
-    document.getElementById(
-      "usersList"
-    );
-
-  if(!box || !isAdmin())
-    return;
-
-  try{
-
-    const snap =
-      await getDocs(
-        collection(
-          db,
-          "users"
-        )
-      );
-
-    box.innerHTML="";
-
-    if(snap.empty){
-
-      box.innerHTML =
-        `<div class="empty">
-          Pa gen itilizatè.
-        </div>`;
-
-      return;
-    }
-
-    snap.forEach(item=>{
-
-      const d =
-        item.data();
-
-      const s =
-        String(
-          d.status || ""
-        )
-        .trim()
-        .toLowerCase();
-
-      const r =
-        String(
-          d.role || ""
-        )
-        .trim()
-        .toLowerCase();
-
-      box.innerHTML +=
-        `
-        <div class="item">
-
-          <div class="item-title">
-            👤 ${escapeHTML(d.nom || "-")}
-          </div>
-
-          <div class="item-info">
-            Email:
-            ${escapeHTML(d.email || "-")}
-          </div>
-
-          <div class="item-info">
-            Wòl:
-            ${escapeHTML(d.role || "-")}
-          </div>
-
-          <div class="item-info">
-            Status:
-            ${escapeHTML(d.status || "-")}
-          </div>
-
-          <div class="item-actions">
-
-            ${
-              s !== "accepted"
-              ?
-              `
-              <button
-                class="approve-btn"
-                onclick="approveUser('${item.id}')">
-                Apwouve
-              </button>
-              `
-              :
-              ""
-            }
-
-            ${
-              r !== "administrateur"
-              ?
-              `
-              <button
-                class="reject-btn"
-                onclick="refuseUser('${item.id}')">
-                Refize
-              </button>
-              `
-              :
-              ""
-            }
-
-          </div>
-
-        </div>
-        `;
-
-    });
-
-  }catch(error){
-
-    box.innerHTML =
-      `<div class="empty">
-        Erè: ${escapeHTML(error.message)}
+    html +=
+      `<div class="cardActions">
+        <button
+          class="btn btnDanger"
+          onclick="deleteDocument('${collectionName}','${id}')"
+        >
+          🗑️ Efase
+        </button>
       </div>`;
 
   }
 
+  div.innerHTML =
+    html;
+
+  return div;
 }
 
 
-/* APPROVE */
-
-window.approveUser =
-async function(uid){
-
-  if(!requireAdmin()) return;
-
-  try{
-
-    await setDoc(
-      doc(
-        db,
-        "users",
-        uid
-      ),
-      {
-        status:"accepted"
-      },
-      {merge:true}
-    );
-
-    await loadUsers();
-
-  }catch(error){
-
-    alert(
-      "Apwobasyon echwe: " +
-      error.message
-    );
-
-  }
-
-};
-
-
-/* REFUSE */
-
-window.refuseUser =
-async function(uid){
-
-  if(!requireAdmin()) return;
-
-  const ok =
-    confirm(
-      "Èske ou vle retire aksè itilizatè sa a?"
-    );
-
-  if(!ok) return;
-
-  try{
-
-    await setDoc(
-      doc(
-        db,
-        "users",
-        uid
-      ),
-      {
-        status:"refused"
-      },
-      {merge:true}
-    );
-
-    await loadUsers();
-
-  }catch(error){
-
-    alert(
-      "Operasyon echwe: " +
-      error.message
-    );
-
-  }
-
-};
-
-
-/* LOAD ALL */
-
-async function loadAllData(){
-
-  await Promise.allSettled([
-
-    loadStudents(),
-    loadTeachers(),
-    loadDepartments(),
-    loadPrograms(),
-    loadCourses(),
-    loadClasses(),
-    loadAssignments(),
-    loadSubmissions(),
-    loadResults(),
-    loadSchedules(),
-    loadUsers()
-
-  ]);
-
-}
-
-
-/* ESCAPE HTML */
-
-function escapeHTML(value){
+function escapeHtml(value){
 
   return String(value ?? "")
     .replaceAll("&","&amp;")
@@ -3891,26 +2437,469 @@ function escapeHTML(value){
 }
 
 
-/* INSTALL PWA */
+/* =====================================================
+   LOAD COLLECTION
+===================================================== */
 
-window.addEventListener(
-  "beforeinstallprompt",
-  event=>{
+window.loadCollection =
+async function(
+  collectionName
+){
 
-    event.preventDefault();
+  const map = {
 
-    deferredPrompt =
-      event;
+    etudiants:
+      "listeEtudiants",
 
-    const btn =
-      document.getElementById(
-        "installBtn"
+    professeurs:
+      "listeProfesseurs",
+
+    departements:
+      "listeDepartements",
+
+    programmes:
+      "listeProgrammes",
+
+    cours:
+      "listeCours",
+
+    classes:
+      "listeClasses",
+
+    devoirs:
+      "listeDevoirs",
+
+    remises:
+      "listeRemises",
+
+    resultats:
+      "listeResultats",
+
+    emplois_du_temps:
+      "listeHoraires"
+
+  };
+
+
+  const box =
+    $(map[collectionName]);
+
+  if(!box) return;
+
+  box.innerHTML =
+    `<div class="loading">Chargement...</div>`;
+
+
+  try{
+
+    const snap =
+      await getDocs(
+        collection(
+          db,
+          collectionName
+        )
       );
 
-    if(btn){
 
-      btn.style.display =
-        "block";
+    box.innerHTML = "";
+
+
+    if(snap.empty){
+
+      box.innerHTML =
+        `<div class="empty">
+          Aucun élément enregistré.
+        </div>`;
+
+      return;
+    }
+
+
+    snap.forEach(
+      item => {
+
+        const d =
+          item.data();
+
+        let title =
+          d.nom
+          || d.name
+          || d.titre
+          || d.title
+          || d.cours
+          || "Élément";
+
+
+        let lines = [];
+
+
+        if(collectionName === "etudiants"){
+
+          lines = [
+
+            {
+              label:"Email",
+              value:d.email
+            },
+
+            {
+              label:"Téléphone",
+              value:d.telephone || d.phone
+            },
+
+            {
+              label:"Classe",
+              value:d.classe
+            }
+
+          ];
+
+        }
+
+
+        else if(
+          collectionName === "professeurs"
+        ){
+
+          lines = [
+
+            {
+              label:"Email",
+              value:d.email
+            },
+
+            {
+              label:"Téléphone",
+              value:d.telephone || d.phone
+            },
+
+            {
+              label:"Spécialité",
+              value:d.specialite || d.specialty
+            }
+
+          ];
+
+        }
+
+
+        else if(
+          collectionName === "departements"
+        ){
+
+          lines = [
+
+            {
+              label:"Description",
+              value:d.description
+            }
+
+          ];
+
+        }
+
+
+        else if(
+          collectionName === "programmes"
+        ){
+
+          lines = [
+
+            {
+              label:"Département",
+              value:d.departement
+            },
+
+            {
+              label:"Description",
+              value:d.description
+            }
+
+          ];
+
+        }
+
+
+        else if(
+          collectionName === "cours"
+        ){
+
+          lines = [
+
+            {
+              label:"Code",
+              value:d.code
+            },
+
+            {
+              label:"Professeur",
+              value:d.professeur
+            },
+
+            {
+              label:"Programme",
+              value:d.programme
+            }
+
+          ];
+
+        }
+
+
+        else if(
+          collectionName === "classes"
+        ){
+
+          lines = [
+
+            {
+              label:"Niveau",
+              value:d.niveau
+            },
+
+            {
+              label:"Année",
+              value:d.annee
+            }
+
+          ];
+
+        }
+
+
+        else if(
+          collectionName === "devoirs"
+        ){
+
+          lines = [
+
+            {
+              label:"Cours",
+              value:d.cours
+            },
+
+            {
+              label:"Classe",
+              value:d.classe
+            },
+
+            {
+              label:"Date limite",
+              value:d.dateLimite
+            },
+
+            {
+              label:"Description",
+              value:d.description
+            }
+
+          ];
+
+        }
+
+
+        else if(
+          collectionName === "remises"
+        ){
+
+          lines = [
+
+            {
+              label:"Étudiant",
+              value:d.etudiant
+            },
+
+            {
+              label:"Devoir",
+              value:d.devoir
+            },
+
+            {
+              label:"Nòt",
+              value:
+                d.note !== undefined
+                ? d.note + "/100"
+                : ""
+            },
+
+            {
+              label:"Correction",
+              value:d.correction
+            },
+
+            {
+              label:"Date",
+              value:d.dateRemise
+            }
+
+          ];
+
+        }
+
+
+        else if(
+          collectionName === "resultats"
+        ){
+
+          lines = [
+
+            {
+              label:"Étudiant",
+              value:d.etudiant
+            },
+
+            {
+              label:"Cours",
+              value:d.cours
+            },
+
+            {
+              label:"Nòt",
+              value:
+                d.note !== undefined
+                ? d.note + "/100"
+                : ""
+            },
+
+            {
+              label:"Session",
+              value:d.session
+            },
+
+            {
+              label:"Commentaire",
+              value:d.commentaire
+            }
+
+          ];
+
+        }
+
+
+        else if(
+          collectionName === "emplois_du_temps"
+        ){
+
+          lines = [
+
+            {
+              label:"Jour",
+              value:d.jour
+            },
+
+            {
+              label:"Cours",
+              value:d.cours
+            },
+
+            {
+              label:"Classe",
+              value:d.classe
+            },
+
+            {
+              label:"Professeur",
+              value:d.professeur
+            },
+
+            {
+              label:"Heure",
+              value:
+                (
+                  d.debut || ""
+                )
+                +
+                " - "
+                +
+                (
+                  d.fin || ""
+                )
+
+            }
+
+          ];
+
+        }
+
+
+        box.appendChild(
+          card(
+            title,
+            lines,
+            collectionName,
+            item.id
+          )
+        );
+
+      }
+    );
+
+
+  }catch(error){
+
+    console.error(error);
+
+    box.innerHTML =
+      `<div class="empty">
+        Erè Firebase:<br>
+        ${escapeHtml(error.message)}
+      </div>`;
+
+  }
+
+};
+
+
+/* =====================================================
+   STUDENT FORM
+===================================================== */
+
+$("studentForm").addEventListener(
+  "submit",
+  async e => {
+
+    e.preventDefault();
+
+    if(!requireAdmin()) return;
+
+    try{
+
+      await addDocument(
+        "etudiants",
+        {
+
+          nom:
+            clean($("studentName").value),
+
+          email:
+            clean($("studentEmail").value),
+
+          telephone:
+            clean($("studentPhone").value),
+
+          classe:
+            clean($("studentClass").value)
+
+        }
+      );
+
+      e.target.reset();
+
+      alert(
+        "Étudiant ajouté avec succès."
+      );
+
+      await loadCollection(
+        "etudiants"
+      );
+
+      await loadDashboard();
+
+    }catch(error){
+
+      alert(
+        "Erè: " + error.message
+      );
 
     }
 
@@ -3918,83 +2907,1072 @@ window.addEventListener(
 );
 
 
-document
-  .getElementById("installBtn")
-  .addEventListener(
-    "click",
-    async()=>{
+/* =====================================================
+   TEACHER FORM
+===================================================== */
 
-      if(!deferredPrompt){
+$("teacherForm").addEventListener(
+  "submit",
+  async e => {
+
+    e.preventDefault();
+
+    if(!requireAdmin()) return;
+
+    try{
+
+      await addDocument(
+        "professeurs",
+        {
+
+          nom:
+            clean($("teacherName").value),
+
+          email:
+            clean($("teacherEmail").value),
+
+          telephone:
+            clean($("teacherPhone").value),
+
+          specialite:
+            clean($("teacherSpecialty").value)
+
+        }
+      );
+
+      e.target.reset();
+
+      alert(
+        "Professeur ajouté."
+      );
+
+      await loadCollection(
+        "professeurs"
+      );
+
+      await loadDashboard();
+
+    }catch(error){
+
+      alert(
+        "Erè: " + error.message
+      );
+
+    }
+
+  }
+);
+
+
+/* =====================================================
+   DEPARTMENT
+===================================================== */
+
+$("departmentForm").addEventListener(
+  "submit",
+  async e => {
+
+    e.preventDefault();
+
+    if(!requireAdmin()) return;
+
+    try{
+
+      await addDocument(
+        "departements",
+        {
+
+          nom:
+            clean($("departmentName").value),
+
+          description:
+            clean($("departmentDescription").value)
+
+        }
+      );
+
+      e.target.reset();
+
+      alert(
+        "Département ajouté."
+      );
+
+      await loadCollection(
+        "departements"
+      );
+
+    }catch(error){
+
+      alert(
+        "Erè: " + error.message
+      );
+
+    }
+
+  }
+);
+
+
+/* =====================================================
+   PROGRAM
+===================================================== */
+
+$("programForm").addEventListener(
+  "submit",
+  async e => {
+
+    e.preventDefault();
+
+    if(!requireAdmin()) return;
+
+    try{
+
+      await addDocument(
+        "programmes",
+        {
+
+          nom:
+            clean($("programName").value),
+
+          departement:
+            clean($("programDepartment").value),
+
+          description:
+            clean($("programDescription").value)
+
+        }
+      );
+
+      e.target.reset();
+
+      alert(
+        "Programme ajouté."
+      );
+
+      await loadCollection(
+        "programmes"
+      );
+
+    }catch(error){
+
+      alert(
+        "Erè: " + error.message
+      );
+
+    }
+
+  }
+);
+
+
+/* =====================================================
+   COURSE
+===================================================== */
+
+$("courseForm").addEventListener(
+  "submit",
+  async e => {
+
+    e.preventDefault();
+
+    if(!requireAdmin()) return;
+
+    try{
+
+      await addDocument(
+        "cours",
+        {
+
+          nom:
+            clean($("courseName").value),
+
+          code:
+            clean($("courseCode").value),
+
+          professeur:
+            clean($("courseTeacher").value),
+
+          programme:
+            clean($("courseProgram").value)
+
+        }
+      );
+
+      e.target.reset();
+
+      alert(
+        "Cours ajouté."
+      );
+
+      await loadCollection(
+        "cours"
+      );
+
+      await loadDashboard();
+
+    }catch(error){
+
+      alert(
+        "Erè: " + error.message
+      );
+
+    }
+
+  }
+);
+
+
+/* =====================================================
+   CLASS
+===================================================== */
+
+$("classForm").addEventListener(
+  "submit",
+  async e => {
+
+    e.preventDefault();
+
+    if(!requireAdmin()) return;
+
+    try{
+
+      await addDocument(
+        "classes",
+        {
+
+          nom:
+            clean($("className").value),
+
+          niveau:
+            clean($("classLevel").value),
+
+          annee:
+            clean($("classYear").value)
+
+        }
+      );
+
+      e.target.reset();
+
+      alert(
+        "Classe ajoutée."
+      );
+
+      await loadCollection(
+        "classes"
+      );
+
+      await loadDashboard();
+
+    }catch(error){
+
+      alert(
+        "Erè: " + error.message
+      );
+
+    }
+
+  }
+);
+
+
+/* =====================================================
+   ASSIGNMENT
+===================================================== */
+
+$("assignmentForm").addEventListener(
+  "submit",
+  async e => {
+
+    e.preventDefault();
+
+    if(!requireAdmin()) return;
+
+    try{
+
+      await addDocument(
+        "devoirs",
+        {
+
+          titre:
+            clean($("assignmentTitle").value),
+
+          cours:
+            clean($("assignmentCourse").value),
+
+          classe:
+            clean($("assignmentClass").value),
+
+          dateLimite:
+            clean($("assignmentDate").value),
+
+          description:
+            clean($("assignmentDescription").value)
+
+        }
+      );
+
+      e.target.reset();
+
+      alert(
+        "Devoir ajouté."
+      );
+
+      await loadCollection(
+        "devoirs"
+      );
+
+      await loadDashboard();
+
+    }catch(error){
+
+      alert(
+        "Erè: " + error.message
+      );
+
+    }
+
+  }
+);
+
+
+/* =====================================================
+   SUBMISSION
+===================================================== */
+
+$("submissionForm").addEventListener(
+  "submit",
+  async e => {
+
+    e.preventDefault();
+
+    if(!requireAdmin()) return;
+
+    try{
+
+      const grade =
+        Number(
+          $("submissionGrade").value
+        );
+
+      if(
+        grade < 0 ||
+        grade > 100
+      ){
 
         alert(
-          "L'application ka enstale depi meni navigatè a."
+          "Nòt la dwe ant 0 ak 100."
         );
 
         return;
       }
 
-      deferredPrompt.prompt();
+      await addDocument(
+        "remises",
+        {
 
-      await deferredPrompt.userChoice;
+          etudiant:
+            clean($("submissionStudent").value),
 
-      deferredPrompt=null;
+          devoir:
+            clean($("submissionAssignment").value),
+
+          note:grade,
+
+          dateRemise:
+            clean($("submissionDate").value),
+
+          correction:
+            clean($("submissionCorrection").value)
+
+        }
+      );
+
+      e.target.reset();
+
+      alert(
+        "Remise enregistrée."
+      );
+
+      await loadCollection(
+        "remises"
+      );
+
+      await loadDashboard();
+
+    }catch(error){
+
+      alert(
+        "Erè: " + error.message
+      );
 
     }
-  );
+
+  }
+);
 
 
-/* RESTORE LANGUAGE */
+/* =====================================================
+   RESULT
+===================================================== */
 
-const savedLanguage =
-  localStorage.getItem(
-    "appLanguage"
-  );
+$("resultForm").addEventListener(
+  "submit",
+  async e => {
 
-if(savedLanguage){
+    e.preventDefault();
 
-  document.documentElement.lang =
-    savedLanguage;
+    if(!requireAdmin()) return;
 
-  const selector =
-    document.getElementById(
-      "languageSelect"
+    try{
+
+      const grade =
+        Number(
+          $("resultGrade").value
+        );
+
+      if(
+        grade < 0 ||
+        grade > 100
+      ){
+
+        alert(
+          "Nòt la dwe ant 0 ak 100."
+        );
+
+        return;
+      }
+
+      await addDocument(
+        "resultats",
+        {
+
+          etudiant:
+            clean($("resultStudent").value),
+
+          cours:
+            clean($("resultCourse").value),
+
+          note:grade,
+
+          session:
+            clean($("resultSession").value),
+
+          commentaire:
+            clean($("resultComment").value)
+
+        }
+      );
+
+      e.target.reset();
+
+      alert(
+        "Résultat ajouté."
+      );
+
+      await loadCollection(
+        "resultats"
+      );
+
+    }catch(error){
+
+      alert(
+        "Erè: " + error.message
+      );
+
+    }
+
+  }
+);
+
+
+/* =====================================================
+   SCHEDULE
+===================================================== */
+
+$("scheduleForm").addEventListener(
+  "submit",
+  async e => {
+
+    e.preventDefault();
+
+    if(!requireAdmin()) return;
+
+    try{
+
+      await addDocument(
+        "emplois_du_temps",
+        {
+
+          jour:
+            clean($("scheduleDay").value),
+
+          cours:
+            clean($("scheduleCourse").value),
+
+          classe:
+            clean($("scheduleClass").value),
+
+          professeur:
+            clean($("scheduleTeacher").value),
+
+          debut:
+            clean($("scheduleStart").value),
+
+          fin:
+            clean($("scheduleEnd").value)
+
+        }
+      );
+
+      e.target.reset();
+
+      alert(
+        "Horaire ajouté."
+      );
+
+      await loadCollection(
+        "emplois_du_temps"
+      );
+
+    }catch(error){
+
+      alert(
+        "Erè: " + error.message
+      );
+
+    }
+
+  }
+);
+
+
+/* =====================================================
+   USERS
+===================================================== */
+
+window.loadUsers =
+async function(){
+
+  const box =
+    $("listeUsers");
+
+  if(!box) return;
+
+  if(!isAdmin()){
+
+    box.innerHTML =
+      `<div class="empty">
+        Accès administrateur uniquement.
+      </div>`;
+
+    return;
+  }
+
+  box.innerHTML =
+    `<div class="loading">
+      Chargement des utilisateurs...
+    </div>`;
+
+
+  try{
+
+    const snap =
+      await getDocs(
+        collection(db,"users")
+      );
+
+    box.innerHTML = "";
+
+
+    if(snap.empty){
+
+      box.innerHTML =
+        `<div class="empty">
+          Aucun utilisateur.
+        </div>`;
+
+      return;
+    }
+
+
+    snap.forEach(
+      item => {
+
+        const d =
+          item.data();
+
+        const div =
+          document.createElement("div");
+
+        div.className =
+          "dataCard";
+
+
+        const accepted =
+          clean(d.status)
+            .toLowerCase()
+            === "accepted";
+
+
+        const refused =
+          clean(d.status)
+            .toLowerCase()
+            === "refused";
+
+
+        div.innerHTML = `
+
+          <h3>
+            ${escapeHtml(
+              d.nom || "Utilisateur"
+            )}
+          </h3>
+
+          <p>
+            <strong>Email:</strong>
+            ${escapeHtml(
+              d.email || ""
+            )}
+          </p>
+
+          <p>
+            <strong>Rôle:</strong>
+            ${escapeHtml(
+              d.role || ""
+            )}
+          </p>
+
+          <p>
+            <strong>Status:</strong>
+            ${
+              accepted
+              ?
+              '<span class="badge badgeGreen">accepted</span>'
+              :
+              refused
+              ?
+              '<span class="badge badgeRed">refused</span>'
+              :
+              '<span class="badge badgeOrange">attente</span>'
+            }
+          </p>
+
+          <div class="cardActions">
+
+            ${
+              !accepted
+              ?
+              `<button
+                class="btn btnGreen"
+                onclick="approveUser('${item.id}')"
+              >
+                ✓ Accepter
+              </button>`
+              :
+              ""
+            }
+
+            ${
+              !refused
+              ?
+              `<button
+                class="btn btnOrange"
+                onclick="refuseUser('${item.id}')"
+              >
+                ✕ Refuser
+              </button>`
+              :
+              ""
+            }
+
+            ${
+              item.id !== currentUser.uid
+              ?
+              `<button
+                class="btn btnDanger"
+                onclick="deleteUser('${item.id}')"
+              >
+                🗑️ Efase
+              </button>`
+              :
+              ""
+            }
+
+          </div>
+        `;
+
+        box.appendChild(div);
+
+      }
     );
 
-  if(selector){
-    selector.value =
-      savedLanguage;
+  }catch(error){
+
+    console.error(error);
+
+    box.innerHTML =
+      `<div class="empty">
+        ${escapeHtml(error.message)}
+      </div>`;
+
+  }
+
+};
+
+
+window.approveUser =
+async function(uid){
+
+  if(!requireAdmin()) return;
+
+  try{
+
+    await setDoc(
+      doc(db,"users",uid),
+      {
+        status:"accepted"
+      },
+      {merge:true}
+    );
+
+    alert(
+      "Itilizatè a aksepte."
+    );
+
+    await loadUsers();
+
+  }catch(error){
+
+    alert(
+      "Erè: " + error.message
+    );
+
+  }
+
+};
+
+
+window.refuseUser =
+async function(uid){
+
+  if(!requireAdmin()) return;
+
+  try{
+
+    await setDoc(
+      doc(db,"users",uid),
+      {
+        status:"refused"
+      },
+      {merge:true}
+    );
+
+    alert(
+      "Itilizatè a refize."
+    );
+
+    await loadUsers();
+
+  }catch(error){
+
+    alert(
+      "Erè: " + error.message
+    );
+
+  }
+
+};
+
+
+window.deleteUser =
+async function(uid){
+
+  if(!requireAdmin()) return;
+
+  if(
+    !confirm(
+      "Èske ou sèten ou vle efase itilizatè sa a?"
+    )
+  ){
+    return;
+  }
+
+  try{
+
+    await deleteDoc(
+      doc(db,"users",uid)
+    );
+
+    await loadUsers();
+
+  }catch(error){
+
+    alert(
+      "Erè: " + error.message
+    );
+
+  }
+
+};
+
+
+/* =====================================================
+   DASHBOARD
+===================================================== */
+
+async function countCollection(name){
+
+  try{
+
+    const snap =
+      await getDocs(
+        collection(
+          db,
+          name
+        )
+      );
+
+    return snap.size;
+
+  }catch(error){
+
+    console.error(
+      "Count error:",
+      name,
+      error
+    );
+
+    return 0;
   }
 
 }
 
-</script>
+
+async function loadDashboard(){
+
+  const collections = {
+
+    etudiants:
+      "statEtudiants",
+
+    professeurs:
+      "statProfesseurs",
+
+    classes:
+      "statClasses",
+
+    cours:
+      "statCours",
+
+    devoirs:
+      "statDevoirs",
+
+    remises:
+      "statRemises"
+
+  };
 
 
-<!-- SERVICE WORKER -->
+  for(
+    const name in collections
+  ){
 
-<script>
+    const count =
+      await countCollection(name);
 
-if("serviceWorker" in navigator){
+    const id =
+      collections[name];
+
+    if($(id))
+      $(id).textContent =
+        count;
+
+  }
+
+
+  const names = {
+
+    etudiants:
+      "bigStatEtudiants",
+
+    professeurs:
+      "bigStatProfesseurs",
+
+    classes:
+      "bigStatClasses",
+
+    cours:
+      "bigStatCours"
+
+  };
+
+
+  for(
+    const name in names
+  ){
+
+    const count =
+      await countCollection(name);
+
+    if($(names[name]))
+      $(names[name]).textContent =
+        count;
+
+  }
+
+}
+
+
+/* =====================================================
+   DATE
+===================================================== */
+
+function updateToday(){
+
+  const now =
+    new Date();
+
+  const date =
+    now.toLocaleDateString(
+      "fr-FR",
+      {
+        weekday:"long",
+        year:"numeric",
+        month:"long",
+        day:"numeric"
+      }
+    );
+
+  $("todayText").textContent =
+    "Nous sommes le " + date + ".";
+
+}
+
+
+/* =====================================================
+   LANGUAGE
+===================================================== */
+
+$("languageSelect").value =
+  localStorage.getItem(
+    "cfp_language"
+  ) || "ht";
+
+
+$("languageSelect").addEventListener(
+  "change",
+  e => {
+
+    localStorage.setItem(
+      "cfp_language",
+      e.target.value
+    );
+
+    document.documentElement.lang =
+      e.target.value;
+
+    if(e.target.value === "ht"){
+
+      $("welcomeTitle").textContent =
+        "Byenveni nan Centre de Formation Le Pédagogue";
+
+      $("todayText").textContent =
+        "Jodi a se " +
+        new Date().toLocaleDateString(
+          "ht-HT"
+        );
+
+    }else{
+
+      $("welcomeTitle").textContent =
+        "Bienvenue au Centre de Formation Le Pédagogue";
+
+      updateToday();
+
+    }
+
+  }
+);
+
+
+/* =====================================================
+   PWA INSTALL
+===================================================== */
+
+window.addEventListener(
+  "beforeinstallprompt",
+  event => {
+
+    event.preventDefault();
+
+    deferredInstallPrompt =
+      event;
+
+    $("installBtn")
+      .classList.remove("hidden");
+
+  }
+);
+
+
+$("installBtn").onclick =
+async () => {
+
+  if(!deferredInstallPrompt)
+    return;
+
+  deferredInstallPrompt.prompt();
+
+  await deferredInstallPrompt
+    .userChoice;
+
+  deferredInstallPrompt = null;
+
+  $("installBtn")
+    .classList.add("hidden");
+
+};
+
+
+/* =====================================================
+   SERVICE WORKER
+===================================================== */
+
+if(
+  "serviceWorker" in navigator
+){
 
   window.addEventListener(
     "load",
-    ()=>{
+    () => {
+
       navigator.serviceWorker
         .register(
           "./service-worker.js"
         )
         .catch(
-          error=>{
-            console.log(
+          error =>
+            console.error(
               "Service Worker:",
               error
-            );
-          }
+            )
         );
+
     }
   );
 
 }
+
+
+/* =====================================================
+   START
+===================================================== */
+
+document.documentElement.lang =
+  localStorage.getItem(
+    "cfp_language"
+  ) || "ht";
 
 </script>
 
