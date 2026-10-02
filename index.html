@@ -1,14 +1,36 @@
 <!DOCTYPE html>
 <html lang="ht">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta name="theme-color" content="#2563eb">
-<meta name="description" content="Centre de Formation Le Pédagogue">
-<link rel="manifest" href="./manifest.json">
-<title>Centre de Formation Le Pédagogue</title>
+
+<meta
+  name="viewport"
+  content="width=device-width,initial-scale=1.0"
+>
+
+<meta
+  name="theme-color"
+  content="#2563eb"
+>
+
+<meta
+  name="description"
+  content="Centre de Formation Le Pédagogue"
+>
+
+<link
+  rel="manifest"
+  href="./manifest.json"
+>
+
+<title>
+Centre de Formation Le Pédagogue
+</title>
 
 <style>
+
 *{
   box-sizing:border-box;
   margin:0;
@@ -36,7 +58,10 @@ body{
   color:var(--text);
 }
 
-button,input,select,textarea{
+button,
+input,
+select,
+textarea{
   font:inherit;
 }
 
@@ -48,7 +73,8 @@ button{
   display:none!important;
 }
 
-/* AUTH */
+
+/* ================= AUTH ================= */
 
 #authPage{
   min-height:100vh;
@@ -57,7 +83,12 @@ button{
   align-items:center;
   padding:20px;
   background:
-    linear-gradient(135deg,#1d4ed8,#2563eb,#0f172a);
+    linear-gradient(
+      135deg,
+      #1d4ed8,
+      #2563eb,
+      #0f172a
+    );
 }
 
 .authCard{
@@ -66,14 +97,20 @@ button{
   background:#fff;
   border-radius:24px;
   padding:28px;
-  box-shadow:0 20px 60px rgba(0,0,0,.25);
+  box-shadow:
+    0 20px 60px rgba(0,0,0,.25);
 }
 
 .logo{
   width:78px;
   height:78px;
   border-radius:22px;
-  background:linear-gradient(135deg,#2563eb,#0f172a);
+  background:
+    linear-gradient(
+      135deg,
+      #2563eb,
+      #0f172a
+    );
   color:#fff;
   display:flex;
   align-items:center;
@@ -113,7 +150,7 @@ button{
 
 .tab.active{
   background:var(--blue);
-  color:white;
+  color:#fff;
 }
 
 .formGroup{
@@ -191,20 +228,21 @@ button{
   color:var(--red);
 }
 
-/* APP */
+
+/* ================= APP ================= */
 
 #app{
   min-height:100vh;
 }
 
 .topbar{
-  height:68px;
+  min-height:68px;
   background:#fff;
   border-bottom:1px solid var(--border);
   display:flex;
   align-items:center;
   justify-content:space-between;
-  padding:0 18px;
+  padding:8px 18px;
   position:sticky;
   top:0;
   z-index:50;
@@ -246,11 +284,15 @@ button{
 .userEmail{
   font-size:12px;
   color:var(--muted);
+  max-width:220px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
 }
 
 .userRole{
   font-size:12px;
-  font-weight:800;
+  font-weight:900;
   color:var(--blue);
 }
 
@@ -271,7 +313,8 @@ button{
   color:#991b1b;
 }
 
-/* LAYOUT */
+
+/* ================= LAYOUT ================= */
 
 .layout{
   display:flex;
@@ -340,10 +383,17 @@ button{
   margin-bottom:20px;
 }
 
-/* DASHBOARD */
+
+/* ================= DASHBOARD ================= */
 
 .hero{
-  background:linear-gradient(135deg,#1d4ed8,#2563eb,#0f172a);
+  background:
+    linear-gradient(
+      135deg,
+      #1d4ed8,
+      #2563eb,
+      #0f172a
+    );
   color:#fff;
   padding:28px;
   border-radius:22px;
@@ -362,7 +412,8 @@ button{
 
 .dashboardGrid{
   display:grid;
-  grid-template-columns:repeat(3,1fr);
+  grid-template-columns:
+    repeat(3,1fr);
   gap:16px;
   margin-bottom:20px;
 }
@@ -392,7 +443,8 @@ button{
 
 .quickGrid{
   display:grid;
-  grid-template-columns:repeat(4,1fr);
+  grid-template-columns:
+    repeat(4,1fr);
   gap:12px;
 }
 
@@ -411,7 +463,8 @@ button{
   color:var(--blue);
 }
 
-/* CONTENT */
+
+/* ================= CONTENT ================= */
 
 .panel{
   background:#fff;
@@ -437,7 +490,8 @@ button{
 
 .formGrid{
   display:grid;
-  grid-template-columns:repeat(2,1fr);
+  grid-template-columns:
+    repeat(2,1fr);
   gap:12px;
 }
 
@@ -447,7 +501,8 @@ button{
 
 .dataGrid{
   display:grid;
-  grid-template-columns:repeat(3,1fr);
+  grid-template-columns:
+    repeat(3,1fr);
   gap:15px;
 }
 
@@ -482,6 +537,12 @@ button{
   border-radius:14px;
 }
 
+.loading{
+  padding:25px;
+  text-align:center;
+  color:var(--muted);
+}
+
 .badge{
   display:inline-block;
   padding:5px 9px;
@@ -505,13 +566,8 @@ button{
   color:#991b1b;
 }
 
-.loading{
-  padding:25px;
-  text-align:center;
-  color:var(--muted);
-}
 
-/* MOBILE */
+/* ================= MOBILE ================= */
 
 .mobileMenu{
   display:none;
@@ -549,16 +605,30 @@ button{
     display:none;
   }
 
+  /*
+    IMPORTANT:
+    userInfo pa kache ankò.
+    Sa pèmèt Wòl: administrateur parèt
+    sou telefòn.
+  */
+
   .userInfo{
-    display:none;
+    display:flex;
+    max-width:145px;
+  }
+
+  .userEmail{
+    max-width:145px;
   }
 
   .dashboardGrid{
-    grid-template-columns:repeat(2,1fr);
+    grid-template-columns:
+      repeat(2,1fr);
   }
 
   .quickGrid{
-    grid-template-columns:repeat(2,1fr);
+    grid-template-columns:
+      repeat(2,1fr);
   }
 
   .dataGrid{
@@ -568,16 +638,42 @@ button{
   .formGrid{
     grid-template-columns:1fr;
   }
+
 }
 
 @media(max-width:550px){
 
   .topbar{
-    padding:0 10px;
+    padding:7px 8px;
+    gap:5px;
   }
 
   .topActions{
     gap:4px;
+  }
+
+  .userInfo{
+    max-width:105px;
+  }
+
+  .userEmail{
+    max-width:105px;
+    font-size:10px;
+  }
+
+  .userRole{
+    font-size:11px;
+  }
+
+  .langSelect{
+    padding:7px 4px;
+    font-size:11px;
+    max-width:75px;
+  }
+
+  .logoutBtn{
+    padding:8px 9px;
+    font-size:11px;
   }
 
   .installBtn{
@@ -593,7 +689,8 @@ button{
   }
 
   .dashboardGrid{
-    grid-template-columns:1fr 1fr;
+    grid-template-columns:
+      1fr 1fr;
     gap:9px;
   }
 
@@ -606,17 +703,22 @@ button{
   }
 
   .quickGrid{
-    grid-template-columns:1fr 1fr;
+    grid-template-columns:
+      1fr 1fr;
   }
 
   .panel{
     padding:14px;
   }
+
 }
+
 </style>
+
 </head>
 
 <body>
+
 
 <!-- ================= AUTH ================= -->
 
@@ -624,7 +726,9 @@ button{
 
   <div class="authCard">
 
-    <div class="logo">CFP</div>
+    <div class="logo">
+      CFP
+    </div>
 
     <div class="authTitle">
       Centre de Formation Le Pédagogue
@@ -635,42 +739,63 @@ button{
     </div>
 
     <div class="tabs">
-      <button class="tab active" id="loginTab">
+
+      <button
+        class="tab active"
+        id="loginTab"
+      >
         Connexion
       </button>
 
-      <button class="tab" id="registerTab">
+      <button
+        class="tab"
+        id="registerTab"
+      >
         Inscription
       </button>
+
     </div>
+
 
     <!-- LOGIN -->
 
     <form id="loginForm">
 
       <div class="formGroup">
+
         <label>Email</label>
+
         <input
           id="loginEmail"
           type="email"
           required
           autocomplete="email"
         >
+
       </div>
 
+
       <div class="formGroup">
+
         <label>Mot de passe</label>
+
         <input
           id="loginPassword"
           type="password"
           required
           autocomplete="current-password"
         >
+
       </div>
 
-      <button class="btn btnPrimary" style="width:100%">
+
+      <button
+        class="btn btnPrimary"
+        style="width:100%"
+      >
         Se connecter
       </button>
+
 
       <button
         type="button"
@@ -682,33 +807,61 @@ button{
 
     </form>
 
+
     <!-- REGISTER -->
 
-    <form id="registerForm" class="hidden">
+    <form
+      id="registerForm"
+      class="hidden"
+    >
 
       <div class="formGroup">
+
         <label>Nom complet</label>
-        <input id="registerName" type="text" required>
+
+        <input
+          id="registerName"
+          type="text"
+          required
+        >
+
       </div>
 
+
       <div class="formGroup">
+
         <label>Email</label>
-        <input id="registerEmail" type="email" required>
+
+        <input
+          id="registerEmail"
+          type="email"
+          required
+        >
+
       </div>
 
+
       <div class="formGroup">
+
         <label>Mot de passe</label>
+
         <input
           id="registerPassword"
           type="password"
           minlength="6"
           required
         >
+
       </div>
 
-      <button class="btn btnPrimary" style="width:100%">
+
+      <button
+        class="btn btnPrimary"
+        style="width:100%"
+      >
         Créer mon compte
       </button>
+
 
       <button
         type="button"
@@ -720,855 +873,1555 @@ button{
 
     </form>
 
-    <div id="authMessage" class="authMessage"></div>
+
+    <div
+      id="authMessage"
+      class="authMessage"
+    ></div>
 
   </div>
 
 </div>
+
 
 
 <!-- ================= APPLICATION ================= -->
 
-<div id="app" class="hidden">
+<div
+  id="app"
+  class="hidden"
+>
 
-  <header class="topbar">
 
-    <button class="mobileMenu" id="mobileMenu">
-      ☰
-    </button>
+<header class="topbar">
 
-    <div class="brand">
-      <div class="brandLogo">CFP</div>
-      <span>Centre de Formation Le Pédagogue</span>
+
+  <button
+    class="mobileMenu"
+    id="mobileMenu"
+  >
+    ☰
+  </button>
+
+
+  <div class="brand">
+
+    <div class="brandLogo">
+      CFP
     </div>
 
-    <div class="topActions">
+    <span>
+      Centre de Formation Le Pédagogue
+    </span>
 
-      <div class="userInfo">
-        <div class="userEmail" id="userEmail"></div>
-        <div class="userRole" id="userRole"></div>
+  </div>
+
+
+  <div class="topActions">
+
+
+    <div class="userInfo">
+
+      <div
+        class="userEmail"
+        id="userEmail"
+      ></div>
+
+      <div
+        class="userRole"
+        id="userRole"
+      >
+        Wòl: -
       </div>
 
-      <select id="languageSelect" class="langSelect">
-        <option value="ht">🇭🇹 Kreyòl</option>
-        <option value="fr">🇫🇷 Français</option>
-      </select>
+    </div>
 
-      <button id="installBtn" class="btn installBtn hidden">
-        📲 Installer
+
+    <select
+      id="languageSelect"
+      class="langSelect"
+    >
+
+      <option value="ht">
+        🇭🇹 Kreyòl
+      </option>
+
+      <option value="fr">
+        🇫🇷 Français
+      </option>
+
+    </select>
+
+
+    <button
+      id="installBtn"
+      class="btn installBtn hidden"
+    >
+      📲 Installer
+    </button>
+
+
+    <button
+      id="logoutBtn"
+      class="btn logoutBtn"
+    >
+      Déconnexion
+    </button>
+
+  </div>
+
+</header>
+
+
+
+<div class="layout">
+
+
+<!-- ================= SIDEBAR ================= -->
+
+<aside
+  class="sidebar"
+  id="sidebar"
+>
+
+  <div class="navTitle">
+    Principal
+  </div>
+
+
+  <button
+    class="navBtn active"
+    data-section="home"
+  >
+    🏠 Akèy
+  </button>
+
+
+  <button
+    class="navBtn"
+    data-section="etudiants"
+  >
+    👨‍🎓 Étudiants
+  </button>
+
+
+  <button
+    class="navBtn"
+    data-section="professeurs"
+  >
+    👨‍🏫 Professeurs
+  </button>
+
+
+  <div class="navTitle">
+    Formation
+  </div>
+
+
+  <button
+    class="navBtn"
+    data-section="departements"
+  >
+    🏢 Départements
+  </button>
+
+
+  <button
+    class="navBtn"
+    data-section="programmes"
+  >
+    📚 Programmes
+  </button>
+
+
+  <button
+    class="navBtn"
+    data-section="cours"
+  >
+    📖 Cours
+  </button>
+
+
+  <button
+    class="navBtn"
+    data-section="classes"
+  >
+    🏫 Classes
+  </button>
+
+
+  <div class="navTitle">
+    Évaluation
+  </div>
+
+
+  <button
+    class="navBtn"
+    data-section="devoirs"
+  >
+    📝 Devoirs
+  </button>
+
+
+  <button
+    class="navBtn"
+    data-section="remises"
+  >
+    📤 Remises
+  </button>
+
+
+  <button
+    class="navBtn"
+    data-section="resultats"
+  >
+    📊 Résultats
+  </button>
+
+
+  <button
+    class="navBtn"
+    data-section="horaires"
+  >
+    🕐 Horaires
+  </button>
+
+
+  <button
+    class="navBtn"
+    data-section="statistiques"
+  >
+    📈 Statistiques
+  </button>
+
+
+  <div
+    id="adminMenu"
+    class="hidden"
+  >
+
+    <div class="navTitle">
+      Administration
+    </div>
+
+    <button
+      class="navBtn"
+      data-section="users"
+    >
+      👥 Utilisateurs
+    </button>
+
+  </div>
+
+</aside>
+
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="main">
+
+
+<!-- HOME -->
+
+<section
+  id="home"
+  class="section active"
+>
+
+  <div class="hero">
+
+    <h1 id="welcomeTitle">
+      Bienvenue au Centre de Formation Le Pédagogue
+    </h1>
+
+    <p id="todayText"></p>
+
+  </div>
+
+
+  <div class="dashboardGrid">
+
+
+    <div class="statCard">
+
+      <div class="statIcon">
+        👨‍🎓
+      </div>
+
+      <div
+        class="statNumber"
+        id="statEtudiants"
+      >
+        0
+      </div>
+
+      <div class="statLabel">
+        Étudiants
+      </div>
+
+    </div>
+
+
+    <div class="statCard">
+
+      <div class="statIcon">
+        👨‍🏫
+      </div>
+
+      <div
+        class="statNumber"
+        id="statProfesseurs"
+      >
+        0
+      </div>
+
+      <div class="statLabel">
+        Professeurs
+      </div>
+
+    </div>
+
+
+    <div class="statCard">
+
+      <div class="statIcon">
+        🏫
+      </div>
+
+      <div
+        class="statNumber"
+        id="statClasses"
+      >
+        0
+      </div>
+
+      <div class="statLabel">
+        Classes
+      </div>
+
+    </div>
+
+
+    <div class="statCard">
+
+      <div class="statIcon">
+        📖
+      </div>
+
+      <div
+        class="statNumber"
+        id="statCours"
+      >
+        0
+      </div>
+
+      <div class="statLabel">
+        Cours
+      </div>
+
+    </div>
+
+
+    <div class="statCard">
+
+      <div class="statIcon">
+        📝
+      </div>
+
+      <div
+        class="statNumber"
+        id="statDevoirs"
+      >
+        0
+      </div>
+
+      <div class="statLabel">
+        Devoirs
+      </div>
+
+    </div>
+
+
+    <div class="statCard">
+
+      <div class="statIcon">
+        📤
+      </div>
+
+      <div
+        class="statNumber"
+        id="statRemises"
+      >
+        0
+      </div>
+
+      <div class="statLabel">
+        Remises
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="panel">
+
+    <div class="panelHeader">
+
+      <div class="panelTitle">
+        Actions rapides
+      </div>
+
+    </div>
+
+
+    <div class="quickGrid">
+
+      <button
+        class="quickBtn"
+        data-go="etudiants"
+      >
+        ➕ Ajouter un étudiant
       </button>
 
-      <button id="logoutBtn" class="btn logoutBtn">
-        Déconnexion
+
+      <button
+        class="quickBtn"
+        data-go="professeurs"
+      >
+        ➕ Ajouter un professeur
+      </button>
+
+
+      <button
+        class="quickBtn"
+        data-go="cours"
+      >
+        ➕ Ajouter un cours
+      </button>
+
+
+      <button
+        class="quickBtn"
+        data-go="classes"
+      >
+        ➕ Ajouter une classe
+      </button>
+
+
+      <button
+        class="quickBtn"
+        data-go="devoirs"
+      >
+        ➕ Ajouter un devoir
+      </button>
+
+
+      <button
+        class="quickBtn"
+        data-go="resultats"
+      >
+        ➕ Ajouter un résultat
+      </button>
+
+
+      <button
+        class="quickBtn"
+        data-go="horaires"
+      >
+        ➕ Ajouter un horaire
+      </button>
+
+
+      <button
+        class="quickBtn"
+        data-go="statistiques"
+      >
+        📊 Voir statistiques
       </button>
 
     </div>
 
-  </header>
+  </div>
+
+</section>
 
 
-  <div class="layout">
 
-    <!-- SIDEBAR -->
+<!-- ETUDIANTS -->
 
-    <aside class="sidebar" id="sidebar">
+<section
+  id="etudiants"
+  class="section"
+>
 
-      <div class="navTitle">Principal</div>
+  <div class="pageTitle">
+    Étudiants
+  </div>
 
-      <button class="navBtn active" data-section="home">
-        🏠 Akèy
-      </button>
+  <div class="pageSubtitle">
+    Gestion des étudiants du centre.
+  </div>
 
-      <button class="navBtn" data-section="etudiants">
-        👨‍🎓 Étudiants
-      </button>
 
-      <button class="navBtn" data-section="professeurs">
-        👨‍🏫 Professeurs
-      </button>
+  <div class="panel">
 
-      <div class="navTitle">Formation</div>
+    <div class="panelHeader">
+      <div class="panelTitle">
+        Ajouter un étudiant
+      </div>
+    </div>
 
-      <button class="navBtn" data-section="departements">
-        🏢 Départements
-      </button>
 
-      <button class="navBtn" data-section="programmes">
-        📚 Programmes
-      </button>
+    <form
+      id="studentForm"
+      class="formGrid"
+    >
 
-      <button class="navBtn" data-section="cours">
-        📖 Cours
-      </button>
+      <div class="formGroup">
+        <label>Nom complet</label>
+        <input id="studentName" required>
+      </div>
 
-      <button class="navBtn" data-section="classes">
-        🏫 Classes
-      </button>
 
-      <div class="navTitle">Évaluation</div>
+      <div class="formGroup">
+        <label>Email</label>
+        <input
+          id="studentEmail"
+          type="email"
+        >
+      </div>
 
-      <button class="navBtn" data-section="devoirs">
-        📝 Devoirs
-      </button>
 
-      <button class="navBtn" data-section="remises">
-        📤 Remises
-      </button>
+      <div class="formGroup">
+        <label>Téléphone</label>
+        <input id="studentPhone">
+      </div>
 
-      <button class="navBtn" data-section="resultats">
-        📊 Résultats
-      </button>
 
-      <button class="navBtn" data-section="horaires">
-        🕐 Horaires
-      </button>
+      <div class="formGroup">
+        <label>Classe</label>
+        <input id="studentClass">
+      </div>
 
-      <button class="navBtn" data-section="statistiques">
-        📈 Statistiques
-      </button>
 
-      <div id="adminMenu">
+      <div class="formGroup formFull">
 
-        <div class="navTitle">Administration</div>
-
-        <button class="navBtn" data-section="users">
-          👥 Utilisateurs
+        <button class="btn btnPrimary">
+          Ajouter l'étudiant
         </button>
 
       </div>
 
-    </aside>
-
-
-    <!-- MAIN -->
-
-    <main class="main">
-
-      <!-- HOME -->
-
-      <section id="home" class="section active">
-
-        <div class="hero">
-
-          <h1 id="welcomeTitle">
-            Bienvenue au Centre de Formation Le Pédagogue
-          </h1>
-
-          <p id="todayText"></p>
-
-        </div>
-
-        <div class="dashboardGrid">
-
-          <div class="statCard">
-            <div class="statIcon">👨‍🎓</div>
-            <div class="statNumber" id="statEtudiants">0</div>
-            <div class="statLabel">Étudiants</div>
-          </div>
-
-          <div class="statCard">
-            <div class="statIcon">👨‍🏫</div>
-            <div class="statNumber" id="statProfesseurs">0</div>
-            <div class="statLabel">Professeurs</div>
-          </div>
-
-          <div class="statCard">
-            <div class="statIcon">🏫</div>
-            <div class="statNumber" id="statClasses">0</div>
-            <div class="statLabel">Classes</div>
-          </div>
-
-          <div class="statCard">
-            <div class="statIcon">📖</div>
-            <div class="statNumber" id="statCours">0</div>
-            <div class="statLabel">Cours</div>
-          </div>
-
-          <div class="statCard">
-            <div class="statIcon">📝</div>
-            <div class="statNumber" id="statDevoirs">0</div>
-            <div class="statLabel">Devoirs</div>
-          </div>
-
-          <div class="statCard">
-            <div class="statIcon">📤</div>
-            <div class="statNumber" id="statRemises">0</div>
-            <div class="statLabel">Remises</div>
-          </div>
-
-        </div>
-
-
-        <div class="panel">
-
-          <div class="panelHeader">
-            <div class="panelTitle">
-              Actions rapides
-            </div>
-          </div>
-
-          <div class="quickGrid">
-
-            <button class="quickBtn" data-go="etudiants">
-              ➕ Ajouter un étudiant
-            </button>
-
-            <button class="quickBtn" data-go="professeurs">
-              ➕ Ajouter un professeur
-            </button>
-
-            <button class="quickBtn" data-go="cours">
-              ➕ Ajouter un cours
-            </button>
-
-            <button class="quickBtn" data-go="classes">
-              ➕ Ajouter une classe
-            </button>
-
-            <button class="quickBtn" data-go="devoirs">
-              ➕ Ajouter un devoir
-            </button>
-
-            <button class="quickBtn" data-go="resultats">
-              ➕ Ajouter un résultat
-            </button>
-
-            <button class="quickBtn" data-go="horaires">
-              ➕ Ajouter un horaire
-            </button>
-
-            <button class="quickBtn" data-go="statistiques">
-              📊 Voir statistiques
-            </button>
-
-          </div>
-
-        </div>
-
-      </section>
-
-
-      <!-- ETUDIANTS -->
-
-      <section id="etudiants" class="section">
-
-        <div class="pageTitle">Étudiants</div>
-        <div class="pageSubtitle">
-          Gestion des étudiants du centre.
-        </div>
-
-        <div class="panel">
-
-          <div class="panelHeader">
-            <div class="panelTitle">Ajouter un étudiant</div>
-          </div>
-
-          <form id="studentForm" class="formGrid">
-
-            <div class="formGroup">
-              <label>Nom complet</label>
-              <input id="studentName" required>
-            </div>
-
-            <div class="formGroup">
-              <label>Email</label>
-              <input id="studentEmail" type="email">
-            </div>
-
-            <div class="formGroup">
-              <label>Téléphone</label>
-              <input id="studentPhone">
-            </div>
-
-            <div class="formGroup">
-              <label>Classe</label>
-              <input id="studentClass">
-            </div>
-
-            <div class="formGroup formFull">
-              <button class="btn btnPrimary">
-                Ajouter l'étudiant
-              </button>
-            </div>
-
-          </form>
-
-        </div>
-
-        <div class="panel">
-
-          <div class="panelHeader">
-            <div class="panelTitle">Liste des étudiants</div>
-            <button class="btn btnPrimary" onclick="loadCollection('etudiants')">
-              Actualiser
-            </button>
-          </div>
-
-          <div id="listeEtudiants" class="dataGrid">
-            <div class="loading">Chargement...</div>
-          </div>
-
-        </div>
-
-      </section>
-
-
-      <!-- PROFESSEURS -->
-
-      <section id="professeurs" class="section">
-
-        <div class="pageTitle">Professeurs</div>
-        <div class="pageSubtitle">
-          Gestion des professeurs.
-        </div>
-
-        <div class="panel">
-
-          <form id="teacherForm" class="formGrid">
-
-            <div class="formGroup">
-              <label>Nom complet</label>
-              <input id="teacherName" required>
-            </div>
-
-            <div class="formGroup">
-              <label>Email</label>
-              <input id="teacherEmail" type="email">
-            </div>
-
-            <div class="formGroup">
-              <label>Téléphone</label>
-              <input id="teacherPhone">
-            </div>
-
-            <div class="formGroup">
-              <label>Spécialité</label>
-              <input id="teacherSpecialty">
-            </div>
-
-            <div class="formFull">
-              <button class="btn btnPrimary">
-                Ajouter le professeur
-              </button>
-            </div>
-
-          </form>
-
-        </div>
-
-        <div class="panel">
-          <div class="panelHeader">
-            <div class="panelTitle">Liste des professeurs</div>
-          </div>
-          <div id="listeProfesseurs" class="dataGrid"></div>
-        </div>
-
-      </section>
-
-
-      <!-- DEPARTEMENTS -->
-
-      <section id="departements" class="section">
-
-        <div class="pageTitle">Départements</div>
-
-        <div class="panel">
-
-          <form id="departmentForm" class="formGrid">
-
-            <div class="formGroup">
-              <label>Nom du département</label>
-              <input id="departmentName" required>
-            </div>
-
-            <div class="formGroup">
-              <label>Description</label>
-              <input id="departmentDescription">
-            </div>
-
-            <div class="formFull">
-              <button class="btn btnPrimary">
-                Ajouter le département
-              </button>
-            </div>
-
-          </form>
-
-        </div>
-
-        <div class="panel">
-          <div class="panelHeader">
-            <div class="panelTitle">Liste des départements</div>
-          </div>
-          <div id="listeDepartements" class="dataGrid"></div>
-        </div>
-
-      </section>
-
-
-      <!-- PROGRAMMES -->
-
-      <section id="programmes" class="section">
-
-        <div class="pageTitle">Programmes</div>
-
-        <div class="panel">
-
-          <form id="programForm" class="formGrid">
-
-            <div class="formGroup">
-              <label>Nom du programme</label>
-              <input id="programName" required>
-            </div>
-
-            <div class="formGroup">
-              <label>Département</label>
-              <input id="programDepartment">
-            </div>
-
-            <div class="formGroup formFull">
-              <label>Description</label>
-              <textarea id="programDescription"></textarea>
-            </div>
-
-            <div class="formFull">
-              <button class="btn btnPrimary">
-                Ajouter le programme
-              </button>
-            </div>
-
-          </form>
-
-        </div>
-
-        <div class="panel">
-          <div class="panelHeader">
-            <div class="panelTitle">Liste des programmes</div>
-          </div>
-          <div id="listeProgrammes" class="dataGrid"></div>
-        </div>
-
-      </section>
-
-
-      <!-- COURS -->
-
-      <section id="cours" class="section">
-
-        <div class="pageTitle">Cours</div>
-
-        <div class="panel">
-
-          <form id="courseForm" class="formGrid">
-
-            <div class="formGroup">
-              <label>Nom du cours</label>
-              <input id="courseName" required>
-            </div>
-
-            <div class="formGroup">
-              <label>Code du cours</label>
-              <input id="courseCode">
-            </div>
-
-            <div class="formGroup">
-              <label>Professeur</label>
-              <input id="courseTeacher">
-            </div>
-
-            <div class="formGroup">
-              <label>Programme</label>
-              <input id="courseProgram">
-            </div>
-
-            <div class="formFull">
-              <button class="btn btnPrimary">
-                Ajouter le cours
-              </button>
-            </div>
-
-          </form>
-
-        </div>
-
-        <div class="panel">
-          <div class="panelHeader">
-            <div class="panelTitle">Liste des cours</div>
-          </div>
-          <div id="listeCours" class="dataGrid"></div>
-        </div>
-
-      </section>
-
-
-      <!-- CLASSES -->
-
-      <section id="classes" class="section">
-
-        <div class="pageTitle">Classes</div>
-
-        <div class="panel">
-
-          <form id="classForm" class="formGrid">
-
-            <div class="formGroup">
-              <label>Nom de la classe</label>
-              <input id="className" required>
-            </div>
-
-            <div class="formGroup">
-              <label>Niveau</label>
-              <input id="classLevel">
-            </div>
-
-            <div class="formGroup">
-              <label>Année académique</label>
-              <input id="classYear">
-            </div>
-
-            <div class="formFull">
-              <button class="btn btnPrimary">
-                Ajouter la classe
-              </button>
-            </div>
-
-          </form>
-
-        </div>
-
-        <div class="panel">
-          <div class="panelHeader">
-            <div class="panelTitle">Liste des classes</div>
-          </div>
-          <div id="listeClasses" class="dataGrid"></div>
-        </div>
-
-      </section>
-
-
-      <!-- DEVOIRS -->
-
-      <section id="devoirs" class="section">
-
-        <div class="pageTitle">Devoirs</div>
-
-        <div class="panel">
-
-          <form id="assignmentForm" class="formGrid">
-
-            <div class="formGroup">
-              <label>Titre du devoir</label>
-              <input id="assignmentTitle" required>
-            </div>
-
-            <div class="formGroup">
-              <label>Cours</label>
-              <input id="assignmentCourse">
-            </div>
-
-            <div class="formGroup">
-              <label>Classe</label>
-              <input id="assignmentClass">
-            </div>
-
-            <div class="formGroup">
-              <label>Date limite</label>
-              <input id="assignmentDate" type="date">
-            </div>
-
-            <div class="formGroup formFull">
-              <label>Description</label>
-              <textarea id="assignmentDescription"></textarea>
-            </div>
-
-            <div class="formFull">
-              <button class="btn btnPrimary">
-                Ajouter le devoir
-              </button>
-            </div>
-
-          </form>
-
-        </div>
-
-        <div class="panel">
-          <div class="panelHeader">
-            <div class="panelTitle">Liste des devoirs</div>
-          </div>
-          <div id="listeDevoirs" class="dataGrid"></div>
-        </div>
-
-      </section>
-
-
-      <!-- REMISES -->
-
-      <section id="remises" class="section">
-
-        <div class="pageTitle">Remises</div>
-
-        <div class="panel">
-
-          <form id="submissionForm" class="formGrid">
-
-            <div class="formGroup">
-              <label>Étudiant</label>
-              <input id="submissionStudent" required>
-            </div>
-
-            <div class="formGroup">
-              <label>Devoir</label>
-              <input id="submissionAssignment" required>
-            </div>
-
-            <div class="formGroup">
-              <label>Nòt /100</label>
-              <input
-                id="submissionGrade"
-                type="number"
-                min="0"
-                max="100"
-              >
-            </div>
-
-            <div class="formGroup">
-              <label>Date de remise</label>
-              <input id="submissionDate" type="date">
-            </div>
-
-            <div class="formGroup formFull">
-              <label>Correction / commentaire</label>
-              <textarea id="submissionCorrection"></textarea>
-            </div>
-
-            <div class="formFull">
-              <button class="btn btnPrimary">
-                Enregistrer la remise
-              </button>
-            </div>
-
-          </form>
-
-        </div>
-
-        <div class="panel">
-          <div class="panelHeader">
-            <div class="panelTitle">Liste des remises</div>
-          </div>
-          <div id="listeRemises" class="dataGrid"></div>
-        </div>
-
-      </section>
-
-
-      <!-- RESULTATS -->
-
-      <section id="resultats" class="section">
-
-        <div class="pageTitle">Résultats</div>
-
-        <div class="panel">
-
-          <form id="resultForm" class="formGrid">
-
-            <div class="formGroup">
-              <label>Étudiant</label>
-              <input id="resultStudent" required>
-            </div>
-
-            <div class="formGroup">
-              <label>Cours</label>
-              <input id="resultCourse">
-            </div>
-
-            <div class="formGroup">
-              <label>Nòt /100</label>
-              <input
-                id="resultGrade"
-                type="number"
-                min="0"
-                max="100"
-                required
-              >
-            </div>
-
-            <div class="formGroup">
-              <label>Session</label>
-              <input id="resultSession">
-            </div>
-
-            <div class="formGroup formFull">
-              <label>Commentaire</label>
-              <textarea id="resultComment"></textarea>
-            </div>
-
-            <div class="formFull">
-              <button class="btn btnPrimary">
-                Ajouter le résultat
-              </button>
-            </div>
-
-          </form>
-
-        </div>
-
-        <div class="panel">
-          <div class="panelHeader">
-            <div class="panelTitle">Résultats</div>
-          </div>
-          <div id="listeResultats" class="dataGrid"></div>
-        </div>
-
-      </section>
-
-
-      <!-- HORAIRES -->
-
-      <section id="horaires" class="section">
-
-        <div class="pageTitle">Horaires</div>
-
-        <div class="panel">
-
-          <form id="scheduleForm" class="formGrid">
-
-            <div class="formGroup">
-              <label>Jour</label>
-              <select id="scheduleDay">
-                <option>Lundi</option>
-                <option>Mardi</option>
-                <option>Mercredi</option>
-                <option>Jeudi</option>
-                <option>Vendredi</option>
-                <option>Samedi</option>
-              </select>
-            </div>
-
-            <div class="formGroup">
-              <label>Cours</label>
-              <input id="scheduleCourse">
-            </div>
-
-            <div class="formGroup">
-              <label>Classe</label>
-              <input id="scheduleClass">
-            </div>
-
-            <div class="formGroup">
-              <label>Professeur</label>
-              <input id="scheduleTeacher">
-            </div>
-
-            <div class="formGroup">
-              <label>Heure début</label>
-              <input id="scheduleStart" type="time">
-            </div>
-
-            <div class="formGroup">
-              <label>Heure fin</label>
-              <input id="scheduleEnd" type="time">
-            </div>
-
-            <div class="formFull">
-              <button class="btn btnPrimary">
-                Ajouter l'horaire
-              </button>
-            </div>
-
-          </form>
-
-        </div>
-
-        <div class="panel">
-          <div class="panelHeader">
-            <div class="panelTitle">Emploi du temps</div>
-          </div>
-          <div id="listeHoraires" class="dataGrid"></div>
-        </div>
-
-      </section>
-
-
-      <!-- STATISTIQUES -->
-
-      <section id="statistiques" class="section">
-
-        <div class="pageTitle">Statistiques</div>
-
-        <div class="panel">
-
-          <div class="dashboardGrid">
-
-            <div class="statCard">
-              <div class="statIcon">👨‍🎓</div>
-              <div class="statNumber" id="bigStatEtudiants">0</div>
-              <div class="statLabel">Étudiants</div>
-            </div>
-
-            <div class="statCard">
-              <div class="statIcon">👨‍🏫</div>
-              <div class="statNumber" id="bigStatProfesseurs">0</div>
-              <div class="statLabel">Professeurs</div>
-            </div>
-
-            <div class="statCard">
-              <div class="statIcon">🏫</div>
-              <div class="statNumber" id="bigStatClasses">0</div>
-              <div class="statLabel">Classes</div>
-            </div>
-
-            <div class="statCard">
-              <div class="statIcon">📚</div>
-              <div class="statNumber" id="bigStatCours">0</div>
-              <div class="statLabel">Cours</div>
-            </div>
-
-          </div>
-
-        </div>
-
-      </section>
-
-
-      <!-- USERS -->
-
-      <section id="users" class="section">
-
-        <div class="pageTitle">Utilisateurs</div>
-
-        <div class="pageSubtitle">
-          Cette partie est réservée à l'administrateur.
-        </div>
-
-        <div class="panel">
-
-          <div class="panelHeader">
-            <div class="panelTitle">
-              Demandes d'accès
-            </div>
-
-            <button
-              class="btn btnPrimary"
-              onclick="loadUsers()"
-            >
-              Actualiser
-            </button>
-          </div>
-
-          <div id="listeUsers" class="dataGrid"></div>
-
-        </div>
-
-      </section>
-
-    </main>
+    </form>
 
   </div>
+
+
+  <div class="panel">
+
+    <div class="panelHeader">
+
+      <div class="panelTitle">
+        Liste des étudiants
+      </div>
+
+      <button
+        class="btn btnPrimary"
+        onclick="loadCollection('etudiants')"
+      >
+        Actualiser
+      </button>
+
+    </div>
+
+
+    <div
+      id="listeEtudiants"
+      class="dataGrid"
+    ></div>
+
+  </div>
+
+</section>
+
+
+
+<!-- PROFESSEURS -->
+
+<section
+  id="professeurs"
+  class="section"
+>
+
+  <div class="pageTitle">
+    Professeurs
+  </div>
+
+  <div class="pageSubtitle">
+    Gestion des professeurs.
+  </div>
+
+
+  <div class="panel">
+
+    <form
+      id="teacherForm"
+      class="formGrid"
+    >
+
+      <div class="formGroup">
+        <label>Nom complet</label>
+        <input id="teacherName" required>
+      </div>
+
+
+      <div class="formGroup">
+        <label>Email</label>
+        <input
+          id="teacherEmail"
+          type="email"
+        >
+      </div>
+
+
+      <div class="formGroup">
+        <label>Téléphone</label>
+        <input id="teacherPhone">
+      </div>
+
+
+      <div class="formGroup">
+        <label>Spécialité</label>
+        <input id="teacherSpecialty">
+      </div>
+
+
+      <div class="formFull">
+
+        <button class="btn btnPrimary">
+          Ajouter le professeur
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+
+
+  <div class="panel">
+
+    <div class="panelHeader">
+
+      <div class="panelTitle">
+        Liste des professeurs
+      </div>
+
+    </div>
+
+
+    <div
+      id="listeProfesseurs"
+      class="dataGrid"
+    ></div>
+
+  </div>
+
+</section>
+
+
+
+<!-- DEPARTEMENTS -->
+
+<section
+  id="departements"
+  class="section"
+>
+
+  <div class="pageTitle">
+    Départements
+  </div>
+
+
+  <div class="panel">
+
+    <form
+      id="departmentForm"
+      class="formGrid"
+    >
+
+      <div class="formGroup">
+        <label>Nom du département</label>
+        <input
+          id="departmentName"
+          required
+        >
+      </div>
+
+
+      <div class="formGroup">
+        <label>Description</label>
+        <input id="departmentDescription">
+      </div>
+
+
+      <div class="formFull">
+
+        <button class="btn btnPrimary">
+          Ajouter le département
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+
+
+  <div class="panel">
+
+    <div class="panelHeader">
+      <div class="panelTitle">
+        Liste des départements
+      </div>
+    </div>
+
+    <div
+      id="listeDepartements"
+      class="dataGrid"
+    ></div>
+
+  </div>
+
+</section>
+
+
+
+<!-- PROGRAMMES -->
+
+<section
+  id="programmes"
+  class="section"
+>
+
+  <div class="pageTitle">
+    Programmes
+  </div>
+
+
+  <div class="panel">
+
+    <form
+      id="programForm"
+      class="formGrid"
+    >
+
+      <div class="formGroup">
+        <label>Nom du programme</label>
+        <input
+          id="programName"
+          required
+        >
+      </div>
+
+
+      <div class="formGroup">
+        <label>Département</label>
+        <input id="programDepartment">
+      </div>
+
+
+      <div class="formGroup formFull">
+        <label>Description</label>
+        <textarea id="programDescription"></textarea>
+      </div>
+
+
+      <div class="formFull">
+
+        <button class="btn btnPrimary">
+          Ajouter le programme
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+
+
+  <div class="panel">
+
+    <div class="panelHeader">
+
+      <div class="panelTitle">
+        Liste des programmes
+      </div>
+
+    </div>
+
+    <div
+      id="listeProgrammes"
+      class="dataGrid"
+    ></div>
+
+  </div>
+
+</section>
+
+
+
+<!-- COURS -->
+
+<section
+  id="cours"
+  class="section"
+>
+
+  <div class="pageTitle">
+    Cours
+  </div>
+
+
+  <div class="panel">
+
+    <form
+      id="courseForm"
+      class="formGrid"
+    >
+
+      <div class="formGroup">
+        <label>Nom du cours</label>
+        <input
+          id="courseName"
+          required
+        >
+      </div>
+
+
+      <div class="formGroup">
+        <label>Code du cours</label>
+        <input id="courseCode">
+      </div>
+
+
+      <div class="formGroup">
+        <label>Professeur</label>
+        <input id="courseTeacher">
+      </div>
+
+
+      <div class="formGroup">
+        <label>Programme</label>
+        <input id="courseProgram">
+      </div>
+
+
+      <div class="formFull">
+
+        <button class="btn btnPrimary">
+          Ajouter le cours
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+
+
+  <div class="panel">
+
+    <div class="panelHeader">
+      <div class="panelTitle">
+        Liste des cours
+      </div>
+    </div>
+
+    <div
+      id="listeCours"
+      class="dataGrid"
+    ></div>
+
+  </div>
+
+</section>
+
+
+
+<!-- CLASSES -->
+
+<section
+  id="classes"
+  class="section"
+>
+
+  <div class="pageTitle">
+    Classes
+  </div>
+
+
+  <div class="panel">
+
+    <form
+      id="classForm"
+      class="formGrid"
+    >
+
+      <div class="formGroup">
+        <label>Nom de la classe</label>
+        <input
+          id="className"
+          required
+        >
+      </div>
+
+
+      <div class="formGroup">
+        <label>Niveau</label>
+        <input id="classLevel">
+      </div>
+
+
+      <div class="formGroup">
+        <label>Année académique</label>
+        <input id="classYear">
+      </div>
+
+
+      <div class="formFull">
+
+        <button class="btn btnPrimary">
+          Ajouter la classe
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+
+
+  <div class="panel">
+
+    <div class="panelHeader">
+      <div class="panelTitle">
+        Liste des classes
+      </div>
+    </div>
+
+    <div
+      id="listeClasses"
+      class="dataGrid"
+    ></div>
+
+  </div>
+
+</section>
+
+
+
+<!-- DEVOIRS -->
+
+<section
+  id="devoirs"
+  class="section"
+>
+
+  <div class="pageTitle">
+    Devoirs
+  </div>
+
+
+  <div class="panel">
+
+    <form
+      id="assignmentForm"
+      class="formGrid"
+    >
+
+      <div class="formGroup">
+        <label>Titre du devoir</label>
+        <input
+          id="assignmentTitle"
+          required
+        >
+      </div>
+
+
+      <div class="formGroup">
+        <label>Cours</label>
+        <input id="assignmentCourse">
+      </div>
+
+
+      <div class="formGroup">
+        <label>Classe</label>
+        <input id="assignmentClass">
+      </div>
+
+
+      <div class="formGroup">
+        <label>Date limite</label>
+        <input
+          id="assignmentDate"
+          type="date"
+        >
+      </div>
+
+
+      <div class="formGroup formFull">
+
+        <label>Description</label>
+
+        <textarea
+          id="assignmentDescription"
+        ></textarea>
+
+      </div>
+
+
+      <div class="formFull">
+
+        <button class="btn btnPrimary">
+          Ajouter le devoir
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+
+
+  <div class="panel">
+
+    <div class="panelHeader">
+      <div class="panelTitle">
+        Liste des devoirs
+      </div>
+    </div>
+
+    <div
+      id="listeDevoirs"
+      class="dataGrid"
+    ></div>
+
+  </div>
+
+</section>
+
+
+
+<!-- REMISES -->
+
+<section
+  id="remises"
+  class="section"
+>
+
+  <div class="pageTitle">
+    Remises
+  </div>
+
+
+  <div class="panel">
+
+    <form
+      id="submissionForm"
+      class="formGrid"
+    >
+
+      <div class="formGroup">
+
+        <label>Étudiant</label>
+
+        <input
+          id="submissionStudent"
+          required
+        >
+
+      </div>
+
+
+      <div class="formGroup">
+
+        <label>Devoir</label>
+
+        <input
+          id="submissionAssignment"
+          required
+        >
+
+      </div>
+
+
+      <div class="formGroup">
+
+        <label>Nòt /100</label>
+
+        <input
+          id="submissionGrade"
+          type="number"
+          min="0"
+          max="100"
+        >
+
+      </div>
+
+
+      <div class="formGroup">
+
+        <label>Date de remise</label>
+
+        <input
+          id="submissionDate"
+          type="date"
+        >
+
+      </div>
+
+
+      <div class="formGroup formFull">
+
+        <label>
+          Correction / commentaire
+        </label>
+
+        <textarea
+          id="submissionCorrection"
+        ></textarea>
+
+      </div>
+
+
+      <div class="formFull">
+
+        <button class="btn btnPrimary">
+          Enregistrer la remise
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+
+
+  <div class="panel">
+
+    <div class="panelHeader">
+
+      <div class="panelTitle">
+        Liste des remises
+      </div>
+
+    </div>
+
+    <div
+      id="listeRemises"
+      class="dataGrid"
+    ></div>
+
+  </div>
+
+</section>
+
+
+
+<!-- RESULTATS -->
+
+<section
+  id="resultats"
+  class="section"
+>
+
+  <div class="pageTitle">
+    Résultats
+  </div>
+
+
+  <div class="panel">
+
+    <form
+      id="resultForm"
+      class="formGrid"
+    >
+
+      <div class="formGroup">
+
+        <label>Étudiant</label>
+
+        <input
+          id="resultStudent"
+          required
+        >
+
+      </div>
+
+
+      <div class="formGroup">
+
+        <label>Cours</label>
+
+        <input id="resultCourse">
+
+      </div>
+
+
+      <div class="formGroup">
+
+        <label>Nòt /100</label>
+
+        <input
+          id="resultGrade"
+          type="number"
+          min="0"
+          max="100"
+          required
+        >
+
+      </div>
+
+
+      <div class="formGroup">
+
+        <label>Session</label>
+
+        <input id="resultSession">
+
+      </div>
+
+
+      <div class="formGroup formFull">
+
+        <label>Commentaire</label>
+
+        <textarea
+          id="resultComment"
+        ></textarea>
+
+      </div>
+
+
+      <div class="formFull">
+
+        <button class="btn btnPrimary">
+          Ajouter le résultat
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+
+
+  <div class="panel">
+
+    <div class="panelHeader">
+
+      <div class="panelTitle">
+        Résultats
+      </div>
+
+    </div>
+
+    <div
+      id="listeResultats"
+      class="dataGrid"
+    ></div>
+
+  </div>
+
+</section>
+
+
+
+<!-- HORAIRES -->
+
+<section
+  id="horaires"
+  class="section"
+>
+
+  <div class="pageTitle">
+    Horaires
+  </div>
+
+
+  <div class="panel">
+
+    <form
+      id="scheduleForm"
+      class="formGrid"
+    >
+
+      <div class="formGroup">
+
+        <label>Jour</label>
+
+        <select id="scheduleDay">
+
+          <option>Lundi</option>
+          <option>Mardi</option>
+          <option>Mercredi</option>
+          <option>Jeudi</option>
+          <option>Vendredi</option>
+          <option>Samedi</option>
+
+        </select>
+
+      </div>
+
+
+      <div class="formGroup">
+
+        <label>Cours</label>
+
+        <input id="scheduleCourse">
+
+      </div>
+
+
+      <div class="formGroup">
+
+        <label>Classe</label>
+
+        <input id="scheduleClass">
+
+      </div>
+
+
+      <div class="formGroup">
+
+        <label>Professeur</label>
+
+        <input id="scheduleTeacher">
+
+      </div>
+
+
+      <div class="formGroup">
+
+        <label>Heure début</label>
+
+        <input
+          id="scheduleStart"
+          type="time"
+        >
+
+      </div>
+
+
+      <div class="formGroup">
+
+        <label>Heure fin</label>
+
+        <input
+          id="scheduleEnd"
+          type="time"
+        >
+
+      </div>
+
+
+      <div class="formFull">
+
+        <button class="btn btnPrimary">
+          Ajouter l'horaire
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+
+
+  <div class="panel">
+
+    <div class="panelHeader">
+
+      <div class="panelTitle">
+        Emploi du temps
+      </div>
+
+    </div>
+
+
+    <div
+      id="listeHoraires"
+      class="dataGrid"
+    ></div>
+
+  </div>
+
+</section>
+
+
+
+<!-- STATISTIQUES -->
+
+<section
+  id="statistiques"
+  class="section"
+>
+
+  <div class="pageTitle">
+    Statistiques
+  </div>
+
+
+  <div class="panel">
+
+    <div class="dashboardGrid">
+
+
+      <div class="statCard">
+
+        <div class="statIcon">
+          👨‍🎓
+        </div>
+
+        <div
+          class="statNumber"
+          id="bigStatEtudiants"
+        >
+          0
+        </div>
+
+        <div class="statLabel">
+          Étudiants
+        </div>
+
+      </div>
+
+
+      <div class="statCard">
+
+        <div class="statIcon">
+          👨‍🏫
+        </div>
+
+        <div
+          class="statNumber"
+          id="bigStatProfesseurs"
+        >
+          0
+        </div>
+
+        <div class="statLabel">
+          Professeurs
+        </div>
+
+      </div>
+
+
+      <div class="statCard">
+
+        <div class="statIcon">
+          🏫
+        </div>
+
+        <div
+          class="statNumber"
+          id="bigStatClasses"
+        >
+          0
+        </div>
+
+        <div class="statLabel">
+          Classes
+        </div>
+
+      </div>
+
+
+      <div class="statCard">
+
+        <div class="statIcon">
+          📚
+        </div>
+
+        <div
+          class="statNumber"
+          id="bigStatCours"
+        >
+          0
+        </div>
+
+        <div class="statLabel">
+          Cours
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- USERS -->
+
+<section
+  id="users"
+  class="section"
+>
+
+  <div class="pageTitle">
+    Utilisateurs
+  </div>
+
+  <div class="pageSubtitle">
+    Cette partie est réservée à l'administrateur.
+  </div>
+
+
+  <div class="panel">
+
+    <div class="panelHeader">
+
+      <div class="panelTitle">
+        Demandes d'accès
+      </div>
+
+
+      <button
+        class="btn btnPrimary"
+        onclick="loadUsers()"
+      >
+        Actualiser
+      </button>
+
+    </div>
+
+
+    <div
+      id="listeUsers"
+      class="dataGrid"
+    ></div>
+
+  </div>
+
+</section>
+
+
+</main>
+
+</div>
 
 </div>
 
 
+
 <script type="module">
+
 
 /* =====================================================
    FIREBASE
@@ -1576,7 +2429,10 @@ button{
 
 import {
   initializeApp
-} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+}
+from
+"https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+
 
 import {
   getAuth,
@@ -1589,7 +2445,10 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   updateProfile
-} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+}
+from
+"https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+
 
 import {
   getFirestore,
@@ -1600,7 +2459,9 @@ import {
   getDocs,
   deleteDoc,
   serverTimestamp
-} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
+}
+from
+"https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
 
 
 const firebaseConfig = {
@@ -1629,14 +2490,18 @@ const firebaseConfig = {
 const firebaseApp =
   initializeApp(firebaseConfig);
 
+
 const auth =
   getAuth(firebaseApp);
+
 
 const db =
   getFirestore(firebaseApp);
 
+
 const googleProvider =
   new GoogleAuthProvider();
+
 
 googleProvider.setCustomParameters({
   prompt:"select_account"
@@ -1656,48 +2521,92 @@ function $(id){
   return document.getElementById(id);
 }
 
+
 function clean(value){
   return String(value ?? "").trim();
 }
 
+
 function role(){
-  return clean(currentUserData?.role)
-    .toLowerCase();
+
+  return clean(
+    currentUserData?.role
+  ).toLowerCase();
+
 }
+
 
 function status(){
-  return clean(currentUserData?.status)
-    .toLowerCase();
+
+  return clean(
+    currentUserData?.status
+  ).toLowerCase();
+
 }
 
+
 function isAdmin(){
-  return role() === "administrateur"
-      && status() === "accepted";
+
+  return (
+    role() === "administrateur"
+    &&
+    status() === "accepted"
+  );
+
 }
+
 
 function requireAdmin(){
 
   if(!currentUser){
-    alert("Ou dwe konekte.");
+
+    alert(
+      "Ou dwe konekte."
+    );
+
     return false;
   }
 
+
   if(!isAdmin()){
+
     alert(
       "Aksyon sa a rezève pou administrateur."
     );
+
     return false;
   }
 
+
   return true;
+
 }
+
 
 function message(txt){
-  $("authMessage").textContent = txt;
+
+  $("authMessage").textContent =
+    txt;
+
 }
 
+
 function makeId(){
+
   return crypto.randomUUID();
+
+}
+
+
+function escapeHtml(value){
+
+  return String(value ?? "")
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+
 }
 
 
@@ -1707,25 +2616,39 @@ function makeId(){
 
 $("loginTab").onclick = () => {
 
-  $("loginTab").classList.add("active");
-  $("registerTab").classList.remove("active");
+  $("loginTab")
+    .classList.add("active");
 
-  $("loginForm").classList.remove("hidden");
-  $("registerForm").classList.add("hidden");
+  $("registerTab")
+    .classList.remove("active");
+
+  $("loginForm")
+    .classList.remove("hidden");
+
+  $("registerForm")
+    .classList.add("hidden");
 
   message("");
+
 };
 
 
 $("registerTab").onclick = () => {
 
-  $("registerTab").classList.add("active");
-  $("loginTab").classList.remove("active");
+  $("registerTab")
+    .classList.add("active");
 
-  $("registerForm").classList.remove("hidden");
-  $("loginForm").classList.add("hidden");
+  $("loginTab")
+    .classList.remove("active");
+
+  $("registerForm")
+    .classList.remove("hidden");
+
+  $("loginForm")
+    .classList.add("hidden");
 
   message("");
+
 };
 
 
@@ -1739,45 +2662,67 @@ async function createUserProfile(
 ){
 
   const ref =
-    doc(db,"users",user.uid);
+    doc(
+      db,
+      "users",
+      user.uid
+    );
+
 
   await setDoc(
     ref,
     {
       uid:user.uid,
       email:user.email || "",
-      nom:name || user.displayName || "",
+      nom:
+        name ||
+        user.displayName ||
+        "",
       role:"étudiant",
       status:"attente",
-      createdAt:serverTimestamp()
+      createdAt:
+        serverTimestamp()
     },
-    {merge:true}
+    {
+      merge:true
+    }
   );
+
 }
 
 
 /* =====================================================
-   REGISTER EMAIL
+   REGISTER
 ===================================================== */
 
-$("registerForm").addEventListener(
+$("registerForm")
+.addEventListener(
   "submit",
   async event => {
 
     event.preventDefault();
 
-    message("Création du compte...");
+    message(
+      "Création du compte..."
+    );
 
     try{
 
       const name =
-        clean($("registerName").value);
+        clean(
+          $("registerName").value
+        );
+
 
       const email =
-        clean($("registerEmail").value);
+        clean(
+          $("registerEmail").value
+        );
+
 
       const password =
         $("registerPassword").value;
+
 
       const result =
         await createUserWithEmailAndPassword(
@@ -1786,6 +2731,7 @@ $("registerForm").addEventListener(
           password
         );
 
+
       await updateProfile(
         result.user,
         {
@@ -1793,20 +2739,26 @@ $("registerForm").addEventListener(
         }
       );
 
+
       await createUserProfile(
         result.user,
         name
       );
 
+
       await signOut(auth);
+
 
       message(
         "Compte créé. Attendez l'approbation de l'administrateur."
       );
 
+
       $("registerForm").reset();
 
+
       $("loginTab").click();
+
 
     }catch(error){
 
@@ -1826,7 +2778,8 @@ $("registerForm").addEventListener(
    LOGIN EMAIL
 ===================================================== */
 
-$("loginForm").addEventListener(
+$("loginForm")
+.addEventListener(
   "submit",
   async event => {
 
@@ -1838,7 +2791,9 @@ $("loginForm").addEventListener(
 
       await signInWithEmailAndPassword(
         auth,
-        clean($("loginEmail").value),
+        clean(
+          $("loginEmail").value
+        ),
         $("loginPassword").value
       );
 
@@ -1862,7 +2817,10 @@ $("loginForm").addEventListener(
 
 async function loginGoogle(){
 
-  message("Connexion avec Google...");
+  message(
+    "Connexion avec Google..."
+  );
+
 
   try{
 
@@ -1874,6 +2832,7 @@ async function loginGoogle(){
   }catch(error){
 
     console.error(error);
+
 
     if(
       error.code ===
@@ -1907,11 +2866,13 @@ async function loginGoogle(){
     }
 
   }
+
 }
 
 
 $("googleLoginBtn").onclick =
   loginGoogle;
+
 
 $("googleRegisterBtn").onclick =
   loginGoogle;
@@ -1925,6 +2886,7 @@ function translateFirebaseError(error){
 
   const code =
     error?.code || "";
+
 
   const messages = {
 
@@ -1960,9 +2922,15 @@ function translateFirebaseError(error){
 
   };
 
-  return messages[code]
-    || error?.message
-    || "Yon erè rive.";
+
+  return (
+    messages[code]
+    ||
+    error?.message
+    ||
+    "Yon erè rive."
+  );
+
 }
 
 
@@ -1970,27 +2938,21 @@ function translateFirebaseError(error){
    LOAD USER PROFILE
 ===================================================== */
 
+async function loadUserProfile(user){
 
-  async function loadUserProfile(user){
+  const ref =
+    doc(
+      db,
+      "users",
+      user.uid
+    );
 
-  const ref = doc(db,"users",user.uid);
 
-  const snap = await getDoc(ref);
+  const snap =
+    await getDoc(ref);
+
 
   if(!snap.exists()){
-
-    if(user.uid === "uDWqJGGHhkh5GgIKarFH9D1END83"){
-
-      currentUserData = {
-        uid: user.uid,
-        email: user.email || "centredeformationlepedagoque@gmail.com",
-        nom: user.displayName || "Getro Joseph",
-        role: "administrateur",
-        status: "accepted"
-      };
-
-      return true;
-    }
 
     await createUserProfile(user);
 
@@ -2001,29 +2963,49 @@ function translateFirebaseError(error){
     );
 
     return false;
+
   }
 
-  currentUserData = snap.data();
+
+  currentUserData =
+    snap.data();
+
 
   const currentRole =
-    String(currentUserData.role || "")
-      .trim()
-      .toLowerCase();
+    clean(
+      currentUserData.role
+    ).toLowerCase();
+
 
   const currentStatus =
-    String(currentUserData.status || "")
-      .trim()
-      .toLowerCase();
+    clean(
+      currentUserData.status
+    ).toLowerCase();
 
-  if(
-    user.uid === "uDWqJGGHhkh5GgIKarFH9D1END83"
-  ){
 
-    currentUserData.role = "administrateur";
-    currentUserData.status = "accepted";
+  console.log(
+    "UID:",
+    user.uid
+  );
 
-    return true;
-  }
+
+  console.log(
+    "USER DATA:",
+    currentUserData
+  );
+
+
+  console.log(
+    "ROLE:",
+    currentRole
+  );
+
+
+  console.log(
+    "STATUS:",
+    currentStatus
+  );
+
 
   if(currentStatus !== "accepted"){
 
@@ -2034,10 +3016,14 @@ function translateFirebaseError(error){
     );
 
     return false;
+
   }
 
+
   return true;
+
 }
+
 
 /* =====================================================
    AUTH STATE
@@ -2046,53 +3032,77 @@ function translateFirebaseError(error){
 onAuthStateChanged(
   auth,
   async user => {
+
     if(!user){
 
       currentUser = null;
       currentUserData = null;
 
+
       $("authPage")
         .classList.remove("hidden");
+
 
       $("app")
         .classList.add("hidden");
 
+
       return;
+
     }
 
 
-    currentUser = user;
+    currentUser =
+      user;
+
 
     try{
 
       const ok =
         await loadUserProfile(user);
 
+
       if(!ok) return;
+
 
       $("authPage")
         .classList.add("hidden");
 
+
       $("app")
         .classList.remove("hidden");
+
 
       $("userEmail").textContent =
         user.email || "";
 
-      $("userRole").textContent =
-  "Wòl: " + (currentUserData.role || "");
 
-      $("adminMenu").classList.toggle(
-        "hidden",
-        !isAdmin()
-      );
+      $("userRole").textContent =
+        "Wòl: " +
+        (
+          currentUserData.role
+          ||
+          "non defini"
+        );
+
+
+      $("adminMenu")
+        .classList.toggle(
+          "hidden",
+          !isAdmin()
+        );
+
 
       updateToday();
 
+
       await loadDashboard();
 
+
       if(isAdmin()){
+
         await loadUsers();
+
       }
 
     }catch(error){
@@ -2101,9 +3111,11 @@ onAuthStateChanged(
 
       await signOut(auth);
 
+
       message(
         "Erè pandan verifikasyon kont lan: "
-        + error.message
+        +
+        error.message
       );
 
     }
@@ -2113,26 +3125,27 @@ onAuthStateChanged(
 
 
 /* =====================================================
-   REDIRECT RESULT
+   REDIRECT
 ===================================================== */
 
 getRedirectResult(auth)
-  .catch(error => {
+.catch(error => {
 
-    if(error){
+  if(error){
 
-      console.error(
-        "Redirect error:",
-        error
-      );
+    console.error(
+      "Redirect error:",
+      error
+    );
 
-      message(
-        translateFirebaseError(error)
-      );
 
-    }
+    message(
+      translateFirebaseError(error)
+    );
 
-  });
+  }
+
+});
 
 
 /* =====================================================
@@ -2140,19 +3153,21 @@ getRedirectResult(auth)
 ===================================================== */
 
 $("logoutBtn").onclick =
-  async () => {
+async () => {
 
-    try{
+  try{
 
-      await signOut(auth);
+    await signOut(auth);
 
-    }catch(error){
+  }catch(error){
 
-      alert(error.message);
+    alert(
+      error.message
+    );
 
-    }
+  }
 
-  };
+};
 
 
 /* =====================================================
@@ -2167,10 +3182,9 @@ document.querySelectorAll(
     "click",
     () => {
 
-      const id =
-        btn.dataset.section;
-
-      showSection(id);
+      showSection(
+        btn.dataset.section
+      );
 
     }
   );
@@ -2202,7 +3216,9 @@ function showSection(id){
     ".section"
   ).forEach(section => {
 
-    section.classList.remove("active");
+    section.classList.remove(
+      "active"
+    );
 
   });
 
@@ -2210,8 +3226,13 @@ function showSection(id){
   const section =
     $(id);
 
+
   if(section){
-    section.classList.add("active");
+
+    section.classList.add(
+      "active"
+    );
+
   }
 
 
@@ -2231,53 +3252,78 @@ function showSection(id){
     .classList.remove("open");
 
 
-  if(id === "etudiants")
-    loadCollection("etudiants");
+  const loaders = {
 
-  if(id === "professeurs")
-    loadCollection("professeurs");
+    etudiants:
+      "etudiants",
 
-  if(id === "departements")
-    loadCollection("departements");
+    professeurs:
+      "professeurs",
 
-  if(id === "programmes")
-    loadCollection("programmes");
+    departements:
+      "departements",
 
-  if(id === "cours")
-    loadCollection("cours");
+    programmes:
+      "programmes",
 
-  if(id === "classes")
-    loadCollection("classes");
+    cours:
+      "cours",
 
-  if(id === "devoirs")
-    loadCollection("devoirs");
+    classes:
+      "classes",
 
-  if(id === "remises")
-    loadCollection("remises");
+    devoirs:
+      "devoirs",
 
-  if(id === "resultats")
-    loadCollection("resultats");
+    remises:
+      "remises",
 
-  if(id === "horaires")
-    loadCollection("emplois_du_temps");
+    resultats:
+      "resultats",
 
-  if(id === "users" && isAdmin())
+    horaires:
+      "emplois_du_temps"
+
+  };
+
+
+  if(
+    loaders[id]
+  ){
+
+    loadCollection(
+      loaders[id]
+    );
+
+  }
+
+
+  if(
+    id === "users"
+    &&
+    isAdmin()
+  ){
+
     loadUsers();
+
+  }
 
 }
 
 
 /* =====================================================
-   MOBILE MENU
+   MOBILE
 ===================================================== */
 
 $("mobileMenu").onclick =
-  () => {
+() => {
 
-    $("sidebar")
-      .classList.toggle("open");
+  $("sidebar")
+    .classList.toggle(
+      "open"
+    );
 
-  };
+};
 
 
 /* =====================================================
@@ -2289,10 +3335,18 @@ async function addDocument(
   data
 ){
 
-  if(!requireAdmin()) return;
+  if(!requireAdmin()){
+
+    throw new Error(
+      "Aksyon sa a rezève pou administrateur."
+    );
+
+  }
+
 
   const id =
     makeId();
+
 
   await setDoc(
     doc(
@@ -2302,8 +3356,10 @@ async function addDocument(
     ),
     {
       ...data,
-      createdAt:serverTimestamp(),
-      createdBy:currentUser.uid
+      createdAt:
+        serverTimestamp(),
+      createdBy:
+        currentUser.uid
     }
   );
 
@@ -2311,7 +3367,7 @@ async function addDocument(
 
 
 /* =====================================================
-   DELETE
+   DELETE DOCUMENT
 ===================================================== */
 
 window.deleteDocument =
@@ -2322,13 +3378,17 @@ async function(
 
   if(!requireAdmin()) return;
 
+
   if(
     !confirm(
       "Èske ou sèten ou vle efase eleman sa a?"
     )
   ){
+
     return;
+
   }
+
 
   try{
 
@@ -2340,18 +3400,23 @@ async function(
       )
     );
 
+
     await loadCollection(
       collectionName
     );
 
+
     await loadDashboard();
+
 
   }catch(error){
 
     console.error(error);
 
+
     alert(
-      "Erè: " + error.message
+      "Erè: " +
+      error.message
     );
 
   }
@@ -2360,7 +3425,7 @@ async function(
 
 
 /* =====================================================
-   GENERIC DISPLAY
+   CARD
 ===================================================== */
 
 function card(
@@ -2371,15 +3436,20 @@ function card(
 ){
 
   const div =
-    document.createElement("div");
+    document.createElement(
+      "div"
+    );
+
 
   div.className =
     "dataCard";
+
 
   let html =
     "<h3>" +
     escapeHtml(title) +
     "</h3>";
+
 
   lines.forEach(
     line => {
@@ -2391,10 +3461,15 @@ function card(
       ){
 
         html +=
-          "<p><strong>" +
-          escapeHtml(line.label) +
+          "<p>" +
+          "<strong>" +
+          escapeHtml(
+            line.label
+          ) +
           ":</strong> " +
-          escapeHtml(line.value) +
+          escapeHtml(
+            line.value
+          ) +
           "</p>";
 
       }
@@ -2403,37 +3478,28 @@ function card(
   );
 
 
-  if(
-    isAdmin()
-  ){
+  if(isAdmin()){
 
     html +=
       `<div class="cardActions">
+
         <button
           class="btn btnDanger"
           onclick="deleteDocument('${collectionName}','${id}')"
         >
           🗑️ Efase
         </button>
+
       </div>`;
 
   }
 
+
   div.innerHTML =
     html;
 
+
   return div;
-}
-
-
-function escapeHtml(value){
-
-  return String(value ?? "")
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
 
 }
 
@@ -2485,10 +3551,14 @@ async function(
   const box =
     $(map[collectionName]);
 
+
   if(!box) return;
 
+
   box.innerHTML =
-    `<div class="loading">Chargement...</div>`;
+    `<div class="loading">
+      Chargement...
+    </div>`;
 
 
   try{
@@ -2502,7 +3572,8 @@ async function(
       );
 
 
-    box.innerHTML = "";
+    box.innerHTML =
+      "";
 
 
     if(snap.empty){
@@ -2513,6 +3584,7 @@ async function(
         </div>`;
 
       return;
+
     }
 
 
@@ -2522,19 +3594,28 @@ async function(
         const d =
           item.data();
 
-        let title =
+
+        const title =
           d.nom
-          || d.name
-          || d.titre
-          || d.title
-          || d.cours
-          || "Élément";
+          ||
+          d.name
+          ||
+          d.titre
+          ||
+          d.title
+          ||
+          d.cours
+          ||
+          "Élément";
 
 
         let lines = [];
 
 
-        if(collectionName === "etudiants"){
+        if(
+          collectionName ===
+          "etudiants"
+        ){
 
           lines = [
 
@@ -2545,7 +3626,9 @@ async function(
 
             {
               label:"Téléphone",
-              value:d.telephone || d.phone
+              value:
+                d.telephone ||
+                d.phone
             },
 
             {
@@ -2559,7 +3642,8 @@ async function(
 
 
         else if(
-          collectionName === "professeurs"
+          collectionName ===
+          "professeurs"
         ){
 
           lines = [
@@ -2571,12 +3655,16 @@ async function(
 
             {
               label:"Téléphone",
-              value:d.telephone || d.phone
+              value:
+                d.telephone ||
+                d.phone
             },
 
             {
               label:"Spécialité",
-              value:d.specialite || d.specialty
+              value:
+                d.specialite ||
+                d.specialty
             }
 
           ];
@@ -2585,7 +3673,8 @@ async function(
 
 
         else if(
-          collectionName === "departements"
+          collectionName ===
+          "departements"
         ){
 
           lines = [
@@ -2601,7 +3690,8 @@ async function(
 
 
         else if(
-          collectionName === "programmes"
+          collectionName ===
+          "programmes"
         ){
 
           lines = [
@@ -2622,7 +3712,8 @@ async function(
 
 
         else if(
-          collectionName === "cours"
+          collectionName ===
+          "cours"
         ){
 
           lines = [
@@ -2648,7 +3739,8 @@ async function(
 
 
         else if(
-          collectionName === "classes"
+          collectionName ===
+          "classes"
         ){
 
           lines = [
@@ -2669,7 +3761,8 @@ async function(
 
 
         else if(
-          collectionName === "devoirs"
+          collectionName ===
+          "devoirs"
         ){
 
           lines = [
@@ -2700,7 +3793,8 @@ async function(
 
 
         else if(
-          collectionName === "remises"
+          collectionName ===
+          "remises"
         ){
 
           lines = [
@@ -2719,8 +3813,10 @@ async function(
               label:"Nòt",
               value:
                 d.note !== undefined
-                ? d.note + "/100"
-                : ""
+                ?
+                d.note + "/100"
+                :
+                ""
             },
 
             {
@@ -2739,7 +3835,8 @@ async function(
 
 
         else if(
-          collectionName === "resultats"
+          collectionName ===
+          "resultats"
         ){
 
           lines = [
@@ -2758,8 +3855,10 @@ async function(
               label:"Nòt",
               value:
                 d.note !== undefined
-                ? d.note + "/100"
-                : ""
+                ?
+                d.note + "/100"
+                :
+                ""
             },
 
             {
@@ -2778,7 +3877,8 @@ async function(
 
 
         else if(
-          collectionName === "emplois_du_temps"
+          collectionName ===
+          "emplois_du_temps"
         ){
 
           lines = [
@@ -2807,13 +3907,15 @@ async function(
               label:"Heure",
               value:
                 (
-                  d.debut || ""
+                  d.debut ||
+                  ""
                 )
                 +
                 " - "
                 +
                 (
-                  d.fin || ""
+                  d.fin ||
+                  ""
                 )
 
             }
@@ -2838,12 +3940,26 @@ async function(
 
   }catch(error){
 
-    console.error(error);
+    console.error(
+      "Firestore error:",
+      collectionName,
+      error
+    );
+
 
     box.innerHTML =
       `<div class="empty">
-        Erè Firebase:<br>
-        ${escapeHtml(error.message)}
+
+        <strong>
+          Erè Firebase
+        </strong>
+
+        <br><br>
+
+        ${escapeHtml(
+          error.message
+        )}
+
       </div>`;
 
   }
@@ -2852,114 +3968,143 @@ async function(
 
 
 /* =====================================================
-   STUDENT FORM
+   FORM HELPER
 ===================================================== */
 
-$("studentForm").addEventListener(
+async function saveForm(
+  form,
+  collectionName,
+  data,
+  successMessage
+){
+
+  if(!requireAdmin()) return;
+
+
+  try{
+
+    await addDocument(
+      collectionName,
+      data
+    );
+
+
+    form.reset();
+
+
+    alert(
+      successMessage
+    );
+
+
+    await loadCollection(
+      collectionName
+    );
+
+
+    await loadDashboard();
+
+
+  }catch(error){
+
+    console.error(error);
+
+
+    alert(
+      "Erè: " +
+      error.message
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   STUDENT
+===================================================== */
+
+$("studentForm")
+.addEventListener(
   "submit",
   async e => {
 
     e.preventDefault();
 
-    if(!requireAdmin()) return;
 
-    try{
+    await saveForm(
+      e.target,
+      "etudiants",
+      {
 
-      await addDocument(
-        "etudiants",
-        {
+        nom:
+          clean(
+            $("studentName").value
+          ),
 
-          nom:
-            clean($("studentName").value),
+        email:
+          clean(
+            $("studentEmail").value
+          ),
 
-          email:
-            clean($("studentEmail").value),
+        telephone:
+          clean(
+            $("studentPhone").value
+          ),
 
-          telephone:
-            clean($("studentPhone").value),
+        classe:
+          clean(
+            $("studentClass").value
+          )
 
-          classe:
-            clean($("studentClass").value)
-
-        }
-      );
-
-      e.target.reset();
-
-      alert(
-        "Étudiant ajouté avec succès."
-      );
-
-      await loadCollection(
-        "etudiants"
-      );
-
-      await loadDashboard();
-
-    }catch(error){
-
-      alert(
-        "Erè: " + error.message
-      );
-
-    }
+      },
+      "Étudiant ajouté avec succès."
+    );
 
   }
 );
 
 
 /* =====================================================
-   TEACHER FORM
+   TEACHER
 ===================================================== */
 
-$("teacherForm").addEventListener(
+$("teacherForm")
+.addEventListener(
   "submit",
   async e => {
 
     e.preventDefault();
 
-    if(!requireAdmin()) return;
 
-    try{
+    await saveForm(
+      e.target,
+      "professeurs",
+      {
 
-      await addDocument(
-        "professeurs",
-        {
+        nom:
+          clean(
+            $("teacherName").value
+          ),
 
-          nom:
-            clean($("teacherName").value),
+        email:
+          clean(
+            $("teacherEmail").value
+          ),
 
-          email:
-            clean($("teacherEmail").value),
+        telephone:
+          clean(
+            $("teacherPhone").value
+          ),
 
-          telephone:
-            clean($("teacherPhone").value),
+        specialite:
+          clean(
+            $("teacherSpecialty").value
+          )
 
-          specialite:
-            clean($("teacherSpecialty").value)
-
-        }
-      );
-
-      e.target.reset();
-
-      alert(
-        "Professeur ajouté."
-      );
-
-      await loadCollection(
-        "professeurs"
-      );
-
-      await loadDashboard();
-
-    }catch(error){
-
-      alert(
-        "Erè: " + error.message
-      );
-
-    }
+      },
+      "Professeur ajouté."
+    );
 
   }
 );
@@ -2969,46 +4114,32 @@ $("teacherForm").addEventListener(
    DEPARTMENT
 ===================================================== */
 
-$("departmentForm").addEventListener(
+$("departmentForm")
+.addEventListener(
   "submit",
   async e => {
 
     e.preventDefault();
 
-    if(!requireAdmin()) return;
 
-    try{
+    await saveForm(
+      e.target,
+      "departements",
+      {
 
-      await addDocument(
-        "departements",
-        {
+        nom:
+          clean(
+            $("departmentName").value
+          ),
 
-          nom:
-            clean($("departmentName").value),
+        description:
+          clean(
+            $("departmentDescription").value
+          )
 
-          description:
-            clean($("departmentDescription").value)
-
-        }
-      );
-
-      e.target.reset();
-
-      alert(
-        "Département ajouté."
-      );
-
-      await loadCollection(
-        "departements"
-      );
-
-    }catch(error){
-
-      alert(
-        "Erè: " + error.message
-      );
-
-    }
+      },
+      "Département ajouté."
+    );
 
   }
 );
@@ -3018,49 +4149,37 @@ $("departmentForm").addEventListener(
    PROGRAM
 ===================================================== */
 
-$("programForm").addEventListener(
+$("programForm")
+.addEventListener(
   "submit",
   async e => {
 
     e.preventDefault();
 
-    if(!requireAdmin()) return;
 
-    try{
+    await saveForm(
+      e.target,
+      "programmes",
+      {
 
-      await addDocument(
-        "programmes",
-        {
+        nom:
+          clean(
+            $("programName").value
+          ),
 
-          nom:
-            clean($("programName").value),
+        departement:
+          clean(
+            $("programDepartment").value
+          ),
 
-          departement:
-            clean($("programDepartment").value),
+        description:
+          clean(
+            $("programDescription").value
+          )
 
-          description:
-            clean($("programDescription").value)
-
-        }
-      );
-
-      e.target.reset();
-
-      alert(
-        "Programme ajouté."
-      );
-
-      await loadCollection(
-        "programmes"
-      );
-
-    }catch(error){
-
-      alert(
-        "Erè: " + error.message
-      );
-
-    }
+      },
+      "Programme ajouté."
+    );
 
   }
 );
@@ -3070,54 +4189,42 @@ $("programForm").addEventListener(
    COURSE
 ===================================================== */
 
-$("courseForm").addEventListener(
+$("courseForm")
+.addEventListener(
   "submit",
   async e => {
 
     e.preventDefault();
 
-    if(!requireAdmin()) return;
 
-    try{
+    await saveForm(
+      e.target,
+      "cours",
+      {
 
-      await addDocument(
-        "cours",
-        {
+        nom:
+          clean(
+            $("courseName").value
+          ),
 
-          nom:
-            clean($("courseName").value),
+        code:
+          clean(
+            $("courseCode").value
+          ),
 
-          code:
-            clean($("courseCode").value),
+        professeur:
+          clean(
+            $("courseTeacher").value
+          ),
 
-          professeur:
-            clean($("courseTeacher").value),
+        programme:
+          clean(
+            $("courseProgram").value
+          )
 
-          programme:
-            clean($("courseProgram").value)
-
-        }
-      );
-
-      e.target.reset();
-
-      alert(
-        "Cours ajouté."
-      );
-
-      await loadCollection(
-        "cours"
-      );
-
-      await loadDashboard();
-
-    }catch(error){
-
-      alert(
-        "Erè: " + error.message
-      );
-
-    }
+      },
+      "Cours ajouté."
+    );
 
   }
 );
@@ -3127,51 +4234,37 @@ $("courseForm").addEventListener(
    CLASS
 ===================================================== */
 
-$("classForm").addEventListener(
+$("classForm")
+.addEventListener(
   "submit",
   async e => {
 
     e.preventDefault();
 
-    if(!requireAdmin()) return;
 
-    try{
+    await saveForm(
+      e.target,
+      "classes",
+      {
 
-      await addDocument(
-        "classes",
-        {
+        nom:
+          clean(
+            $("className").value
+          ),
 
-          nom:
-            clean($("className").value),
+        niveau:
+          clean(
+            $("classLevel").value
+          ),
 
-          niveau:
-            clean($("classLevel").value),
+        annee:
+          clean(
+            $("classYear").value
+          )
 
-          annee:
-            clean($("classYear").value)
-
-        }
-      );
-
-      e.target.reset();
-
-      alert(
-        "Classe ajoutée."
-      );
-
-      await loadCollection(
-        "classes"
-      );
-
-      await loadDashboard();
-
-    }catch(error){
-
-      alert(
-        "Erè: " + error.message
-      );
-
-    }
+      },
+      "Classe ajoutée."
+    );
 
   }
 );
@@ -3181,57 +4274,47 @@ $("classForm").addEventListener(
    ASSIGNMENT
 ===================================================== */
 
-$("assignmentForm").addEventListener(
+$("assignmentForm")
+.addEventListener(
   "submit",
   async e => {
 
     e.preventDefault();
 
-    if(!requireAdmin()) return;
 
-    try{
+    await saveForm(
+      e.target,
+      "devoirs",
+      {
 
-      await addDocument(
-        "devoirs",
-        {
+        titre:
+          clean(
+            $("assignmentTitle").value
+          ),
 
-          titre:
-            clean($("assignmentTitle").value),
+        cours:
+          clean(
+            $("assignmentCourse").value
+          ),
 
-          cours:
-            clean($("assignmentCourse").value),
+        classe:
+          clean(
+            $("assignmentClass").value
+          ),
 
-          classe:
-            clean($("assignmentClass").value),
+        dateLimite:
+          clean(
+            $("assignmentDate").value
+          ),
 
-          dateLimite:
-            clean($("assignmentDate").value),
+        description:
+          clean(
+            $("assignmentDescription").value
+          )
 
-          description:
-            clean($("assignmentDescription").value)
-
-        }
-      );
-
-      e.target.reset();
-
-      alert(
-        "Devoir ajouté."
-      );
-
-      await loadCollection(
-        "devoirs"
-      );
-
-      await loadDashboard();
-
-    }catch(error){
-
-      alert(
-        "Erè: " + error.message
-      );
-
-    }
+      },
+      "Devoir ajouté."
+    );
 
   }
 );
@@ -3241,73 +4324,65 @@ $("assignmentForm").addEventListener(
    SUBMISSION
 ===================================================== */
 
-$("submissionForm").addEventListener(
+$("submissionForm")
+.addEventListener(
   "submit",
   async e => {
 
     e.preventDefault();
 
-    if(!requireAdmin()) return;
 
-    try{
-
-      const grade =
-        Number(
-          $("submissionGrade").value
-        );
-
-      if(
-        grade < 0 ||
-        grade > 100
-      ){
-
-        alert(
-          "Nòt la dwe ant 0 ak 100."
-        );
-
-        return;
-      }
-
-      await addDocument(
-        "remises",
-        {
-
-          etudiant:
-            clean($("submissionStudent").value),
-
-          devoir:
-            clean($("submissionAssignment").value),
-
-          note:grade,
-
-          dateRemise:
-            clean($("submissionDate").value),
-
-          correction:
-            clean($("submissionCorrection").value)
-
-        }
+    const grade =
+      Number(
+        $("submissionGrade").value
       );
 
-      e.target.reset();
+
+    if(
+      grade < 0 ||
+      grade > 100
+    ){
 
       alert(
-        "Remise enregistrée."
+        "Nòt la dwe ant 0 ak 100."
       );
 
-      await loadCollection(
-        "remises"
-      );
-
-      await loadDashboard();
-
-    }catch(error){
-
-      alert(
-        "Erè: " + error.message
-      );
+      return;
 
     }
+
+
+    await saveForm(
+      e.target,
+      "remises",
+      {
+
+        etudiant:
+          clean(
+            $("submissionStudent").value
+          ),
+
+        devoir:
+          clean(
+            $("submissionAssignment").value
+          ),
+
+        note:
+          grade,
+
+        dateRemise:
+          clean(
+            $("submissionDate").value
+          ),
+
+        correction:
+          clean(
+            $("submissionCorrection").value
+          )
+
+      },
+      "Remise enregistrée."
+    );
 
   }
 );
@@ -3317,71 +4392,65 @@ $("submissionForm").addEventListener(
    RESULT
 ===================================================== */
 
-$("resultForm").addEventListener(
+$("resultForm")
+.addEventListener(
   "submit",
   async e => {
 
     e.preventDefault();
 
-    if(!requireAdmin()) return;
 
-    try{
-
-      const grade =
-        Number(
-          $("resultGrade").value
-        );
-
-      if(
-        grade < 0 ||
-        grade > 100
-      ){
-
-        alert(
-          "Nòt la dwe ant 0 ak 100."
-        );
-
-        return;
-      }
-
-      await addDocument(
-        "resultats",
-        {
-
-          etudiant:
-            clean($("resultStudent").value),
-
-          cours:
-            clean($("resultCourse").value),
-
-          note:grade,
-
-          session:
-            clean($("resultSession").value),
-
-          commentaire:
-            clean($("resultComment").value)
-
-        }
+    const grade =
+      Number(
+        $("resultGrade").value
       );
 
-      e.target.reset();
+
+    if(
+      grade < 0 ||
+      grade > 100
+    ){
 
       alert(
-        "Résultat ajouté."
+        "Nòt la dwe ant 0 ak 100."
       );
 
-      await loadCollection(
-        "resultats"
-      );
-
-    }catch(error){
-
-      alert(
-        "Erè: " + error.message
-      );
+      return;
 
     }
+
+
+    await saveForm(
+      e.target,
+      "resultats",
+      {
+
+        etudiant:
+          clean(
+            $("resultStudent").value
+          ),
+
+        cours:
+          clean(
+            $("resultCourse").value
+          ),
+
+        note:
+          grade,
+
+        session:
+          clean(
+            $("resultSession").value
+          ),
+
+        commentaire:
+          clean(
+            $("resultComment").value
+          )
+
+      },
+      "Résultat ajouté."
+    );
 
   }
 );
@@ -3391,58 +4460,52 @@ $("resultForm").addEventListener(
    SCHEDULE
 ===================================================== */
 
-$("scheduleForm").addEventListener(
+$("scheduleForm")
+.addEventListener(
   "submit",
   async e => {
 
     e.preventDefault();
 
-    if(!requireAdmin()) return;
 
-    try{
+    await saveForm(
+      e.target,
+      "emplois_du_temps",
+      {
 
-      await addDocument(
-        "emplois_du_temps",
-        {
+        jour:
+          clean(
+            $("scheduleDay").value
+          ),
 
-          jour:
-            clean($("scheduleDay").value),
+        cours:
+          clean(
+            $("scheduleCourse").value
+          ),
 
-          cours:
-            clean($("scheduleCourse").value),
+        classe:
+          clean(
+            $("scheduleClass").value
+          ),
 
-          classe:
-            clean($("scheduleClass").value),
+        professeur:
+          clean(
+            $("scheduleTeacher").value
+          ),
 
-          professeur:
-            clean($("scheduleTeacher").value),
+        debut:
+          clean(
+            $("scheduleStart").value
+          ),
 
-          debut:
-            clean($("scheduleStart").value),
+        fin:
+          clean(
+            $("scheduleEnd").value
+          )
 
-          fin:
-            clean($("scheduleEnd").value)
-
-        }
-      );
-
-      e.target.reset();
-
-      alert(
-        "Horaire ajouté."
-      );
-
-      await loadCollection(
-        "emplois_du_temps"
-      );
-
-    }catch(error){
-
-      alert(
-        "Erè: " + error.message
-      );
-
-    }
+      },
+      "Horaire ajouté."
+    );
 
   }
 );
@@ -3458,7 +4521,9 @@ async function(){
   const box =
     $("listeUsers");
 
+
   if(!box) return;
+
 
   if(!isAdmin()){
 
@@ -3468,7 +4533,9 @@ async function(){
       </div>`;
 
     return;
+
   }
+
 
   box.innerHTML =
     `<div class="loading">
@@ -3480,10 +4547,15 @@ async function(){
 
     const snap =
       await getDocs(
-        collection(db,"users")
+        collection(
+          db,
+          "users"
+        )
       );
 
-    box.innerHTML = "";
+
+    box.innerHTML =
+      "";
 
 
     if(snap.empty){
@@ -3494,6 +4566,7 @@ async function(){
         </div>`;
 
       return;
+
     }
 
 
@@ -3503,8 +4576,12 @@ async function(){
         const d =
           item.data();
 
+
         const div =
-          document.createElement("div");
+          document.createElement(
+            "div"
+          );
+
 
         div.className =
           "dataCard";
@@ -3512,21 +4589,24 @@ async function(){
 
         const accepted =
           clean(d.status)
-            .toLowerCase()
-            === "accepted";
+          .toLowerCase()
+          ===
+          "accepted";
 
 
         const refused =
           clean(d.status)
-            .toLowerCase()
-            === "refused";
+          .toLowerCase()
+          ===
+          "refused";
 
 
         div.innerHTML = `
 
           <h3>
             ${escapeHtml(
-              d.nom || "Utilisateur"
+              d.nom ||
+              "Utilisateur"
             )}
           </h3>
 
@@ -3546,6 +4626,7 @@ async function(){
 
           <p>
             <strong>Status:</strong>
+
             ${
               accepted
               ?
@@ -3557,64 +4638,93 @@ async function(){
               :
               '<span class="badge badgeOrange">attente</span>'
             }
+
           </p>
+
 
           <div class="cardActions">
 
             ${
               !accepted
               ?
-              `<button
+              `
+              <button
                 class="btn btnGreen"
                 onclick="approveUser('${item.id}')"
               >
                 ✓ Accepter
-              </button>`
+              </button>
+              `
               :
               ""
             }
+
 
             ${
               !refused
               ?
-              `<button
+              `
+              <button
                 class="btn btnOrange"
                 onclick="refuseUser('${item.id}')"
               >
                 ✕ Refuser
-              </button>`
+              </button>
+              `
               :
               ""
             }
 
+
             ${
               item.id !== currentUser.uid
               ?
-              `<button
+              `
+              <button
                 class="btn btnDanger"
                 onclick="deleteUser('${item.id}')"
               >
                 🗑️ Efase
-              </button>`
+              </button>
+              `
               :
               ""
             }
 
           </div>
+
         `;
 
-        box.appendChild(div);
+
+        box.appendChild(
+          div
+        );
 
       }
     );
 
+
   }catch(error){
 
-    console.error(error);
+    console.error(
+      "Users error:",
+      error
+    );
+
 
     box.innerHTML =
       `<div class="empty">
-        ${escapeHtml(error.message)}
+
+        <strong>
+          Erè Firebase:
+        </strong>
+
+        <br><br>
+
+        ${escapeHtml(
+          error.message
+        )}
+
       </div>`;
 
   }
@@ -3627,26 +4737,37 @@ async function(uid){
 
   if(!requireAdmin()) return;
 
+
   try{
 
     await setDoc(
-      doc(db,"users",uid),
+      doc(
+        db,
+        "users",
+        uid
+      ),
       {
         status:"accepted"
       },
-      {merge:true}
+      {
+        merge:true
+      }
     );
+
 
     alert(
       "Itilizatè a aksepte."
     );
 
+
     await loadUsers();
+
 
   }catch(error){
 
     alert(
-      "Erè: " + error.message
+      "Erè: " +
+      error.message
     );
 
   }
@@ -3659,26 +4780,37 @@ async function(uid){
 
   if(!requireAdmin()) return;
 
+
   try{
 
     await setDoc(
-      doc(db,"users",uid),
+      doc(
+        db,
+        "users",
+        uid
+      ),
       {
         status:"refused"
       },
-      {merge:true}
+      {
+        merge:true
+      }
     );
+
 
     alert(
       "Itilizatè a refize."
     );
 
+
     await loadUsers();
+
 
   }catch(error){
 
     alert(
-      "Erè: " + error.message
+      "Erè: " +
+      error.message
     );
 
   }
@@ -3691,26 +4823,37 @@ async function(uid){
 
   if(!requireAdmin()) return;
 
+
   if(
     !confirm(
       "Èske ou sèten ou vle efase itilizatè sa a?"
     )
   ){
+
     return;
+
   }
+
 
   try{
 
     await deleteDoc(
-      doc(db,"users",uid)
+      doc(
+        db,
+        "users",
+        uid
+      )
     );
 
+
     await loadUsers();
+
 
   }catch(error){
 
     alert(
-      "Erè: " + error.message
+      "Erè: " +
+      error.message
     );
 
   }
@@ -3734,7 +4877,9 @@ async function countCollection(name){
         )
       );
 
+
     return snap.size;
+
 
   }catch(error){
 
@@ -3744,7 +4889,9 @@ async function countCollection(name){
       error
     );
 
+
     return 0;
+
   }
 
 }
@@ -3780,13 +4927,21 @@ async function loadDashboard(){
   ){
 
     const count =
-      await countCollection(name);
+      await countCollection(
+        name
+      );
+
 
     const id =
       collections[name];
 
-    if($(id))$(id).textContent =
+
+    if($(id)){
+
+      $(id).textContent =
         count;
+
+    }
 
   }
 
@@ -3813,10 +4968,17 @@ async function loadDashboard(){
   ){
 
     const count =
-      await countCollection(name);
+      await countCollection(
+        name
+      );
 
-    if($(names[name]))$(names[name]).textContent =
+
+    if($(names[name])){
+
+      $(names[name]).textContent =
         count;
+
+    }
 
   }
 
@@ -3832,6 +4994,7 @@ function updateToday(){
   const now =
     new Date();
 
+
   const date =
     now.toLocaleDateString(
       "fr-FR",
@@ -3843,8 +5006,11 @@ function updateToday(){
       }
     );
 
+
   $("todayText").textContent =
-    "Nous sommes le " + date + ".";
+    "Nous sommes le " +
+    date +
+    ".";
 
 }
 
@@ -3856,10 +5022,13 @@ function updateToday(){
 $("languageSelect").value =
   localStorage.getItem(
     "cfp_language"
-  ) || "ht";
+  )
+  ||
+  "ht";
 
 
-$("languageSelect").addEventListener(
+$("languageSelect")
+.addEventListener(
   "change",
   e => {
 
@@ -3868,24 +5037,35 @@ $("languageSelect").addEventListener(
       e.target.value
     );
 
+
     document.documentElement.lang =
       e.target.value;
 
-    if(e.target.value === "ht"){
 
-      $("welcomeTitle").textContent =
+    if(
+      e.target.value ===
+      "ht"
+    ){
+
+      $("welcomeTitle")
+        .textContent =
         "Byenveni nan Centre de Formation Le Pédagogue";
 
-      $("todayText").textContent =
+
+      $("todayText")
+        .textContent =
         "Jodi a se " +
-        new Date().toLocaleDateString(
+        new Date()
+        .toLocaleDateString(
           "ht-HT"
         );
 
     }else{
 
-      $("welcomeTitle").textContent =
+      $("welcomeTitle")
+        .textContent =
         "Bienvenue au Centre de Formation Le Pédagogue";
+
 
       updateToday();
 
@@ -3905,11 +5085,15 @@ window.addEventListener(
 
     event.preventDefault();
 
+
     deferredInstallPrompt =
       event;
 
+
     $("installBtn")
-      .classList.remove("hidden");
+      .classList.remove(
+        "hidden"
+      );
 
   }
 );
@@ -3918,18 +5102,30 @@ window.addEventListener(
 $("installBtn").onclick =
 async () => {
 
-  if(!deferredInstallPrompt)
+  if(
+    !deferredInstallPrompt
+  ){
+
     return;
 
+  }
+
+
   deferredInstallPrompt.prompt();
+
 
   await deferredInstallPrompt
     .userChoice;
 
-  deferredInstallPrompt = null;
+
+  deferredInstallPrompt =
+    null;
+
 
   $("installBtn")
-    .classList.add("hidden");
+    .classList.add(
+      "hidden"
+    );
 
 };
 
@@ -3939,7 +5135,8 @@ async () => {
 ===================================================== */
 
 if(
-  "serviceWorker" in navigator
+  "serviceWorker"
+  in navigator
 ){
 
   window.addEventListener(
@@ -3951,11 +5148,14 @@ if(
           "./service-worker.js"
         )
         .catch(
-          error =>
+          error => {
+
             console.error(
               "Service Worker:",
               error
-            )
+            );
+
+          }
         );
 
     }
@@ -3971,7 +5171,10 @@ if(
 document.documentElement.lang =
   localStorage.getItem(
     "cfp_language"
-  ) || "ht";
+  )
+  ||
+  "ht";
+
 
 </script>
 
