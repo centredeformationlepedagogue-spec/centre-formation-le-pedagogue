@@ -1970,54 +1970,60 @@ function translateFirebaseError(error){
    LOAD USER PROFILE
 ===================================================== */
 
-async function loadUserProfile(user){
 
-  const ref =
-    doc(db,"users",user.uid);
+  async function loadUserProfile(user){
 
-  let snap =
-    await getDoc(ref);
+  const ref = doc(db,"users",user.uid);
+
+  const snap = await getDoc(ref);
 
   if(!snap.exists()){
+
     if(user.uid === "uDWqJGGHhkh5GgIKarFH9D1END83"){
-      await setDoc(ref, {
+
+      currentUserData = {
         uid: user.uid,
         email: user.email || "centredeformationlepedagoque@gmail.com",
-        nom: user.displayName || "Administrateur",
+        nom: user.displayName || "Getro Joseph",
         role: "administrateur",
-        status: "accepted",
-        createdAt: serverTimestamp()
-      }, {merge: true});
-      snap = await getDoc(ref);
-    } else {
-      await createUserProfile(user);
-      await signOut(auth);
-      message("Kont ou an atant. Administrateur la dwe apwouve li.");
-      return false;
+        status: "accepted"
+      };
+
+      return true;
     }
+
+    await createUserProfile(user);
+
+    await signOut(auth);
+
+    message(
+      "Kont ou an atant. Administrateur la dwe apwouve li."
+    );
+
+    return false;
   }
 
-  currentUserData =
-    snap.data();
-
-  const currentStatus =
-    clean(currentUserData.status)
-      .toLowerCase();
+  currentUserData = snap.data();
 
   const currentRole =
-    clean(currentUserData.role)
+    String(currentUserData.role || "")
+      .trim()
       .toLowerCase();
 
+  const currentStatus =
+    String(currentUserData.status || "")
+      .trim()
+      .toLowerCase();
 
   if(
-    currentRole === "administrateur"
-    &&
-    currentStatus === "accepted"
+    user.uid === "uDWqJGGHhkh5GgIKarFH9D1END83"
   ){
+
+    currentUserData.role = "administrateur";
+    currentUserData.status = "accepted";
 
     return true;
   }
-
 
   if(currentStatus !== "accepted"){
 
@@ -2030,10 +2036,8 @@ async function loadUserProfile(user){
     return false;
   }
 
-
   return true;
 }
-
 
 /* =====================================================
    AUTH STATE
@@ -2075,7 +2079,8 @@ onAuthStateChanged(
       $("userEmail").textContent =
         user.email || "";
 
-      $("userRole").textContent = "";
+      $("userRole").textContent =
+  "Wòl: " + (currentUserData.role || "");
 
       $("adminMenu").classList.toggle(
         "hidden",
