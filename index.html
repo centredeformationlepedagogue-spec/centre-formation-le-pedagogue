@@ -3,116 +3,674 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Centre de Formation Le Pédagogue</title>
+<title>Centre de Formation Le Pédagogue | Gestion Universitaire</title>
 
 <link rel="manifest" href="./manifest.json">
-<meta name="theme-color" content="#2563eb">
+<meta name="theme-color" content="#1e293b">
+
+<!-- Google Fonts & FontAwesome Icons -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif}
-body{background:#f4f6f9;color:#172033}
-button,input,select{font:inherit}
-button{cursor:pointer;border:0}
+:root {
+  --primary: #2563eb;
+  --primary-dark: #1d4ed8;
+  --primary-light: #eff6ff;
+  --sidebar-bg: #0f172a;
+  --sidebar-text: #94a3b8;
+  --sidebar-active: #38bdf8;
+  --bg-body: #f8fafc;
+  --card-bg: #ffffff;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --border-color: #e2e8f0;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --radius-lg: 16px;
+  --radius-md: 10px;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 20px -2px rgba(0,0,0,0.08);
+}
+
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Plus Jakarta Sans', Arial, sans-serif}
+body{background:var(--bg-body);color:var(--text-main);min-height:100vh;overflow-x:hidden}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer;border:0;transition:all 0.2s ease}
 .hidden{display:none!important}
 
-#loginBox{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;background:linear-gradient(135deg,#2563eb,#4f46e5)}
-.authCard{width:100%;max-width:460px;background:#fff;border-radius:22px;padding:25px;box-shadow:0 15px 45px rgba(0,0,0,.25)}
-.authCard h1{text-align:center;margin-bottom:8px;color:#1d4ed8}
-.authSub{text-align:center;color:#64748b;margin-bottom:20px}
-.authTabs{display:flex;gap:8px;margin-bottom:18px}
-.authTabs button{flex:1;padding:11px;border-radius:10px;background:#e5e7eb;color:#374151}
-.authTabs button.active{background:#2563eb;color:white}
-.formGroup{margin-bottom:12px}
-.formGroup label{display:block;margin-bottom:5px;font-weight:bold;font-size:14px}
-.formGroup input,.formGroup select{width:100%;padding:11px;border:1px solid #cbd5e1;border-radius:10px;outline:none;background:white}
-.formGroup input:focus,.formGroup select:focus{border-color:#2563eb}
-.primaryBtn{width:100%;padding:12px;border-radius:10px;background:#2563eb;color:white;font-weight:bold}
-.googleBtn{width:100%;padding:12px;border-radius:10px;background:white;color:#111827;border:1px solid #cbd5e1;font-weight:bold;margin-top:10px}
-.divider{text-align:center;margin:14px 0;color:#94a3b8}
-.authMsg{padding:10px;border-radius:9px;margin-bottom:12px;font-size:14px;display:none}
-.authMsg.error{display:block;background:#fee2e2;color:#991b1b}
-.authMsg.success{display:block;background:#dcfce7;color:#166534}
-.pendingBox{padding:12px;background:#fff7ed;color:#9a3412;border-radius:10px;margin-top:12px;font-size:14px}
+/* ==========================================================
+   AUTH PAGE DESIGN
+========================================================== */
+#loginBox {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: radial-gradient(circle at top right, #1e3a8a, #0f172a);
+  position: relative;
+}
+#loginBox::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: url("https://www.transparenttextures.com/patterns/cubes.png") opacity 0.05;
+}
+.authCard {
+  width: 100%;
+  max-width: 480px;
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(10px);
+  border-radius: 24px;
+  padding: 35px 30px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+  position: relative;
+  z-index: 2;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+.authHeader {
+  text-align: center;
+  margin-bottom: 25px;
+}
+.authHeader .logo-icon {
+  width: 64px;
+  height: 64px;
+  background: linear-gradient(135deg, var(--primary), #4f46e5);
+  color: #fff;
+  border-radius: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  margin-bottom: 12px;
+  box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
+}
+.authCard h1 {
+  font-size: 20px;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+}
+.authSub {
+  color: var(--text-muted);
+  font-size: 14px;
+  margin-top: 6px;
+}
+.authTabs {
+  display: flex;
+  background: #f1f5f9;
+  padding: 4px;
+  border-radius: 12px;
+  margin-bottom: 22px;
+}
+.authTabs button {
+  flex: 1;
+  padding: 10px;
+  border-radius: 9px;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--text-muted);
+  background: transparent;
+}
+.authTabs button.active {
+  background: #fff;
+  color: var(--primary);
+  box-shadow: var(--shadow-sm);
+}
+.formGroup {
+  margin-bottom: 16px;
+}
+.formGroup label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  font-size: 13px;
+  color: #334155;
+}
+.input-icon-wrap {
+  position: relative;
+}
+.input-icon-wrap i {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #94a3b8;
+  font-size: 15px;
+}
+.formGroup input, .formGroup select {
+  width: 100%;
+  padding: 12px 14px 12px 40px;
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--radius-md);
+  outline: none;
+  background: #fff;
+  color: var(--text-main);
+  font-size: 14px;
+  transition: all 0.2s;
+}
+.formGroup input:focus, .formGroup select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+}
+.primaryBtn {
+  width: 100%;
+  padding: 13px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: white;
+  font-weight: 700;
+  font-size: 15px;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+}
+.primaryBtn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.35);
+}
+.googleBtn {
+  width: 100%;
+  padding: 12px;
+  border-radius: var(--radius-md);
+  background: white;
+  color: #1e293b;
+  border: 1.5px solid var(--border-color);
+  font-weight: 600;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.googleBtn:hover {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+}
+.divider {
+  text-align: center;
+  margin: 18px 0;
+  color: #94a3b8;
+  font-size: 12px;
+  position: relative;
+}
+.divider::before, .divider::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 38%;
+  height: 1px;
+  background: var(--border-color);
+}
+.divider::before { left: 0; }
+.divider::after { right: 0; }
+.authMsg {
+  padding: 12px;
+  border-radius: var(--radius-md);
+  margin-bottom: 16px;
+  font-size: 13px;
+  display: none;
+  align-items: center;
+  gap: 8px;
+}
+.authMsg.error { display: flex; background: #fef2f2; color: #991b1b; border: 1px solid #fecaca; }
+.authMsg.success { display: flex; background: #f0fdf4; color: #166534; border: 1px solid #bbf7d0; }
+.pendingBox {
+  padding: 12px 14px;
+  background: #fffbe2;
+  color: #b45309;
+  border-radius: var(--radius-md);
+  margin-top: 14px;
+  font-size: 12px;
+  border: 1px solid #fef08a;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
 
-#app{min-height:100vh}
-header{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid #e2e8f0;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:10px}
-.brand{font-size:20px;font-weight:bold;color:#2563eb}
-.userArea{display:flex;align-items:center;gap:9px;flex-wrap:wrap;justify-content:flex-end}
-#userPhoto{width:38px;height:38px;border-radius:50%;object-fit:cover;background:#e2e8f0}
-.userText{font-size:12px}
-.userText strong{display:block;font-size:14px}
-.roleBadge{display:inline-block;padding:3px 8px;border-radius:999px;background:#dbeafe;color:#1d4ed8;font-weight:bold;margin-top:3px}
-.headerBtn{padding:9px 11px;border-radius:9px;background:#eef2ff;color:#3730a3}
-.logoutBtn{background:#fee2e2;color:#b91c1c}
+/* ==========================================================
+   APP MAIN DASHBOARD / ERP LAYOUT
+========================================================== */
+#app {
+  display: flex;
+  min-height: 100vh;
+}
 
-nav{display:flex;gap:7px;overflow-x:auto;padding:10px 12px;background:#fff;border-bottom:1px solid #e2e8f0}
-nav button{white-space:nowrap;padding:9px 12px;border-radius:9px;background:#f1f5f9;color:#334155}
-nav button.active{background:#2563eb;color:white}
+/* SIDEBAR */
+aside {
+  width: 270px;
+  background: var(--sidebar-bg);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 30;
+  transition: transform 0.3s ease;
+}
+.sidebar-header {
+  padding: 20px 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.sidebar-header i {
+  font-size: 26px;
+  color: var(--sidebar-active);
+}
+.sidebar-header div h1 {
+  font-size: 14px;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.2;
+}
+.sidebar-header div span {
+  font-size: 10px;
+  color: #64748b;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+nav#mainNav {
+  flex: 1;
+  padding: 15px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  overflow-y: auto;
+}
+nav button {
+  width: 100%;
+  text-align: left;
+  padding: 12px 16px;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--sidebar-text);
+  font-size: 13.5px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+nav button i {
+  font-size: 16px;
+  width: 20px;
+  text-align: center;
+}
+nav button:hover {
+  background: rgba(255,255,255,0.05);
+  color: #f8fafc;
+}
+nav button.active {
+  background: linear-gradient(90deg, rgba(56, 189, 248, 0.15), transparent);
+  color: var(--sidebar-active);
+  border-left: 3px solid var(--sidebar-active);
+  border-radius: 4px 10px 10px 4px;
+}
 
-main{max-width:1250px;margin:auto;padding:18px}
-.section{display:none}
-.section.active{display:block}
-.pageTitle{margin-bottom:15px}
-.pageTitle h2{margin-bottom:4px}
-.pageTitle p{color:#64748b}
+/* MAIN CONTENT WRAPPER */
+.content-wrapper {
+  flex: 1;
+  margin-left: 270px;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
 
-.statsGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:18px}
-.statCard{background:white;border-radius:15px;padding:17px;box-shadow:0 2px 10px rgba(0,0,0,.06)}
-.statCard span{color:#64748b;font-size:13px}
-.statCard strong{display:block;font-size:28px;margin-top:5px;color:#2563eb}
+/* HEADER */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border-color);
+  padding: 12px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+.toggle-sidebar {
+  display: none;
+  font-size: 20px;
+  background: transparent;
+  color: var(--text-main);
+}
+.header-search {
+  display: flex;
+  align-items: center;
+  background: #f1f5f9;
+  padding: 8px 14px;
+  border-radius: 20px;
+  width: 280px;
+  gap: 10px;
+}
+.header-search input {
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 13px;
+  width: 100%;
+}
+.userArea {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.headerBtn {
+  padding: 8px 14px;
+  border-radius: var(--radius-md);
+  background: #f1f5f9;
+  color: var(--text-main);
+  font-weight: 600;
+  font-size: 13px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.headerBtn:hover { background: #e2e8f0; }
+.logoutBtn { background: #fef2f2; color: #dc2626; }
+.logoutBtn:hover { background: #fee2e2; }
 
-.card{background:white;border-radius:15px;padding:18px;margin-bottom:16px;box-shadow:0 2px 10px rgba(0,0,0,.06)}
-.card h3{margin-bottom:14px}
-.formGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
-.formGrid .full{grid-column:1/-1}
-.actionRow{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
-.smallBtn{padding:8px 11px;border-radius:8px;background:#2563eb;color:white}
-.dangerBtn{background:#dc2626}
-.successBtn{background:#16a34a}
-.warningBtn{background:#f59e0b;color:#111827}
+.userProfileBadge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-left: 10px;
+  border-left: 1px solid var(--border-color);
+}
+#userPhoto {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #cbd5e1;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.userText { font-size: 12px; line-height: 1.3; }
+.userText strong { display: block; font-size: 13px; color: var(--text-main); font-weight: 700; }
+.roleBadge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 12px;
+  background: #e0f2fe;
+  color: #0369a1;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
 
-.tableWrap{overflow-x:auto}
-table{width:100%;border-collapse:collapse;background:#fff}
-th,td{padding:10px;border-bottom:1px solid #e2e8f0;text-align:left;vertical-align:middle}
-th{background:#f8fafc}
-.badge{display:inline-block;padding:4px 8px;border-radius:999px;font-size:12px;font-weight:bold}
-.badgePending{background:#fef3c7;color:#92400e}
-.badgeAccepted{background:#dcfce7;color:#166534}
-.badgeRejected{background:#fee2e2;color:#991b1b}
-.badgeAdmin{background:#ede9fe;color:#6d28d9}
-.badgeProf{background:#dbeafe;color:#1d4ed8}
-.badgeEleve{background:#ffedd5;color:#c2410c}
+/* MAIN CONTAINER */
+main {
+  padding: 28px;
+  flex: 1;
+}
+.section { display: none; }
+.section.active { display: block; animation: fadeIn 0.3s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
 
-.empty{text-align:center;padding:25px;color:#64748b}
-.noteInput{width:95px;padding:7px;border:1px solid #cbd5e1;border-radius:7px}
-.note20{font-weight:bold;color:#2563eb}
-.note100{color:#64748b;font-size:12px}
+.pageTitle {
+  margin-bottom: 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.pageTitle h2 { font-size: 22px; font-weight: 800; color: #0f172a; letter-spacing: -0.5px; }
+.pageTitle p { color: var(--text-muted); font-size: 13px; margin-top: 2px; }
 
-.installBtn{display:none}
-.toast{position:fixed;right:15px;bottom:15px;z-index:100;background:#111827;color:white;padding:12px 16px;border-radius:10px;display:none;max-width:320px}
-.loading{position:fixed;inset:0;background:rgba(255,255,255,.92);z-index:200;display:flex;align-items:center;justify-content:center;font-weight:bold;color:#2563eb}
-footer{text-align:center;padding:25px;color:#64748b}
+/* ERP CARDS & STATS */
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+  margin-bottom: 25px;
+}
+.statCard {
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.statCard:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+.statIcon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+}
+.statIcon.blue { background: #dbeafe; color: #2563eb; }
+.statIcon.green { background: #dcfce7; color: #16a34a; }
+.statIcon.purple { background: #f3e8ff; color: #9333ea; }
+.statIcon.orange { background: #ffedd5; color: #ea580c; }
 
-@media(max-width:650px){
- header{align-items:flex-start}
- .brand{font-size:17px}
- .userArea{font-size:11px}
- .userText{max-width:150px}
- main{padding:12px}
- .card{padding:13px}
- th,td{font-size:13px}
+.statCard span { color: var(--text-muted); font-size: 13px; font-weight: 600; }
+.statCard strong { display: block; font-size: 26px; font-weight: 800; color: #0f172a; margin-top: 2px; }
+
+.card {
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  margin-bottom: 22px;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+}
+.card h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.card h3 i { color: var(--primary); }
+
+/* FORMS GRID */
+.formGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 14px;
+}
+.formGrid .full { grid-column: 1/-1; }
+.formGrid .formGroup input, .formGrid .formGroup select {
+  padding-left: 14px;
+}
+
+.actionRow { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 15px; }
+.smallBtn {
+  padding: 9px 16px;
+  border-radius: var(--radius-md);
+  background: var(--primary);
+  color: white;
+  font-weight: 600;
+  font-size: 13px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.smallBtn:hover { opacity: 0.9; }
+.dangerBtn { background: var(--danger); }
+.successBtn { background: var(--success); }
+.warningBtn { background: var(--warning); color: #1e293b; }
+
+/* TABLES */
+.tableWrap { overflow-x: auto; border-radius: 12px; border: 1px solid var(--border-color); }
+table { width: 100%; border-collapse: collapse; background: #fff; text-align: left; }
+th, td { padding: 14px 16px; border-bottom: 1px solid var(--border-color); font-size: 13.5px; vertical-align: middle; }
+th { background: #f8fafc; font-weight: 700; color: #475569; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px; }
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: #f8fafc; }
+
+/* BADGES */
+.badge { display: inline-block; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; }
+.badgePending { background: #fef3c7; color: #92400e; }
+.badgeAccepted { background: #dcfce7; color: #166534; }
+.badgeRejected { background: #fee2e2; color: #991b1b; }
+.badgeAdmin { background: #f3e8ff; color: #6b21a8; }
+.badgeProf { background: #dbeafe; color: #1e40af; }
+.badgeEleve { background: #ffedd5; color: #9a3412; }
+
+.empty { text-align: center; padding: 35px; color: var(--text-muted); font-size: 14px; }
+.noteInput { width: 90px; padding: 8px; border: 1px solid var(--border-color); border-radius: 6px; font-weight: 700; }
+.note20 { font-weight: 700; color: var(--primary); }
+.note100 { color: var(--text-muted); font-size: 12px; }
+
+/* DASHBOARD BANNER & EXTRA PANELS */
+.welcomeBanner {
+  background: linear-gradient(135deg, #1e293b, #0f172a);
+  color: white;
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  margin-bottom: 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.3);
+}
+.welcomeBanner h3 { font-size: 22px; font-weight: 800; margin-bottom: 6px; color: #fff; }
+.welcomeBanner p { color: #94a3b8; font-size: 14px; max-width: 600px; }
+
+.dashboardGrid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+}
+
+.quickActions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 12px;
+  margin-top: 15px;
+}
+.actionTile {
+  background: #f8fafc;
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.actionTile:hover {
+  background: #fff;
+  border-color: var(--primary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+.actionTile i { font-size: 22px; color: var(--primary); margin-bottom: 8px; display: block; }
+.actionTile span { font-size: 12px; font-weight: 700; color: #334155; }
+
+.eventList { display: flex; flex-direction: column; gap: 12px; }
+.eventItem { display: flex; gap: 12px; align-items: center; padding: 10px; border-radius: 8px; background: #f8fafc; }
+.eventDate { background: #e0f2fe; color: #0284c7; padding: 8px 12px; border-radius: 8px; text-align: center; font-weight: 800; font-size: 12px; }
+
+/* UTILS */
+.installBtn { display: none; }
+.toast {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 100;
+  background: #0f172a;
+  color: white;
+  padding: 14px 20px;
+  border-radius: 12px;
+  display: none;
+  max-width: 350px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  font-size: 13.5px;
+  font-weight: 600;
+  border-left: 4px solid var(--primary);
+}
+.loading {
+  position: fixed;
+  inset: 0;
+  background: rgba(255,255,255,0.95);
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: var(--primary);
+  font-size: 16px;
+}
+.spinner {
+  width: 45px;
+  height: 45px;
+  border: 4px solid #e2e8f0;
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+footer {
+  text-align: center;
+  padding: 20px;
+  color: var(--text-muted);
+  font-size: 12px;
+  border-top: 1px solid var(--border-color);
+  margin-top: auto;
+}
+
+/* RESPONSIVE */
+@media(max-width: 1024px) {
+  aside { transform: translateX(-100%); }
+  aside.open { transform: translateX(0); }
+  .content-wrapper { margin-left: 0; }
+  .toggle-sidebar { display: block; }
+  .dashboardGrid { grid-template-columns: 1fr; }
+}
+@media(max-width: 650px) {
+  header { padding: 12px 16px; }
+  .header-search { display: none; }
+  main { padding: 16px; }
+  .card { padding: 16px; }
+  .welcomeBanner { padding: 20px; text-align: center; flex-direction: column; gap: 15px; }
+  .userText strong { font-size: 12px; }
 }
 </style>
 </head>
 
 <body>
 
-<div id="loading" class="loading">Chaje Centre de Formation Le Pédagogue...</div>
+<div id="loading" class="loading">
+  <div class="spinner"></div>
+  <span>Chaje Centre de Formation Le Pédagogue...</span>
+</div>
 
+<!-- ================= AUTH SYSTEM ================= -->
 <div id="loginBox">
   <div class="authCard">
-    <h1>📚 Centre de Formation Le Pédagogue</h1>
-    <div class="authSub" data-i18n="authSub">Konekte pou antre nan sistèm nan</div>
+    <div class="authHeader">
+      <div class="logo-icon"><i class="fa-solid => fa-graduation-cap"></i></div>
+      <h1>Centre de Formation Le Pédagogue</h1>
+      <div class="authSub" data-i18n="authSub">Konekte pou antre nan sistèm nan</div>
+    </div>
 
     <div class="authTabs">
       <button id="tabLogin" class="active" onclick="showAuthTab('login')" data-i18n="loginTab">Konekte</button>
@@ -124,53 +682,79 @@ footer{text-align:center;padding:25px;color:#64748b}
     <div id="loginForm">
       <div class="formGroup">
         <label data-i18n="email">E-mail</label>
-        <input id="loginEmail" type="email" placeholder="E-mail">
+        <div class="input-icon-wrap">
+          <i class="fa-regular fa-envelope"></i>
+          <input id="loginEmail" type="email" placeholder="nom@pedagogue.edu.ht">
+        </div>
       </div>
 
       <div class="formGroup">
         <label data-i18n="password">Mot de passe</label>
-        <input id="loginPassword" type="password" placeholder="Mot de passe">
+        <div class="input-icon-wrap">
+          <i class="fa-solid fa-lock"></i>
+          <input id="loginPassword" type="password" placeholder="••••••••">
+        </div>
       </div>
 
-      <button class="primaryBtn" onclick="connexionEmail()" data-i18n="login">Konekte</button>
+      <button class="primaryBtn" onclick="connexionEmail()" data-i18n="login">
+        <i class="fa-solid fa-right-to-bracket"></i> Konekte
+      </button>
 
       <div class="divider">— oswa —</div>
 
-      <button class="googleBtn" onclick="connecterAvecGoogle()">🔵 Konekte ak Google</button>
+      <button class="googleBtn" onclick="connecterAvecGoogle()">
+        <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" width="18" alt="Google">
+        Konekte ak Google
+      </button>
     </div>
 
     <div id="registerForm" class="hidden">
       <div class="formGrid">
         <div class="formGroup">
           <label data-i18n="lastName">Nom</label>
-          <input id="regNom" type="text" placeholder="Nom">
+          <div class="input-icon-wrap">
+            <i class="fa-regular fa-user"></i>
+            <input id="regNom" type="text" placeholder="Nom">
+          </div>
         </div>
 
         <div class="formGroup">
           <label data-i18n="firstName">Prénom</label>
-          <input id="regPrenom" type="text" placeholder="Prénom">
+          <div class="input-icon-wrap">
+            <i class="fa-regular fa-user"></i>
+            <input id="regPrenom" type="text" placeholder="Prénom">
+          </div>
         </div>
       </div>
 
       <div class="formGroup">
         <label data-i18n="email">E-mail</label>
-        <input id="regEmail" type="email" placeholder="E-mail">
+        <div class="input-icon-wrap">
+          <i class="fa-regular fa-envelope"></i>
+          <input id="regEmail" type="email" placeholder="E-mail">
+        </div>
       </div>
 
       <div class="formGroup">
         <label data-i18n="password">Mot de passe</label>
-        <input id="regPassword" type="password" placeholder="Mot de passe">
+        <div class="input-icon-wrap">
+          <i class="fa-solid fa-lock"></i>
+          <input id="regPassword" type="password" placeholder="Mot de passe">
+        </div>
       </div>
 
       <div class="formGroup">
         <label data-i18n="confirmPassword">Confirmation mot de passe</label>
-        <input id="regPassword2" type="password" placeholder="Confirmation mot de passe">
+        <div class="input-icon-wrap">
+          <i class="fa-solid fa-lock"></i>
+          <input id="regPassword2" type="password" placeholder="Rapeye mot de passe">
+        </div>
       </div>
 
       <button class="primaryBtn" onclick="creerCompte()" data-i18n="createAccount">Kreye kont</button>
 
       <div class="pendingBox">
-        ⚠️
+        <i class="fa-solid fa-circle-info"></i>
         <span data-i18n="pendingInfo">
           Nouvo kont yo rete an attente jiskaske yon administratè valide demann lan.
         </span>
@@ -179,483 +763,585 @@ footer{text-align:center;padding:25px;color:#64748b}
   </div>
 </div>
 
+<!-- ================= MAIN ERP APP ================= -->
 <div id="app" style="display:none;">
 
-<header>
-  <div class="brand">📚 Centre de Formation Le Pédagogue</div>
-
-  <div class="userArea">
-
-    <select id="languageSelect" class="headerBtn" onchange="changerLangue(this.value)">
-      <option value="ht">🇭🇹 Kreyòl</option>
-      <option value="fr">🇫🇷 Français</option>
-    </select>
-
-    <button id="installButton"
-            class="headerBtn installBtn"
-            onclick="installerApp()">
-      📲 Installer
-    </button>
-
-    <img id="userPhoto" src="" alt="Photo">
-
-    <div class="userText">
-      <strong id="userName">Utilisateur</strong>
-      <span id="userEmail"></span><br>
-      <span id="userRole" class="roleBadge"></span>
-    </div>
-
-    <button class="headerBtn logoutBtn"
-            onclick="deconnecter()"
-            data-i18n="logout">
-      Déconnexion
-    </button>
-
-  </div>
-</header>
-
-<nav id="mainNav">
-  <button data-section="accueil" onclick="showSection('accueil')" data-i18n="navHome">🏠 Akèy</button>
-  <button data-section="eleves" onclick="showSection('eleves')" data-i18n="navStudents">👨‍🎓 Elèv</button>
-  <button data-section="professeurs" onclick="showSection('professeurs')" data-i18n="navTeachers">👨‍🏫 Pwofesè</button>
-  <button data-section="classes" onclick="showSection('classes')" data-i18n="navClasses">🏫 Klas</button>
-  <button data-section="matieres" onclick="showSection('matieres')" data-i18n="navSubjects">📚 Matyè</button>
-  <button data-section="devoirs" onclick="showSection('devoirs')" data-i18n="navHomework">📝 Devwa</button>
-  <button data-section="remises" onclick="showSection('remises')" data-i18n="navSubmissions">📤 Remèt</button>
-  <button data-section="resultats" onclick="showSection('resultats')" data-i18n="navResults">📊 Rezilta</button>
-  <button data-section="statistiques" onclick="showSection('statistiques')" data-i18n="navStats">📈 Estatistik</button>
-  <button data-section="utilisateurs" onclick="showSection('utilisateurs')" data-i18n="navUsers">👥 Itilizatè</button>
-  <button data-section="sauvegarde" onclick="showSection('sauvegarde')" data-i18n="navBackup">💾 Done</button>
-</nav>
-
-<main>
-
-<section id="accueil" class="section">
-  <div class="pageTitle">
-    <h2 data-i18n="dashboardTitle">Akèy</h2>
-    <p data-i18n="dashboardSub">Rezime sistèm nan</p>
-  </div>
-
-  <div class="statsGrid">
-    <div class="statCard">
-      <span data-i18n="students">Elèv</span>
-      <strong id="statEleves">0</strong>
-    </div>
-
-    <div class="statCard">
-      <span data-i18n="teachers">Pwofesè</span>
-      <strong id="statProfesseurs">0</strong>
-    </div>
-
-    <div class="statCard">
-      <span data-i18n="classes">Klas</span>
-      <strong id="statClasses">0</strong>
-    </div>
-
-    <div class="statCard">
-      <span data-i18n="homework">Devwa</span>
-      <strong id="statDevoirs">0</strong>
-    </div>
-  </div>
-
-  <div class="card">
-    <h3>Byenveni nan Centre de Formation Le Pédagogue</h3>
-    <p>Sistèm nan konekte ak Firebase pou jere done sant fòmasyon an.</p>
-  </div>
-</section>
-
-<section id="eleves" class="section">
-  <div class="pageTitle">
-    <h2 data-i18n="students">Elèv</h2>
-  </div>
-
-  <div class="card" id="studentFormCard">
-    <h3 data-i18n="addStudent">Ajoute yon elèv</h3>
-
-    <div class="formGrid">
-      <div class="formGroup">
-        <label data-i18n="lastName">Nom</label>
-        <input id="eleveNom">
-      </div>
-
-      <div class="formGroup">
-        <label data-i18n="firstName">Prénom</label>
-        <input id="elevePrenom">
-      </div>
-
-      <div class="formGroup">
-        <label data-i18n="email">E-mail</label>
-        <input id="eleveEmail" type="email">
-      </div>
-
-      <div class="formGroup">
-        <label data-i18n="class">Klas</label>
-        <select id="eleveClasse"></select>
+  <!-- SIDEBAR NAVIGATION -->
+  <aside id="sidebar">
+    <div class="sidebar-header">
+      <i class="fa-solid fa-graduation-cap"></i>
+      <div>
+        <h1>LE PÉDAGOGUE</h1>
+        <span>Sistèm ERP / Inivèsite</span>
       </div>
     </div>
 
-    <button class="smallBtn" onclick="ajouterEleve()" data-i18n="add">Ajoute</button>
-  </div>
+    <nav id="mainNav">
+      <button data-section="accueil" onclick="showSection('accueil')" data-i18n="navHome"><i class="fa-solid fa-chart-pie"></i> <span>Akèy</span></button>
+      <button data-section="eleves" onclick="showSection('eleves')" data-i18n="navStudents"><i class="fa-solid fa-user-graduate"></i> <span>Elèv</span></button>
+      <button data-section="professeurs" onclick="showSection('professeurs')" data-i18n="navTeachers"><i class="fa-solid fa-chalkboard-user"></i> <span>Pwofesè</span></button>
+      <button data-section="classes" onclick="showSection('classes')" data-i18n="navClasses"><i class="fa-solid fa-school"></i> <span>Klas</span></button>
+      <button data-section="matieres" onclick="showSection('matieres')" data-i18n="navSubjects"><i class="fa-solid fa-book-bookmark"></i> <span>Matyè</span></button>
+      <button data-section="devoirs" onclick="showSection('devoirs')" data-i18n="navHomework"><i class="fa-solid fa-pen-to-square"></i> <span>Devwa</span></button>
+      <button data-section="remises" onclick="showSection('remises')" data-i18n="navSubmissions"><i class="fa-solid fa-upload"></i> <span>Remèt</span></button>
+      <button data-section="resultats" onclick="showSection('resultats')" data-i18n="navResults"><i class="fa-solid fa-square-poll-vertical"></i> <span>Rezilta</span></button>
+      <button data-section="statistiques" onclick="showSection('statistiques')" data-i18n="navStats"><i class="fa-solid fa-chart-line"></i> <span>Estatistik</span></button>
+      <button data-section="utilisateurs" onclick="showSection('utilisateurs')" data-i18n="navUsers"><i class="fa-solid fa-users-gear"></i> <span>Itilizatè</span></button>
+      <button data-section="sauvegarde" onclick="showSection('sauvegarde')" data-i18n="navBackup"><i class="fa-solid fa-database"></i> <span>Done</span></button>
+    </nav>
+  </aside>
 
-  <div class="card">
-    <div class="tableWrap">
-      <table>
-        <thead>
-          <tr>
-            <th>Nom</th>
-            <th>Prénom</th>
-            <th>E-mail</th>
-            <th>Klas</th>
-            <th>Aksyon</th>
-          </tr>
-        </thead>
-        <tbody id="listeEleves"></tbody>
-      </table>
-    </div>
-  </div>
-</section>
+  <!-- CONTENT WRAPPER -->
+  <div class="content-wrapper">
+    <header>
+      <button class="toggle-sidebar" onclick="toggleSidebar()"><i class="fa-solid fa-bars"></i></button>
 
-<section id="professeurs" class="section">
-  <div class="pageTitle">
-    <h2 data-i18n="teachers">Pwofesè</h2>
-  </div>
-
-  <div class="card" id="teacherFormCard">
-    <h3 data-i18n="addTeacher">Ajoute yon pwofesè</h3>
-
-    <div class="formGrid">
-      <div class="formGroup">
-        <label data-i18n="lastName">Nom</label>
-        <input id="profNom">
+      <div class="header-search">
+        <i class="fa-solid fa-magnifying-glass" style="color:#94a3b8"></i>
+        <input type="text" placeholder="Recherche rapide...">
       </div>
 
-      <div class="formGroup">
-        <label data-i18n="firstName">Prénom</label>
-        <input id="profPrenom">
+      <div class="userArea">
+        <select id="languageSelect" class="headerBtn" onchange="changerLangue(this.value)">
+          <option value="ht">🇭🇹 Kreyòl</option>
+          <option value="fr">🇫🇷 Français</option>
+        </select>
+
+        <button id="installButton" class="headerBtn installBtn" onclick="installerApp()">
+          <i class="fa-solid fa-download"></i> Installer
+        </button>
+
+        <div class="userProfileBadge">
+          <img id="userPhoto" src="" alt="Photo">
+          <div class="userText">
+            <strong id="userName">Utilisateur</strong>
+            <span id="userEmail" style="color:var(--text-muted); font-size:11px;"></span>
+            <div><span id="userRole" class="roleBadge"></span></div>
+          </div>
+        </div>
+
+        <button class="headerBtn logoutBtn" onclick="deconnecter()" data-i18n="logout" title="Déconnexion">
+          <i class="fa-solid fa-power-off"></i>
+        </button>
       </div>
+    </header>
 
-      <div class="formGroup">
-        <label data-i18n="email">E-mail</label>
-        <input id="profEmail" type="email">
-      </div>
+    <main>
+      <!-- SECTION: ACCUEIL / DASHBOARD -->
+      <section id="accueil" class="section">
+        <div class="welcomeBanner">
+          <div>
+            <h3>Centre de Formation Le Pédagogue</h3>
+            <p>Plateforme de gestion académique et universitaire intégrée. Suivi des étudiants, professeurs et évaluations en temps réel.</p>
+          </div>
+          <i class="fa-solid fa-university" style="font-size: 55px; opacity: 0.3;"></i>
+        </div>
 
-      <div class="formGroup">
-        <label data-i18n="subject">Matyè</label>
-        <select id="profMatiere"></select>
-      </div>
-    </div>
+        <div class="statsGrid">
+          <div class="statCard">
+            <div class="statIcon blue"><i class="fa-solid fa-user-graduate"></i></div>
+            <div>
+              <span data-i18n="students">Elèv / Étudiants</span>
+              <strong id="statEleves">0</strong>
+            </div>
+          </div>
 
-    <button class="smallBtn" onclick="ajouterProfesseur()" data-i18n="add">Ajoute</button>
+          <div class="statCard">
+            <div class="statIcon purple"><i class="fa-solid fa-chalkboard-user"></i></div>
+            <div>
+              <span data-i18n="teachers">Pwofesè</span>
+              <strong id="statProfesseurs">0</strong>
+            </div>
+          </div>
+
+          <div class="statCard">
+            <div class="statIcon green"><i class="fa-solid fa-school"></i></div>
+            <div>
+              <span data-i18n="classes">Klas / Salles</span>
+              <strong id="statClasses">0</strong>
+            </div>
+          </div>
+
+          <div class="statCard">
+            <div class="statIcon orange"><i class="fa-solid fa-book"></i></div>
+            <div>
+              <span data-i18n="homework">Devwa / Devoirs</span>
+              <strong id="statDevoirs">0</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="dashboardGrid">
+          <div>
+            <div class="card">
+              <h3><i class="fa-solid fa-bolt"></i> Raccourcis Rapides</h3>
+              <div class="quickActions">
+                <div class="actionTile" onclick="showSection('eleves')">
+                  <i class="fa-solid fa-user-plus"></i>
+                  <span>Ajouter Élève</span>
+                </div>
+                <div class="actionTile" onclick="showSection('devoirs')">
+                  <i class="fa-solid fa-file-circle-plus"></i>
+                  <span>Nouveau Devoir</span>
+                </div>
+                <div class="actionTile" onclick="showSection('remises')">
+                  <i class="fa-solid fa-pen-to-square"></i>
+                  <span>Saisir Notes</span>
+                </div>
+                <div class="actionTile" onclick="showSection('resultats')">
+                  <i class="fa-solid fa-graduation-cap"></i>
+                  <span>Bulletins</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <h3><i class="fa-solid fa-bullhorn"></i> Annonces & Informations</h3>
+              <p style="color:var(--text-muted); font-size:13.5px; line-height: 1.6;">
+                Sistèm nan konekte ak Firebase nan tan reyèl pou jere tout done sant fòmasyon an san sekousse.
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <div class="card">
+              <h3><i class="fa-regular fa-calendar-days"></i> Calendrier</h3>
+              <div class="eventList">
+                <div class="eventItem">
+                  <div class="eventDate">OCT<br>15</div>
+                  <div>
+                    <strong style="font-size:13px; display:block;">Examens Intra</strong>
+                    <span style="font-size:11px; color:var(--text-muted);">Session d'Automne</span>
+                  </div>
+                </div>
+                <div class="eventItem">
+                  <div class="eventDate" style="background:#fef3c7; color:#d97706;">NOV<br>01</div>
+                  <div>
+                    <strong style="font-size:13px; display:block;">Remise des Notes</strong>
+                    <span style="font-size:11px; color:var(--text-muted);">Moyennes générales</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION: ELEVES -->
+      <section id="eleves" class="section">
+        <div class="pageTitle">
+          <div>
+            <h2 data-i18n="students">Elèv</h2>
+            <p>Gestion du répertoire des étudiants inscrits</p>
+          </div>
+        </div>
+
+        <div class="card" id="studentFormCard">
+          <h3 data-i18n="addStudent"><i class="fa-solid fa-user-plus"></i> Ajoute yon elèv</h3>
+          <div class="formGrid">
+            <div class="formGroup">
+              <label data-i18n="lastName">Nom</label>
+              <input id="eleveNom" placeholder="Nom">
+            </div>
+            <div class="formGroup">
+              <label data-i18n="firstName">Prénom</label>
+              <input id="elevePrenom" placeholder="Prénom">
+            </div>
+            <div class="formGroup">
+              <label data-i18n="email">E-mail</label>
+              <input id="eleveEmail" type="email" placeholder="E-mail">
+            </div>
+            <div class="formGroup">
+              <label data-i18n="class">Klas</label>
+              <select id="eleveClasse"></select>
+            </div>
+          </div>
+          <button class="smallBtn" onclick="ajouterEleve()" data-i18n="add"><i class="fa-solid fa-plus"></i> Ajoute</button>
+        </div>
+
+        <div class="card">
+          <div class="tableWrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Nom</th>
+                  <th>Prénom</th>
+                  <th>E-mail</th>
+                  <th>Klas</th>
+                  <th>Aksyon</th>
+                </tr>
+              </thead>
+              <tbody id="listeEleves"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION: PROFESSEURS -->
+      <section id="professeurs" class="section">
+        <div class="pageTitle">
+          <div>
+            <h2 data-i18n="teachers">Pwofesè</h2>
+            <p>Gestion du corps enseignant</p>
+          </div>
+        </div>
+
+        <div class="card" id="teacherFormCard">
+          <h3 data-i18n="addTeacher"><i class="fa-solid fa-chalkboard-user"></i> Ajoute yon pwofesè</h3>
+          <div class="formGrid">
+            <div class="formGroup">
+              <label data-i18n="lastName">Nom</label>
+              <input id="profNom" placeholder="Nom">
+            </div>
+            <div class="formGroup">
+              <label data-i18n="firstName">Prénom</label>
+              <input id="profPrenom" placeholder="Prénom">
+            </div>
+            <div class="formGroup">
+              <label data-i18n="email">E-mail</label>
+              <input id="profEmail" type="email" placeholder="E-mail">
+            </div>
+            <div class="formGroup">
+              <label data-i18n="subject">Matyè</label>
+              <select id="profMatiere"></select>
+            </div>
+          </div>
+          <button class="smallBtn" onclick="ajouterProfesseur()" data-i18n="add"><i class="fa-solid fa-plus"></i> Ajoute</button>
+        </div>
+
+        <div class="card">
+          <div class="tableWrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Nom</th>
+                  <th>Prénom</th>
+                  <th>E-mail</th>
+                  <th>Matyè</th>
+                  <th>Aksyon</th>
+                </tr>
+              </thead>
+              <tbody id="listeProfesseurs"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION: CLASSES -->
+      <section id="classes" class="section">
+        <div class="pageTitle">
+          <div>
+            <h2 data-i18n="classes">Klas</h2>
+            <p>Salles et promotions d'études</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 data-i18n="addClass"><i class="fa-solid fa-school"></i> Ajoute yon klas</h3>
+          <div class="formGrid">
+            <div class="formGroup">
+              <label data-i18n="className">Non klas</label>
+              <input id="classeNom" placeholder="Ex: Informatique I">
+            </div>
+            <div class="formGroup">
+              <label data-i18n="level">Nivo</label>
+              <input id="classeNiveau" placeholder="Ex: Licence 1">
+            </div>
+          </div>
+          <button class="smallBtn" onclick="ajouterClasse()" data-i18n="add"><i class="fa-solid fa-plus"></i> Ajoute</button>
+        </div>
+
+        <div class="card">
+          <div class="tableWrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Non</th>
+                  <th>Nivo</th>
+                  <th>Aksyon</th>
+                </tr>
+              </thead>
+              <tbody id="listeClasses"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION: MATIERES -->
+      <section id="matieres" class="section">
+        <div class="pageTitle">
+          <div>
+            <h2 data-i18n="subjects">Matyè</h2>
+            <p>Cours et modules d'apprentissage</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 data-i18n="addSubject"><i class="fa-solid fa-book"></i> Ajoute yon matyè</h3>
+          <div class="formGroup">
+            <label data-i18n="subjectName">Non matyè</label>
+            <input id="matiereNom" placeholder="Ex: Algorithmique">
+          </div>
+          <button class="smallBtn" onclick="ajouterMatiere()" data-i18n="add"><i class="fa-solid fa-plus"></i> Ajoute</button>
+        </div>
+
+        <div class="card">
+          <div class="tableWrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Non matyè</th>
+                  <th>Aksyon</th>
+                </tr>
+              </thead>
+              <tbody id="listeMatieres"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION: DEVOIRS -->
+      <section id="devoirs" class="section">
+        <div class="pageTitle">
+          <div>
+            <h2 data-i18n="homework">Devwa</h2>
+            <p>Gestion des évaluations et examens</p>
+          </div>
+        </div>
+
+        <div class="card" id="homeworkFormCard">
+          <h3 data-i18n="addHomework"><i class="fa-solid fa-pen-to-square"></i> Ajoute yon devwa</h3>
+          <div class="formGrid">
+            <div class="formGroup">
+              <label data-i18n="title">Tit</label>
+              <input id="devoirTitre" placeholder="Ex: Projet final">
+            </div>
+            <div class="formGroup">
+              <label data-i18n="subject">Matyè</label>
+              <select id="devoirMatiere"></select>
+            </div>
+            <div class="formGroup">
+              <label data-i18n="class">Klas</label>
+              <select id="devoirClasse"></select>
+            </div>
+            <div class="formGroup">
+              <label data-i18n="date">Dat</label>
+              <input id="devoirDate" type="date">
+            </div>
+            <div class="formGroup full">
+              <label data-i18n="description">Deskripsyon</label>
+              <input id="devoirDescription" placeholder="Instructions du devoir...">
+            </div>
+          </div>
+          <button class="smallBtn" onclick="ajouterDevoir()" data-i18n="add"><i class="fa-solid fa-plus"></i> Ajoute</button>
+        </div>
+
+        <div class="card">
+          <div class="tableWrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Tit</th>
+                  <th>Matyè</th>
+                  <th>Klas</th>
+                  <th>Dat</th>
+                  <th>Aksyon</th>
+                </tr>
+              </thead>
+              <tbody id="listeDevoirs"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION: REMISES -->
+      <section id="remises" class="section">
+        <div class="pageTitle">
+          <div>
+            <h2 data-i18n="submissions">Remèt devwa</h2>
+            <p>Saisie des notes (/20 ak ekivalan /100)</p>
+          </div>
+        </div>
+
+        <div class="card" id="submissionFormCard">
+          <h3 data-i18n="addSubmission"><i class="fa-solid fa-file-export"></i> Ajoute yon remèt</h3>
+          <div class="formGrid">
+            <div class="formGroup">
+              <label data-i18n="student">Elèv</label>
+              <select id="remiseEleve"></select>
+            </div>
+            <div class="formGroup">
+              <label data-i18n="homework">Devwa</label>
+              <select id="remiseDevoir"></select>
+            </div>
+            <div class="formGroup">
+              <label>Nòt /20</label>
+              <input id="remiseNote" type="number" min="0" max="20" step="0.01" placeholder="Ex: 16">
+            </div>
+            <div class="formGroup">
+              <label>Kòmantè</label>
+              <input id="remiseCommentaire" placeholder="Remarques...">
+            </div>
+          </div>
+          <button class="smallBtn" onclick="ajouterRemise()" data-i18n="add"><i class="fa-solid fa-plus"></i> Ajoute</button>
+        </div>
+
+        <div class="card">
+          <div class="tableWrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Elèv</th>
+                  <th>Devwa</th>
+                  <th>Nòt /20</th>
+                  <th>Ekivalan /100</th>
+                  <th>Kòmantè</th>
+                  <th>Aksyon</th>
+                </tr>
+              </thead>
+              <tbody id="listeRemises"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION: RESULTATS -->
+      <section id="resultats" class="section">
+        <div class="pageTitle">
+          <div>
+            <h2 data-i18n="results">Rezilta</h2>
+            <p>Consulter le bulletin individuel des élèves</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="formGroup" style="max-width: 320px;">
+            <label>Sélectionner un étudiant</label>
+            <select id="resultatEleve" onchange="afficherResultatEleve()"></select>
+          </div>
+          <div id="resultatEleveDetails" style="margin-top: 15px;"></div>
+        </div>
+      </section>
+
+      <!-- SECTION: STATISTIQUES -->
+      <section id="statistiques" class="section">
+        <div class="pageTitle">
+          <div>
+            <h2 data-i18n="statistics">Estatistik</h2>
+            <p>Vue globale des indicateurs de l'établissement</p>
+          </div>
+        </div>
+
+        <div class="statsGrid">
+          <div class="statCard">
+            <div class="statIcon blue"><i class="fa-solid fa-user-graduate"></i></div>
+            <div>
+              <span>Total Elèv</span>
+              <strong id="statBigEleves">0</strong>
+            </div>
+          </div>
+          <div class="statCard">
+            <div class="statIcon purple"><i class="fa-solid fa-chalkboard-user"></i></div>
+            <div>
+              <span>Total Pwofesè</span>
+              <strong id="statBigProfesseurs">0</strong>
+            </div>
+          </div>
+          <div class="statCard">
+            <div class="statIcon green"><i class="fa-solid fa-school"></i></div>
+            <div>
+              <span>Total Klas</span>
+              <strong id="statBigClasses">0</strong>
+            </div>
+          </div>
+          <div class="statCard">
+            <div class="statIcon orange"><i class="fa-solid fa-book"></i></div>
+            <div>
+              <span>Total Matyè</span>
+              <strong id="statBigMatieres">0</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION: UTILISATEURS -->
+      <section id="utilisateurs" class="section">
+        <div class="pageTitle">
+          <div>
+            <h2 data-i18n="users">Itilizatè</h2>
+            <p>Validation et administration des accès au système</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3><i class="fa-solid fa-user-clock" style="color:var(--warning);"></i> Demann an attente</h3>
+          <div class="tableWrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Non</th>
+                  <th>E-mail</th>
+                  <th>Wòl</th>
+                  <th>Estati</th>
+                  <th>Aksyon</th>
+                </tr>
+              </thead>
+              <tbody id="listeDemandes"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3><i class="fa-solid fa-users"></i> Tout itilizatè</h3>
+          <div class="tableWrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Non</th>
+                  <th>E-mail</th>
+                  <th>Wòl</th>
+                  <th>Estati</th>
+                </tr>
+              </thead>
+              <tbody id="listeUtilisateurs"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION: SAUVEGARDE -->
+      <section id="sauvegarde" class="section">
+        <div class="pageTitle">
+          <div>
+            <h2 data-i18n="backup">Done / Sauvegarde</h2>
+            <p>Gestion des sauvegardes et sécurité des données</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <p style="margin-bottom: 15px; color:var(--text-muted);">Done prensipal yo konsève nan Firebase nan fòm sekirize.</p>
+          <div class="actionRow">
+            <button class="smallBtn" onclick="exporterDonnees()"><i class="fa-solid fa-download"></i> Ekspòte done</button>
+            <button class="smallBtn warningBtn" onclick="importerDonnees()"><i class="fa-solid fa-upload"></i> Enpòte done</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      © Centre de Formation Le Pédagogue — Système ERP Universitaire
+    </footer>
   </div>
-
-  <div class="card">
-    <div class="tableWrap">
-      <table>
-        <thead>
-          <tr>
-            <th>Nom</th>
-            <th>Prénom</th>
-            <th>E-mail</th>
-            <th>Matyè</th>
-            <th>Aksyon</th>
-          </tr>
-        </thead>
-        <tbody id="listeProfesseurs"></tbody>
-      </table>
-    </div>
-  </div>
-</section>
-
-<section id="classes" class="section">
-  <div class="pageTitle">
-    <h2 data-i18n="classes">Klas</h2>
-  </div>
-
-  <div class="card">
-    <h3 data-i18n="addClass">Ajoute yon klas</h3>
-
-    <div class="formGrid">
-      <div class="formGroup">
-        <label data-i18n="className">Non klas</label>
-        <input id="classeNom">
-      </div>
-
-      <div class="formGroup">
-        <label data-i18n="level">Nivo</label>
-        <input id="classeNiveau">
-      </div>
-    </div>
-
-    <button class="smallBtn" onclick="ajouterClasse()" data-i18n="add">Ajoute</button>
-  </div>
-
-  <div class="card">
-    <div class="tableWrap">
-      <table>
-        <thead>
-          <tr>
-            <th>Non</th>
-            <th>Nivo</th>
-            <th>Aksyon</th>
-          </tr>
-        </thead>
-        <tbody id="listeClasses"></tbody>
-      </table>
-    </div>
-  </div>
-</section>
-
-<section id="matieres" class="section">
-  <div class="pageTitle">
-    <h2 data-i18n="subjects">Matyè</h2>
-  </div>
-
-  <div class="card">
-    <h3 data-i18n="addSubject">Ajoute yon matyè</h3>
-
-    <div class="formGroup">
-      <label data-i18n="subjectName">Non matyè</label>
-      <input id="matiereNom">
-    </div>
-
-    <button class="smallBtn" onclick="ajouterMatiere()" data-i18n="add">Ajoute</button>
-  </div>
-
-  <div class="card">
-    <div class="tableWrap">
-      <table>
-        <thead>
-          <tr>
-            <th>Non matyè</th>
-            <th>Aksyon</th>
-          </tr>
-        </thead>
-        <tbody id="listeMatieres"></tbody>
-      </table>
-    </div>
-  </div>
-</section>
-
-<section id="devoirs" class="section">
-  <div class="pageTitle">
-    <h2 data-i18n="homework">Devwa</h2>
-  </div>
-
-  <div class="card" id="homeworkFormCard">
-    <h3 data-i18n="addHomework">Ajoute yon devwa</h3>
-
-    <div class="formGrid">
-      <div class="formGroup">
-        <label data-i18n="title">Tit</label>
-        <input id="devoirTitre">
-      </div>
-
-      <div class="formGroup">
-        <label data-i18n="subject">Matyè</label>
-        <select id="devoirMatiere"></select>
-      </div>
-
-      <div class="formGroup">
-        <label data-i18n="class">Klas</label>
-        <select id="devoirClasse"></select>
-      </div>
-
-      <div class="formGroup">
-        <label data-i18n="date">Dat</label>
-        <input id="devoirDate" type="date">
-      </div>
-
-      <div class="formGroup full">
-        <label data-i18n="description">Deskripsyon</label>
-        <input id="devoirDescription">
-      </div>
-    </div>
-
-    <button class="smallBtn" onclick="ajouterDevoir()" data-i18n="add">Ajoute</button>
-  </div>
-
-  <div class="card">
-    <div class="tableWrap">
-      <table>
-        <thead>
-          <tr>
-            <th>Tit</th>
-            <th>Matyè</th>
-            <th>Klas</th>
-            <th>Dat</th>
-            <th>Aksyon</th>
-          </tr>
-        </thead>
-        <tbody id="listeDevoirs"></tbody>
-      </table>
-    </div>
-  </div>
-</section>
-
-<section id="remises" class="section">
-  <div class="pageTitle">
-    <h2 data-i18n="submissions">Remèt devwa</h2>
-    <p>Nòt yo antre sou 20 epi sistèm nan montre ekivalan sou 100.</p>
-  </div>
-
-  <div class="card" id="submissionFormCard">
-    <h3 data-i18n="addSubmission">Ajoute yon remèt</h3>
-
-    <div class="formGrid">
-      <div class="formGroup">
-        <label data-i18n="student">Elèv</label>
-        <select id="remiseEleve"></select>
-      </div>
-
-      <div class="formGroup">
-        <label data-i18n="homework">Devwa</label>
-        <select id="remiseDevoir"></select>
-      </div>
-
-      <div class="formGroup">
-        <label>Nòt /20</label>
-        <input id="remiseNote" type="number" min="0" max="20" step="0.01">
-      </div>
-
-      <div class="formGroup">
-        <label>Kòmantè</label>
-        <input id="remiseCommentaire">
-      </div>
-    </div>
-
-    <button class="smallBtn" onclick="ajouterRemise()" data-i18n="add">Ajoute</button>
-  </div>
-
-  <div class="card">
-    <div class="tableWrap">
-      <table>
-        <thead>
-          <tr>
-            <th>Elèv</th>
-            <th>Devwa</th>
-            <th>Nòt /20</th>
-            <th>Ekivalan /100</th>
-            <th>Kòmantè</th>
-            <th>Aksyon</th>
-          </tr>
-        </thead>
-        <tbody id="listeRemises"></tbody>
-      </table>
-    </div>
-  </div>
-</section>
-
-<section id="resultats" class="section">
-  <div class="pageTitle">
-    <h2 data-i18n="results">Rezilta</h2>
-  </div>
-
-  <div class="card">
-    <div class="formGroup">
-      <label>Elèv</label>
-      <select id="resultatEleve" onchange="afficherResultatEleve()"></select>
-    </div>
-
-    <div id="resultatEleveDetails"></div>
-  </div>
-</section>
-
-<section id="statistiques" class="section">
-  <div class="pageTitle">
-    <h2 data-i18n="statistics">Estatistik</h2>
-  </div>
-
-  <div class="statsGrid">
-    <div class="statCard">
-      <span>Elèv</span>
-      <strong id="statBigEleves">0</strong>
-    </div>
-
-    <div class="statCard">
-      <span>Pwofesè</span>
-      <strong id="statBigProfesseurs">0</strong>
-    </div>
-
-    <div class="statCard">
-      <span>Klas</span>
-      <strong id="statBigClasses">0</strong>
-    </div>
-
-    <div class="statCard">
-      <span>Matyè</span>
-      <strong id="statBigMatieres">0</strong>
-    </div>
-  </div>
-</section>
-
-<section id="utilisateurs" class="section">
-  <div class="pageTitle">
-    <h2 data-i18n="users">Itilizatè</h2>
-    <p>Se administratè a ki valide nouvo kont yo.</p>
-  </div>
-
-  <div class="card">
-    <h3>Demann an attente</h3>
-
-    <div class="tableWrap">
-      <table>
-        <thead>
-          <tr>
-            <th>Non</th>
-            <th>E-mail</th>
-            <th>Wòl</th>
-            <th>Estati</th>
-            <th>Aksyon</th>
-          </tr>
-        </thead>
-        <tbody id="listeDemandes"></tbody>
-      </table>
-    </div>
-  </div>
-
-  <div class="card">
-    <h3>Tout itilizatè</h3>
-
-    <div class="tableWrap">
-      <table>
-        <thead>
-          <tr>
-            <th>Non</th>
-            <th>E-mail</th>
-            <th>Wòl</th>
-            <th>Estati</th>
-          </tr>
-        </thead>
-        <tbody id="listeUtilisateurs"></tbody>
-      </table>
-    </div>
-  </div>
-</section>
-
-<section id="sauvegarde" class="section">
-  <div class="pageTitle">
-    <h2 data-i18n="backup">Done / Sauvegarde</h2>
-  </div>
-
-  <div class="card">
-    <p>Done prensipal yo konsève nan Firebase.</p>
-
-    <div class="actionRow">
-      <button class="smallBtn" onclick="exporterDonnees()">📤 Ekspòte done</button>
-      <button class="smallBtn warningBtn" onclick="importerDonnees()">📥 Enpòte done</button>
-    </div>
-  </div>
-</section>
-
-</main>
-
-<footer>
-  © Centre de Formation Le Pédagogue
-</footer>
-
 </div>
 
 <div id="toast" class="toast"></div>
+
+<!-- UI HELPER FOR SIDEBAR MOBILE TOGGLE -->
+<script>
+function toggleSidebar(){
+  document.getElementById('sidebar').classList.toggle('open');
+}
+</script>
 
 <script type="module">
 
@@ -851,17 +1537,17 @@ const translations = {
     login:"Konekte",
     logout:"Déconnexion",
 
-    navHome:"🏠 Akèy",
-    navStudents:"👨‍🎓 Elèv",
-    navTeachers:"👨‍🏫 Pwofesè",
-    navClasses:"🏫 Klas",
-    navSubjects:"📚 Matyè",
-    navHomework:"📝 Devwa",
-    navSubmissions:"📤 Remèt",
-    navResults:"📊 Rezilta",
-    navStats:"📈 Estatistik",
-    navUsers:"👥 Itilizatè",
-    navBackup:"💾 Done",
+    navHome:"Akèy",
+    navStudents:"Elèv",
+    navTeachers:"Pwofesè",
+    navClasses:"Klas",
+    navSubjects:"Matyè",
+    navHomework:"Devwa",
+    navSubmissions:"Remèt",
+    navResults:"Rezilta",
+    navStats:"Estatistik",
+    navUsers:"Itilizatè",
+    navBackup:"Done",
 
     dashboardTitle:"Akèy",
     dashboardSub:"Rezime sistèm nan",
@@ -920,17 +1606,17 @@ const translations = {
     login:"Connexion",
     logout:"Déconnexion",
 
-    navHome:"🏠 Accueil",
-    navStudents:"👨‍🎓 Élèves",
-    navTeachers:"👨‍🏫 Professeurs",
-    navClasses:"🏫 Classes",
-    navSubjects:"📚 Matières",
-    navHomework:"📝 Devoirs",
-    navSubmissions:"📤 Remises",
-    navResults:"📊 Résultats",
-    navStats:"📈 Statistiques",
-    navUsers:"👥 Utilisateurs",
-    navBackup:"💾 Données",
+    navHome:"Accueil",
+    navStudents:"Élèves",
+    navTeachers:"Professeurs",
+    navClasses:"Classes",
+    navSubjects:"Matières",
+    navHomework:"Devoirs",
+    navSubmissions:"Remises",
+    navResults:"Résultats",
+    navStats:"Statistiques",
+    navUsers:"Utilisateurs",
+    navBackup:"Données",
 
     dashboardTitle:"Accueil",
     dashboardSub:"Résumé du système",
@@ -1018,9 +1704,13 @@ function(lang){
       if(
         translations[lang]?.[key]
       ){
-
-        el.textContent =
-          translations[lang][key];
+        
+        const span = el.querySelector('span');
+        if(span) {
+          span.textContent = translations[lang][key];
+        } else {
+          el.textContent = translations[lang][key];
+        }
 
       }
 
@@ -1767,7 +2457,7 @@ async function handleUser(user){
 
   document
     .getElementById("app")
-    .style.display="block";
+    .style.display="flex";
 
 
   document
@@ -1901,7 +2591,7 @@ function applyRoleUI(){
 
       btn.style.display =
         canAccess(section)
-        ? "block"
+        ? "flex"
         : "none";
 
     });
@@ -3795,7 +4485,7 @@ function(){
       </table>
     </div>
 
-    <div class="card">
+    <div class="card" style="margin-top: 15px;">
 
       <strong>
         Mwayèn:
@@ -4133,7 +4823,7 @@ window.addEventListener(
 
     if(btn)
       btn.style.display=
-        "inline-block";
+        "inline-flex";
 
   }
 );
