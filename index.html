@@ -10,12 +10,12 @@
 
 <title>Centre de Formation Le Pédagogue | Système de Gestion Académique</title>
 
-<!-- Font & Icons -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
+
 :root {
   --primary: #1e40af;
   --primary-hover: #1d4ed8;
@@ -57,7 +57,10 @@ body {
   display: none !important;
 }
 
-button, input, select, textarea {
+button,
+input,
+select,
+textarea {
   font-family: inherit;
   font-size: 1rem;
 }
@@ -68,7 +71,9 @@ button {
   min-height: 48px;
 }
 
-/* ================= AUTHENTICATION DESIGN ================= */
+/* =========================================================
+   AUTHENTICATION
+   ========================================================= */
 
 .auth-page {
   min-height: 100vh;
@@ -241,7 +246,6 @@ button {
 
 .google-btn:hover {
   background: #f8fafc;
-  border-color: #cbd5e1;
 }
 
 .danger-btn {
@@ -307,7 +311,9 @@ button {
   color: #1e293b;
 }
 
-/* ================= APP LAYOUT ================= */
+/* =========================================================
+   HEADER
+   ========================================================= */
 
 .app-header {
   position: fixed;
@@ -458,7 +464,9 @@ button {
   color: #991b1b;
 }
 
-/* ================= SIDEBAR ================= */
+/* =========================================================
+   SIDEBAR
+   ========================================================= */
 
 .sidebar {
   position: fixed;
@@ -508,13 +516,15 @@ button {
   box-shadow: 0 4px 12px rgba(30, 64, 175, 0.3);
 }
 
-/* ================= MAIN CONTENT (VERTICAL LAYOUT) ================= */
+/* =========================================================
+   MAIN
+   ========================================================= */
 
 .main {
   margin-left: var(--sidebar-width);
   padding: calc(var(--header-height) + 28px) 32px 40px;
   min-height: 100vh;
-  transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: margin-left 0.3s ease;
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -527,13 +537,19 @@ button {
   animation: fadeIn 0.25s ease-in-out;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(6px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
 .section.active {
   display: flex;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .page-header {
@@ -547,16 +563,19 @@ button {
   letter-spacing: -0.02em;
 }
 
-/* ================= DASHBOARD & CARDS VERTICAL ================= */
+/* =========================================================
+   DASHBOARD HORIZONTAL
+   ========================================================= */
 
 .stats-grid {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 16px;
   width: 100%;
 }
 
 .stat-card {
+  min-width: 0;
   background: white;
   border-radius: var(--radius-lg);
   padding: 24px;
@@ -626,7 +645,9 @@ button {
   width: 100%;
 }
 
-/* ================= LISTS & ITEMS ================= */
+/* =========================================================
+   LISTS
+   ========================================================= */
 
 .list {
   display: flex;
@@ -673,6 +694,14 @@ button {
   border-top: 1px dashed var(--border-color);
 }
 
+.actions select {
+  min-height: 42px;
+  padding: 8px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background: white;
+}
+
 .badge {
   display: inline-block;
   padding: 6px 12px;
@@ -684,7 +713,8 @@ button {
   text-transform: capitalize;
 }
 
-.badge.pending, .badge.attente {
+.badge.pending,
+.badge.attente {
   background: #fef3c7;
   color: #b45309;
 }
@@ -710,29 +740,28 @@ button {
   border: 2px dashed var(--border-color);
 }
 
-/* ================= RESPONSIVE DESIGN ================= */
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
 
 @media (min-width: 768px) {
+
   .stats-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
+
   .grid-form {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
   }
+
   .full {
     grid-column: 1 / -1;
   }
 }
 
-@media (min-width: 1025px) {
-  .stats-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
 @media (max-width: 1024px) {
+
   .sidebar {
     transform: translateX(-100%);
   }
@@ -748,29 +777,85 @@ button {
 }
 
 @media (max-width: 768px) {
+
+  .app-header {
+    padding: 0 10px;
+    gap: 8px;
+  }
+
   .user-info {
     display: none;
   }
-  
+
   .app-title {
-    font-size: 15px;
+    font-size: 14px;
   }
-  
+
   .app-subtitle {
     display: none;
   }
 
+  .brand-info {
+    max-width: 190px;
+  }
+
+  .header-actions {
+    gap: 5px;
+  }
+
   .header-actions select {
-    padding: 6px 8px;
-    font-size: 13px;
+    padding: 6px 7px;
+    font-size: 12px;
+    max-width: 105px;
+  }
+
+  .install-btn,
+  .logout-btn {
+    padding: 7px 9px;
+    font-size: 12px;
+  }
+
+  .stats-grid {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 12px;
+    width: 100%;
+    padding-bottom: 8px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .stats-grid .stat-card {
+    flex: 0 0 82%;
+    scroll-snap-align: start;
+  }
+
+  .stat-number {
+    font-size: 32px;
+  }
+
+  .panel {
+    padding: 20px;
+  }
+
+  .page-title {
+    font-size: 22px;
+  }
+
+  .auth-box {
+    padding: 28px 20px;
   }
 }
+
 </style>
 </head>
 
 <body>
 
-<!-- ================= AUTH PAGE ================= -->
+<!-- =========================================================
+     AUTH PAGE
+     ========================================================= -->
 
 <div id="authPage" class="auth-page">
 
@@ -787,70 +872,132 @@ button {
     </div>
 
     <div class="tabs">
-      <button id="loginTab" class="active" onclick="showLogin()" data-i18n="connexion">
+
+      <button
+        id="loginTab"
+        class="active"
+        onclick="showLogin()"
+        data-i18n="connexion">
         Connexion
       </button>
 
-      <button id="registerTab" onclick="showRegister()" data-i18n="inscription">
+      <button
+        id="registerTab"
+        onclick="showRegister()"
+        data-i18n="inscription">
         Inscription
       </button>
+
     </div>
 
-    <!-- CONNEXION -->
+    <!-- LOGIN -->
 
     <div id="loginBox">
 
       <div class="form-group">
         <label data-i18n="email">Email</label>
-        <input id="loginEmail" type="email" placeholder="votre.email@pedagogue.edu">
+        <input
+          id="loginEmail"
+          type="email"
+          placeholder="votre.email@pedagogue.edu">
       </div>
 
       <div class="form-group">
         <label data-i18n="password">Mot de passe</label>
-        <input id="loginPassword" type="password" placeholder="••••••••">
+        <input
+          id="loginPassword"
+          type="password"
+          placeholder="••••••••">
       </div>
 
-      <button class="primary-btn" onclick="connecter()" data-i18n="seConnecter">
+      <button
+        class="primary-btn"
+        onclick="connecter()"
+        data-i18n="seConnecter">
         Se connecter
       </button>
 
       <div class="divider" data-i18n="ou">ou</div>
 
-      <button class="google-btn" onclick="connecterAvecGoogle()">
-        <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.665-5.17 3.665-9.17z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.1 0-5.74-2.09-6.68-4.91H1.36v3.13C3.33 21.32 7.39 24 12 24z"/><path fill="#FBBC05" d="M5.32 14.27c-.24-.72-.38-1.49-.38-2.27s.14-1.55.38-2.27V6.6H1.36C.49 8.33 0 10.11 0 12s.49 3.67 1.36 5.4l3.96-3.13z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.39 0 3.33 2.68 1.36 6.6l3.96 3.13c.94-2.82 3.58-4.98 6.68-4.98z"/></svg>
-        <span data-i18n="googleConnect">Continuer avec Google</span>
+      <button
+        class="google-btn"
+        onclick="connecterAvecGoogle()">
+
+        <svg width="18" height="18" viewBox="0 0 24 24">
+          <path fill="#4285F4"
+          d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.665-5.17 3.665-9.17z"/>
+          <path fill="#34A853"
+          d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.1 0-5.74-2.09-6.68-4.91H1.36v3.13C3.33 21.32 7.39 24 12 24z"/>
+          <path fill="#FBBC05"
+          d="M5.32 14.27c-.24-.72-.38-1.49-.38-2.27s.14-1.55.38-2.27V6.6H1.36C.49 8.33 0 10.11 0 12s.49 3.67 1.36 5.4l3.96-3.13z"/>
+          <path fill="#EA4335"
+          d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.39 0 3.33 2.68 1.36 6.6l3.96 3.13c.94-2.82 3.58-4.98 6.68-4.98z"/>
+        </svg>
+
+        <span data-i18n="googleConnect">
+          Konekte ak Google
+        </span>
+
       </button>
 
     </div>
 
-    <!-- INSCRIPTION -->
+    <!-- REGISTER -->
 
     <div id="registerBox" class="hidden">
 
       <div class="form-group">
-        <label data-i18n="nomComplet">Nom complet</label>
-        <input id="registerName" type="text" placeholder="Jean Dupont">
+        <label data-i18n="nomComplet">Non konplè</label>
+        <input
+          id="registerName"
+          type="text"
+          placeholder="Jean Dupont">
       </div>
 
       <div class="form-group">
         <label data-i18n="email">Email</label>
-        <input id="registerEmail" type="email" placeholder="votre.email@pedagogue.edu">
+        <input
+          id="registerEmail"
+          type="email"
+          placeholder="votre.email@pedagogue.edu">
       </div>
 
       <div class="form-group">
-        <label data-i18n="password">Mot de passe</label>
-        <input id="registerPassword" type="password" placeholder="Minimum 6 caractères">
+        <label data-i18n="password">Modpas</label>
+        <input
+          id="registerPassword"
+          type="password"
+          placeholder="Minimum 6 caractères">
       </div>
 
-      <button class="primary-btn" onclick="registerAccount()" data-i18n="creerCompte">
-        Créer mon compte
+      <button
+        class="primary-btn"
+        onclick="registerAccount()"
+        data-i18n="creerCompte">
+        Kreye kont mwen
       </button>
 
-      <div class="divider" data-i18n="ou">ou</div>
+      <div class="divider" data-i18n="ou">oswa</div>
 
-      <button class="google-btn" onclick="registerGoogle()">
-        <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.665-5.17 3.665-9.17z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.1 0-5.74-2.09-6.68-4.91H1.36v3.13C3.33 21.32 7.39 24 12 24z"/><path fill="#FBBC05" d="M5.32 14.27c-.24-.72-.38-1.49-.38-2.27s.14-1.55.38-2.27V6.6H1.36C.49 8.33 0 10.11 0 12s.49 3.67 1.36 5.4l3.96-3.13z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.39 0 3.33 2.68 1.36 6.6l3.96 3.13c.94-2.82 3.58-4.98 6.68-4.98z"/></svg>
-        <span data-i18n="googleRegister">S'inscrire avec Google</span>
+      <button
+        class="google-btn"
+        onclick="registerGoogle()">
+
+        <svg width="18" height="18" viewBox="0 0 24 24">
+          <path fill="#4285F4"
+          d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.665-5.17 3.665-9.17z"/>
+          <path fill="#34A853"
+          d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.1 0-5.74-2.09-6.68-4.91H1.36v3.13C3.33 21.32 7.39 24 12 24z"/>
+          <path fill="#FBBC05"
+          d="M5.32 14.27c-.24-.72-.38-1.49-.38-2.27s.14-1.55.38-2.27V6.6H1.36C.49 8.33 0 10.11 0 12s.49 3.67 1.36 5.4l3.96-3.13z"/>
+          <path fill="#EA4335"
+          d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.39 0 3.33 2.68 1.36 6.6l3.96 3.13c.94-2.82 3.58-4.98 6.68-4.98z"/>
+        </svg>
+
+        <span data-i18n="googleRegister">
+          Enskri ak Google
+        </span>
+
       </button>
 
     </div>
@@ -862,108 +1009,253 @@ button {
 </div>
 
 
-<!-- ================= MAIN APP ================= -->
+<!-- =========================================================
+     MAIN APP
+     ========================================================= -->
 
 <div id="appPage" class="hidden">
 
 <header class="app-header">
 
   <div class="header-left">
-    <button class="menu-btn" onclick="toggleSidebar()">
+
+    <button
+      class="menu-btn"
+      onclick="toggleSidebar()">
       ☰
     </button>
 
     <div class="brand-info">
+
       <div class="app-title">
         🎓 CENTRE DE FORMATION LE PÉDAGOGUE
       </div>
-      <div class="app-subtitle" data-i18n="appSubtitle">
+
+      <div
+        class="app-subtitle"
+        data-i18n="appSubtitle">
         GESTION UNIVERSITÉ & ÉCOLE PROFESSIONNELLE
       </div>
+
     </div>
+
   </div>
 
+
   <div class="header-right">
+
     <div class="user-info">
-      <div id="userEmail" class="user-email"></div>
-      <div id="userRole" class="user-role"></div>
+
+      <div
+        id="userEmail"
+        class="user-email">
+      </div>
+
+      <div
+        id="userRole"
+        class="user-role">
+      </div>
+
     </div>
+
 
     <div class="header-actions">
-      <select id="languageSelect" onchange="changeLanguage(this.value)">
-        <option value="ht">🇭🇹 Kreyòl</option>
-        <option value="fr">🇫🇷 Français</option>
+
+      <select
+        id="languageSelect"
+        onchange="changeLanguage(this.value)">
+
+        <option value="ht">
+          🇭🇹 Kreyòl
+        </option>
+
+        <option value="fr">
+          🇫🇷 Français
+        </option>
+
       </select>
 
-      <button id="installBtn" class="install-btn" style="display:none;" data-i18n="installer">
-        Installer l'application
+
+      <button
+        id="installBtn"
+        class="install-btn"
+        style="display:none;"
+        data-i18n="installer">
+
+        Enstale Aplikasyon an
+
       </button>
 
-      <button class="logout-btn" onclick="logout()" data-i18n="deconnexion">
-        Sortir
+
+      <button
+        class="logout-btn"
+        onclick="logout()"
+        data-i18n="deconnexion">
+
+        Sòti
+
       </button>
+
     </div>
+
   </div>
 
 </header>
 
 
-<!-- ================= SIDEBAR ================= -->
+<!-- =========================================================
+     SIDEBAR
+     ========================================================= -->
 
 <aside id="sidebar" class="sidebar">
 
   <nav class="sidebar-nav">
-    <button onclick="showSection('home')">
-      🏠 <span data-i18n="menuAccueil">Akèy</span>
+
+    <button
+      class="active"
+      onclick="showSection('home', this)">
+
+      🏠
+      <span data-i18n="menuAccueil">
+        Akèy
+      </span>
+
     </button>
 
-    <button onclick="showSection('etudiants')">
-      👨‍🎓 <span data-i18n="menuEtudiants">Étudiants</span>
+
+    <button
+      onclick="showSection('etudiants', this)">
+
+      👨‍🎓
+      <span data-i18n="menuEtudiants">
+        Elèv / Etidyan
+      </span>
+
     </button>
 
-    <button onclick="showSection('professeurs')">
-      👨‍🏫 <span data-i18n="menuProfesseurs">Professeurs</span>
+
+    <button
+      onclick="showSection('professeurs', this)">
+
+      👨‍🏫
+      <span data-i18n="menuProfesseurs">
+        Pwofesè
+      </span>
+
     </button>
 
-    <button onclick="showSection('departements')">
-      🏢 <span data-i18n="menuDepartements">Départements</span>
+
+    <button
+      onclick="showSection('departements', this)">
+
+      🏢
+      <span data-i18n="menuDepartements">
+        Depatman
+      </span>
+
     </button>
 
-    <button onclick="showSection('programmes')">
-      📚 <span data-i18n="menuProgrammes">Programmes</span>
+
+    <button
+      onclick="showSection('programmes', this)">
+
+      📚
+      <span data-i18n="menuProgrammes">
+        Pwogram
+      </span>
+
     </button>
 
-    <button onclick="showSection('cours')">
-      📖 <span data-i18n="menuCours">Cours</span>
+
+    <button
+      onclick="showSection('cours', this)">
+
+      📖
+      <span data-i18n="menuCours">
+        Kous
+      </span>
+
     </button>
 
-    <button onclick="showSection('classes')">
-      🏫 <span data-i18n="menuClasses">Classes</span>
+
+    <button
+      onclick="showSection('classes', this)">
+
+      🏫
+      <span data-i18n="menuClasses">
+        Klas yo
+      </span>
+
     </button>
 
-    <button onclick="showSection('devoirs')">
-      📝 <span data-i18n="menuDevoirs">Devoirs</span>
+
+    <button
+      onclick="showSection('devoirs', this)">
+
+      📝
+      <span data-i18n="menuDevoirs">
+        Devwa
+      </span>
+
     </button>
 
-    <button onclick="showSection('remises')">
-      📤 <span data-i18n="menuRemises">Remises</span>
+
+    <button
+      onclick="showSection('remises', this)">
+
+      📤
+      <span data-i18n="menuRemises">
+        Remiz / Travay
+      </span>
+
     </button>
 
-    <button onclick="showSection('resultats')">
-      📊 <span data-i18n="menuResultats">Résultats</span>
+
+    <button
+      onclick="showSection('resultats', this)">
+
+      📊
+      <span data-i18n="menuResultats">
+        Rezilta
+      </span>
+
     </button>
 
-    <button onclick="showSection('horaires')">
-      🕐 <span data-i18n="menuHoraires">Horaires</span>
+
+    <button
+      onclick="showSection('horaires', this)">
+
+      🕐
+      <span data-i18n="menuHoraires">
+        Lè Kous
+      </span>
+
     </button>
 
-    <button onclick="showSection('statistiques')">
-      📈 <span data-i18n="menuStatistiques">Statistiques</span>
+
+    <button
+      onclick="showSection('statistiques', this)">
+
+      📈
+      <span data-i18n="menuStatistiques">
+        Statistik
+      </span>
+
     </button>
 
-    <button id="usersMenu" class="hidden" onclick="showSection('users')">
-      👥 <span data-i18n="menuUtilisateurs">Utilisateurs</span>
+
+    <button
+      id="usersMenu"
+      class="hidden"
+      onclick="showSection('users', this)">
+
+      👥
+      <span data-i18n="menuUtilisateurs">
+        Itilizatè yo
+      </span>
+
     </button>
+
   </nav>
 
 </aside>
@@ -971,524 +1263,1274 @@ button {
 
 <main class="main">
 
-<!-- ================= HOME ================= -->
 
-<section id="home" class="section active">
+<!-- =========================================================
+     HOME
+     ========================================================= -->
+
+<section
+  id="home"
+  class="section active">
 
   <div class="page-header">
-    <h1 class="page-title" data-i18n="dashTitle">🏠 Tableau de bord</h1>
+
+    <h1
+      class="page-title"
+      data-i18n="dashTitle">
+
+      🏠 Tablo de bòd
+
+    </h1>
+
   </div>
+
 
   <div class="stats-grid">
 
     <div class="stat-card">
-      <h3 data-i18n="menuEtudiants">Étudiants</h3>
-      <div id="statEtudiants" class="stat-number">0</div>
+
+      <h3 data-i18n="menuEtudiants">
+        Elèv / Etidyan
+      </h3>
+
+      <div
+        id="statEtudiants"
+        class="stat-number">
+        0
+      </div>
+
     </div>
 
-    <div class="stat-card">
-      <h3 data-i18n="menuProfesseurs">Professeurs</h3>
-      <div id="statProfesseurs" class="stat-number">0</div>
-    </div>
 
     <div class="stat-card">
-      <h3 data-i18n="menuCours">Cours</h3>
-      <div id="statCours" class="stat-number">0</div>
+
+      <h3 data-i18n="menuProfesseurs">
+        Pwofesè
+      </h3>
+
+      <div
+        id="statProfesseurs"
+        class="stat-number">
+        0
+      </div>
+
     </div>
 
+
     <div class="stat-card">
-      <h3 data-i18n="menuClasses">Classes</h3>
-      <div id="statClasses" class="stat-number">0</div>
+
+      <h3 data-i18n="menuCours">
+        Kous
+      </h3>
+
+      <div
+        id="statCours"
+        class="stat-number">
+        0
+      </div>
+
+    </div>
+
+
+    <div class="stat-card">
+
+      <h3 data-i18n="menuClasses">
+        Klas yo
+      </h3>
+
+      <div
+        id="statClasses"
+        class="stat-number">
+        0
+      </div>
+
     </div>
 
   </div>
 
+
   <div class="panel">
+
     <div class="panel-header">
-      <h2 data-i18n="welcome">Bienvenue au Centre de Formation Le Pédagogue</h2>
+
+      <h2 data-i18n="welcome">
+        Byenvini nan Centre de Formation Le Pédagogue
+      </h2>
+
     </div>
-    <p style="color: var(--text-muted);" data-i18n="welcomeDesc">
-      Utilisez le menu latéral pour accéder aux différentes sections de gestion administrative.
+
+    <p
+      style="color:var(--text-muted);"
+      data-i18n="welcomeDesc">
+
+      Sèvi ak meni sou kote a pou aksede nan diferan seksyon jestyon akademik yo.
+
     </p>
+
     <div>
-      <button id="dashInstallBtn" class="primary-btn" style="display:none; max-width:250px;">
+
+      <button
+        id="dashInstallBtn"
+        class="primary-btn"
+        style="display:none;max-width:250px;">
+
         📲 Installer l'application
+
       </button>
+
     </div>
+
   </div>
 
 </section>
 
 
-<!-- ================= ETUDIANTS ================= -->
+<!-- =========================================================
+     ETUDIANTS
+     ========================================================= -->
 
-<section id="etudiants" class="section">
+<section
+  id="etudiants"
+  class="section">
 
   <div class="page-header">
-    <h1 class="page-title">👨‍🎓 <span data-i18n="gestionEtudiants">Gestion des Étudiants</span></h1>
+
+    <h1 class="page-title">
+
+      👨‍🎓
+      <span data-i18n="gestionEtudiants">
+        Gestion des Étudiants
+      </span>
+
+    </h1>
+
   </div>
 
+
   <div class="panel">
+
     <div class="panel-header">
-      <h2 data-i18n="addEtudiant">Ajouter un nouvel étudiant</h2>
+
+      <h2 data-i18n="addEtudiant">
+        Ajouter un nouvel étudiant
+      </h2>
+
     </div>
+
 
     <div class="grid-form">
 
       <div class="form-group">
-        <label data-i18n="nomComplet">Nom complet</label>
-        <input id="studentName" placeholder="ex: Jean Baptiste">
+
+        <label data-i18n="nomComplet">
+          Nom complet
+        </label>
+
+        <input
+          id="studentName"
+          placeholder="ex: Jean Baptiste">
+
       </div>
 
-      <div class="form-group">
-        <label data-i18n="email">Email</label>
-        <input id="studentEmail" placeholder="etudiant@pedagogue.edu">
-      </div>
 
       <div class="form-group">
-        <label data-i18n="telephone">Téléphone</label>
-        <input id="studentPhone" placeholder="+509 ...">
+
+        <label data-i18n="email">
+          Email
+        </label>
+
+        <input
+          id="studentEmail"
+          placeholder="etudiant@pedagogue.edu">
+
       </div>
 
+
       <div class="form-group">
-        <label data-i18n="classe">Classe</label>
-        <input id="studentClass" placeholder="ex: Informatique L1">
+
+        <label data-i18n="telephone">
+          Téléphone
+        </label>
+
+        <input
+          id="studentPhone"
+          placeholder="+509 ...">
+
       </div>
+
+
+      <div class="form-group">
+
+        <label data-i18n="classe">
+          Classe
+        </label>
+
+        <input
+          id="studentClass"
+          placeholder="ex: Informatique L1">
+
+      </div>
+
 
       <div class="full">
-        <button class="primary-btn" onclick="addStudent()" data-i18n="btnAddEtudiant">
+
+        <button
+          class="primary-btn"
+          onclick="addStudent()"
+          data-i18n="btnAddEtudiant">
+
           Ajouter l'étudiant
+
         </button>
+
       </div>
 
     </div>
+
   </div>
 
+
   <div class="panel">
+
     <div class="panel-header">
-      <h2 data-i18n="listEtudiants">Liste des étudiants</h2>
+
+      <h2 data-i18n="listEtudiants">
+        Liste des étudiants
+      </h2>
+
     </div>
-    <div id="studentList" class="list"></div>
+
+    <div
+      id="studentList"
+      class="list">
+    </div>
+
   </div>
 
 </section>
 
 
-<!-- ================= PROFESSEURS ================= -->
+<!-- =========================================================
+     PROFESSEURS
+     ========================================================= -->
 
-<section id="professeurs" class="section">
+<section
+  id="professeurs"
+  class="section">
 
   <div class="page-header">
-    <h1 class="page-title">👨‍🏫 <span data-i18n="gestionProfesseurs">Gestion des Professeurs</span></h1>
+
+    <h1 class="page-title">
+
+      👨‍🏫
+
+      <span data-i18n="gestionProfesseurs">
+        Gestion des Professeurs
+      </span>
+
+    </h1>
+
   </div>
 
+
   <div class="panel">
+
     <div class="panel-header">
-      <h2 data-i18n="addProfesseur">Ajouter un professeur</h2>
+
+      <h2 data-i18n="addProfesseur">
+        Ajouter un professeur
+      </h2>
+
     </div>
+
 
     <div class="grid-form">
 
       <div class="form-group">
-        <label data-i18n="nomComplet">Nom complet</label>
-        <input id="teacherName" placeholder="ex: Dr. Marie Curie">
+
+        <label data-i18n="nomComplet">
+          Nom complet
+        </label>
+
+        <input
+          id="teacherName"
+          placeholder="ex: Dr. Marie Curie">
+
       </div>
 
-      <div class="form-group">
-        <label data-i18n="email">Email</label>
-        <input id="teacherEmail" placeholder="prof@pedagogue.edu">
-      </div>
 
       <div class="form-group">
-        <label data-i18n="telephone">Téléphone</label>
-        <input id="teacherPhone" placeholder="+509 ...">
+
+        <label data-i18n="email">
+          Email
+        </label>
+
+        <input
+          id="teacherEmail"
+          placeholder="prof@pedagogue.edu">
+
       </div>
 
+
       <div class="form-group">
-        <label data-i18n="matiere">Matière</label>
-        <input id="teacherSubject" placeholder="ex: Mathématiques">
+
+        <label data-i18n="telephone">
+          Téléphone
+        </label>
+
+        <input
+          id="teacherPhone"
+          placeholder="+509 ...">
+
       </div>
+
+
+      <div class="form-group">
+
+        <label data-i18n="matiere">
+          Matière
+        </label>
+
+        <input
+          id="teacherSubject"
+          placeholder="ex: Mathématiques">
+
+      </div>
+
 
       <div class="full">
-        <button class="primary-btn" onclick="addTeacher()" data-i18n="btnAddProfesseur">
+
+        <button
+          class="primary-btn"
+          onclick="addTeacher()"
+          data-i18n="btnAddProfesseur">
+
           Ajouter le professeur
+
         </button>
+
       </div>
 
     </div>
+
   </div>
 
+
   <div class="panel">
+
     <div class="panel-header">
-      <h2 data-i18n="listProfesseurs">Liste des professeurs</h2>
+
+      <h2 data-i18n="listProfesseurs">
+        Liste des professeurs
+      </h2>
+
     </div>
-    <div id="teacherList" class="list"></div>
+
+    <div
+      id="teacherList"
+      class="list">
+    </div>
+
   </div>
 
 </section>
 
 
-<!-- ================= DEPARTEMENTS ================= -->
+<!-- =========================================================
+     DEPARTEMENTS
+     ========================================================= -->
 
-<section id="departements" class="section">
+<section
+  id="departements"
+  class="section">
 
   <div class="page-header">
-    <h1 class="page-title">🏢 <span data-i18n="menuDepartements">Départements Académiques</span></h1>
+
+    <h1 class="page-title">
+
+      🏢
+
+      <span data-i18n="menuDepartements">
+        Départements Académiques
+      </span>
+
+    </h1>
+
   </div>
 
+
   <div class="panel">
+
     <div class="panel-header">
-      <h2 data-i18n="addDept">Nouveau Département</h2>
+
+      <h2 data-i18n="addDept">
+        Nouveau Département
+      </h2>
+
     </div>
+
 
     <div class="grid-form">
-      <div class="form-group full">
-        <label data-i18n="nomDept">Nom du département</label>
-        <input id="departmentName" placeholder="ex: Sciences Informatiques">
-      </div>
 
       <div class="form-group full">
-        <label data-i18n="description">Description</label>
-        <textarea id="departmentDescription" placeholder="Description des objectifs du département..."></textarea>
+
+        <label data-i18n="nomDept">
+          Nom du département
+        </label>
+
+        <input
+          id="departmentName"
+          placeholder="ex: Sciences Informatiques">
+
       </div>
+
+
+      <div class="form-group full">
+
+        <label data-i18n="description">
+          Description
+        </label>
+
+        <textarea
+          id="departmentDescription"
+          placeholder="Description des objectifs du département...">
+        </textarea>
+
+      </div>
+
     </div>
 
-    <button class="primary-btn" onclick="addDepartment()" data-i18n="btnAddDept">
+
+    <button
+      class="primary-btn"
+      onclick="addDepartment()"
+      data-i18n="btnAddDept">
+
       Ajouter le département
+
     </button>
+
   </div>
 
+
   <div class="panel">
+
     <div class="panel-header">
-      <h2 data-i18n="listDept">Liste des départements</h2>
+
+      <h2 data-i18n="listDept">
+        Liste des départements
+      </h2>
+
     </div>
-    <div id="departmentList" class="list"></div>
+
+    <div
+      id="departmentList"
+      class="list">
+    </div>
+
   </div>
 
 </section>
 
 
-<!-- ================= PROGRAMMES ================= -->
+<!-- =========================================================
+     PROGRAMMES
+     ========================================================= -->
 
-<section id="programmes" class="section">
+<section
+  id="programmes"
+  class="section">
 
   <div class="page-header">
-    <h1 class="page-title">📚 <span data-i18n="menuProgrammes">Programmes d'Études</span></h1>
+
+    <h1 class="page-title">
+
+      📚
+
+      <span data-i18n="menuProgrammes">
+        Programmes d'Études
+      </span>
+
+    </h1>
+
   </div>
 
+
   <div class="panel">
+
     <div class="panel-header">
-      <h2 data-i18n="addProg">Nouveau Programme</h2>
+
+      <h2 data-i18n="addProg">
+        Nouveau Programme
+      </h2>
+
     </div>
+
 
     <div class="grid-form">
-      <div class="form-group full">
-        <label data-i18n="nomProg">Nom du programme</label>
-        <input id="programName" placeholder="ex: Licence en Gestion des Affaires">
-      </div>
 
       <div class="form-group full">
-        <label data-i18n="description">Description</label>
-        <textarea id="programDescription" placeholder="Détails du programme d'études..."></textarea>
+
+        <label data-i18n="nomProg">
+          Nom du programme
+        </label>
+
+        <input
+          id="programName"
+          placeholder="ex: Licence en Gestion des Affaires">
+
       </div>
+
+
+      <div class="form-group full">
+
+        <label data-i18n="description">
+          Description
+        </label>
+
+        <textarea
+          id="programDescription"
+          placeholder="Détails du programme d'études...">
+        </textarea>
+
+      </div>
+
     </div>
 
-    <button class="primary-btn" onclick="addProgram()" data-i18n="btnAddProg">
+
+    <button
+      class="primary-btn"
+      onclick="addProgram()"
+      data-i18n="btnAddProg">
+
       Ajouter le programme
+
     </button>
+
   </div>
 
+
   <div class="panel">
+
     <div class="panel-header">
-      <h2 data-i18n="listProg">Liste des programmes</h2>
+
+      <h2 data-i18n="listProg">
+        Liste des programmes
+      </h2>
+
     </div>
-    <div id="programList" class="list"></div>
+
+    <div
+      id="programList"
+      class="list">
+    </div>
+
   </div>
 
 </section>
 
 
-<!-- ================= COURS ================= -->
+<!-- =========================================================
+     COURS
+     ========================================================= -->
 
-<section id="cours" class="section">
+<section
+  id="cours"
+  class="section">
 
   <div class="page-header">
-    <h1 class="page-title">📖 <span data-i18n="gestionCours">Gestion des Cours</span></h1>
+
+    <h1 class="page-title">
+
+      📖
+
+      <span data-i18n="gestionCours">
+        Gestion des Cours
+      </span>
+
+    </h1>
+
   </div>
 
+
   <div class="panel">
+
     <div class="panel-header">
-      <h2 data-i18n="addCours">Créer un cours</h2>
+
+      <h2 data-i18n="addCours">
+        Créer un cours
+      </h2>
+
     </div>
+
 
     <div class="grid-form">
-      <div class="form-group">
-        <label data-i18n="nomCours">Nom du cours</label>
-        <input id="courseName" placeholder="ex: Algorithmique I">
-      </div>
 
       <div class="form-group">
-        <label data-i18n="professeur">Professeur</label>
-        <input id="courseTeacher" placeholder="Nom du professeur">
+
+        <label data-i18n="nomCours">
+          Nom du cours
+        </label>
+
+        <input
+          id="courseName"
+          placeholder="ex: Algorithmique I">
+
       </div>
+
+
+      <div class="form-group">
+
+        <label data-i18n="professeur">
+          Professeur
+        </label>
+
+        <input
+          id="courseTeacher"
+          placeholder="Nom du professeur">
+
+      </div>
+
 
       <div class="form-group full">
-        <label data-i18n="classe">Classe</label>
-        <input id="courseClass" placeholder="ex: L1 Info">
+
+        <label data-i18n="classe">
+          Classe
+        </label>
+
+        <input
+          id="courseClass"
+          placeholder="ex: L1 Info">
+
       </div>
+
     </div>
 
-    <button class="primary-btn" onclick="addCourse()" data-i18n="btnAddCours">
+
+    <button
+      class="primary-btn"
+      onclick="addCourse()"
+      data-i18n="btnAddCours">
+
       Ajouter le cours
+
     </button>
+
   </div>
 
+
   <div class="panel">
+
     <div class="panel-header">
-      <h2 data-i18n="listCours">Liste des cours</h2>
+
+      <h2 data-i18n="listCours">
+        Liste des cours
+      </h2>
+
     </div>
-    <div id="courseList" class="list"></div>
+
+    <div
+      id="courseList"
+      class="list">
+    </div>
+
   </div>
 
 </section>
 
 
-<!-- ================= CLASSES ================= -->
+<!-- =========================================================
+     CLASSES
+     ========================================================= -->
 
-<section id="classes" class="section">
+<section
+  id="classes"
+  class="section">
 
   <div class="page-header">
-    <h1 class="page-title">🏫 <span data-i18n="menuClasses">Classes & Salles</span></h1>
+
+    <h1 class="page-title">
+
+      🏫
+
+      <span data-i18n="menuClasses">
+        Classes & Salles
+      </span>
+
+    </h1>
+
   </div>
 
+
   <div class="panel">
+
     <div class="panel-header">
-      <h2 data-i18n="addClass">Ajouter une classe</h2>
+
+      <h2 data-i18n="addClass">
+        Ajouter une classe
+      </h2>
+
     </div>
+
 
     <div class="grid-form">
-      <div class="form-group">
-        <label data-i18n="nomClasse">Nom de la classe</label>
-        <input id="className" placeholder="ex: Salle A-101">
-      </div>
 
       <div class="form-group">
-        <label data-i18n="niveau">Niveau</label>
-        <input id="classLevel" placeholder="ex: Licence 1">
+
+        <label data-i18n="nomClasse">
+          Nom de la classe
+        </label>
+
+        <input
+          id="className"
+          placeholder="ex: Salle A-101">
+
       </div>
+
+
+      <div class="form-group">
+
+        <label data-i18n="niveau">
+          Niveau
+        </label>
+
+        <input
+          id="classLevel"
+          placeholder="ex: Licence 1">
+
+      </div>
+
     </div>
 
-    <button class="primary-btn" onclick="addClass()" data-i18n="btnAddClass">
+
+    <button
+      class="primary-btn"
+      onclick="addClass()"
+      data-i18n="btnAddClass">
+
       Ajouter la classe
+
     </button>
+
   </div>
 
+
   <div class="panel">
+
     <div class="panel-header">
-      <h2 data-i18n="listClass">Liste des classes</h2>
+
+      <h2 data-i18n="listClass">
+        Liste des classes
+      </h2>
+
     </div>
-    <div id="classList" class="list"></div>
+
+    <div
+      id="classList"
+      class="list">
+    </div>
+
   </div>
 
 </section>
 
 
-<!-- ================= DEVOIRS ================= -->
+<!-- =========================================================
+     DEVOIRS
+     ========================================================= -->
 
-<section id="devoirs" class="section">
+<section
+  id="devoirs"
+  class="section">
 
   <div class="page-header">
-    <h1 class="page-title">📝 <span data-i18n="menuDevoirs">Devoirs & Travaux</span></h1>
+
+    <h1 class="page-title">
+
+      📝
+
+      <span data-i18n="menuDevoirs">
+        Devoirs & Travaux
+      </span>
+
+    </h1>
+
   </div>
 
+
   <div class="panel">
+
     <div class="panel-header">
-      <h2 data-i18n="addDevoir">Créer un devoir</h2>
+
+      <h2 data-i18n="addDevoir">
+        Créer un devoir
+      </h2>
+
     </div>
+
 
     <div class="grid-form">
-      <div class="form-group full">
-        <label data-i18n="titreDevoir">Titre du devoir</label>
-        <input id="assignmentTitle" placeholder="ex: TP2 - Base de Données">
-      </div>
-
-      <div class="form-group">
-        <label data-i18n="nomCours">Cours</label>
-        <input id="assignmentCourse" placeholder="Nom du cours">
-      </div>
-
-      <div class="form-group">
-        <label data-i18n="dateLimite">Date limite</label>
-        <input id="assignmentDate" type="date">
-      </div>
 
       <div class="form-group full">
-        <label data-i18n="description">Description & Consignes</label>
-        <textarea id="assignmentDescription" placeholder="Instructions pour les étudiants..."></textarea>
+
+        <label data-i18n="titreDevoir">
+          Titre du devoir
+        </label>
+
+        <input
+          id="assignmentTitle"
+          placeholder="ex: TP2 - Base de Données">
+
       </div>
+
+
+      <div class="form-group">
+
+        <label data-i18n="nomCours">
+          Cours
+        </label>
+
+        <input
+          id="assignmentCourse"
+          placeholder="Nom du cours">
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label data-i18n="dateLimite">
+          Date limite
+        </label>
+
+        <input
+          id="assignmentDate"
+          type="date">
+
+      </div>
+
+
+      <div class="form-group full">
+
+        <label data-i18n="description">
+          Description & Consignes
+        </label>
+
+        <textarea
+          id="assignmentDescription"
+          placeholder="Instructions pour les étudiants...">
+        </textarea>
+
+      </div>
+
     </div>
 
-    <button class="primary-btn" onclick="addAssignment()" data-i18n="btnAddDevoir">
-      Publier le devoir
+
+    <button
+      class="primary-btn"
+      onclick="addAssignment()"
+      data-i18n="btnAddDevoir">
+
+      Pibliye devwa a
+
     </button>
+
   </div>
 
+
   <div class="panel">
+
     <div class="panel-header">
-      <h2 data-i18n="listDevoirs">Liste des devoirs</h2>
+
+      <h2 data-i18n="listDevoirs">
+        Liste des devoirs
+      </h2>
+
     </div>
-    <div id="assignmentList" class="list"></div>
+
+    <div
+      id="assignmentList"
+      class="list">
+    </div>
+
   </div>
 
 </section>
 
 
-<!-- ================= REMISES ================= -->
+<!-- =========================================================
+     REMISES
+     ========================================================= -->
 
-<section id="remises" class="section">
+<section
+  id="remises"
+  class="section">
 
   <div class="page-header">
-    <h1 class="page-title">📤 <span data-i18n="menuRemises">Remises des Étudiants</span></h1>
+
+    <h1 class="page-title">
+
+      📤
+
+      <span data-i18n="menuRemises">
+        Remises des Étudiants
+      </span>
+
+    </h1>
+
   </div>
 
+
   <div class="panel">
+
     <div class="panel-header">
-      <h2 data-i18n="addRemise">Enregistrer une remise ou évaluation</h2>
+
+      <h2 data-i18n="addRemise">
+        Enregistrer une remise ou évaluation
+      </h2>
+
     </div>
+
 
     <div class="grid-form">
-      <div class="form-group">
-        <label data-i18n="etudiant">Étudiant</label>
-        <input id="submissionStudent" placeholder="Nom de l'étudiant">
-      </div>
 
       <div class="form-group">
-        <label data-i18n="titreDevoir">Devoir</label>
-        <input id="submissionAssignment" placeholder="Titre du devoir">
+
+        <label data-i18n="etudiant">
+          Étudiant
+        </label>
+
+        <input
+          id="submissionStudent"
+          placeholder="Nom de l'étudiant">
+
       </div>
 
-      <div class="form-group full">
-        <label data-i18n="note">Note / 100</label>
-        <input id="submissionNote" type="number" min="0" max="100" placeholder="85">
+
+      <div class="form-group">
+
+        <label data-i18n="titreDevoir">
+          Devoir
+        </label>
+
+        <input
+          id="submissionAssignment"
+          placeholder="Titre du devoir">
+
       </div>
 
+
       <div class="form-group full">
-        <label data-i18n="commentaire">Correction / Commentaire</label>
-        <textarea id="submissionComment" placeholder="Commentaires du professeur..."></textarea>
+
+        <label data-i18n="note">
+          Note / 100
+        </label>
+
+        <input
+          id="submissionNote"
+          type="number"
+          min="0"
+          max="100"
+          placeholder="20">
+
       </div>
+
+
+      <div class="form-group full">
+
+        <label data-i18n="commentaire">
+          Correction / Commentaire
+        </label>
+
+        <textarea
+          id="submissionComment"
+          placeholder="Commentaires du professeur...">
+        </textarea>
+
+      </div>
+
     </div>
 
-    <button class="primary-btn" onclick="addSubmission()" data-i18n="btnAddRemise">
+
+    <button
+      class="primary-btn"
+      onclick="addSubmission()"
+      data-i18n="btnAddRemise">
+
       Enregistrer l'évaluation
+
     </button>
+
   </div>
 
+
   <div class="panel">
+
     <div class="panel-header">
-      <h2 data-i18n="listRemises">Liste des remises</h2>
+
+      <h2 data-i18n="listRemises">
+        Liste des remises
+      </h2>
+
     </div>
-    <div id="submissionList" class="list"></div>
+
+    <div
+      id="submissionList"
+      class="list">
+    </div>
+
   </div>
 
 </section>
 
 
-<!-- ================= RESULTATS ================= -->
+<!-- =========================================================
+     RESULTATS
+     ========================================================= -->
 
-<section id="resultats" class="section">
+<section
+  id="resultats"
+  class="section">
 
   <div class="page-header">
-    <h1 class="page-title">📊 <span data-i18n="menuResultats">Résultats & Bulletins</span></h1>
+
+    <h1 class="page-title">
+
+      📊
+
+      <span data-i18n="menuResultats">
+        Résultats & Bulletins
+      </span>
+
+    </h1>
+
   </div>
 
+
   <div class="panel">
+
     <div class="panel-header">
-      <h2 data-i18n="apercuResultats">Aperçu des Résultats</h2>
+
+      <h2 data-i18n="apercuResultats">
+        Aperçu des Résultats
+      </h2>
+
     </div>
-    <div id="resultList" class="list"></div>
+
+    <div
+      id="resultList"
+      class="list">
+    </div>
+
   </div>
 
 </section>
 
 
-<!-- ================= HORAIRES ================= -->
+<!-- =========================================================
+     HORAIRES
+     ========================================================= -->
 
-<section id="horaires" class="section">
+<section
+  id="horaires"
+  class="section">
 
   <div class="page-header">
-    <h1 class="page-title">🕐 <span data-i18n="menuHoraires">Emploi du Temps</span></h1>
+
+    <h1 class="page-title">
+
+      🕐
+
+      <span data-i18n="menuHoraires">
+        Emploi du Temps
+      </span>
+
+    </h1>
+
   </div>
 
+
   <div class="panel">
+
     <div class="panel-header">
-      <h2 data-i18n="addHoraire">Ajouter un horaire</h2>
+
+      <h2 data-i18n="addHoraire">
+        Ajouter un horaire
+      </h2>
+
     </div>
+
 
     <div class="grid-form">
-      <div class="form-group">
-        <label data-i18n="jour">Jour</label>
-        <input id="scheduleDay" placeholder="ex: Lundi">
-      </div>
 
       <div class="form-group">
-        <label data-i18n="nomCours">Cours</label>
-        <input id="scheduleCourse" placeholder="Nom du cours">
+
+        <label data-i18n="jour">
+          Jour
+        </label>
+
+        <input
+          id="scheduleDay"
+          placeholder="ex: Lundi">
+
       </div>
 
-      <div class="form-group">
-        <label data-i18n="heure">Heure</label>
-        <input id="scheduleTime" placeholder="ex: 08:00 - 10:00">
-      </div>
 
       <div class="form-group">
-        <label data-i18n="classe">Classe</label>
-        <input id="scheduleClass" placeholder="ex: Room A">
+
+        <label data-i18n="nomCours">
+          Cours
+        </label>
+
+        <input
+          id="scheduleCourse"
+          placeholder="Nom du cours">
+
       </div>
+
+
+      <div class="form-group">
+
+        <label data-i18n="heure">
+          Heure
+        </label>
+
+        <input
+          id="scheduleTime"
+          placeholder="ex: 08:00 - 10:00">
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label data-i18n="classe">
+          Classe
+        </label>
+
+        <input
+          id="scheduleClass"
+          placeholder="ex: Room A">
+
+      </div>
+
     </div>
 
-    <button class="primary-btn" onclick="addSchedule()" data-i18n="btnAddHoraire">
+
+    <button
+      class="primary-btn"
+      onclick="addSchedule()"
+      data-i18n="btnAddHoraire">
+
       Ajouter à l'emploi du temps
+
     </button>
+
   </div>
 
+
   <div class="panel">
+
     <div class="panel-header">
-      <h2 data-i18n="listHoraires">Emploi du temps global</h2>
+
+      <h2 data-i18n="listHoraires">
+        Emploi du temps global
+      </h2>
+
     </div>
-    <div id="scheduleList" class="list"></div>
+
+    <div
+      id="scheduleList"
+      class="list">
+    </div>
+
   </div>
 
 </section>
 
 
-<!-- ================= STATISTIQUES ================= -->
+<!-- =========================================================
+     STATISTIQUES
+     ========================================================= -->
 
-<section id="statistiques" class="section">
+<section
+  id="statistiques"
+  class="section">
 
   <div class="page-header">
-    <h1 class="page-title">📈 <span data-i18n="menuStatistiques">Statistiques Générales</span></h1>
+
+    <h1 class="page-title">
+
+      📈
+
+      <span data-i18n="menuStatistiques">
+        Statistiques Générales
+      </span>
+
+    </h1>
+
   </div>
+
 
   <div class="stats-grid">
 
     <div class="stat-card">
-      <h3 data-i18n="etudiantsInscrits">Étudiants Inscrits</h3>
-      <div id="statsStudents" class="stat-number">0</div>
+
+      <h3 data-i18n="etudiantsInscrits">
+        Étudiants Inscrits
+      </h3>
+
+      <div
+        id="statsStudents"
+        class="stat-number">
+        0
+      </div>
+
     </div>
 
-    <div class="stat-card">
-      <h3 data-i18n="corpsEnseignant">Corps Enseignant</h3>
-      <div id="statsTeachers" class="stat-number">0</div>
-    </div>
 
     <div class="stat-card">
-      <h3 data-i18n="coursActifs">Cours Actifs</h3>
-      <div id="statsCourses" class="stat-number">0</div>
+
+      <h3 data-i18n="corpsEnseignant">
+        Corps Enseignant
+      </h3>
+
+      <div
+        id="statsTeachers"
+        class="stat-number">
+        0
+      </div>
+
     </div>
 
+
     <div class="stat-card">
-      <h3 data-i18n="classesOuvertes">Classes Ouvertes</h3>
-      <div id="statsClasses" class="stat-number">0</div>
+
+      <h3 data-i18n="coursActifs">
+        Cours Actifs
+      </h3>
+
+      <div
+        id="statsCourses"
+        class="stat-number">
+        0
+      </div>
+
+    </div>
+
+
+    <div class="stat-card">
+
+      <h3 data-i18n="classesOuvertes">
+        Classes Ouvertes
+      </h3>
+
+      <div
+        id="statsClasses"
+        class="stat-number">
+        0
+      </div>
+
     </div>
 
   </div>
@@ -1496,39 +2538,80 @@ button {
 </section>
 
 
-<!-- ================= USERS ================= -->
+<!-- =========================================================
+     USERS
+     ========================================================= -->
 
-<section id="users" class="section">
+<section
+  id="users"
+  class="section">
 
   <div class="page-header">
-    <h1 class="page-title">👥 <span data-i18n="menuUtilisateurs">Gestion des Utilisateurs</span></h1>
+
+    <h1 class="page-title">
+
+      👥
+
+      <span data-i18n="menuUtilisateurs">
+        Gestion des Utilisateurs
+      </span>
+
+    </h1>
+
   </div>
 
-  <div class="panel">
-    <div class="panel-header">
-      <h2 data-i18n="usersPending">Utilisateurs en attente de validation</h2>
-    </div>
-    <div id="pendingUsers" class="list"></div>
-  </div>
 
   <div class="panel">
+
     <div class="panel-header">
-      <h2 data-i18n="usersAll">Tous les utilisateurs</h2>
+
+      <h2 data-i18n="usersPending">
+        Utilisateurs en attente de validation
+      </h2>
+
     </div>
-    <div id="allUsers" class="list"></div>
+
+    <div
+      id="pendingUsers"
+      class="list">
+    </div>
+
+  </div>
+
+
+  <div class="panel">
+
+    <div class="panel-header">
+
+      <h2 data-i18n="usersAll">
+        Tous les utilisateurs
+      </h2>
+
+    </div>
+
+    <div
+      id="allUsers"
+      class="list">
+    </div>
+
   </div>
 
 </section>
 
 </main>
+
 </div>
 
 
-<!-- ================= FIREBASE MODULE ================= -->
+<!-- =========================================================
+     FIREBASE
+     ========================================================= -->
 
 <script type="module">
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+import {
+  initializeApp
+} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
 
 import {
   getAuth,
@@ -1556,48 +2639,63 @@ import {
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
 
 
-/* ================= FIREBASE CONFIG ================= */
+/* =========================================================
+   FIREBASE CONFIG
+   ========================================================= */
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDx6Rpd31eaFVQ0BL17BXCnIniLd0Fk7cA",
-  authDomain: "centre-de-formation-le-ped.firebaseapp.com",
-  projectId: "centre-de-formation-le-ped",
-  storageBucket: "centre-de-formation-le-ped.firebasestorage.app",
-  messagingSenderId: "883893680829",
-  appId: "1:883893680829:web:621cdf54d136cece6fd5d4"
+
+  apiKey:
+    "AIzaSyDx6Rpd31eaFVQ0BL17BXCnIniLd0Fk7cA",
+
+  authDomain:
+    "centre-de-formation-le-ped.firebaseapp.com",
+
+  projectId:
+    "centre-de-formation-le-ped",
+
+  storageBucket:
+    "centre-de-formation-le-ped.firebasestorage.app",
+
+  messagingSenderId:
+    "883893680829",
+
+  appId:
+    "1:883893680829:web:621cdf54d136cece6fd5d4"
+
 };
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
-const googleProvider = new GoogleAuthProvider();
-googleProvider.setCustomParameters({ prompt:"select_account" });
+
+const app =
+  initializeApp(firebaseConfig);
+
+const auth =
+  getAuth(app);
+
+const db =
+  getFirestore(app);
+
+const googleProvider =
+  new GoogleAuthProvider();
+
+googleProvider.setCustomParameters({
+  prompt: "select_account"
+});
+
 
 let currentUser = null;
 let currentUserData = null;
 let deferredPrompt = null;
 
-const ALL_COLLECTIONS = [
-  "users",
-  "eleves",
-  "etudiants",
-  "professeurs",
-  "classes",
-  "matieres",
-  "devoirs",
-  "remises",
-  "resultats",
-  "departements",
-  "programmes",
-  "cours",
-  "emplois_du_temps",
-  "sauvegardes"
-];
 
-/* ================= TRADUCTION / DICTIONNAIRE ================= */
+/* =========================================================
+   TRADUCTIONS
+   ========================================================= */
 
 const translations = {
+
   ht: {
+
     connexion: "Koneksyon",
     inscription: "Enskripsyon",
     email: "Imèl",
@@ -1608,1031 +2706,3980 @@ const translations = {
     nomComplet: "Non konplè",
     creerCompte: "Kreye kont mwen",
     googleRegister: "Enskri ak Google",
-    appSubtitle: "JESTYON INIVÈSITE AK LEKÒL PROFESYONÈL",
-    installer: "Enstale Aplikasyon an",
-    deconnexion: "Sòti",
-    menuAccueil: "Akèy",
-    menuEtudiants: "Elèv / Etidyan",
-    menuProfesseurs: "Pwofesè",
-    menuDepartements: "Depatman",
-    menuProgrammes: "Pwogram",
-    menuCours: "Kous",
-    menuClasses: "Klas yo",
-    menuDevoirs: "Devwa",
-    menuRemises: "Remiz / Travay",
-    menuResultats: "Rezilta",
-    menuHoraires: "Lè Kous",
-    menuStatistiques: "Statistik",
-    menuUtilisateurs: "Itilizatè yo",
-    dashTitle: "🏠 Tablo de bòd",
-    welcome: "Byenvini nan Centre de Formation Le Pédagogue",
-    welcomeDesc: "Sèvi ak meni sou kote a pou aksede nan diferan seksyon jestyon akademik yo.",
-    gestionEtudiants: "Jestyon Elèv / Etidyan yo",
-    addEtudiant: "Ajoute yon nouvo elèv",
-    btnAddEtudiant: "Ajoute elèv la",
-    listEtudiants: "Lis elèv yo",
-    gestionProfesseurs: "Jestyon Pwofesè yo",
-    addProfesseur: "Ajoute yon pwofesè",
-    btnAddProfesseur: "Ajoute pwofesè a",
-    listProfesseurs: "Lis pwofesè yo",
-    addDept: "Nouvo Depatman",
-    btnAddDept: "Ajoute depatman an",
-    listDept: "Lis depatman yo",
-    addProg: "Nouvo Pwogram",
-    btnAddProg: "Ajoute pwogram nan",
-    listProg: "Lis pwogram yo",
-    gestionCours: "Jestyon Kous yo",
-    addCours: "Kreye yon kous",
-    btnAddCours: "Ajoute kous la",
-    listCours: "Lis kous yo",
-    addClass: "Ajoute yon klas",
-    btnAddClass: "Ajoute klas la",
-    listClass: "Lis klas yo",
-    addDevoir: "Kreye yon devwa",
-    btnAddDevoir: "Pibliye devwa a",
-    listDevoirs: "Lis devwa yo",
-    addRemise: "Anrejistre yon nòt / remiz",
-    btnAddRemise: "Anrejistre evalyasyon an",
-    listRemises: "Lis remiz yo",
-    apercuResultats: "Aperçu Rezilta yo",
-    addHoraire: "Ajoute yon lè kous",
-    btnAddHoraire: "Ajoute nan anplwa ditan",
-    listHoraires: "Anplwa ditan global",
-    etudiantsInscrits: "Etidyan Enskri",
-    corpsEnseignant: "Pwofesè yo",
-    coursActifs: "Kous ki Aktif",
-    classesOuvertes: "Klas ki Louvri",
-    usersPending: "Itilizatè k ap tann apwobasyon",
-    usersAll: "Tout itilizatè yo",
-    telephone: "Telefòn",
-    classe: "Klas",
-    matiere: "Matyè",
-    nomDept: "Non depatman an",
-    description: "Deskripsyon",
-    nomProg: "Non pwogram nan",
-    nomCours: "Non kous la",
-    professeur: "Pwofesè",
-    nomClasse: "Non klas la",
-    niveau: "Nivo",
-    titreDevoir: "Tit devwa a",
-    dateLimite: "Dat limit",
-    etudiant: "Elèv / Etidyan",
-    note: "Nòt / 100",
-    commentaire: "Kòmantè / Korèksyon",
-    jour: "Jou",
-    heure: "Lè"
+
+    appSubtitle:
+      "JESTYON INIVÈSITE AK LEKÒL PROFESYONÈL",
+
+    installer:
+      "Enstale Aplikasyon an",
+
+    deconnexion:
+      "Sòti",
+
+    menuAccueil:
+      "Akèy",
+
+    menuEtudiants:
+      "Elèv / Etidyan",
+
+    menuProfesseurs:
+      "Pwofesè",
+
+    menuDepartements:
+      "Depatman",
+
+    menuProgrammes:
+      "Pwogram",
+
+    menuCours:
+      "Kous",
+
+    menuClasses:
+      "Klas yo",
+
+    menuDevoirs:
+      "Devwa",
+
+    menuRemises:
+      "Remiz / Travay",
+
+    menuResultats:
+      "Rezilta",
+
+    menuHoraires:
+      "Lè Kous",
+
+    menuStatistiques:
+      "Statistik",
+
+    menuUtilisateurs:
+      "Itilizatè yo",
+
+    dashTitle:
+      "🏠 Tablo de bòd",
+
+    welcome:
+      "Byenvini nan Centre de Formation Le Pédagogue",
+
+    welcomeDesc:
+      "Sèvi ak meni sou kote a pou aksede nan diferan seksyon jestyon akademik yo.",
+
+    gestionEtudiants:
+      "Jestyon Elèv / Etidyan yo",
+
+    addEtudiant:
+      "Ajoute yon nouvo elèv",
+
+    btnAddEtudiant:
+      "Ajoute elèv la",
+
+    listEtudiants:
+      "Lis elèv yo",
+
+    gestionProfesseurs:
+      "Jestyon Pwofesè yo",
+
+    addProfesseur:
+      "Ajoute yon pwofesè",
+
+    btnAddProfesseur:
+      "Ajoute pwofesè a",
+
+    listProfesseurs:
+      "Lis pwofesè yo",
+
+    addDept:
+      "Nouvo Depatman",
+
+    btnAddDept:
+      "Ajoute depatman an",
+
+    listDept:
+      "Lis depatman yo",
+
+    addProg:
+      "Nouvo Pwogram",
+
+    btnAddProg:
+      "Ajoute pwogram nan",
+
+    listProg:
+      "Lis pwogram yo",
+
+    gestionCours:
+      "Jestyon Kous yo",
+
+    addCours:
+      "Kreye yon kous",
+
+    btnAddCours:
+      "Ajoute kous la",
+
+    listCours:
+      "Lis kous yo",
+
+    addClass:
+      "Ajoute yon klas",
+
+    btnAddClass:
+      "Ajoute klas la",
+
+    listClass:
+      "Lis klas yo",
+
+    addDevoir:
+      "Kreye yon devwa",
+
+    btnAddDevoir:
+      "Pibliye devwa a",
+
+    listDevoirs:
+      "Lis devwa yo",
+
+    addRemise:
+      "Anrejistre yon nòt / remiz",
+
+    btnAddRemise:
+      "Anrejistre evalyasyon an",
+
+    listRemises:
+      "Lis remiz yo",
+
+    apercuResultats:
+      "Aperçu Rezilta yo",
+
+    addHoraire:
+      "Ajoute yon lè kous",
+
+    btnAddHoraire:
+      "Ajoute nan anplwa ditan",
+
+    listHoraires:
+      "Anplwa ditan global",
+
+    etudiantsInscrits:
+      "Etidyan Enskri",
+
+    corpsEnseignant:
+      "Pwofesè yo",
+
+    coursActifs:
+      "Kous ki Aktif",
+
+    classesOuvertes:
+      "Klas ki Louvri",
+
+    usersPending:
+      "Itilizatè k ap tann apwobasyon",
+
+    usersAll:
+      "Tout itilizatè yo",
+
+    telephone:
+      "Telefòn",
+
+    classe:
+      "Klas",
+
+    matiere:
+      "Matyè",
+
+    nomDept:
+      "Non depatman an",
+
+    description:
+      "Deskripsyon",
+
+    nomProg:
+      "Non pwogram nan",
+
+    nomCours:
+      "Non kous la",
+
+    professeur:
+      "Pwofesè",
+
+    nomClasse:
+      "Non klas la",
+
+    niveau:
+      "Nivo",
+
+    titreDevoir:
+      "Tit devwa a",
+
+    dateLimite:
+      "Dat limit",
+
+    etudiant:
+      "Elèv / Etidyan",
+
+    note:
+      "Nòt / 100",
+
+    commentaire:
+      "Kòmantè / Korèksyon",
+
+    jour:
+      "Jou",
+
+    heure:
+      "Lè"
+
   },
+
+
   fr: {
-    connexion: "Connexion",
-    inscription: "Inscription",
-    email: "Email",
-    password: "Mot de passe",
-    seConnecter: "Se connecter",
-    ou: "ou",
-    googleConnect: "Continuer avec Google",
-    nomComplet: "Nom complet",
-    creerCompte: "Créer mon compte",
-    googleRegister: "S'inscrire avec Google",
-    appSubtitle: "GESTION UNIVERSITÉ & ÉCOLE PROFESSIONNELLE",
-    installer: "Installer l'application",
-    deconnexion: "Sortir",
-    menuAccueil: "Accueil",
-    menuEtudiants: "Étudiants",
-    menuProfesseurs: "Professeurs",
-    menuDepartements: "Départements",
-    menuProgrammes: "Programmes",
-    menuCours: "Cours",
-    menuClasses: "Classes",
-    menuDevoirs: "Devoirs",
-    menuRemises: "Remises",
-    menuResultats: "Résultats",
-    menuHoraires: "Horaires",
-    menuStatistiques: "Statistiques",
-    menuUtilisateurs: "Utilisateurs",
-    dashTitle: "🏠 Tableau de bord",
-    welcome: "Bienvenue au Centre de Formation Le Pédagogue",
-    welcomeDesc: "Utilisez le menu latéral pour accéder aux différentes sections de gestion administrative.",
-    gestionEtudiants: "Gestion des Étudiants",
-    addEtudiant: "Ajouter un nouvel étudiant",
-    btnAddEtudiant: "Ajouter l'étudiant",
-    listEtudiants: "Liste des étudiants",
-    gestionProfesseurs: "Gestion des Professeurs",
-    addProfesseur: "Ajouter un professeur",
-    btnAddProfesseur: "Ajouter le professeur",
-    listProfesseurs: "Liste des professeurs",
-    addDept: "Nouveau Département",
-    btnAddDept: "Ajouter le département",
-    listDept: "Liste des départements",
-    addProg: "Nouveau Programme",
-    btnAddProg: "Ajouter le programme",
-    listProg: "Liste des programmes",
-    gestionCours: "Gestion des Cours",
-    addCours: "Créer un cours",
-    btnAddCours: "Ajouter le cours",
-    listCours: "Liste des cours",
-    addClass: "Ajouter une classe",
-    btnAddClass: "Ajouter la classe",
-    listClass: "Liste des classes",
-    addDevoir: "Créer un devoir",
-    btnAddDevoir: "Publier le devoir",
-    listDevoirs: "Liste des devoirs",
-    addRemise: "Enregistrer une remise ou évaluation",
-    btnAddRemise: "Enregistrer l'évaluation",
-    listRemises: "Liste des remises",
-    apercuResultats: "Aperçu des Résultats",
-    addHoraire: "Ajouter un horaire",
-    btnAddHoraire: "Ajouter à l'emploi du temps",
-    listHoraires: "Emploi du temps global",
-    etudiantsInscrits: "Étudiants Inscrits",
-    corpsEnseignant: "Corps Enseignant",
-    coursActifs: "Cours Actifs",
-    classesOuvertes: "Classes Ouvertes",
-    usersPending: "Utilisateurs en attente de validation",
-    usersAll: "Tous les utilisateurs",
-    telephone: "Téléphone",
-    classe: "Classe",
-    matiere: "Matière",
-    nomDept: "Nom du département",
-    description: "Description",
-    nomProg: "Nom du programme",
-    nomCours: "Nom du cours",
-    professeur: "Professeur",
-    nomClasse: "Nom de la classe",
-    niveau: "Niveau",
-    titreDevoir: "Titre du devoir",
-    dateLimite: "Date limite",
-    etudiant: "Étudiant",
-    note: "Note / 100",
-    commentaire: "Correction / Commentaire",
-    jour: "Jour",
-    heure: "Heure"
+
+    connexion:
+      "Connexion",
+
+    inscription:
+      "Inscription",
+
+    email:
+      "Email",
+
+    password:
+      "Mot de passe",
+
+    seConnecter:
+      "Se connecter",
+
+    ou:
+      "ou",
+
+    googleConnect:
+      "Continuer avec Google",
+
+    nomComplet:
+      "Nom complet",
+
+    creerCompte:
+      "Créer mon compte",
+
+    googleRegister:
+      "S'inscrire avec Google",
+
+    appSubtitle:
+      "GESTION UNIVERSITÉ & ÉCOLE PROFESSIONNELLE",
+
+    installer:
+      "Installer l'application",
+
+    deconnexion:
+      "Sortir",
+
+    menuAccueil:
+      "Accueil",
+
+    menuEtudiants:
+      "Étudiants",
+
+    menuProfesseurs:
+      "Professeurs",
+
+    menuDepartements:
+      "Départements",
+
+    menuProgrammes:
+      "Programmes",
+
+    menuCours:
+      "Cours",
+
+    menuClasses:
+      "Classes",
+
+    menuDevoirs:
+      "Devoirs",
+
+    menuRemises:
+      "Remises",
+
+    menuResultats:
+      "Résultats",
+
+    menuHoraires:
+      "Horaires",
+
+    menuStatistiques:
+      "Statistiques",
+
+    menuUtilisateurs:
+      "Utilisateurs",
+
+    dashTitle:
+      "🏠 Tableau de bord",
+
+    welcome:
+      "Bienvenue au Centre de Formation Le Pédagogue",
+
+    welcomeDesc:
+      "Utilisez le menu latéral pour accéder aux différentes sections de gestion administrative.",
+
+    gestionEtudiants:
+      "Gestion des Étudiants",
+
+    addEtudiant:
+      "Ajouter un nouvel étudiant",
+
+    btnAddEtudiant:
+      "Ajouter l'étudiant",
+
+    listEtudiants:
+      "Liste des étudiants",
+
+    gestionProfesseurs:
+      "Gestion des Professeurs",
+
+    addProfesseur:
+      "Ajouter un professeur",
+
+    btnAddProfesseur:
+      "Ajouter le professeur",
+
+    listProfesseurs:
+      "Liste des professeurs",
+
+    addDept:
+      "Nouveau Département",
+
+    btnAddDept:
+      "Ajouter le département",
+
+    listDept:
+      "Liste des départements",
+
+    addProg:
+      "Nouveau Programme",
+
+    btnAddProg:
+      "Ajouter le programme",
+
+    listProg:
+      "Liste des programmes",
+
+    gestionCours:
+      "Gestion des Cours",
+
+    addCours:
+      "Créer un cours",
+
+    btnAddCours:
+      "Ajouter le cours",
+
+    listCours:
+      "Liste des cours",
+
+    addClass:
+      "Ajouter une classe",
+
+    btnAddClass:
+      "Ajouter la classe",
+
+    listClass:
+      "Liste des classes",
+
+    addDevoir:
+      "Créer un devoir",
+
+    btnAddDevoir:
+      "Publier le devoir",
+
+    listDevoirs:
+      "Liste des devoirs",
+
+    addRemise:
+      "Enregistrer une remise ou évaluation",
+
+    btnAddRemise:
+      "Enregistrer l'évaluation",
+
+    listRemises:
+      "Liste des remises",
+
+    apercuResultats:
+      "Aperçu des Résultats",
+
+    addHoraire:
+      "Ajouter un horaire",
+
+    btnAddHoraire:
+      "Ajouter à l'emploi du temps",
+
+    listHoraires:
+      "Emploi du temps global",
+
+    etudiantsInscrits:
+      "Étudiants Inscrits",
+
+    corpsEnseignant:
+      "Corps Enseignant",
+
+    coursActifs:
+      "Cours Actifs",
+
+    classesOuvertes:
+      "Classes Ouvertes",
+
+    usersPending:
+      "Utilisateurs en attente de validation",
+
+    usersAll:
+      "Tous les utilisateurs",
+
+    telephone:
+      "Téléphone",
+
+    classe:
+      "Classe",
+
+    matiere:
+      "Matière",
+
+    nomDept:
+      "Nom du département",
+
+    description:
+      "Description",
+
+    nomProg:
+      "Nom du programme",
+
+    nomCours:
+      "Nom du cours",
+
+    professeur:
+      "Professeur",
+
+    nomClasse:
+      "Nom de la classe",
+
+    niveau:
+      "Niveau",
+
+    titreDevoir:
+      "Titre du devoir",
+
+    dateLimite:
+      "Date limite",
+
+    etudiant:
+      "Étudiant",
+
+    note:
+      "Note / 100",
+
+    commentaire:
+      "Correction / Commentaire",
+
+    jour:
+      "Jour",
+
+    heure:
+      "Heure"
+
   }
+
 };
 
-window.changeLanguage = function(lang){
-  localStorage.setItem("app_lang", lang);
-  document.documentElement.lang = lang;
-  
-  const dict = translations[lang] || translations.ht;
-  document.querySelectorAll("[data-i18n]").forEach(el => {
-    const key = el.getAttribute("data-i18n");
-    if(dict[key]){
-      el.textContent = dict[key];
-    }
-  });
+
+/* =========================================================
+   LANGUAGE
+   ========================================================= */
+
+window.changeLanguage = function(lang) {
+
+  localStorage.setItem(
+    "app_lang",
+    lang
+  );
+
+  document.documentElement.lang =
+    lang;
+
+  const dict =
+    translations[lang] ||
+    translations.ht;
+
+  document
+    .querySelectorAll("[data-i18n]")
+    .forEach(el => {
+
+      const key =
+        el.getAttribute("data-i18n");
+
+      if (dict[key]) {
+        el.textContent =
+          dict[key];
+      }
+
+    });
+
 };
 
-const savedLang = localStorage.getItem("app_lang") || "ht";
-document.getElementById("languageSelect").value = savedLang;
+
+const savedLang =
+  localStorage.getItem("app_lang") || "ht";
+
+const languageSelect =
+  document.getElementById("languageSelect");
+
+if (languageSelect) {
+  languageSelect.value =
+    savedLang;
+}
+
 changeLanguage(savedLang);
 
 
-/* ================= LOG DETAYE ERÈ FIREBASE ================= */
+/* =========================================================
+   FIREBASE ERROR
+   ========================================================= */
 
-function handleFirebaseError(error, collectionName, operation) {
-  const errDetail = {
-    code: error.code || "unknown",
-    message: error.message || String(error),
-    collection: collectionName,
-    operation: operation,
-    currentUID: currentUser ? currentUser.uid : "No User",
-    currentEmail: currentUser ? currentUser.email : "No Email",
-    currentRole: currentUserData ? currentUserData.role : "N/A",
-    currentStatus: currentUserData ? currentUserData.status : "N/A"
-  };
+function handleFirebaseError(
+  error,
+  collectionName,
+  operation
+) {
 
-  console.error("🔥 DETAY ERÈ FIREBASE 🔥", errDetail);
-  alert(`Erè Firebase (${operation} - ${collectionName}): ${error.message || error.code}`);
-}
+  const code =
+    error?.code || "unknown";
 
+  const message =
+    error?.message ||
+    String(error);
 
-/* ================= INITIALIZE FIRESTORE DATA AUTOMATICALLY ================= */
-
-async function initializeFirestoreData() {
-  if (!currentUser || !currentUserData) return;
-  if (currentUserData.role !== "administrateur" || currentUserData.status !== "accepted") return;
-
-  try {
-    for (const colName of ALL_COLLECTIONS) {
-      const colRef = collection(db, colName);
-      const snapshot = await getDocs(colRef);
-      if (snapshot.empty) {
-        await setDoc(doc(db, colName, "_init_metadata"), {
-          initialized: true,
-          createdAt: serverTimestamp(),
-          note: "Collection initialized automatically"
-        });
-      }
+  console.error(
+    "🔥 ERÈ FIREBASE",
+    {
+      code,
+      message,
+      collection:
+        collectionName,
+      operation,
+      uid:
+        currentUser?.uid || "No User",
+      email:
+        currentUser?.email || "No Email",
+      role:
+        currentUserData?.role || "N/A",
+      status:
+        currentUserData?.status || "N/A"
     }
-  } catch (error) {
-    console.error("Erè pandan y ap tcheke oubyen kreye collections yo:", error);
+  );
+
+  let friendly =
+    "Yon erè Firebase rive.";
+
+  if (
+    code ===
+    "permission-denied"
+  ) {
+
+    friendly =
+      "Firebase refize aksè a. Verifye Firebase Security Rules yo.";
+
+  } else if (
+    code ===
+    "auth/invalid-credential"
+  ) {
+
+    friendly =
+      "Email oswa modpas la pa kòrèk.";
+
+  } else if (
+    code ===
+    "auth/user-not-found"
+  ) {
+
+    friendly =
+      "Kont sa a pa egziste.";
+
+  } else if (
+    code ===
+    "auth/wrong-password"
+  ) {
+
+    friendly =
+      "Modpas la pa kòrèk.";
+
+  } else if (
+    code ===
+    "auth/email-already-in-use"
+  ) {
+
+    friendly =
+      "Email sa a deja gen yon kont.";
+
+  } else {
+
+    friendly =
+      message;
+
   }
+
+  alert(
+    "Erè Firebase:\n\n" +
+    friendly
+  );
 }
 
 
-/* ================= INSTALL PWA ================= */
+/* =========================================================
+   PWA INSTALLATION
+   ========================================================= */
 
-window.addEventListener("beforeinstallprompt", event => {
-  event.preventDefault();
-  deferredPrompt = event;
-  const installBtn = document.getElementById("installBtn");
-  const dashBtn = document.getElementById("dashInstallBtn");
-  if (installBtn) installBtn.style.display = "inline-flex";
-  if (dashBtn) dashBtn.style.display = "inline-flex";
-});
+window.addEventListener(
+  "beforeinstallprompt",
+  event => {
+
+    event.preventDefault();
+
+    deferredPrompt =
+      event;
+
+    const installBtn =
+      document.getElementById(
+        "installBtn"
+      );
+
+    const dashBtn =
+      document.getElementById(
+        "dashInstallBtn"
+      );
+
+    if (installBtn) {
+      installBtn.style.display =
+        "inline-flex";
+    }
+
+    if (dashBtn) {
+      dashBtn.style.display =
+        "inline-flex";
+    }
+
+  }
+);
+
 
 async function triggerPwaInstall() {
-  if(!deferredPrompt){
-    alert("L'application est déjà installée ou peut être installée depuis le menu du navigateur.");
-    return;
-  }
-  deferredPrompt.prompt();
-  await deferredPrompt.userChoice;
-  deferredPrompt = null;
-}
 
-document.getElementById("installBtn").addEventListener("click", triggerPwaInstall);
-document.getElementById("dashInstallBtn").addEventListener("click", triggerPwaInstall);
+  if (!deferredPrompt) {
 
-
-/* ================= AUTH MESSAGE ================= */
-
-function authMessage(message){
-  document.getElementById("authMessage").textContent = message;
-}
-
-
-/* ================= LOGIN / REGISTER UI ================= */
-
-window.showLogin = function(){
-  document.getElementById("loginBox").classList.remove("hidden");
-  document.getElementById("registerBox").classList.add("hidden");
-  document.getElementById("loginTab").classList.add("active");
-  document.getElementById("registerTab").classList.remove("active");
-};
-
-window.showRegister = function(){
-  document.getElementById("loginBox").classList.add("hidden");
-  document.getElementById("registerBox").classList.remove("hidden");
-  document.getElementById("loginTab").classList.remove("active");
-  document.getElementById("registerTab").classList.add("active");
-};
-
-
-/* ================= AUTHENTICATION ACTIONS ================= */
-
-window.connecter = async function(){
-  const email = document.getElementById("loginEmail").value.trim();
-  const password = document.getElementById("loginPassword").value;
-
-  if(!email || !password){
-    authMessage("Tanpri ranpli email ak modpas la.");
-    return;
-  }
-
-  try{
-    await signInWithEmailAndPassword(auth, email, password);
-  }catch(error){
-    handleFirebaseError(error, "auth", "login");
-    authMessage("Koneksyon echwe : " + error.message);
-  }
-};
-
-window.connecterAvecGoogle = async function(){
-  try{
-    await signInWithPopup(auth, googleProvider);
-  }catch(error){
-    if(error.code === "auth/popup-blocked" || error.code === "auth/popup-closed-by-user" || error.code === "auth/cancelled-popup-request"){
-      try {
-        await signInWithRedirect(auth, googleProvider);
-        return;
-      } catch (redirectError) {
-        handleFirebaseError(redirectError, "auth", "google-redirect");
-        authMessage("Google redirect echwe : " + redirectError.message);
-        return;
-      }
-    }
-    handleFirebaseError(error, "auth", "google-login");
-    authMessage("Google pa konekte : " + error.message);
-  }
-};
-
-window.registerAccount = async function(){
-  const name = document.getElementById("registerName").value.trim();
-  const email = document.getElementById("registerEmail").value.trim();
-  const password = document.getElementById("registerPassword").value;
-
-  if(!name || !email || !password){
-    authMessage("Tanpri ranpli tout chan yo.");
-    return;
-  }
-
-  try{
-    const cred = await createUserWithEmailAndPassword(auth, email, password);
-    await setDoc(doc(db, "users", cred.user.uid), {
-      uid: cred.user.uid,
-      email: email,
-      nom: name,
-      role: "eleve",
-      status: "attente",
-      createdAt: serverTimestamp()
-    });
-    authMessage("Kont ou kreye avèk siksè! Tann yon administratè apwouve li.");
-  }catch(error){
-    handleFirebaseError(error, "users", "register");
-    authMessage("Enskripsyon echwe : " + error.message);
-  }
-};
-
-window.registerGoogle = async function(){
-  try{
-    await signInWithPopup(auth, googleProvider);
-  }catch(error){
-    if(error.code === "auth/popup-blocked" || error.code === "auth/popup-closed-by-user" || error.code === "auth/cancelled-popup-request"){
-      try {
-        await signInWithRedirect(auth, googleProvider);
-        return;
-      } catch (redirectError) {
-        handleFirebaseError(redirectError, "auth", "google-redirect-register");
-        authMessage("Google redirect enskripsyon echwe : " + redirectError.message);
-        return;
-      }
-    }
-    handleFirebaseError(error, "users", "google-register");
-    authMessage("Google enskripsyon echwe : " + error.message);
-  }
-};
-
-window.logout = async function(){
-  await signOut(auth);
-};
-
-
-/* ================= HANDLE REDIRECT RESULT ON LOAD ================= */
-
-window.addEventListener("DOMContentLoaded", async () => {
-  try {
-    const result = await getRedirectResult(auth);
-    if (result && result.user) {
-      console.log("Google redirect login reyisi pou:", result.user.email);
-    }
-  } catch (redirectErr) {
-    console.error("Erè getRedirectResult:", redirectErr);
-  }
-});
-
-
-
-/* ================= AUTH STATE OBSERVER ================= */
-
-onAuthStateChanged(auth, async user => {
-
-  if (!user) {
-
-    currentUser = null;
-    currentUserData = null;
-
-    document.getElementById("authPage").classList.remove("hidden");
-    document.getElementById("appPage").classList.add("hidden");
-
-    return;
-  }
-
-  currentUser = user;
-
-  const userRef = doc(db, "users", user.uid);
-
-  try {
-
-    let userSnap = await getDoc(userRef);
-
-    /*
-      SI PROFIL LA PA EGZISTE:
-      Kreye li kòm elèv an attente.
-    */
-
-    if (!userSnap.exists()) {
-
-      await setDoc(userRef, {
-        uid: user.uid,
-        email: user.email || "",
-        nom: user.displayName || "Utilisateur",
-        role: "eleve",
-        status: "attente",
-        createdAt: serverTimestamp()
-      });
-
-      userSnap = await getDoc(userRef);
-    }
-
-    currentUserData = userSnap.data();
-
-    console.log("👤 PROFIL FIREBASE:", {
-      uid: user.uid,
-      email: user.email,
-      role: currentUserData.role,
-      status: currentUserData.status
-    });
-
-
-    /* =================================================
-       ADMINISTRATEUR AKSEPTE
-       ================================================= */
-
-    const isAdminAccepted =
-      currentUserData.role === "administrateur" &&
-      currentUserData.status === "accepted";
-
-
-    /* =================================================
-       NENPÒT LÒT ITILIZATÈ AKSEPTE
-       ================================================= */
-
-    const isAccepted =
-      currentUserData.status === "accepted";
-
-
-    /*
-      SI ADMINISTRATÈ A AKSEPTE
-      OSWA nenpòt lòt itilizatè aksepte,
-      montre aplikasyon an.
-    */
-
-    if (isAdminAccepted || isAccepted) {
-
-      document
-        .getElementById("authPage")
-        .classList.add("hidden");
-
-      document
-        .getElementById("appPage")
-        .classList.remove("hidden");
-
-
-      /* EMAIL */
-
-      const emailEl =
-        document.getElementById("userEmail");
-
-      if (emailEl) {
-        emailEl.textContent =
-          user.email || currentUserData.email || "";
-      }
-
-
-      /* ROLE */
-
-      const roleEl =
-        document.getElementById("userRole");
-
-      if (roleEl) {
-
-        if (isAdminAccepted) {
-          roleEl.textContent = "ADMINISTRATEUR";
-        } else {
-          roleEl.textContent =
-            String(currentUserData.role || "eleve")
-              .toUpperCase();
-        }
-
-      }
-
-
-      /* MENU ITILIZATÈ YO */
-
-      const usersMenu =
-        document.getElementById("usersMenu");
-
-      if (usersMenu) {
-
-        if (isAdminAccepted) {
-          usersMenu.classList.remove("hidden");
-        } else {
-          usersMenu.classList.add("hidden");
-        }
-
-      }
-
-
-      /*
-        Chaje done aplikasyon an.
-      */
-
-      try {
-        await initializeFirestoreData();
-      } catch (e) {
-        console.error(
-          "Erè initializeFirestoreData:",
-          e
-        );
-      }
-
-      await loadAllData();
-
-      return;
-    }
-
-
-    /* =================================================
-       ITILIZATÈ PA AKSEPTE
-       ================================================= */
-
-    document
-      .getElementById("authPage")
-      .classList.remove("hidden");
-
-    document
-      .getElementById("appPage")
-      .classList.add("hidden");
-
-    authMessage(
-      "⏳ Kont ou an ap tann apwobasyon yon administratè."
+    alert(
+      "Aplikasyon an deja enstale oswa navigatè a pa montre opsyon enstalasyon an."
     );
+
+    return;
+  }
+
+  try {
+
+    await deferredPrompt.prompt();
+
+    await deferredPrompt.userChoice;
+
+    deferredPrompt =
+      null;
 
   } catch (error) {
 
     console.error(
-      "🔥 Erè load profil itilizatè:",
+      "Erè PWA install:",
       error
     );
 
-    document
-      .getElementById("authPage")
-      .classList.remove("hidden");
+  }
 
+}
+
+
+const installBtn =
+  document.getElementById(
+    "installBtn"
+  );
+
+const dashInstallBtn =
+  document.getElementById(
+    "dashInstallBtn"
+  );
+
+if (installBtn) {
+  installBtn.addEventListener(
+    "click",
+    triggerPwaInstall
+  );
+}
+
+if (dashInstallBtn) {
+  dashInstallBtn.addEventListener(
+    "click",
+    triggerPwaInstall
+  );
+}
+
+
+/* =========================================================
+   AUTH MESSAGE
+   ========================================================= */
+
+function authMessage(message) {
+
+  const el =
+    document.getElementById(
+      "authMessage"
+    );
+
+  if (el) {
+    el.textContent =
+      message;
+  }
+
+}
+
+
+/* =========================================================
+   LOGIN / REGISTER UI
+   ========================================================= */
+
+window.showLogin = function() {
+
+  document
+    .getElementById("loginBox")
+    .classList
+    .remove("hidden");
+
+  document
+    .getElementById("registerBox")
+    .classList
+    .add("hidden");
+
+  document
+    .getElementById("loginTab")
+    .classList
+    .add("active");
+
+  document
+    .getElementById("registerTab")
+    .classList
+    .remove("active");
+
+};
+
+
+window.showRegister = function() {
+
+  document
+    .getElementById("loginBox")
+    .classList
+    .add("hidden");
+
+  document
+    .getElementById("registerBox")
+    .classList
+    .remove("hidden");
+
+  document
+    .getElementById("loginTab")
+    .classList
+    .remove("active");
+
+  document
+    .getElementById("registerTab")
+    .classList
+    .add("active");
+
+};
+
+
+/* =========================================================
+   EMAIL LOGIN
+   ========================================================= */
+
+window.connecter = async function() {
+
+  const email =
     document
-      .getElementById("appPage")
-      .classList.add("hidden");
+      .getElementById(
+        "loginEmail"
+      )
+      .value
+      .trim();
+
+  const password =
+    document
+      .getElementById(
+        "loginPassword"
+      )
+      .value;
+
+  if (!email || !password) {
 
     authMessage(
-      "Erè pandan aplikasyon an t ap li pwofil itilizatè a."
+      "Tanpri ranpli email ak modpas la."
     );
-  }
 
-});
-
-/* ================= NAVIGATION & SECTIONS ================= */
-
-window.toggleSidebar = function(){
-  document.getElementById("sidebar").classList.toggle("open");
-};
-
-window.showSection = function(sectionId){
-  document.querySelectorAll(".section").forEach(sec => sec.classList.remove("active"));
-  document.getElementById(sectionId).classList.add("active");
-  document.getElementById("sidebar").classList.remove("open");
-};
-
-
-/* ================= DATA MANAGEMENT & LOADERS ================= */
-
-async function loadAllData(){
-  await loadStats();
-  await loadStudents();
-  await loadTeachers();
-  await loadDepartments();
-  await loadPrograms();
-  await loadCourses();
-  await loadClasses();
-  await loadAssignments();
-  await loadSubmissions();
-  await loadSchedules();
-  await loadResults();
-  if(currentUserData && currentUserData.role === "administrateur"){
-    await loadUsersManagement();
-  }
-}
-
-async function loadStats(){
-  try {
-    const sSnap = await getDocs(collection(db, "etudiants"));
-    const tSnap = await getDocs(collection(db, "professeurs"));
-    const cSnap = await getDocs(collection(db, "cours"));
-    const clSnap = await getDocs(collection(db, "classes"));
-
-    document.getElementById("statEtudiants").textContent = sSnap.size;
-    document.getElementById("statProfesseurs").textContent = tSnap.size;
-    document.getElementById("statCours").textContent = cSnap.size;
-    document.getElementById("statClasses").textContent = clSnap.size;
-
-    document.getElementById("statsStudents").textContent = sSnap.size;
-    document.getElementById("statsTeachers").textContent = tSnap.size;
-    document.getElementById("statsCourses").textContent = cSnap.size;
-    document.getElementById("statsClasses").textContent = clSnap.size;
-  } catch (e) {
-    console.error("Erè nan chajman estatistik yo:", e);
-  }
-}
-
-window.addStudent = async function(){
-  const nom = document.getElementById("studentName").value.trim();
-  const email = document.getElementById("studentEmail").value.trim();
-  const telephone = document.getElementById("studentPhone").value.trim();
-  const classe = document.getElementById("studentClass").value.trim();
-
-  if(!nom || !email){
-    alert("Non ak imèl obligatwa!");
     return;
   }
 
   try {
-    await addDoc(collection(db, "etudiants"), {
-      nom, email, telephone, classe, createdAt: serverTimestamp()
-    });
-    document.getElementById("studentName").value = "";
-    document.getElementById("studentEmail").value = "";
-    document.getElementById("studentPhone").value = "";
-    document.getElementById("studentClass").value = "";
-    await loadStudents();
-    await loadStats();
-    alert("Elèv la ajoute ak siksè!");
-  } catch (e) {
-    handleFirebaseError(e, "etudiants", "add");
-  }
-};
 
-async function loadStudents(){
-  const listEl = document.getElementById("studentList");
-  try {
-    const snap = await getDocs(collection(db, "etudiants"));
-    if(snap.empty){
-      listEl.innerHTML = `<div class="empty">Okenn elèv pou kounye a.</div>`;
-      return;
-    }
-    let html = "";
-    snap.forEach(d => {
-      if(d.id === "_init_metadata") return;
-      const data = d.data();
-      html += `
-        <div class="item">
-          <div class="item-title">${data.nom || "San non"}</div>
-          <div class="item-info">📧 ${data.email || ""} | 📞 ${data.telephone || "N/A"} | 🏫 ${data.classe || "N/A"}</div>
-          ${currentUserData && currentUserData.role === "administrateur" ? `
-            <div class="actions">
-              <button class="danger-btn" onclick="deleteItem('etudiants', '${d.id}')">Efase</button>
-            </div>
-          ` : ""}
-        </div>
-      `;
-    });
-    listEl.innerHTML = html || `<div class="empty">Okenn elèv pou kounye a.</div>`;
-  } catch (e) {
-    listEl.innerHTML = `<div class="empty">Erè nan chajman elèv yo.</div>`;
-  }
-}
+    await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
 
-window.addTeacher = async function(){
-  const nom = document.getElementById("teacherName").value.trim();
-  const email = document.getElementById("teacherEmail").value.trim();
-  const telephone = document.getElementById("teacherPhone").value.trim();
-  const matiere = document.getElementById("teacherSubject").value.trim();
+  } catch (error) {
 
-  if(!nom || !email){
-    alert("Non ak imèl obligatwa!");
-    return;
+    handleFirebaseError(
+      error,
+      "auth",
+      "login"
+    );
+
+    authMessage(
+      "Koneksyon echwe."
+    );
+
   }
 
-  try {
-    await addDoc(collection(db, "professeurs"), {
-      nom, email, telephone, matiere, createdAt: serverTimestamp()
-    });
-    document.getElementById("teacherName").value = "";
-    document.getElementById("teacherEmail").value = "";
-    document.getElementById("teacherPhone").value = "";
-    document.getElementById("teacherSubject").value = "";
-    await loadTeachers();
-    await loadStats();
-    alert("Pwofesè a ajoute ak siksè!");
-  } catch (e) {
-    handleFirebaseError(e, "professeurs", "add");
-  }
 };
 
-async function loadTeachers(){
-  const listEl = document.getElementById("teacherList");
+
+/* =========================================================
+   GOOGLE LOGIN
+   ========================================================= */
+
+window.connecterAvecGoogle =
+async function() {
+
   try {
-    const snap = await getDocs(collection(db, "professeurs"));
-    if(snap.empty){
-      listEl.innerHTML = `<div class="empty">Okenn pwofesè pou kounye a.</div>`;
-      return;
-    }
-    let html = "";
-    snap.forEach(d => {
-      if(d.id === "_init_metadata") return;
-      const data = d.data();
-      html += `
-        <div class="item">
-          <div class="item-title">${data.nom || "San non"}</div>
-          <div class="item-info">📧 ${data.email || ""} | 📞 ${data.telephone || "N/A"} | 📚 ${data.matiere || "N/A"}</div>
-          ${currentUserData && currentUserData.role === "administrateur" ? `
-            <div class="actions">
-              <button class="danger-btn" onclick="deleteItem('professeurs', '${d.id}')">Efase</button>
-            </div>
-          ` : ""}
-        </div>
-      `;
-    });
-    listEl.innerHTML = html || `<div class="empty">Okenn pwofesè pou kounye a.</div>`;
-  } catch (e) {
-    listEl.innerHTML = `<div class="empty">Erè nan chajman pwofesè yo.</div>`;
-  }
-}
 
-window.addDepartment = async function(){
-  const nom = document.getElementById("departmentName").value.trim();
-  const description = document.getElementById("departmentDescription").value.trim();
-  if(!nom) return;
-  try {
-    await addDoc(collection(db, "departements"), { nom, description, createdAt: serverTimestamp() });
-    document.getElementById("departmentName").value = "";
-    document.getElementById("departmentDescription").value = "";
-    await loadDepartments();
-    alert("Depatman ajoute!");
-  } catch (e) { handleFirebaseError(e, "departements", "add"); }
-};
+    await signInWithPopup(
+      auth,
+      googleProvider
+    );
 
-async function loadDepartments(){
-  const listEl = document.getElementById("departmentList");
-  try {
-    const snap = await getDocs(collection(db, "departements"));
-    let html = "";
-    snap.forEach(d => {
-      if(d.id === "_init_metadata") return;
-      const data = d.data();
-      html += `<div class="item"><div class="item-title">${data.nom}</div><div class="item-info">${data.description || ""}</div></div>`;
-    });
-    listEl.innerHTML = html || `<div class="empty">Okenn depatman.</div>`;
-  } catch (e) { listEl.innerHTML = `<div class="empty">Erè.</div>`; }
-}
+  } catch (error) {
 
-window.addProgram = async function(){
-  const nom = document.getElementById("programName").value.trim();
-  const description = document.getElementById("programDescription").value.trim();
-  if(!nom) return;
-  try {
-    await addDoc(collection(db, "programmes"), { nom, description, createdAt: serverTimestamp() });
-    document.getElementById("programName").value = "";
-    document.getElementById("programDescription").value = "";
-    await loadPrograms();
-    alert("Pwogram ajoute!");
-  } catch (e) { handleFirebaseError(e, "programmes", "add"); }
-};
+    if (
+      error.code ===
+        "auth/popup-blocked" ||
 
-async function loadPrograms(){
-  const listEl = document.getElementById("programList");
-  try {
-    const snap = await getDocs(collection(db, "programmes"));
-    let html = "";
-    snap.forEach(d => {
-      if(d.id === "_init_metadata") return;
-      const data = d.data();
-      html += `<div class="item"><div class="item-title">${data.nom}</div><div class="item-info">${data.description || ""}</div></div>`;
-    });
-    listEl.innerHTML = html || `<div class="empty">Okenn pwogram.</div>`;
-  } catch (e) { listEl.innerHTML = `<div class="empty">Erè.</div>`; }
-}
+      error.code ===
+        "auth/popup-closed-by-user" ||
 
-window.addCourse = async function(){
-  const nom = document.getElementById("courseName").value.trim();
-  const professeur = document.getElementById("courseTeacher").value.trim();
-  const classe = document.getElementById("courseClass").value.trim();
-  if(!nom) return;
-  try {
-    await addDoc(collection(db, "cours"), { nom, professeur, classe, createdAt: serverTimestamp() });
-    document.getElementById("courseName").value = "";
-    document.getElementById("courseTeacher").value = "";
-    document.getElementById("courseClass").value = "";
-    await loadCourses();
-    await loadStats();
-    alert("Kous ajoute!");
-  } catch (e) { handleFirebaseError(e, "cours", "add"); }
-};
+      error.code ===
+        "auth/cancelled-popup-request"
+    ) {
 
-async function loadCourses(){
-  const listEl = document.getElementById("courseList");
-  try {
-    const snap = await getDocs(collection(db, "cours"));
-    let html = "";
-    snap.forEach(d => {
-      if(d.id === "_init_metadata") return;
-      const data = d.data();
-      html += `<div class="item"><div class="item-title">${data.nom}</div><div class="item-info">Pwofesè: ${data.professeur || "N/A"} | Klas: ${data.classe || "N/A"}</div></div>`;
-    });
-    listEl.innerHTML = html || `<div class="empty">Okenn kous.</div>`;
-  } catch (e) { listEl.innerHTML = `<div class="empty">Erè.</div>`; }
-}
+      try {
 
-window.addClass = async function(){
-  const nom = document.getElementById("className").value.trim();
-  const niveau = document.getElementById("classLevel").value.trim();
-  if(!nom) return;
-  try {
-    await addDoc(collection(db, "classes"), { nom, niveau, createdAt: serverTimestamp() });
-    document.getElementById("className").value = "";
-    document.getElementById("classLevel").value = "";
-    await loadClasses();
-    await loadStats();
-    alert("Klas ajoute!");
-  } catch (e) { handleFirebaseError(e, "classes", "add"); }
-};
+        await signInWithRedirect(
+          auth,
+          googleProvider
+        );
 
-async function loadClasses(){
-  const listEl = document.getElementById("classList");
-  try {
-    const snap = await getDocs(collection(db, "classes"));
-    let html = "";
-    snap.forEach(d => {
-      if(d.id === "_init_metadata") return;
-      const data = d.data();
-      html += `<div class="item"><div class="item-title">${data.nom}</div><div class="item-info">Nivo: ${data.niveau || "N/A"}</div></div>`;
-    });
-    listEl.innerHTML = html || `<div class="empty">Okenn klas.</div>`;
-  } catch (e) { listEl.innerHTML = `<div class="empty">Erè.</div>`; }
-}
+        return;
 
-window.addAssignment = async function(){
-  const titre = document.getElementById("assignmentTitle").value.trim();
-  const cours = document.getElementById("assignmentCourse").value.trim();
-  const dateLimite = document.getElementById("assignmentDate").value;
-  const description = document.getElementById("assignmentDescription").value.trim();
-  if(!titre) return;
-  try {
-    await addDoc(collection(db, "devoirs"), { titre, cours, dateLimite, description, createdAt: serverTimestamp() });
-    document.getElementById("assignmentTitle").value = "";
-    document.getElementById("assignmentCourse").value = "";
-    document.getElementById("assignmentDate").value = "";
-    document.getElementById("assignmentDescription").value = "";
-    await loadAssignments();
-    alert("Devwa pibliye!");
-  } catch (e) { handleFirebaseError(e, "devoirs", "add"); }
-};
+      } catch (redirectError) {
 
-async function loadAssignments(){
-  const listEl = document.getElementById("assignmentList");
-  try {
-    const snap = await getDocs(collection(db, "devoirs"));
-    let html = "";
-    snap.forEach(d => {
-      if(d.id === "_init_metadata") return;
-      const data = d.data();
-      html += `<div class="item"><div class="item-title">${data.titre}</div><div class="item-info">Kous: ${data.cours || "N/A"} | Limit: ${data.dateLimite || "N/A"}</div><div>${data.description || ""}</div></div>`;
-    });
-    listEl.innerHTML = html || `<div class="empty">Okenn devwa.</div>`;
-  } catch (e) { listEl.innerHTML = `<div class="empty">Erè.</div>`; }
-}
+        handleFirebaseError(
+          redirectError,
+          "auth",
+          "google-redirect"
+        );
 
-window.addSubmission = async function(){
-  const etudiant = document.getElementById("submissionStudent").value.trim();
-  const devoir = document.getElementById("submissionAssignment").value.trim();
-  const note = document.getElementById("submissionNote").value;
-  const commentaire = document.getElementById("submissionComment").value.trim();
-  if(!etudiant) return;
-  try {
-    await addDoc(collection(db, "remises"), { etudiant, devoir, note, commentaire, createdAt: serverTimestamp() });
-    document.getElementById("submissionStudent").value = "";
-    document.getElementById("submissionAssignment").value = "";
-    document.getElementById("submissionNote").value = "";
-    document.getElementById("submissionComment").value = "";
-    await loadSubmissions();
-    await loadResults();
-    alert("Remiz anrejistre!");
-  } catch (e) { handleFirebaseError(e, "remises", "add"); }
-};
+        authMessage(
+          "Google redirect echwe."
+        );
 
-async function loadSubmissions(){
-  const listEl = document.getElementById("submissionList");
-  try {
-    const snap = await getDocs(collection(db, "remises"));
-    let html = "";
-    snap.forEach(d => {
-      if(d.id === "_init_metadata") return;
-      const data = d.data();
-      html += `<div class="item"><div class="item-title">${data.etudiant} - ${data.devoir || ""}</div><div class="item-info">Nòt: ${data.note || "0"}/100</div><div>${data.commentaire || ""}</div></div>`;
-    });
-    listEl.innerHTML = html || `<div class="empty">Okenn remiz.</div>`;
-  } catch (e) { listEl.innerHTML = `<div class="empty">Erè.</div>`; }
-}
-
-window.addSchedule = async function(){
-  const jour = document.getElementById("scheduleDay").value.trim();
-  const cours = document.getElementById("scheduleCourse").value.trim();
-  const heure = document.getElementById("scheduleTime").value.trim();
-  const classe = document.getElementById("scheduleClass").value.trim();
-  if(!jour) return;
-  try {
-    await addDoc(collection(db, "emplois_du_temps"), { jour, cours, heure, classe, createdAt: serverTimestamp() });
-    document.getElementById("scheduleDay").value = "";
-    document.getElementById("scheduleCourse").value = "";
-    document.getElementById("scheduleTime").value = "";
-    document.getElementById("scheduleClass").value = "";
-    await loadSchedules();
-    alert("Horaire ajoute!");
-  } catch (e) { handleFirebaseError(e, "emplois_du_temps", "add"); }
-};
-
-async function loadSchedules(){
-  const listEl = document.getElementById("scheduleList");
-  try {
-    const snap = await getDocs(collection(db, "emplois_du_temps"));
-    let html = "";
-    snap.forEach(d => {
-      if(d.id === "_init_metadata") return;
-      const data = d.data();
-      html += `<div class="item"><div class="item-title">${data.jour} : ${data.cours || ""}</div><div class="item-info">Lè: ${data.heure || ""} | Klas: ${data.classe || ""}</div></div>`;
-    });
-    listEl.innerHTML = html || `<div class="empty">Okenn anplwa ditan.</div>`;
-  } catch (e) { listEl.innerHTML = `<div class="empty">Erè.</div>`; }
-}
-
-async function loadResults(){
-  const listEl = document.getElementById("resultList");
-  try {
-    const snap = await getDocs(collection(db, "remises"));
-    let html = "";
-    snap.forEach(d => {
-      if(d.id === "_init_metadata") return;
-      const data = d.data();
-      html += `<div class="item"><div class="item-title">${data.etudiant}</div><div class="item-info">Devwa: ${data.devoir || ""} | Nòt: ${data.note || "0"}/100</div></div>`;
-    });
-    listEl.innerHTML = html || `<div class="empty">Okenn rezilta disponib.</div>`;
-  } catch (e) { listEl.innerHTML = `<div class="empty">Erè rezilta.</div>`; }
-}
-
-async function loadUsersManagement(){
-  const pendingEl = document.getElementById("pendingUsers");
-  const allEl = document.getElementById("allUsers");
-  try {
-    const snap = await getDocs(collection(db, "users"));
-    let pendingHtml = "";
-    let allHtml = "";
-
-    snap.forEach(d => {
-      const u = d.data();
-      const badgeClass = u.status === "accepted" ? "accepted" : "pending";
-      
-      const card = `
-        <div class="item">
-          <div class="item-title">${u.nom || "Utilisateur"} (${u.email || ""})</div>
-          <div class="item-info">
-            Rôle: <b>${u.role || "eleve"}</b> | Statut: <span class="badge ${badgeClass}">${u.status || "attente"}</span>
-          </div>
-          <div class="actions">
-            <select id="role_${d.id}" onchange="updateUserRole('${d.id}', this.value)">
-              <option value="eleve" ${u.role === 'eleve' ? 'selected' : ''}>Elèv</option>
-              <option value="professeur" ${u.role === 'professeur' ? 'selected' : ''}>Pwofesè</option>
-              <option value="administrateur" ${u.role === 'administrateur' ? 'selected' : ''}>Administratè</option>
-            </select>
-            ${u.status !== 'accepted' ? `<button class="success-btn" onclick="updateUserStatus('${d.id}', 'accepted')">Aksepte</button>` : `<button class="secondary-btn" onclick="updateUserStatus('${d.id}', 'attente')">Mete nan attente</button>`}
-            <button class="danger-btn" onclick="deleteItem('users', '${d.id}')">Efase</button>
-          </div>
-        </div>
-      `;
-
-      allHtml += card;
-      if(u.status !== "accepted"){
-        pendingHtml += card;
+        return;
       }
+
+    }
+
+    handleFirebaseError(
+      error,
+      "auth",
+      "google-login"
+    );
+
+    authMessage(
+      "Google pa konekte."
+    );
+
+  }
+
+};
+
+
+/* =========================================================
+   REGISTER EMAIL
+   ========================================================= */
+
+window.registerAccount =
+async function() {
+
+  const name =
+    document
+      .getElementById(
+        "registerName"
+      )
+      .value
+      .trim();
+
+  const email =
+    document
+      .getElementById(
+        "registerEmail"
+      )
+      .value
+      .trim();
+
+  const password =
+    document
+      .getElementById(
+        "registerPassword"
+      )
+      .value;
+
+  if (!name || !email || !password) {
+
+    authMessage(
+      "Tanpri ranpli tout chan yo."
+    );
+
+    return;
+  }
+
+  if (password.length < 6) {
+
+    authMessage(
+      "Modpas la dwe gen omwen 6 karaktè."
+    );
+
+    return;
+  }
+
+  try {
+
+    const cred =
+      await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
+
+    await setDoc(
+      doc(
+        db,
+        "users",
+        cred.user.uid
+      ),
+      {
+        uid:
+          cred.user.uid,
+
+        email:
+          email,
+
+        nom:
+          name,
+
+        role:
+          "eleve",
+
+        status:
+          "attente",
+
+        createdAt:
+          serverTimestamp()
+      }
+    );
+
+
+    authMessage(
+      "Kont ou kreye avèk siksè! Tann yon administratè apwouve li."
+    );
+
+  } catch (error) {
+
+    handleFirebaseError(
+      error,
+      "users",
+      "register"
+    );
+
+    authMessage(
+      "Enskripsyon echwe."
+    );
+
+  }
+
+};
+
+
+/* =========================================================
+   GOOGLE REGISTER
+   ========================================================= */
+
+window.registerGoogle =
+async function() {
+
+  try {
+
+    await signInWithPopup(
+      auth,
+      googleProvider
+    );
+
+  } catch (error) {
+
+    if (
+      error.code ===
+        "auth/popup-blocked" ||
+
+      error.code ===
+        "auth/popup-closed-by-user" ||
+
+      error.code ===
+        "auth/cancelled-popup-request"
+    ) {
+
+      try {
+
+        await signInWithRedirect(
+          auth,
+          googleProvider
+        );
+
+        return;
+
+      } catch (redirectError) {
+
+        handleFirebaseError(
+          redirectError,
+          "auth",
+          "google-redirect-register"
+        );
+
+        return;
+      }
+    }
+
+    handleFirebaseError(
+      error,
+      "auth",
+      "google-register"
+    );
+
+  }
+
+};
+
+
+/* =========================================================
+   LOGOUT
+   ========================================================= */
+
+window.logout = async function() {
+
+  try {
+
+    await signOut(auth);
+
+  } catch (error) {
+
+    console.error(
+      "Logout error:",
+      error
+    );
+
+  }
+
+};
+
+
+/* =========================================================
+   REDIRECT RESULT
+   ========================================================= */
+
+window.addEventListener(
+  "DOMContentLoaded",
+  async () => {
+
+    try {
+
+      const result =
+        await getRedirectResult(auth);
+
+      if (
+        result &&
+        result.user
+      ) {
+
+        console.log(
+          "Google redirect login reyisi:",
+          result.user.email
+        );
+
+      }
+
+    } catch (error) {
+
+      console.error(
+        "Erè getRedirectResult:",
+        error
+      );
+
+    }
+
+  }
+);
+
+
+/* =========================================================
+   AUTH STATE
+   ========================================================= */
+
+onAuthStateChanged(
+  auth,
+  async user => {
+
+    /* -----------------------------------------
+       PA GEN USER
+       ----------------------------------------- */
+
+    if (!user) {
+
+      currentUser =
+        null;
+
+      currentUserData =
+        null;
+
+      document
+        .getElementById(
+          "authPage"
+        )
+        .classList
+        .remove("hidden");
+
+      document
+        .getElementById(
+          "appPage"
+        )
+        .classList
+        .add("hidden");
+
+      return;
+    }
+
+
+    /* -----------------------------------------
+       USER CONNECTE
+       ----------------------------------------- */
+
+    currentUser =
+      user;
+
+
+    const userRef =
+      doc(
+        db,
+        "users",
+        user.uid
+      );
+
+
+    try {
+
+      let userSnap =
+        await getDoc(
+          userRef
+        );
+
+
+      /* -----------------------------------------
+         SI USER PROFILE PA EGZISTE
+         ----------------------------------------- */
+
+      if (!userSnap.exists()) {
+
+        await setDoc(
+          userRef,
+          {
+            uid:
+              user.uid,
+
+            email:
+              user.email || "",
+
+            nom:
+              user.displayName ||
+              "Utilisateur",
+
+            role:
+              "eleve",
+
+            status:
+              "attente",
+
+            createdAt:
+              serverTimestamp()
+          }
+        );
+
+
+        userSnap =
+          await getDoc(
+            userRef
+          );
+
+      }
+
+
+      currentUserData =
+        userSnap.data() || {};
+
+
+      /* -----------------------------------------
+         NETWAYE ROLE AK STATUS
+         ----------------------------------------- */
+
+      const role =
+        String(
+          currentUserData.role ||
+          ""
+        ).trim();
+
+      const status =
+        String(
+          currentUserData.status ||
+          ""
+        ).trim();
+
+
+      console.log(
+        "👤 PROFIL FIREBASE:",
+        {
+          uid:
+            user.uid,
+
+          email:
+            user.email,
+
+          role:
+            role,
+
+          status:
+            status
+        }
+      );
+
+
+      /* -----------------------------------------
+         ADMINISTRATEUR AKSEPTE
+         ----------------------------------------- */
+
+      const isAdminAccepted =
+        role ===
+          "administrateur" &&
+        status ===
+          "accepted";
+
+
+      /* -----------------------------------------
+         NENPÒT USER AKSEPTE
+         ----------------------------------------- */
+
+      const isAccepted =
+        status ===
+        "accepted";
+
+
+      /* -----------------------------------------
+         SI ACCEPTED
+         ----------------------------------------- */
+
+      if (
+        isAdminAccepted ||
+        isAccepted
+      ) {
+
+        document
+          .getElementById(
+            "authPage"
+          )
+          .classList
+          .add("hidden");
+
+
+        document
+          .getElementById(
+            "appPage"
+          )
+          .classList
+          .remove("hidden");
+
+
+        /* EMAIL */
+
+        const emailEl =
+          document.getElementById(
+            "userEmail"
+          );
+
+        if (emailEl) {
+
+          emailEl.textContent =
+            user.email ||
+            currentUserData.email ||
+            "";
+
+        }
+
+
+        /* ROLE */
+
+        const roleEl =
+          document.getElementById(
+            "userRole"
+          );
+
+        if (roleEl) {
+
+          if (
+            isAdminAccepted
+          ) {
+
+            roleEl.textContent =
+              "ADMINISTRATEUR";
+
+          } else {
+
+            roleEl.textContent =
+              role
+                .toUpperCase();
+
+          }
+
+        }
+
+
+        /* MENU USERS */
+
+        const usersMenu =
+          document.getElementById(
+            "usersMenu"
+          );
+
+        if (usersMenu) {
+
+          if (
+            isAdminAccepted
+          ) {
+
+            usersMenu
+              .classList
+              .remove("hidden");
+
+          } else {
+
+            usersMenu
+              .classList
+              .add("hidden");
+
+          }
+
+        }
+
+
+        /* CHARGE DONE YO */
+
+        await loadAllData();
+
+
+        return;
+
+      }
+
+
+      /* -----------------------------------------
+         USER PA AKSEPTE
+         ----------------------------------------- */
+
+      document
+        .getElementById(
+          "authPage"
+        )
+        .classList
+        .remove("hidden");
+
+
+      document
+        .getElementById(
+          "appPage"
+        )
+        .classList
+        .add("hidden");
+
+
+      authMessage(
+        "⏳ Kont ou an ap tann apwobasyon yon administratè."
+      );
+
+
+    } catch (error) {
+
+      console.error(
+        "🔥 Erè load profil itilizatè:",
+        error
+      );
+
+
+      document
+        .getElementById(
+          "authPage"
+        )
+        .classList
+        .remove("hidden");
+
+
+      document
+        .getElementById(
+          "appPage"
+        )
+        .classList
+        .add("hidden");
+
+
+      if (
+        error.code ===
+        "permission-denied"
+      ) {
+
+        authMessage(
+          "Firebase refize li profil users la. Verifye Security Rules yo."
+        );
+
+      } else {
+
+        authMessage(
+          "Erè pandan aplikasyon an t ap li pwofil itilizatè a."
+        );
+
+      }
+
+    }
+
+  }
+);
+
+
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
+
+window.toggleSidebar =
+function() {
+
+  document
+    .getElementById(
+      "sidebar"
+    )
+    .classList
+    .toggle("open");
+
+};
+
+
+window.showSection =
+function(
+  sectionId,
+  clickedButton
+) {
+
+  document
+    .querySelectorAll(
+      ".section"
+    )
+    .forEach(section => {
+
+      section
+        .classList
+        .remove("active");
+
     });
 
-    pendingEl.innerHTML = pendingHtml || `<div class="empty">Okenn itilizatè k ap tann.</div>`;
-    allEl.innerHTML = allHtml || `<div class="empty">Okenn itilizatè.</div>`;
-  } catch (e) {
-    console.error("Erè lekti users:", e);
+
+  const target =
+    document.getElementById(
+      sectionId
+    );
+
+  if (target) {
+
+    target
+      .classList
+      .add("active");
+
   }
+
+
+  document
+    .querySelectorAll(
+      ".sidebar button"
+    )
+    .forEach(button => {
+
+      button
+        .classList
+        .remove("active");
+
+    });
+
+
+  if (clickedButton) {
+
+    clickedButton
+      .classList
+      .add("active");
+
+  }
+
+
+  document
+    .getElementById(
+      "sidebar"
+    )
+    .classList
+    .remove("open");
+
+};
+
+
+/* =========================================================
+   LOAD ALL DATA
+   ========================================================= */
+
+async function loadAllData() {
+
+  await Promise.allSettled([
+
+    loadStats(),
+
+    loadStudents(),
+
+    loadTeachers(),
+
+    loadDepartments(),
+
+    loadPrograms(),
+
+    loadCourses(),
+
+    loadClasses(),
+
+    loadAssignments(),
+
+    loadSubmissions(),
+
+    loadSchedules(),
+
+    loadResults()
+
+  ]);
+
+
+  if (
+    currentUserData &&
+    currentUserData.role ===
+      "administrateur" &&
+    currentUserData.status ===
+      "accepted"
+  ) {
+
+    await loadUsersManagement();
+
+  }
+
 }
 
-window.updateUserRole = async function(uid, newRole){
-  try {
-    await updateDoc(doc(db, "users", uid), { role: newRole });
-    await loadUsersManagement();
-    alert("Wòl nan chanje ak siksè!");
-  } catch (e) {
-    handleFirebaseError(e, "users", "update-role");
-  }
-};
 
-window.updateUserStatus = async function(uid, newStatus){
-  try {
-    await updateDoc(doc(db, "users", uid), { status: newStatus });
-    await loadUsersManagement();
-    alert("Estati itilizatè a mete ajou!");
-  } catch (e) {
-    handleFirebaseError(e, "users", "update-status");
-  }
-};
+/* =========================================================
+   STATS
+   ========================================================= */
 
-window.deleteItem = async function(col, id){
-  if(!confirm("Èske ou sèten ou vle efase eleman sa a?")) return;
+async function loadStats() {
+
   try {
-    await deleteDoc(doc(db, col, id));
-    if(col === "etudiants") await loadStudents();
-    if(col === "professeurs") await loadTeachers();
-    if(col === "users") await loadUsersManagement();
+
+    const sSnap =
+      await getDocs(
+        collection(
+          db,
+          "etudiants"
+        )
+      );
+
+
+    const tSnap =
+      await getDocs(
+        collection(
+          db,
+          "professeurs"
+        )
+      );
+
+
+    const cSnap =
+      await getDocs(
+        collection(
+          db,
+          "cours"
+        )
+      );
+
+
+    const clSnap =
+      await getDocs(
+        collection(
+          db,
+          "classes"
+        )
+      );
+
+
+    document
+      .getElementById(
+        "statEtudiants"
+      )
+      .textContent =
+        sSnap.size;
+
+
+    document
+      .getElementById(
+        "statProfesseurs"
+      )
+      .textContent =
+        tSnap.size;
+
+
+    document
+      .getElementById(
+        "statCours"
+      )
+      .textContent =
+        cSnap.size;
+
+
+    document
+      .getElementById(
+        "statClasses"
+      )
+      .textContent =
+        clSnap.size;
+
+
+    document
+      .getElementById(
+        "statsStudents"
+      )
+      .textContent =
+        sSnap.size;
+
+
+    document
+      .getElementById(
+        "statsTeachers"
+      )
+      .textContent =
+        tSnap.size;
+
+
+    document
+      .getElementById(
+        "statsCourses"
+      )
+      .textContent =
+        cSnap.size;
+
+
+    document
+      .getElementById(
+        "statsClasses"
+      )
+      .textContent =
+        clSnap.size;
+
+
+  } catch (error) {
+
+    console.error(
+      "Erè stats:",
+      error
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   STUDENTS
+   ========================================================= */
+
+window.addStudent =
+async function() {
+
+  const nom =
+    document
+      .getElementById(
+        "studentName"
+      )
+      .value
+      .trim();
+
+  const email =
+    document
+      .getElementById(
+        "studentEmail"
+      )
+      .value
+      .trim();
+
+  const telephone =
+    document
+      .getElementById(
+        "studentPhone"
+      )
+      .value
+      .trim();
+
+  const classe =
+    document
+      .getElementById(
+        "studentClass"
+      )
+      .value
+      .trim();
+
+
+  if (!nom || !email) {
+
+    alert(
+      "Non ak imèl obligatwa!"
+    );
+
+    return;
+  }
+
+
+  try {
+
+    await addDoc(
+      collection(
+        db,
+        "etudiants"
+      ),
+      {
+        nom,
+        email,
+        telephone,
+        classe,
+        createdAt:
+          serverTimestamp()
+      }
+    );
+
+
+    document
+      .getElementById(
+        "studentName"
+      )
+      .value = "";
+
+    document
+      .getElementById(
+        "studentEmail"
+      )
+      .value = "";
+
+    document
+      .getElementById(
+        "studentPhone"
+      )
+      .value = "";
+
+    document
+      .getElementById(
+        "studentClass"
+      )
+      .value = "";
+
+
+    await loadStudents();
+
     await loadStats();
-    alert("Eleman an efase.");
-  } catch (e) {
-    handleFirebaseError(e, col, "delete");
+
+
+    alert(
+      "Elèv la ajoute ak siksè!"
+    );
+
+
+  } catch (error) {
+
+    handleFirebaseError(
+      error,
+      "etudiants",
+      "add"
+    );
+
   }
+
+};
+
+
+async function loadStudents() {
+
+  const listEl =
+    document.getElementById(
+      "studentList"
+    );
+
+
+  try {
+
+    const snap =
+      await getDocs(
+        collection(
+          db,
+          "etudiants"
+        )
+      );
+
+
+    if (snap.empty) {
+
+      listEl.innerHTML =
+        `<div class="empty">
+          Okenn elèv pou kounye a.
+        </div>`;
+
+      return;
+
+    }
+
+
+    let html = "";
+
+
+    snap.forEach(
+      d => {
+
+        if (
+          d.id ===
+          "_init_metadata"
+        ) return;
+
+
+        const data =
+          d.data();
+
+
+        html += `
+
+          <div class="item">
+
+            <div class="item-title">
+              ${data.nom || "San non"}
+            </div>
+
+            <div class="item-info">
+              📧 ${data.email || ""}
+              |
+              📞 ${data.telephone || "N/A"}
+              |
+              🏫 ${data.classe || "N/A"}
+            </div>
+
+            ${
+              currentUserData &&
+              currentUserData.role ===
+                "administrateur"
+
+              ?
+
+              `
+              <div class="actions">
+
+                <button
+                  class="danger-btn"
+                  onclick="deleteItem('etudiants','${d.id}')">
+
+                  Efase
+
+                </button>
+
+              </div>
+              `
+
+              :
+
+              ""
+            }
+
+          </div>
+
+        `;
+
+      }
+    );
+
+
+    listEl.innerHTML =
+      html ||
+      `<div class="empty">
+        Okenn elèv pou kounye a.
+      </div>`;
+
+
+  } catch (error) {
+
+    console.error(
+      "loadStudents:",
+      error
+    );
+
+    listEl.innerHTML =
+      `<div class="empty">
+        Erè nan chajman elèv yo.
+      </div>`;
+
+  }
+
+}
+
+
+/* =========================================================
+   TEACHERS
+   ========================================================= */
+
+window.addTeacher =
+async function() {
+
+  const nom =
+    document
+      .getElementById(
+        "teacherName"
+      )
+      .value
+      .trim();
+
+  const email =
+    document
+      .getElementById(
+        "teacherEmail"
+      )
+      .value
+      .trim();
+
+  const telephone =
+    document
+      .getElementById(
+        "teacherPhone"
+      )
+      .value
+      .trim();
+
+  const matiere =
+    document
+      .getElementById(
+        "teacherSubject"
+      )
+      .value
+      .trim();
+
+
+  if (!nom || !email) {
+
+    alert(
+      "Non ak imèl obligatwa!"
+    );
+
+    return;
+
+  }
+
+
+  try {
+
+    await addDoc(
+      collection(
+        db,
+        "professeurs"
+      ),
+      {
+        nom,
+        email,
+        telephone,
+        matiere,
+        createdAt:
+          serverTimestamp()
+      }
+    );
+
+
+    document
+      .getElementById(
+        "teacherName"
+      )
+      .value = "";
+
+    document
+      .getElementById(
+        "teacherEmail"
+      )
+      .value = "";
+
+    document
+      .getElementById(
+        "teacherPhone"
+      )
+      .value = "";
+
+    document
+      .getElementById(
+        "teacherSubject"
+      )
+      .value = "";
+
+
+    await loadTeachers();
+
+    await loadStats();
+
+
+    alert(
+      "Pwofesè a ajoute ak siksè!"
+    );
+
+
+  } catch (error) {
+
+    handleFirebaseError(
+      error,
+      "professeurs",
+      "add"
+    );
+
+  }
+
+};
+
+
+async function loadTeachers() {
+
+  const listEl =
+    document.getElementById(
+      "teacherList"
+    );
+
+
+  try {
+
+    const snap =
+      await getDocs(
+        collection(
+          db,
+          "professeurs"
+        )
+      );
+
+
+    if (snap.empty) {
+
+      listEl.innerHTML =
+        `<div class="empty">
+          Okenn pwofesè pou kounye a.
+        </div>`;
+
+      return;
+
+    }
+
+
+    let html = "";
+
+
+    snap.forEach(
+      d => {
+
+        if (
+          d.id ===
+          "_init_metadata"
+        ) return;
+
+
+        const data =
+          d.data();
+
+
+        html += `
+
+          <div class="item">
+
+            <div class="item-title">
+              ${data.nom || "San non"}
+            </div>
+
+            <div class="item-info">
+              📧 ${data.email || ""}
+              |
+              📞 ${data.telephone || "N/A"}
+              |
+              📚 ${data.matiere || "N/A"}
+            </div>
+
+            ${
+              currentUserData &&
+              currentUserData.role ===
+                "administrateur"
+
+              ?
+
+              `
+              <div class="actions">
+
+                <button
+                  class="danger-btn"
+                  onclick="deleteItem('professeurs','${d.id}')">
+
+                  Efase
+
+                </button>
+
+              </div>
+              `
+
+              :
+
+              ""
+            }
+
+          </div>
+
+        `;
+
+      }
+    );
+
+
+    listEl.innerHTML =
+      html ||
+      `<div class="empty">
+        Okenn pwofesè pou kounye a.
+      </div>`;
+
+
+  } catch (error) {
+
+    console.error(
+      "loadTeachers:",
+      error
+    );
+
+    listEl.innerHTML =
+      `<div class="empty">
+        Erè nan chajman pwofesè yo.
+      </div>`;
+
+  }
+
+}
+
+
+/* =========================================================
+   DEPARTMENTS
+   ========================================================= */
+
+window.addDepartment =
+async function() {
+
+  const nom =
+    document
+      .getElementById(
+        "departmentName"
+      )
+      .value
+      .trim();
+
+  const description =
+    document
+      .getElementById(
+        "departmentDescription"
+      )
+      .value
+      .trim();
+
+
+  if (!nom) return;
+
+
+  try {
+
+    await addDoc(
+      collection(
+        db,
+        "departements"
+      ),
+      {
+        nom,
+        description,
+        createdAt:
+          serverTimestamp()
+      }
+    );
+
+
+    document
+      .getElementById(
+        "departmentName"
+      )
+      .value = "";
+
+    document
+      .getElementById(
+        "departmentDescription"
+      )
+      .value = "";
+
+
+    await loadDepartments();
+
+
+    alert(
+      "Depatman ajoute!"
+    );
+
+
+  } catch (error) {
+
+    handleFirebaseError(
+      error,
+      "departements",
+      "add"
+    );
+
+  }
+
+};
+
+
+async function loadDepartments() {
+
+  const listEl =
+    document.getElementById(
+      "departmentList"
+    );
+
+
+  try {
+
+    const snap =
+      await getDocs(
+        collection(
+          db,
+          "departements"
+        )
+      );
+
+
+    let html = "";
+
+
+    snap.forEach(
+      d => {
+
+        if (
+          d.id ===
+          "_init_metadata"
+        ) return;
+
+
+        const data =
+          d.data();
+
+
+        html += `
+
+          <div class="item">
+
+            <div class="item-title">
+              ${data.nom || ""}
+            </div>
+
+            <div class="item-info">
+              ${data.description || ""}
+            </div>
+
+          </div>
+
+        `;
+
+      }
+    );
+
+
+    listEl.innerHTML =
+      html ||
+      `<div class="empty">
+        Okenn depatman.
+      </div>`;
+
+
+  } catch (error) {
+
+    listEl.innerHTML =
+      `<div class="empty">
+        Erè nan chajman depatman yo.
+      </div>`;
+
+  }
+
+}
+
+
+/* =========================================================
+   PROGRAMS
+   ========================================================= */
+
+window.addProgram =
+async function() {
+
+  const nom =
+    document
+      .getElementById(
+        "programName"
+      )
+      .value
+      .trim();
+
+  const description =
+    document
+      .getElementById(
+        "programDescription"
+      )
+      .value
+      .trim();
+
+
+  if (!nom) return;
+
+
+  try {
+
+    await addDoc(
+      collection(
+        db,
+        "programmes"
+      ),
+      {
+        nom,
+        description,
+        createdAt:
+          serverTimestamp()
+      }
+    );
+
+
+    document
+      .getElementById(
+        "programName"
+      )
+      .value = "";
+
+    document
+      .getElementById(
+        "programDescription"
+      )
+      .value = "";
+
+
+    await loadPrograms();
+
+
+    alert(
+      "Pwogram ajoute!"
+    );
+
+
+  } catch (error) {
+
+    handleFirebaseError(
+      error,
+      "programmes",
+      "add"
+    );
+
+  }
+
+};
+
+
+async function loadPrograms() {
+
+  const listEl =
+    document.getElementById(
+      "programList"
+    );
+
+
+  try {
+
+    const snap =
+      await getDocs(
+        collection(
+          db,
+          "programmes"
+        )
+      );
+
+
+    let html = "";
+
+
+    snap.forEach(
+      d => {
+
+        if (
+          d.id ===
+          "_init_metadata"
+        ) return;
+
+
+        const data =
+          d.data();
+
+
+        html += `
+
+          <div class="item">
+
+            <div class="item-title">
+              ${data.nom || ""}
+            </div>
+
+            <div class="item-info">
+              ${data.description || ""}
+            </div>
+
+          </div>
+
+        `;
+
+      }
+    );
+
+
+    listEl.innerHTML =
+      html ||
+      `<div class="empty">
+        Okenn pwogram.
+      </div>`;
+
+
+  } catch (error) {
+
+    listEl.innerHTML =
+      `<div class="empty">
+        Erè nan chajman pwogram yo.
+      </div>`;
+
+  }
+
+}
+
+
+/* =========================================================
+   COURSES
+   ========================================================= */
+
+window.addCourse =
+async function() {
+
+  const nom =
+    document
+      .getElementById(
+        "courseName"
+      )
+      .value
+      .trim();
+
+  const professeur =
+    document
+      .getElementById(
+        "courseTeacher"
+      )
+      .value
+      .trim();
+
+  const classe =
+    document
+      .getElementById(
+        "courseClass"
+      )
+      .value
+      .trim();
+
+
+  if (!nom) return;
+
+
+  try {
+
+    await addDoc(
+      collection(
+        db,
+        "cours"
+      ),
+      {
+        nom,
+        professeur,
+        classe,
+        createdAt:
+          serverTimestamp()
+      }
+    );
+
+
+    document
+      .getElementById(
+        "courseName"
+      )
+      .value = "";
+
+    document
+      .getElementById(
+        "courseTeacher"
+      )
+      .value = "";
+
+    document
+      .getElementById(
+        "courseClass"
+      )
+      .value = "";
+
+
+    await loadCourses();
+
+    await loadStats();
+
+
+    alert(
+      "Kous ajoute!"
+    );
+
+
+  } catch (error) {
+
+    handleFirebaseError(
+      error,
+      "cours",
+      "add"
+    );
+
+  }
+
+};
+
+
+async function loadCourses() {
+
+  const listEl =
+    document.getElementById(
+      "courseList"
+    );
+
+
+  try {
+
+    const snap =
+      await getDocs(
+        collection(
+          db,
+          "cours"
+        )
+      );
+
+
+    let html = "";
+
+
+    snap.forEach(
+      d => {
+
+        if (
+          d.id ===
+          "_init_metadata"
+        ) return;
+
+
+        const data =
+          d.data();
+
+
+        html += `
+
+          <div class="item">
+
+            <div class="item-title">
+              ${data.nom || ""}
+            </div>
+
+            <div class="item-info">
+              Pwofesè:
+              ${data.professeur || "N/A"}
+              |
+              Klas:
+              ${data.classe || "N/A"}
+            </div>
+
+          </div>
+
+        `;
+
+      }
+    );
+
+
+    listEl.innerHTML =
+      html ||
+      `<div class="empty">
+        Okenn kous.
+      </div>`;
+
+
+  } catch (error) {
+
+    listEl.innerHTML =
+      `<div class="empty">
+        Erè nan chajman kous yo.
+      </div>`;
+
+  }
+
+}
+
+
+/* =========================================================
+   CLASSES
+   ========================================================= */
+
+window.addClass =
+async function() {
+
+  const nom =
+    document
+      .getElementById(
+        "className"
+      )
+      .value
+      .trim();
+
+  const niveau =
+    document
+      .getElementById(
+        "classLevel"
+      )
+      .value
+      .trim();
+
+
+  if (!nom) return;
+
+
+  try {
+
+    await addDoc(
+      collection(
+        db,
+        "classes"
+      ),
+      {
+        nom,
+        niveau,
+        createdAt:
+          serverTimestamp()
+      }
+    );
+
+
+    document
+      .getElementById(
+        "className"
+      )
+      .value = "";
+
+    document
+      .getElementById(
+        "classLevel"
+      )
+      .value = "";
+
+
+    await loadClasses();
+
+    await loadStats();
+
+
+    alert(
+      "Klas ajoute!"
+    );
+
+
+  } catch (error) {
+
+    handleFirebaseError(
+      error,
+      "classes",
+      "add"
+    );
+
+  }
+
+};
+
+
+async function loadClasses() {
+
+  const listEl =
+    document.getElementById(
+      "classList"
+    );
+
+
+  try {
+
+    const snap =
+      await getDocs(
+        collection(
+          db,
+          "classes"
+        )
+      );
+
+
+    let html = "";
+
+
+    snap.forEach(
+      d => {
+
+        if (
+          d.id ===
+          "_init_metadata"
+        ) return;
+
+
+        const data =
+          d.data();
+
+
+        html += `
+
+          <div class="item">
+
+            <div class="item-title">
+              ${data.nom || ""}
+            </div>
+
+            <div class="item-info">
+              Nivo:
+              ${data.niveau || "N/A"}
+            </div>
+
+          </div>
+
+        `;
+
+      }
+    );
+
+
+    listEl.innerHTML =
+      html ||
+      `<div class="empty">
+        Okenn klas.
+      </div>`;
+
+
+  } catch (error) {
+
+    listEl.innerHTML =
+      `<div class="empty">
+        Erè nan chajman klas yo.
+      </div>`;
+
+  }
+
+}
+
+
+/* =========================================================
+   ASSIGNMENTS
+   ========================================================= */
+
+window.addAssignment =
+async function() {
+
+  const titre =
+    document
+      .getElementById(
+        "assignmentTitle"
+      )
+      .value
+      .trim();
+
+  const cours =
+    document
+      .getElementById(
+        "assignmentCourse"
+      )
+      .value
+      .trim();
+
+  const dateLimite =
+    document
+      .getElementById(
+        "assignmentDate"
+      )
+      .value;
+
+  const description =
+    document
+      .getElementById(
+        "assignmentDescription"
+      )
+      .value
+      .trim();
+
+
+  if (!titre) return;
+
+
+  try {
+
+    await addDoc(
+      collection(
+        db,
+        "devoirs"
+      ),
+      {
+        titre,
+        cours,
+        dateLimite,
+        description,
+        createdAt:
+          serverTimestamp()
+      }
+    );
+
+
+    document
+      .getElementById(
+        "assignmentTitle"
+      )
+      .value = "";
+
+    document
+      .getElementById(
+        "assignmentCourse"
+      )
+      .value = "";
+
+    document
+      .getElementById(
+        "assignmentDate"
+      )
+      .value = "";
+
+    document
+      .getElementById(
+        "assignmentDescription"
+      )
+      .value = "";
+
+
+    await loadAssignments();
+
+
+    alert(
+      "Devwa pibliye!"
+    );
+
+
+  } catch (error) {
+
+    handleFirebaseError(
+      error,
+      "devoirs",
+      "add"
+    );
+
+  }
+
+};
+
+
+async function loadAssignments() {
+
+  const listEl =
+    document.getElementById(
+      "assignmentList"
+    );
+
+
+  try {
+
+    const snap =
+      await getDocs(
+        collection(
+          db,
+          "devoirs"
+        )
+      );
+
+
+    let html = "";
+
+
+    snap.forEach(
+      d => {
+
+        if (
+          d.id ===
+          "_init_metadata"
+        ) return;
+
+
+        const data =
+          d.data();
+
+
+        html += `
+
+          <div class="item">
+
+            <div class="item-title">
+              ${data.titre || ""}
+            </div>
+
+            <div class="item-info">
+              Kous:
+              ${data.cours || "N/A"}
+              |
+              Limit:
+              ${data.dateLimite || "N/A"}
+            </div>
+
+            <div>
+              ${data.description || ""}
+            </div>
+
+          </div>
+
+        `;
+
+      }
+    );
+
+
+    listEl.innerHTML =
+      html ||
+      `<div class="empty">
+        Okenn devwa.
+      </div>`;
+
+
+  } catch (error) {
+
+    listEl.innerHTML =
+      `<div class="empty">
+        Erè nan chajman devwa yo.
+      </div>`;
+
+  }
+
+}
+
+
+/* =========================================================
+   SUBMISSIONS / NOTES
+   ========================================================= */
+
+window.addSubmission =
+async function() {
+
+  const etudiant =
+    document
+      .getElementById(
+        "submissionStudent"
+      )
+      .value
+      .trim();
+
+  const devoir =
+    document
+      .getElementById(
+        "submissionAssignment"
+      )
+      .value
+      .trim();
+
+  const note =
+    document
+      .getElementById(
+        "submissionNote"
+      )
+      .value;
+
+  const commentaire =
+    document
+      .getElementById(
+        "submissionComment"
+      )
+      .value
+      .trim();
+
+
+  if (!etudiant) {
+
+    alert(
+      "Tanpri mete non elèv la."
+    );
+
+    return;
+
+  }
+
+
+  if (
+    note !== "" &&
+    (
+      Number(note) < 0 ||
+      Number(note) > 100
+    )
+  ) {
+
+    alert(
+      "Nòt la dwe ant 0 ak 100."
+    );
+
+    return;
+
+  }
+
+
+  try {
+
+    await addDoc(
+      collection(
+        db,
+        "remises"
+      ),
+      {
+        etudiant,
+        devoir,
+        note:
+          note === ""
+            ? 0
+            : Number(note),
+
+        commentaire,
+
+        createdAt:
+          serverTimestamp()
+      }
+    );
+
+
+    document
+      .getElementById(
+        "submissionStudent"
+      )
+      .value = "";
+
+    document
+      .getElementById(
+        "submissionAssignment"
+      )
+      .value = "";
+
+    document
+      .getElementById(
+        "submissionNote"
+      )
+      .value = "";
+
+    document
+      .getElementById(
+        "submissionComment"
+      )
+      .value = "";
+
+
+    await loadSubmissions();
+
+    await loadResults();
+
+
+    alert(
+      "Remiz anrejistre!"
+    );
+
+
+  } catch (error) {
+
+    handleFirebaseError(
+      error,
+      "remises",
+      "add"
+    );
+
+  }
+
+};
+
+
+async function loadSubmissions() {
+
+  const listEl =
+    document.getElementById(
+      "submissionList"
+    );
+
+
+  try {
+
+    const snap =
+      await getDocs(
+        collection(
+          db,
+          "remises"
+        )
+      );
+
+
+    let html = "";
+
+
+    snap.forEach(
+      d => {
+
+        if (
+          d.id ===
+          "_init_metadata"
+        ) return;
+
+
+        const data =
+          d.data();
+
+
+        const note =
+          Number(
+            data.note || 0
+          );
+
+
+        html += `
+
+          <div class="item">
+
+            <div class="item-title">
+              ${data.etudiant || ""}
+              -
+              ${data.devoir || ""}
+            </div>
+
+            <div class="item-info">
+
+              Nòt:
+              <strong>
+                ${note}/100
+              </strong>
+
+            </div>
+
+            <div>
+              ${data.commentaire || ""}
+            </div>
+
+          </div>
+
+        `;
+
+      }
+    );
+
+
+    listEl.innerHTML =
+      html ||
+      `<div class="empty">
+        Okenn remiz.
+      </div>`;
+
+
+  } catch (error) {
+
+    listEl.innerHTML =
+      `<div class="empty">
+        Erè nan chajman remiz yo.
+      </div>`;
+
+  }
+
+}
+
+
+/* =========================================================
+   SCHEDULES
+   ========================================================= */
+
+window.addSchedule =
+async function() {
+
+  const jour =
+    document
+      .getElementById(
+        "scheduleDay"
+      )
+      .value
+      .trim();
+
+  const cours =
+    document
+      .getElementById(
+        "scheduleCourse"
+      )
+      .value
+      .trim();
+
+  const heure =
+    document
+      .getElementById(
+        "scheduleTime"
+      )
+      .value
+      .trim();
+
+  const classe =
+    document
+      .getElementById(
+        "scheduleClass"
+      )
+      .value
+      .trim();
+
+
+  if (!jour) return;
+
+
+  try {
+
+    await addDoc(
+      collection(
+        db,
+        "emplois_du_temps"
+      ),
+      {
+        jour,
+        cours,
+        heure,
+        classe,
+        createdAt:
+          serverTimestamp()
+      }
+    );
+
+
+    document
+      .getElementById(
+        "scheduleDay"
+      )
+      .value = "";
+
+    document
+      .getElementById(
+        "scheduleCourse"
+      )
+      .value = "";
+
+    document
+      .getElementById(
+        "scheduleTime"
+      )
+      .value = "";
+
+    document
+      .getElementById(
+        "scheduleClass"
+      )
+      .value = "";
+
+
+    await loadSchedules();
+
+
+    alert(
+      "Horaire ajoute!"
+    );
+
+
+  } catch (error) {
+
+    handleFirebaseError(
+      error,
+      "emplois_du_temps",
+      "add"
+    );
+
+  }
+
+};
+
+
+async function loadSchedules() {
+
+  const listEl =
+    document.getElementById(
+      "scheduleList"
+    );
+
+
+  try {
+
+    const snap =
+      await getDocs(
+        collection(
+          db,
+          "emplois_du_temps"
+        )
+      );
+
+
+    let html = "";
+
+
+    snap.forEach(
+      d => {
+
+        if (
+          d.id ===
+          "_init_metadata"
+        ) return;
+
+
+        const data =
+          d.data();
+
+
+        html += `
+
+          <div class="item">
+
+            <div class="item-title">
+              ${data.jour || ""}
+              :
+              ${data.cours || ""}
+            </div>
+
+            <div class="item-info">
+
+              Lè:
+              ${data.heure || ""}
+
+              |
+
+              Klas:
+              ${data.classe || ""}
+
+            </div>
+
+          </div>
+
+        `;
+
+      }
+    );
+
+
+    listEl.innerHTML =
+      html ||
+      `<div class="empty">
+        Okenn anplwa ditan.
+      </div>`;
+
+
+  } catch (error) {
+
+    listEl.innerHTML =
+      `<div class="empty">
+        Erè nan chajman orè yo.
+      </div>`;
+
+  }
+
+}
+
+
+/* =========================================================
+   RESULTS
+   ========================================================= */
+
+async function loadResults() {
+
+  const listEl =
+    document.getElementById(
+      "resultList"
+    );
+
+
+  try {
+
+    const snap =
+      await getDocs(
+        collection(
+          db,
+          "remises"
+        )
+      );
+
+
+    let html = "";
+
+
+    snap.forEach(
+      d => {
+
+        if (
+          d.id ===
+          "_init_metadata"
+        ) return;
+
+
+        const data =
+          d.data();
+
+
+        const note =
+          Number(
+            data.note || 0
+          );
+
+
+        html += `
+
+          <div class="item">
+
+            <div class="item-title">
+              ${data.etudiant || ""}
+            </div>
+
+            <div class="item-info">
+
+              Devwa:
+              ${data.devoir || ""}
+
+              |
+
+              Nòt:
+              <strong>
+                ${note}/100
+              </strong>
+
+            </div>
+
+            ${
+              data.commentaire
+                ?
+
+                `
+                <div>
+                  💬 ${data.commentaire}
+                </div>
+                `
+
+                :
+
+                ""
+            }
+
+          </div>
+
+        `;
+
+      }
+    );
+
+
+    listEl.innerHTML =
+      html ||
+      `<div class="empty">
+        Okenn rezilta disponib.
+      </div>`;
+
+
+  } catch (error) {
+
+    listEl.innerHTML =
+      `<div class="empty">
+        Erè rezilta.
+      </div>`;
+
+  }
+
+}
+
+
+/* =========================================================
+   USER MANAGEMENT
+   ========================================================= */
+
+async function loadUsersManagement() {
+
+  const pendingEl =
+    document.getElementById(
+      "pendingUsers"
+    );
+
+  const allEl =
+    document.getElementById(
+      "allUsers"
+    );
+
+
+  if (!pendingEl || !allEl) {
+    return;
+  }
+
+
+  try {
+
+    const snap =
+      await getDocs(
+        collection(
+          db,
+          "users"
+        )
+      );
+
+
+    let pendingHtml =
+      "";
+
+    let allHtml =
+      "";
+
+
+    snap.forEach(
+      d => {
+
+        if (
+          d.id ===
+          "_init_metadata"
+        ) return;
+
+
+        const u =
+          d.data();
+
+
+        const badgeClass =
+          u.status ===
+            "accepted"
+
+            ? "accepted"
+
+            : "pending";
+
+
+        const card = `
+
+          <div class="item">
+
+            <div class="item-title">
+
+              ${u.nom || "Utilisateur"}
+
+              (${u.email || ""})
+
+            </div>
+
+
+            <div class="item-info">
+
+              Rôle:
+
+              <b>
+                ${u.role || "eleve"}
+              </b>
+
+              |
+
+              Statut:
+
+              <span
+                class="badge ${badgeClass}">
+
+                ${u.status || "attente"}
+
+              </span>
+
+            </div>
+
+
+            <div class="actions">
+
+              <select
+                id="role_${d.id}"
+                onchange="updateUserRole('${d.id}', this.value)">
+
+                <option
+                  value="eleve"
+                  ${
+                    u.role === "eleve"
+                      ? "selected"
+                      : ""
+                  }>
+
+                  Elèv
+
+                </option>
+
+
+                <option
+                  value="professeur"
+                  ${
+                    u.role === "professeur"
+                      ? "selected"
+                      : ""
+                  }>
+
+                  Pwofesè
+
+                </option>
+
+
+                <option
+                  value="administrateur"
+                  ${
+                    u.role === "administrateur"
+                      ? "selected"
+                      : ""
+                  }>
+
+                  Administratè
+
+                </option>
+
+              </select>
+
+
+              ${
+                u.status !==
+                "accepted"
+
+                  ?
+
+                  `
+                  <button
+                    class="success-btn"
+                    onclick="updateUserStatus('${d.id}','accepted')">
+
+                    Aksepte
+
+                  </button>
+                  `
+
+                  :
+
+                  `
+                  <button
+                    class="secondary-btn"
+                    onclick="updateUserStatus('${d.id}','attente')">
+
+                    Mete nan attente
+
+                  </button>
+                  `
+              }
+
+
+              <button
+                class="danger-btn"
+                onclick="deleteItem('users','${d.id}')">
+
+                Efase
+
+              </button>
+
+            </div>
+
+          </div>
+
+        `;
+
+
+        allHtml +=
+          card;
+
+
+        if (
+          u.status !==
+          "accepted"
+        ) {
+
+          pendingHtml +=
+            card;
+
+        }
+
+      }
+    );
+
+
+    pendingEl.innerHTML =
+      pendingHtml ||
+
+      `<div class="empty">
+        Okenn itilizatè k ap tann.
+      </div>`;
+
+
+    allEl.innerHTML =
+      allHtml ||
+
+      `<div class="empty">
+        Okenn itilizatè.
+      </div>`;
+
+
+  } catch (error) {
+
+    console.error(
+      "Erè lekti users:",
+      error
+    );
+
+
+    pendingEl.innerHTML =
+      `<div class="empty">
+        Firebase pa pèmèt li lis itilizatè yo.
+      </div>`;
+
+
+    allEl.innerHTML =
+      `<div class="empty">
+        Firebase pa pèmèt li lis itilizatè yo.
+      </div>`;
+
+  }
+
+}
+
+
+/* =========================================================
+   UPDATE USER ROLE
+   ========================================================= */
+
+window.updateUserRole =
+async function(
+  uid,
+  newRole
+) {
+
+  try {
+
+    await updateDoc(
+      doc(
+        db,
+        "users",
+        uid
+      ),
+      {
+        role:
+          newRole
+      }
+    );
+
+
+    await loadUsersManagement();
+
+
+    alert(
+      "Wòl itilizatè a chanje ak siksè!"
+    );
+
+
+  } catch (error) {
+
+    handleFirebaseError(
+      error,
+      "users",
+      "update-role"
+    );
+
+  }
+
+};
+
+
+/* =========================================================
+   UPDATE USER STATUS
+   ========================================================= */
+
+window.updateUserStatus =
+async function(
+  uid,
+  newStatus
+) {
+
+  try {
+
+    await updateDoc(
+      doc(
+        db,
+        "users",
+        uid
+      ),
+      {
+        status:
+          newStatus
+      }
+    );
+
+
+    await loadUsersManagement();
+
+
+    alert(
+      "Estati itilizatè a mete ajou!"
+    );
+
+
+  } catch (error) {
+
+    handleFirebaseError(
+      error,
+      "users",
+      "update-status"
+    );
+
+  }
+
+};
+
+
+/* =========================================================
+   DELETE
+   ========================================================= */
+
+window.deleteItem =
+async function(
+  col,
+  id
+) {
+
+  if (
+    !confirm(
+      "Èske ou sèten ou vle efase eleman sa a?"
+    )
+  ) {
+
+    return;
+
+  }
+
+
+  try {
+
+    await deleteDoc(
+      doc(
+        db,
+        col,
+        id
+      )
+    );
+
+
+    if (
+      col ===
+      "etudiants"
+    ) {
+
+      await loadStudents();
+
+    }
+
+
+    if (
+      col ===
+      "professeurs"
+    ) {
+
+      await loadTeachers();
+
+    }
+
+
+    if (
+      col ===
+      "users"
+    ) {
+
+      await loadUsersManagement();
+
+    }
+
+
+    if (
+      col ===
+      "cours" ||
+      col ===
+      "classes"
+    ) {
+
+      await loadStats();
+
+    }
+
+
+    alert(
+      "Eleman an efase."
+    );
+
+
+  } catch (error) {
+
+    handleFirebaseError(
+      error,
+      col,
+      "delete"
+    );
+
+  }
+
 };
 
 </script>
