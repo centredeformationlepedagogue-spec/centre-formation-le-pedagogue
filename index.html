@@ -2,7 +2,7 @@
 <html lang="ht">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="theme-color" content="#1e40af">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -49,6 +49,7 @@ body {
   background: var(--bg-main);
   color: var(--text-main);
   line-height: 1.5;
+  font-size: 16px;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -58,12 +59,13 @@ body {
 
 button, input, select, textarea {
   font-family: inherit;
-  font-size: 0.95rem;
+  font-size: 1rem;
 }
 
 button {
   cursor: pointer;
   transition: all 0.2s ease;
+  min-height: 44px;
 }
 
 /* ================= AUTHENTICATION DESIGN ================= */
@@ -130,8 +132,8 @@ button {
 .auth-subtitle {
   text-align: center;
   color: var(--text-muted);
-  font-size: 13px;
-  font-weight: 500;
+  font-size: 14px;
+  font-weight: 600;
   margin-bottom: 28px;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -148,12 +150,12 @@ button {
 .tabs button {
   flex: 1;
   border: 0;
-  padding: 10px 16px;
+  padding: 12px 16px;
   border-radius: 9px;
   background: transparent;
   color: var(--text-muted);
   font-weight: 600;
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .tabs button.active {
@@ -170,7 +172,7 @@ button {
   display: block;
   margin-bottom: 7px;
   font-weight: 600;
-  font-size: 13px;
+  font-size: 14px;
   color: #334155;
 }
 
@@ -185,6 +187,7 @@ button {
   background: #f8fafc;
   color: var(--text-main);
   transition: all 0.2s ease;
+  font-size: 15px;
 }
 
 .form-group input:focus,
@@ -208,11 +211,12 @@ button {
   border: 0;
   padding: 12px 20px;
   border-radius: var(--radius-md);
-  font-weight: 600;
+  font-weight: 700;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
+  font-size: 15px;
 }
 
 .primary-btn {
@@ -291,8 +295,8 @@ button {
   padding: 12px;
   border-radius: var(--radius-md);
   text-align: center;
-  font-size: 13px;
-  font-weight: 500;
+  font-size: 14px;
+  font-weight: 600;
   background: #f1f5f9;
   color: #334155;
 }
@@ -327,9 +331,9 @@ button {
   border: 0;
   background: #f1f5f9;
   color: var(--text-main);
-  font-size: 20px;
-  width: 40px;
-  height: 40px;
+  font-size: 22px;
+  width: 44px;
+  height: 44px;
   border-radius: 10px;
   display: flex;
   align-items: center;
@@ -366,7 +370,7 @@ button {
 .header-right {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
 }
 
 .user-info {
@@ -397,7 +401,7 @@ button {
 
 .header-actions {
   display: flex;
-  gap: 10px;
+  gap: 8px;
   align-items: center;
 }
 
@@ -411,6 +415,7 @@ button {
   color: #334155;
   outline: none;
   cursor: pointer;
+  height: 40px;
 }
 
 .install-btn {
@@ -421,6 +426,10 @@ button {
   border-radius: 8px;
   font-weight: 700;
   font-size: 13px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .install-btn:hover {
@@ -435,6 +444,7 @@ button {
   border-radius: 8px;
   font-weight: 700;
   font-size: 13px;
+  height: 40px;
 }
 
 .logout-btn:hover {
@@ -476,8 +486,9 @@ button {
   text-align: left;
   padding: 12px 16px;
   border-radius: 10px;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 600;
+  min-height: 48px;
 }
 
 .sidebar button:hover {
@@ -693,7 +704,7 @@ button {
 
   .main {
     margin-left: 0;
-    padding: calc(var(--header-height) + 20px) 20px 30px;
+    padding: calc(var(--header-height) + 20px) 16px 30px;
   }
 }
 
@@ -712,6 +723,11 @@ button {
   
   .app-subtitle {
     display: none;
+  }
+
+  .header-actions select {
+    padding: 4px 8px;
+    font-size: 12px;
   }
 }
 </style>
@@ -845,7 +861,7 @@ button {
       </select>
 
       <button id="installBtn" class="install-btn" style="display:none;" data-i18n="installer">
-        Installer
+        Installer l'application
       </button>
 
       <button class="logout-btn" onclick="logout()" data-i18n="deconnexion">
@@ -959,6 +975,11 @@ button {
     <p style="color: var(--text-muted);" data-i18n="welcomeDesc">
       Utilisez le menu latéral pour accéder aux différentes sections de gestion administrative.
     </p>
+    <div style="margin-top:15px;">
+      <button id="dashInstallBtn" class="primary-btn" style="display:none; max-width:250px;">
+        📲 Installer l'application
+      </button>
+    </div>
   </div>
 
 </section>
@@ -1533,7 +1554,7 @@ const translations = {
     creerCompte: "Kreye kont mwen",
     googleRegister: "Enskri ak Google",
     appSubtitle: "JESTYON INIVÈSITE AK LEKÒL PROFESYONÈL",
-    installer: "Enstale",
+    installer: "Enstale Aplikasyon an",
     deconnexion: "Sòti",
     menuAccueil: "Akèy",
     menuEtudiants: "Elèv / Etidyan",
@@ -1618,7 +1639,7 @@ const translations = {
     creerCompte: "Créer mon compte",
     googleRegister: "S'inscrire avec Google",
     appSubtitle: "GESTION UNIVERSITÉ & ÉCOLE PROFESSIONNELLE",
-    installer: "Installer",
+    installer: "Installer l'application",
     deconnexion: "Sortir",
     menuAccueil: "Accueil",
     menuEtudiants: "Étudiants",
@@ -1712,23 +1733,48 @@ document.getElementById("languageSelect").value = savedLang;
 changeLanguage(savedLang);
 
 
+/* ================= LOG DETAYE ERÈ FIREBASE ================= */
+
+function handleFirebaseError(error, collectionName, operation) {
+  const errDetail = {
+    code: error.code || "unknown",
+    message: error.message || String(error),
+    collection: collectionName,
+    operation: operation,
+    currentUID: currentUser ? currentUser.uid : "No User",
+    currentEmail: currentUser ? currentUser.email : "No Email",
+    currentRole: currentUserData ? currentUserData.role : "N/A",
+    currentStatus: currentUserData ? currentUserData.status : "N/A"
+  };
+
+  console.error("🔥 DETAY ERÈ FIREBASE 🔥", errDetail);
+  alert(`Erè Firebase (${operation} - ${collectionName}): ${error.message || error.code}`);
+}
+
+
 /* ================= INSTALL PWA ================= */
 
 window.addEventListener("beforeinstallprompt", event => {
   event.preventDefault();
   deferredPrompt = event;
-  document.getElementById("installBtn").style.display = "block";
+  const installBtn = document.getElementById("installBtn");
+  const dashBtn = document.getElementById("dashInstallBtn");
+  if (installBtn) installBtn.style.display = "inline-flex";
+  if (dashBtn) dashBtn.style.display = "inline-flex";
 });
 
-document.getElementById("installBtn").addEventListener("click", async () => {
+async function triggerPwaInstall() {
   if(!deferredPrompt){
-    alert("L'application peut être installée depuis le menu du navigateur.");
+    alert("L'application est déjà installée ou peut être installée depuis le menu Chrome/Safari.");
     return;
   }
   deferredPrompt.prompt();
   await deferredPrompt.userChoice;
   deferredPrompt = null;
-});
+}
+
+document.getElementById("installBtn").addEventListener("click", triggerPwaInstall);
+document.getElementById("dashInstallBtn").addEventListener("click", triggerPwaInstall);
 
 
 /* ================= AUTH MESSAGE ================= */
@@ -1769,7 +1815,7 @@ window.connecter = async function(){
   try{
     await signInWithEmailAndPassword(auth, email, password);
   }catch(error){
-    console.error(error);
+    handleFirebaseError(error, "auth", "login");
     authMessage("Koneksyon echwe : " + error.message);
   }
 };
@@ -1781,11 +1827,11 @@ window.connecterAvecGoogle = async function(){
   try{
     await signInWithPopup(auth, googleProvider);
   }catch(error){
-    console.error(error);
     if(error.code === "auth/popup-blocked" || error.code === "auth/popup-closed-by-user"){
       await signInWithRedirect(auth, googleProvider);
       return;
     }
+    handleFirebaseError(error, "auth", "google-login");
     authMessage("Google pa konekte : " + error.message);
   }
 };
@@ -1795,18 +1841,21 @@ window.connecterAvecGoogle = async function(){
 
 async function createUserProfile(user, name=""){
   const ref = doc(db, "users", user.uid);
-  const snap = await getDoc(ref);
+  try {
+    const snap = await getDoc(ref);
+    if(snap.exists()) return;
 
-  if(snap.exists()) return;
-
-  await setDoc(ref, {
-    uid: user.uid,
-    email: user.email || "",
-    nom: name || user.displayName || "",
-    role: "eleve",
-    status: "attente",
-    createdAt: serverTimestamp()
-  });
+    await setDoc(ref, {
+      uid: user.uid,
+      email: user.email || "",
+      nom: name || user.displayName || "",
+      role: "eleve",
+      status: "attente",
+      createdAt: serverTimestamp()
+    });
+  } catch(e) {
+    handleFirebaseError(e, "users", "createUserProfile");
+  }
 }
 
 
@@ -1835,7 +1884,7 @@ window.registerAccount = async function(){
     authMessage("Kont ou kreye. Tanpri tann administratè a apwouve li.");
     showLogin();
   }catch(error){
-    console.error(error);
+    handleFirebaseError(error, "auth", "register");
     authMessage("Enskripsyon echwe : " + error.message);
   }
 };
@@ -1851,7 +1900,7 @@ window.registerGoogle = async function(){
     authMessage("Kont ou kreye. Tanpri tann administratè a apwouve li.");
     showLogin();
   }catch(error){
-    console.error(error);
+    handleFirebaseError(error, "auth", "google-register");
     authMessage("Enskripsyon Google echwe : " + error.message);
   }
 };
@@ -1861,34 +1910,39 @@ window.registerGoogle = async function(){
 
 async function loadUserProfile(user){
   const ref = doc(db, "users", user.uid);
-  const snap = await getDoc(ref);
+  try {
+    const snap = await getDoc(ref);
 
-  if(!snap.exists()){
-    await setDoc(ref, {
-      uid: user.uid,
-      email: user.email || "",
-      nom: user.displayName || "",
-      role: "eleve",
-      status: "attente",
-      createdAt: serverTimestamp()
-    });
+    if(!snap.exists()){
+      await setDoc(ref, {
+        uid: user.uid,
+        email: user.email || "",
+        nom: user.displayName || "",
+        role: "eleve",
+        status: "attente",
+        createdAt: serverTimestamp()
+      });
 
-    await signOut(auth);
-    authMessage("Kont ou anrejistre. Tanpri tann administratè a apwouve kont ou.");
+      await signOut(auth);
+      authMessage("Kont ou anrejistre. Tanpri tann administratè a apwouve kont ou.");
+      return false;
+    }
+
+    currentUserData = snap.data();
+    const status = String(currentUserData.status || "").trim().toLowerCase();
+    const userRole = String(currentUserData.role || "").trim().toLowerCase();
+
+    if(status !== "accepted" && userRole !== "administrateur" && userRole !== "admin"){
+      await signOut(auth);
+      authMessage("Kont ou poko apwouve pa administratè a (Statut: " + status + ").");
+      return false;
+    }
+
+    return true;
+  } catch(error) {
+    handleFirebaseError(error, "users", "loadUserProfile");
     return false;
   }
-
-  currentUserData = snap.data();
-  const status = String(currentUserData.status || "").trim().toLowerCase();
-  const userRole = String(currentUserData.role || "").trim().toLowerCase();
-
-  if(status !== "accepted" && userRole !== "administrateur" && userRole !== "admin"){
-    await signOut(auth);
-    authMessage("Kont ou poko apwouve pa administratè a (Statut: " + status + ").");
-    return false;
-  }
-
-  return true;
 }
 
 
@@ -1944,7 +1998,7 @@ onAuthStateChanged(auth, async user => {
       await openApp();
     }
   }catch(error){
-    console.error(error);
+    handleFirebaseError(error, "users", "onAuthStateChanged");
     authMessage("Erè Firebase : " + error.message);
   }
 });
@@ -1989,12 +2043,17 @@ window.showSection = function(id){
 /* ================= GENERIC ADD ================= */
 
 async function addDocument(collectionName, data){
-  const id = crypto.randomUUID();
-  await setDoc(doc(db, collectionName, id), {
-    ...data,
-    createdAt: serverTimestamp(),
-    createdBy: currentUser.uid
-  });
+  try {
+    const id = crypto.randomUUID();
+    await setDoc(doc(db, collectionName, id), {
+      ...data,
+      createdAt: serverTimestamp(),
+      createdBy: currentUser.uid
+    });
+  } catch(error) {
+    handleFirebaseError(error, collectionName, "addDocument");
+    throw error;
+  }
 }
 
 
@@ -2022,7 +2081,7 @@ window.addStudent = async function(){
     alert("Elèv la ajoute ak siksè!");
     await loadStudents();
   }catch(e){
-    alert("Erè: " + e.message);
+    /* Handled by handleFirebaseError */
   }
 };
 
@@ -2051,7 +2110,7 @@ window.addTeacher = async function(){
     alert("Pwofesè a ajoute ak siksè!");
     await loadTeachers();
   }catch(e){
-    alert("Erè: " + e.message);
+    /* Handled */
   }
 };
 
@@ -2074,7 +2133,7 @@ window.addDepartment = async function(){
 
     alert("Depatman an ajoute!");
     await loadDepartments();
-  }catch(e){ alert("Erè: " + e.message); }
+  }catch(e){ /* Handled */ }
 };
 
 
@@ -2096,7 +2155,7 @@ window.addProgram = async function(){
 
     alert("Pwogram nan ajoute!");
     await loadPrograms();
-  }catch(e){ alert("Erè: " + e.message); }
+  }catch(e){ /* Handled */ }
 };
 
 
@@ -2120,7 +2179,7 @@ window.addCourse = async function(){
 
     alert("Kous la ajoute!");
     await loadCourses();
-  }catch(e){ alert("Erè: " + e.message); }
+  }catch(e){ /* Handled */ }
 };
 
 
@@ -2142,7 +2201,7 @@ window.addClass = async function(){
 
     alert("Klas la ajoute!");
     await loadClasses();
-  }catch(e){ alert("Erè: " + e.message); }
+  }catch(e){ /* Handled */ }
 };
 
 
@@ -2169,7 +2228,7 @@ window.addAssignment = async function(){
 
     alert("Devwa a pibliye!");
     await loadAssignments();
-  }catch(e){ alert("Erè: " + e.message); }
+  }catch(e){ /* Handled */ }
 };
 
 
@@ -2199,7 +2258,7 @@ window.addSubmission = async function(){
 
     alert("Remiz/Evalyasyon anrejistre!");
     await loadSubmissions();
-  }catch(e){ alert("Erè: " + e.message); }
+  }catch(e){ /* Handled */ }
 };
 
 
@@ -2223,7 +2282,7 @@ window.addSchedule = async function(){
 
     alert("Lè kous sa a ajoute!");
     await loadSchedules();
-  }catch(e){ alert("Erè: " + e.message); }
+  }catch(e){ /* Handled */ }
 };
 
 
@@ -2242,8 +2301,13 @@ function escapeHTML(value){
 /* ================= GET COLLECTION ================= */
 
 async function getCollectionData(collectionName){
-  const snap = await getDocs(collection(db, collectionName));
-  return snap.docs.map(d => ({ id: d.id, ...d.data() }));
+  try {
+    const snap = await getDocs(collection(db, collectionName));
+    return snap.docs.map(d => ({ id: d.id, ...d.data() }));
+  } catch(error) {
+    handleFirebaseError(error, collectionName, "getDocs");
+    throw error;
+  }
 }
 
 
@@ -2276,7 +2340,6 @@ async function loadStudents(){
     document.getElementById("statsStudents").textContent = data.length;
   }catch(error){
     box.innerHTML = '<div class="empty">Erè nan chajman dat yo.</div>';
-    console.error(error);
   }
 }
 
@@ -2309,7 +2372,7 @@ async function loadTeachers(){
     document.getElementById("statProfesseurs").textContent = data.length;
     document.getElementById("statsTeachers").textContent = data.length;
   }catch(error){
-    console.error(error);
+    box.innerHTML = '<div class="empty">Erè nan chajman.</div>';
   }
 }
 
@@ -2318,14 +2381,16 @@ async function loadTeachers(){
 
 async function loadDepartments(){
   const box = document.getElementById("departmentList");
-  const data = await getCollectionData("departements");
-  box.innerHTML = data.length ? data.map(item => `
-    <div class="item">
-      <div class="item-title">${escapeHTML(item.nom)}</div>
-      <div class="item-info">${escapeHTML(item.description)}</div>
-      ${isAdmin() ? `<div class="actions"><button class="danger-btn" onclick="deleteDocument('departements','${item.id}')">Efase</button></div>` : ""}
-    </div>
-  `).join("") : '<div class="empty">Pa gen depatman.</div>';
+  try {
+    const data = await getCollectionData("departements");
+    box.innerHTML = data.length ? data.map(item => `
+      <div class="item">
+        <div class="item-title">${escapeHTML(item.nom)}</div>
+        <div class="item-info">${escapeHTML(item.description)}</div>
+        ${isAdmin() ? `<div class="actions"><button class="danger-btn" onclick="deleteDocument('departements','${item.id}')">Efase</button></div>` : ""}
+      </div>
+    `).join("") : '<div class="empty">Pa gen depatman.</div>';
+  } catch(e) { box.innerHTML = '<div class="empty">Erè nan chajman.</div>'; }
 }
 
 
@@ -2333,14 +2398,16 @@ async function loadDepartments(){
 
 async function loadPrograms(){
   const box = document.getElementById("programList");
-  const data = await getCollectionData("programmes");
-  box.innerHTML = data.length ? data.map(item => `
-    <div class="item">
-      <div class="item-title">${escapeHTML(item.nom)}</div>
-      <div class="item-info">${escapeHTML(item.description)}</div>
-      ${isAdmin() ? `<div class="actions"><button class="danger-btn" onclick="deleteDocument('programmes','${item.id}')">Efase</button></div>` : ""}
-    </div>
-  `).join("") : '<div class="empty">Pa gen pwogram.</div>';
+  try {
+    const data = await getCollectionData("programmes");
+    box.innerHTML = data.length ? data.map(item => `
+      <div class="item">
+        <div class="item-title">${escapeHTML(item.nom)}</div>
+        <div class="item-info">${escapeHTML(item.description)}</div>
+        ${isAdmin() ? `<div class="actions"><button class="danger-btn" onclick="deleteDocument('programmes','${item.id}')">Efase</button></div>` : ""}
+      </div>
+    `).join("") : '<div class="empty">Pa gen pwogram.</div>';
+  } catch(e) { box.innerHTML = '<div class="empty">Erè nan chajman.</div>'; }
 }
 
 
@@ -2348,18 +2415,20 @@ async function loadPrograms(){
 
 async function loadCourses(){
   const box = document.getElementById("courseList");
-  const data = await getCollectionData("cours");
-  box.innerHTML = data.length ? data.map(item => `
-    <div class="item">
-      <div class="item-title">${escapeHTML(item.nom)}</div>
-      <div class="item-info">Professeur: ${escapeHTML(item.professeur)}</div>
-      <div class="item-info">Classe: ${escapeHTML(item.classe)}</div>
-      ${isAdmin() ? `<div class="actions"><button class="danger-btn" onclick="deleteDocument('cours','${item.id}')">Efase</button></div>` : ""}
-    </div>
-  `).join("") : '<div class="empty">Pa gen kous.</div>';
+  try {
+    const data = await getCollectionData("cours");
+    box.innerHTML = data.length ? data.map(item => `
+      <div class="item">
+        <div class="item-title">${escapeHTML(item.nom)}</div>
+        <div class="item-info">Professeur: ${escapeHTML(item.professeur)}</div>
+        <div class="item-info">Classe: ${escapeHTML(item.classe)}</div>
+        ${isAdmin() ? `<div class="actions"><button class="danger-btn" onclick="deleteDocument('cours','${item.id}')">Efase</button></div>` : ""}
+      </div>
+    `).join("") : '<div class="empty">Pa gen kous.</div>';
 
-  document.getElementById("statCours").textContent = data.length;
-  document.getElementById("statsCourses").textContent = data.length;
+    document.getElementById("statCours").textContent = data.length;
+    document.getElementById("statsCourses").textContent = data.length;
+  } catch(e) { box.innerHTML = '<div class="empty">Erè nan chajman.</div>'; }
 }
 
 
@@ -2367,17 +2436,19 @@ async function loadCourses(){
 
 async function loadClasses(){
   const box = document.getElementById("classList");
-  const data = await getCollectionData("classes");
-  box.innerHTML = data.length ? data.map(item => `
-    <div class="item">
-      <div class="item-title">${escapeHTML(item.nom)}</div>
-      <div class="item-info">Niveau: ${escapeHTML(item.niveau)}</div>
-      ${isAdmin() ? `<div class="actions"><button class="danger-btn" onclick="deleteDocument('classes','${item.id}')">Efase</button></div>` : ""}
-    </div>
-  `).join("") : '<div class="empty">Pa gen klas.</div>';
+  try {
+    const data = await getCollectionData("classes");
+    box.innerHTML = data.length ? data.map(item => `
+      <div class="item">
+        <div class="item-title">${escapeHTML(item.nom)}</div>
+        <div class="item-info">Niveau: ${escapeHTML(item.niveau)}</div>
+        ${isAdmin() ? `<div class="actions"><button class="danger-btn" onclick="deleteDocument('classes','${item.id}')">Efase</button></div>` : ""}
+      </div>
+    `).join("") : '<div class="empty">Pa gen klas.</div>';
 
-  document.getElementById("statClasses").textContent = data.length;
-  document.getElementById("statsClasses").textContent = data.length;
+    document.getElementById("statClasses").textContent = data.length;
+    document.getElementById("statsClasses").textContent = data.length;
+  } catch(e) { box.innerHTML = '<div class="empty">Erè nan chajman.</div>'; }
 }
 
 
@@ -2385,16 +2456,18 @@ async function loadClasses(){
 
 async function loadAssignments(){
   const box = document.getElementById("assignmentList");
-  const data = await getCollectionData("devoirs");
-  box.innerHTML = data.length ? data.map(item => `
-    <div class="item">
-      <div class="item-title">${escapeHTML(item.titre)}</div>
-      <div class="item-info">Cours: ${escapeHTML(item.cours)}</div>
-      <div class="item-info">Date: ${escapeHTML(item.date)}</div>
-      <div class="item-info">${escapeHTML(item.description)}</div>
-      ${isProf() ? `<div class="actions"><button class="danger-btn" onclick="deleteDocument('devoirs','${item.id}')">Efase</button></div>` : ""}
-    </div>
-  `).join("") : '<div class="empty">Pa gen devwa.</div>';
+  try {
+    const data = await getCollectionData("devoirs");
+    box.innerHTML = data.length ? data.map(item => `
+      <div class="item">
+        <div class="item-title">${escapeHTML(item.titre)}</div>
+        <div class="item-info">Cours: ${escapeHTML(item.cours)}</div>
+        <div class="item-info">Date: ${escapeHTML(item.date)}</div>
+        <div class="item-info">${escapeHTML(item.description)}</div>
+        ${isProf() ? `<div class="actions"><button class="danger-btn" onclick="deleteDocument('devoirs','${item.id}')">Efase</button></div>` : ""}
+      </div>
+    `).join("") : '<div class="empty">Pa gen devwa.</div>';
+  } catch(e) { box.innerHTML = '<div class="empty">Erè nan chajman.</div>'; }
 }
 
 
@@ -2402,16 +2475,18 @@ async function loadAssignments(){
 
 async function loadSubmissions(){
   const box = document.getElementById("submissionList");
-  const data = await getCollectionData("remises");
-  box.innerHTML = data.length ? data.map(item => `
-    <div class="item">
-      <div class="item-title">Élève: ${escapeHTML(item.etudiant)}</div>
-      <div class="item-info">Devoir: ${escapeHTML(item.devoir)}</div>
-      <div class="item-info"><strong>Nòt: ${escapeHTML(item.note)}/100</strong></div>
-      <div class="item-info">Correction: ${escapeHTML(item.correction)}</div>
-      ${isProf() ? `<div class="actions"><button class="danger-btn" onclick="deleteDocument('remises','${item.id}')">Efase</button></div>` : ""}
-    </div>
-  `).join("") : '<div class="empty">Pa gen remiz.</div>';
+  try {
+    const data = await getCollectionData("remises");
+    box.innerHTML = data.length ? data.map(item => `
+      <div class="item">
+        <div class="item-title">Élève: ${escapeHTML(item.etudiant)}</div>
+        <div class="item-info">Devoir: ${escapeHTML(item.devoir)}</div>
+        <div class="item-info"><strong>Nòt: ${escapeHTML(item.note)}/100</strong></div>
+        <div class="item-info">Correction: ${escapeHTML(item.correction)}</div>
+        ${isProf() ? `<div class="actions"><button class="danger-btn" onclick="deleteDocument('remises','${item.id}')">Efase</button></div>` : ""}
+      </div>
+    `).join("") : '<div class="empty">Pa gen remiz.</div>';
+  } catch(e) { box.innerHTML = '<div class="empty">Erè nan chajman.</div>'; }
 }
 
 
@@ -2419,14 +2494,16 @@ async function loadSubmissions(){
 
 async function loadResults(){
   const box = document.getElementById("resultList");
-  const data = await getCollectionData("resultats");
-  box.innerHTML = data.length ? data.map(item => `
-    <div class="item">
-      <div class="item-title">${escapeHTML(item.etudiant || "")}</div>
-      <div class="item-info">Matière: ${escapeHTML(item.matiere || "")}</div>
-      <div class="item-info"><strong>Note: ${escapeHTML(item.note || 0)}/100</strong></div>
-    </div>
-  `).join("") : '<div class="empty">Pa gen rezilta.</div>';
+  try {
+    const data = await getCollectionData("resultats");
+    box.innerHTML = data.length ? data.map(item => `
+      <div class="item">
+        <div class="item-title">${escapeHTML(item.etudiant || "")}</div>
+        <div class="item-info">Matière: ${escapeHTML(item.matiere || "")}</div>
+        <div class="item-info"><strong>Note: ${escapeHTML(item.note || 0)}/100</strong></div>
+      </div>
+    `).join("") : '<div class="empty">Pa gen rezilta.</div>';
+  } catch(e) { box.innerHTML = '<div class="empty">Erè nan chajman.</div>'; }
 }
 
 
@@ -2434,16 +2511,18 @@ async function loadResults(){
 
 async function loadSchedules(){
   const box = document.getElementById("scheduleList");
-  const data = await getCollectionData("emplois_du_temps");
-  box.innerHTML = data.length ? data.map(item => `
-    <div class="item">
-      <div class="item-title">Jour: ${escapeHTML(item.jour)}</div>
-      <div class="item-info">Cours: ${escapeHTML(item.cours)}</div>
-      <div class="item-info">Heure: ${escapeHTML(item.heure)}</div>
-      <div class="item-info">Classe: ${escapeHTML(item.classe)}</div>
-      ${isAdmin() ? `<div class="actions"><button class="danger-btn" onclick="deleteDocument('emplois_du_temps','${item.id}')">Efase</button></div>` : ""}
-    </div>
-  `).join("") : '<div class="empty">Pa gen horaire.</div>';
+  try {
+    const data = await getCollectionData("emplois_du_temps");
+    box.innerHTML = data.length ? data.map(item => `
+      <div class="item">
+        <div class="item-title">Jour: ${escapeHTML(item.jour)}</div>
+        <div class="item-info">Cours: ${escapeHTML(item.cours)}</div>
+        <div class="item-info">Heure: ${escapeHTML(item.heure)}</div>
+        <div class="item-info">Classe: ${escapeHTML(item.classe)}</div>
+        ${isAdmin() ? `<div class="actions"><button class="danger-btn" onclick="deleteDocument('emplois_du_temps','${item.id}')">Efase</button></div>` : ""}
+      </div>
+    `).join("") : '<div class="empty">Pa gen horaire.</div>';
+  } catch(e) { box.innerHTML = '<div class="empty">Erè nan chajman.</div>'; }
 }
 
 
@@ -2459,8 +2538,7 @@ window.deleteDocument = async function(collectionName, id){
     await deleteDoc(doc(db, collectionName, id));
     await loadAllData();
   }catch(error){
-    console.error(error);
-    alert("Efase echwe : " + error.message);
+    handleFirebaseError(error, collectionName, "deleteDoc");
   }
 };
 
@@ -2489,7 +2567,7 @@ async function loadUsers(){
       : '<div class="empty">Pa gen itilizatè.</div>';
 
   }catch(error){
-    console.error(error);
+    handleFirebaseError(error, "users", "loadUsers");
     pending.innerHTML = '<div class="empty">Erè nan chajman.</div>';
     all.innerHTML = '<div class="empty">Erè nan chajman.</div>';
   }
@@ -2556,8 +2634,7 @@ window.approveUser = async function(uid){
     alert("Itilizatè sa a apwouve ak siksè!");
     await loadUsers();
   }catch(error){
-    console.error(error);
-    alert("Apwobasyon echwe : " + error.message);
+    handleFirebaseError(error, "users", "approveUser");
   }
 };
 
@@ -2573,8 +2650,7 @@ window.refuseUser = async function(uid){
     alert("Itilizatè sa a refize.");
     await loadUsers();
   }catch(error){
-    console.error(error);
-    alert("Aksyon echwe : " + error.message);
+    handleFirebaseError(error, "users", "refuseUser");
   }
 };
 
@@ -2591,7 +2667,7 @@ window.updateUserRole = async function(uid){
     alert("Wòl la modifye ak siksè!");
     await loadUsers();
   }catch(error){
-    alert("Erè: " + error.message);
+    handleFirebaseError(error, "users", "updateUserRole");
   }
 };
 
@@ -2610,8 +2686,7 @@ window.deleteUser = async function(uid){
     alert("Itilizatè efase!");
     await loadUsers();
   }catch(error){
-    console.error(error);
-    alert("Efase echwe : " + error.message);
+    handleFirebaseError(error, "users", "deleteUser");
   }
 };
 
@@ -2640,7 +2715,7 @@ window.logout = async function(){
   try{
     await signOut(auth);
   }catch(error){
-    console.error(error);
+    handleFirebaseError(error, "auth", "logout");
   }
 };
 
