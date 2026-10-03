@@ -1,1 +1,1584 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<meta name="theme-color" content="#1d4ed8">
+<meta name="description" content="Centre de Formation Le Pédagogue - Gestion universitaire et école professionnelle">
+
+<title>Centre de Formation Le Pédagogue</title>
+
+<style>
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:#f1f5f9;
+  color:#172033;
+}
+
+/* ================= HEADER ================= */
+
+.header{
+  height:70px;
+  background:#ffffff;
+  border-bottom:1px solid #e2e8f0;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 20px;
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  z-index:1000;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.logo{
+  width:45px;
+  height:45px;
+  border-radius:12px;
+  background:#1d4ed8;
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:23px;
+  font-weight:bold;
+}
+
+.brand h1{
+  font-size:18px;
+  color:#0f172a;
+}
+
+.brand small{
+  display:block;
+  color:#64748b;
+  font-size:11px;
+  margin-top:3px;
+}
+
+.header-right{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.lang-select{
+  border:1px solid #cbd5e1;
+  border-radius:8px;
+  padding:8px;
+  background:white;
+}
+
+.install-btn,
+.logout-btn{
+  border:0;
+  border-radius:8px;
+  padding:9px 13px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+.install-btn{
+  background:#2563eb;
+  color:white;
+}
+
+.logout-btn{
+  background:#fee2e2;
+  color:#b91c1c;
+}
+
+/* ================= SIDEBAR ================= */
+
+.sidebar{
+  position:fixed;
+  top:70px;
+  left:0;
+  bottom:0;
+  width:250px;
+  background:#0f172a;
+  padding:18px 12px;
+  overflow-y:auto;
+  z-index:900;
+}
+
+.sidebar-title{
+  color:#94a3b8;
+  font-size:11px;
+  text-transform:uppercase;
+  padding:10px 12px;
+  margin-top:8px;
+}
+
+.nav-btn{
+  width:100%;
+  border:0;
+  background:transparent;
+  color:#cbd5e1;
+  text-align:left;
+  padding:12px;
+  border-radius:8px;
+  margin-bottom:3px;
+  cursor:pointer;
+  font-size:14px;
+}
+
+.nav-btn:hover,
+.nav-btn.active{
+  background:#1d4ed8;
+  color:white;
+}
+
+/* ================= MAIN ================= */
+
+.main{
+  margin-left:250px;
+  padding:95px 25px 30px;
+}
+
+.page{
+  display:none;
+}
+
+.page.active{
+  display:block;
+}
+
+.page-title{
+  margin-bottom:20px;
+}
+
+.page-title h2{
+  font-size:25px;
+  color:#0f172a;
+}
+
+.page-title p{
+  color:#64748b;
+  margin-top:5px;
+}
+
+/* ================= CARDS ================= */
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:18px;
+  margin-bottom:25px;
+}
+
+.card{
+  background:white;
+  border-radius:14px;
+  padding:20px;
+  box-shadow:0 3px 12px rgba(15,23,42,.06);
+  border:1px solid #e2e8f0;
+}
+
+.stat-card{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.stat-icon{
+  width:48px;
+  height:48px;
+  border-radius:12px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:22px;
+  background:#dbeafe;
+}
+
+.stat-number{
+  font-size:27px;
+  font-weight:bold;
+  margin-top:5px;
+}
+
+.stat-label{
+  color:#64748b;
+  font-size:13px;
+}
+
+/* ================= TABLE ================= */
+
+.table-card{
+  background:white;
+  border-radius:14px;
+  border:1px solid #e2e8f0;
+  overflow:hidden;
+}
+
+.table-header{
+  padding:18px;
+  border-bottom:1px solid #e2e8f0;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.table-wrap{
+  overflow-x:auto;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+}
+
+th,
+td{
+  padding:13px 15px;
+  text-align:left;
+  border-bottom:1px solid #e2e8f0;
+}
+
+th{
+  background:#f8fafc;
+  font-size:13px;
+  color:#475569;
+}
+
+td{
+  font-size:14px;
+}
+
+/* ================= BUTTONS ================= */
+
+.primary-btn{
+  background:#2563eb;
+  color:white;
+  border:0;
+  border-radius:8px;
+  padding:10px 15px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+.secondary-btn{
+  background:#e2e8f0;
+  color:#334155;
+  border:0;
+  border-radius:8px;
+  padding:10px 15px;
+  cursor:pointer;
+}
+
+/* ================= LOGIN ================= */
+
+#authPage{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:linear-gradient(135deg,#1d4ed8,#0f172a);
+  padding:20px;
+}
+
+.auth-box{
+  width:100%;
+  max-width:430px;
+  background:white;
+  border-radius:18px;
+  padding:30px;
+  box-shadow:0 20px 50px rgba(0,0,0,.25);
+}
+
+.auth-logo{
+  width:70px;
+  height:70px;
+  margin:0 auto 15px;
+  border-radius:18px;
+  background:#1d4ed8;
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:32px;
+}
+
+.auth-box h2{
+  text-align:center;
+  color:#0f172a;
+}
+
+.auth-subtitle{
+  text-align:center;
+  color:#64748b;
+  font-size:13px;
+  margin:7px 0 25px;
+}
+
+.form-group{
+  margin-bottom:15px;
+}
+
+.form-group label{
+  display:block;
+  font-size:13px;
+  font-weight:bold;
+  margin-bottom:6px;
+}
+
+.form-group input{
+  width:100%;
+  padding:12px;
+  border:1px solid #cbd5e1;
+  border-radius:8px;
+  outline:none;
+}
+
+.form-group input:focus{
+  border-color:#2563eb;
+}
+
+.auth-btn{
+  width:100%;
+  padding:12px;
+  border:0;
+  border-radius:8px;
+  background:#2563eb;
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.google-btn{
+  width:100%;
+  padding:12px;
+  margin-top:10px;
+  border:1px solid #cbd5e1;
+  border-radius:8px;
+  background:white;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+.auth-message{
+  margin-top:15px;
+  padding:10px;
+  border-radius:8px;
+  background:#f1f5f9;
+  color:#475569;
+  font-size:13px;
+  text-align:center;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:900px){
+
+  .cards{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+}
+
+@media(max-width:700px){
+
+  .header{
+    padding:0 10px;
+  }
+
+  .brand h1{
+    font-size:14px;
+  }
+
+  .brand small{
+    display:none;
+  }
+
+  .header-right{
+    gap:5px;
+  }
+
+  .install-btn{
+    display:none;
+  }
+
+  .sidebar{
+    width:220px;
+    transform:translateX(-100%);
+    transition:.25s;
+  }
+
+  .sidebar.open{
+    transform:translateX(0);
+  }
+
+  .main{
+    margin-left:0;
+    padding:90px 12px 25px;
+  }
+
+  .cards{
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+  }
+
+  .card{
+    padding:15px;
+  }
+
+}
+
+/* ================= UTILITY ================= */
+
+.hidden{
+  display:none !important;
+}
+
+.empty{
+  padding:30px;
+  text-align:center;
+  color:#64748b;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- =====================================================
+     AUTHENTIFICATION
+===================================================== -->
+
+<section id="authPage">
+
+  <div class="auth-box">
+
+    <div class="auth-logo">
+      🎓
+    </div>
+
+    <h2>
+      Centre de Formation Le Pédagogue
+    </h2>
+
+    <div class="auth-subtitle">
+      Gestion universitaire et école professionnelle
+    </div>
+
+    <div class="form-group">
+      <label>Email</label>
+      <input
+        type="email"
+        id="loginEmail"
+        placeholder="Votre adresse email"
+      >
+    </div>
+
+    <div class="form-group">
+      <label>Mot de passe</label>
+      <input
+        type="password"
+        id="loginPassword"
+        placeholder="Votre mot de passe"
+      >
+    </div>
+
+    <button
+      class="auth-btn"
+      onclick="connecter()"
+    >
+      Se connecter
+    </button>
+
+    <button
+      class="google-btn"
+      onclick="connecterAvecGoogle()"
+    >
+      🔵 Continuer avec Google
+    </button>
+
+    <div
+      id="authMessage"
+      class="auth-message"
+    >
+      Connectez-vous pour accéder à votre espace.
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     APPLICATION
+===================================================== -->
+
+<section id="appPage" class="hidden">
+
+  <!-- HEADER -->
+
+  <header class="header">
+
+    <div class="brand">
+
+      <div class="logo">
+        🎓
+      </div>
+
+      <div>
+        <h1>
+          Centre de Formation Le Pédagogue
+        </h1>
+
+        <small>
+          Gestion universitaire & école professionnelle
+        </small>
+      </div>
+
+    </div>
+
+    <div class="header-right">
+
+      <select
+        id="languageSelect"
+        class="lang-select"
+        onchange="changerLangue()"
+      >
+        <option value="fr">🇫🇷 Français</option>
+        <option value="ht">🇭🇹 Kreyòl</option>
+      </select>
+
+      <button
+        id="installBtn"
+        class="install-btn hidden"
+        onclick="installerApplication()"
+      >
+        📱 Installer
+      </button>
+
+      <button
+        class="logout-btn"
+        onclick="deconnecter()"
+      >
+        Déconnexion
+      </button>
+
+    </div>
+
+  </header>
+
+
+  <!-- SIDEBAR -->
+
+  <aside id="sidebar" class="sidebar">
+
+    <div class="sidebar-title">
+      Principal
+    </div>
+
+    <button
+      class="nav-btn active"
+      onclick="ouvrirPage('home',this)"
+    >
+      🏠 Tableau de bord
+    </button>
+
+
+    <div class="sidebar-title">
+      Gestion académique
+    </div>
+
+    <button
+      class="nav-btn"
+      onclick="ouvrirPage('etudiants',this)"
+    >
+      🎓 Étudiants
+    </button>
+
+    <button
+      class="nav-btn"
+      onclick="ouvrirPage('professeurs',this)"
+    >
+      👨‍🏫 Professeurs
+    </button>
+
+    <button
+      class="nav-btn"
+      onclick="ouvrirPage('classes',this)"
+    >
+      🏫 Classes / Groupes
+    </button>
+
+    <button
+      class="nav-btn"
+      onclick="ouvrirPage('filieres',this)"
+    >
+      🎓 Filières / Programmes
+    </button>
+
+    <button
+      class="nav-btn"
+      onclick="ouvrirPage('matieres',this)"
+    >
+      📚 Matières
+    </button>
+
+    <button
+      class="nav-btn"
+      onclick="ouvrirPage('annees',this)"
+    >
+      📅 Années académiques
+    </button>
+
+    <button
+      class="nav-btn"
+      onclick="ouvrirPage('cours',this)"
+    >
+      📖 Cours
+    </button>
+
+    <button
+      class="nav-btn"
+      onclick="ouvrirPage('devoirs',this)"
+    >
+      📝 Devoirs
+    </button>
+
+    <button
+      class="nav-btn"
+      onclick="ouvrirPage('remises',this)"
+    >
+      📥 Remises
+    </button>
+
+
+    <div class="sidebar-title">
+      Résultats
+    </div>
+
+    <button
+      class="nav-btn"
+      onclick="ouvrirPage('resultats',this)"
+    >
+      📊 Résultats
+    </button>
+
+    <button
+      class="nav-btn"
+      onclick="ouvrirPage('statistiques',this)"
+    >
+      📈 Statistiques
+    </button>
+
+
+    <div class="sidebar-title">
+      Administration
+    </div>
+
+    <button
+      id="usersMenu"
+      class="nav-btn"
+      onclick="ouvrirPage('users',this)"
+    >
+      👥 Utilisateurs
+    </button>
+
+    <button
+      class="nav-btn"
+      onclick="ouvrirPage('configuration',this)"
+    >
+      ⚙️ Configuration
+    </button>
+
+  </aside>
+
+
+  <!-- MAIN -->
+
+  <main class="main">
+
+
+    <!-- HOME -->
+
+    <section
+      id="page-home"
+      class="page active"
+    >
+
+      <div class="page-title">
+
+        <h2>
+          Tableau de bord
+        </h2>
+
+        <p id="welcomeText">
+          Bienvenue dans votre espace de gestion.
+        </p>
+
+      </div>
+
+
+      <div class="cards">
+
+        <div class="card stat-card">
+
+          <div>
+            <div class="stat-label">
+              Étudiants
+            </div>
+
+            <div
+              id="statEtudiants"
+              class="stat-number"
+            >
+              0
+            </div>
+          </div>
+
+          <div class="stat-icon">
+            🎓
+          </div>
+
+        </div>
+
+
+        <div class="card stat-card">
+
+          <div>
+            <div class="stat-label">
+              Professeurs
+            </div>
+
+            <div
+              id="statProfesseurs"
+              class="stat-number"
+            >
+              0
+            </div>
+          </div>
+
+          <div class="stat-icon">
+            👨‍🏫
+          </div>
+
+        </div>
+
+
+        <div class="card stat-card">
+
+          <div>
+            <div class="stat-label">
+              Classes
+            </div>
+
+            <div
+              id="statClasses"
+              class="stat-number"
+            >
+              0
+            </div>
+          </div>
+
+          <div class="stat-icon">
+            🏫
+          </div>
+
+        </div>
+
+
+        <div class="card stat-card">
+
+          <div>
+            <div class="stat-label">
+              Matières
+            </div>
+
+            <div
+              id="statMatieres"
+              class="stat-number"
+            >
+              0
+            </div>
+          </div>
+
+          <div class="stat-icon">
+            📚
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="cards">
+
+        <div class="card">
+
+          <div class="stat-label">
+            Devoirs
+          </div>
+
+          <div
+            id="statDevoirs"
+            class="stat-number"
+          >
+            0
+          </div>
+
+        </div>
+
+
+        <div class="card">
+
+          <div class="stat-label">
+            Remises
+          </div>
+
+          <div
+            id="statRemises"
+            class="stat-number"
+          >
+            0
+          </div>
+
+        </div>
+
+
+        <div class="card">
+
+          <div class="stat-label">
+            Résultats
+          </div>
+
+          <div
+            id="statResultats"
+            class="stat-number"
+          >
+            0
+          </div>
+
+        </div>
+
+
+        <div class="card">
+
+          <div class="stat-label">
+            Utilisateurs
+          </div>
+
+          <div
+            id="statUsers"
+            class="stat-number"
+          >
+            0
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="table-card">
+
+        <div class="table-header">
+
+          <strong>
+            Informations du compte
+          </strong>
+
+        </div>
+
+        <div style="padding:20px">
+
+          <p>
+            <strong>Email :</strong>
+            <span id="currentEmail">—</span>
+          </p>
+
+          <p style="margin-top:8px">
+            <strong>Rôle :</strong>
+            <span id="currentRole">—</span>
+          </p>
+
+          <p style="margin-top:8px">
+            <strong>Statut :</strong>
+            <span id="currentStatus">—</span>
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ETUDIANTS -->
+
+    <section
+      id="page-etudiants"
+      class="page"
+    >
+
+      <div class="page-title">
+
+        <h2>🎓 Étudiants</h2>
+
+        <p>
+          Gestion des étudiants et élèves.
+        </p>
+
+      </div>
+
+      <div class="table-card">
+
+        <div class="table-header">
+
+          <strong>
+            Liste des étudiants
+          </strong>
+
+          <button
+            class="primary-btn"
+            onclick="ajouterEtudiant()"
+          >
+            + Ajouter
+          </button>
+
+        </div>
+
+        <div
+          id="listeEtudiants"
+          class="empty"
+        >
+          Chargement...
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- PROFESSEURS -->
+
+    <section
+      id="page-professeurs"
+      class="page"
+    >
+
+      <div class="page-title">
+
+        <h2>👨‍🏫 Professeurs</h2>
+
+        <p>
+          Gestion du personnel enseignant.
+        </p>
+
+      </div>
+
+      <div class="table-card">
+
+        <div class="table-header">
+
+          <strong>
+            Liste des professeurs
+          </strong>
+
+          <button
+            class="primary-btn"
+            onclick="ajouterProfesseur()"
+          >
+            + Ajouter
+          </button>
+
+        </div>
+
+        <div
+          id="listeProfesseurs"
+          class="empty"
+        >
+          Chargement...
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- CLASSES -->
+
+    <section
+      id="page-classes"
+      class="page"
+    >
+
+      <div class="page-title">
+
+        <h2>🏫 Classes / Groupes</h2>
+
+        <p>
+          Gestion des classes et groupes.
+        </p>
+
+      </div>
+
+      <div class="table-card">
+
+        <div class="table-header">
+
+          <strong>Classes</strong>
+
+          <button
+            class="primary-btn"
+            onclick="ajouterClasse()"
+          >
+            + Ajouter
+          </button>
+
+        </div>
+
+        <div
+          id="listeClasses"
+          class="empty"
+        >
+          Chargement...
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- FILIERES -->
+
+    <section
+      id="page-filieres"
+      class="page"
+    >
+
+      <div class="page-title">
+
+        <h2>🎓 Filières / Programmes</h2>
+
+        <p>
+          Programmes de formation professionnelle et universitaire.
+        </p>
+
+      </div>
+
+      <div class="table-card">
+
+        <div class="table-header">
+
+          <strong>Filières</strong>
+
+          <button
+            class="primary-btn"
+            onclick="ajouterFiliere()"
+          >
+            + Ajouter
+          </button>
+
+        </div>
+
+        <div
+          id="listeFilieres"
+          class="empty"
+        >
+          Chargement...
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- MATIERES -->
+
+    <section
+      id="page-matieres"
+      class="page"
+    >
+
+      <div class="page-title">
+
+        <h2>📚 Matières</h2>
+
+        <p>
+          Gestion des matières académiques.
+        </p>
+
+      </div>
+
+      <div class="table-card">
+
+        <div class="table-header">
+
+          <strong>Matières</strong>
+
+          <button
+            class="primary-btn"
+            onclick="ajouterMatiere()"
+          >
+            + Ajouter
+          </button>
+
+        </div>
+
+        <div
+          id="listeMatieres"
+          class="empty"
+        >
+          Chargement...
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ANNEES -->
+
+    <section
+      id="page-annees"
+      class="page"
+    >
+
+      <div class="page-title">
+
+        <h2>📅 Années académiques</h2>
+
+        <p>
+          Gestion des années académiques.
+        </p>
+
+      </div>
+
+      <div class="table-card">
+
+        <div class="table-header">
+
+          <strong>Années académiques</strong>
+
+          <button
+            class="primary-btn"
+            onclick="ajouterAnnee()"
+          >
+            + Ajouter
+          </button>
+
+        </div>
+
+        <div
+          id="listeAnnees"
+          class="empty"
+        >
+          Chargement...
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- COURS -->
+
+    <section
+      id="page-cours"
+      class="page"
+    >
+
+      <div class="page-title">
+
+        <h2>📖 Cours</h2>
+
+        <p>
+          Gestion des cours.
+        </p>
+
+      </div>
+
+      <div class="table-card">
+
+        <div class="table-header">
+
+          <strong>Cours</strong>
+
+          <button
+            class="primary-btn"
+            onclick="ajouterCours()"
+          >
+            + Ajouter
+          </button>
+
+        </div>
+
+        <div
+          id="listeCours"
+          class="empty"
+        >
+          Chargement...
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- DEVOIRS -->
+
+    <section
+      id="page-devoirs"
+      class="page"
+    >
+
+      <div class="page-title">
+
+        <h2>📝 Devoirs</h2>
+
+        <p>
+          Gestion des devoirs et évaluations.
+        </p>
+
+      </div>
+
+      <div class="table-card">
+
+        <div class="table-header">
+
+          <strong>Devoirs</strong>
+
+          <button
+            class="primary-btn"
+            onclick="ajouterDevoir()"
+          >
+            + Ajouter
+          </button>
+
+        </div>
+
+        <div
+          id="listeDevoirs"
+          class="empty"
+        >
+          Chargement...
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- REMISES -->
+
+    <section
+      id="page-remises"
+      class="page"
+    >
+
+      <div class="page-title">
+
+        <h2>📥 Remises</h2>
+
+        <p>
+          Travaux remis par les étudiants.
+        </p>
+
+      </div>
+
+      <div class="table-card">
+
+        <div class="table-header">
+
+          <strong>Remises</strong>
+
+        </div>
+
+        <div
+          id="listeRemises"
+          class="empty"
+        >
+          Chargement...
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- RESULTATS -->
+
+    <section
+      id="page-resultats"
+      class="page"
+    >
+
+      <div class="page-title">
+
+        <h2>📊 Résultats</h2>
+
+        <p>
+          Notes et résultats académiques.
+        </p>
+
+      </div>
+
+      <div class="table-card">
+
+        <div class="table-header">
+
+          <strong>Résultats</strong>
+
+        </div>
+
+        <div
+          id="listeResultats"
+          class="empty"
+        >
+          Chargement...
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- STATISTIQUES -->
+
+    <section
+      id="page-statistiques"
+      class="page"
+    >
+
+      <div class="page-title">
+
+        <h2>📈 Statistiques</h2>
+
+        <p>
+          Vue générale des données académiques.
+        </p>
+
+      </div>
+
+      <div
+        id="statistiquesContent"
+        class="cards"
+      >
+      </div>
+
+    </section>
+
+
+    <!-- USERS -->
+
+    <section
+      id="page-users"
+      class="page"
+    >
+
+      <div class="page-title">
+
+        <h2>👥 Utilisateurs</h2>
+
+        <p>
+          Gestion des comptes et des autorisations.
+        </p>
+
+      </div>
+
+      <div class="table-card">
+
+        <div class="table-header">
+
+          <strong>
+            Utilisateurs en attente
+          </strong>
+
+        </div>
+
+        <div
+          id="listeUsers"
+          class="empty"
+        >
+          Chargement...
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- CONFIGURATION -->
+
+    <section
+      id="page-configuration"
+      class="page"
+    >
+
+      <div class="page-title">
+
+        <h2>⚙️ Configuration</h2>
+
+        <p>
+          Configuration générale du Centre de Formation Le Pédagogue.
+        </p>
+
+      </div>
+
+      <div class="card">
+
+        <h3>
+          Centre de Formation Le Pédagogue
+        </h3>
+
+        <p style="margin-top:10px;color:#64748b">
+          Gestion universitaire et école professionnelle.
+        </p>
+
+        <hr style="margin:20px 0;border:0;border-top:1px solid #e2e8f0">
+
+        <p>
+          Version :
+          <strong>1.0</strong>
+        </p>
+
+        <p style="margin-top:10px">
+          Firebase :
+          <strong>Activé</strong>
+        </p>
+
+      </div>
+
+    </section>
+
+
+  </main>
+
+</section>
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script>
+
+function ouvrirPage(page, bouton){
+
+  document
+    .querySelectorAll(".page")
+    .forEach(p => p.classList.remove("active"));
+
+  const cible =
+    document.getElementById("page-" + page);
+
+  if(cible){
+    cible.classList.add("active");
+  }
+
+  document
+    .querySelectorAll(".nav-btn")
+    .forEach(b => b.classList.remove("active"));
+
+  if(bouton){
+    bouton.classList.add("active");
+  }
+
+}
+
+function changerLangue(){
+
+  const langue =
+    document.getElementById("languageSelect").value;
+
+  localStorage.setItem(
+    "cfp_language",
+    langue
+  );
+
+}
+
+function installerApplication(){
+
+  if(window.deferredInstallPrompt){
+
+    window.deferredInstallPrompt.prompt();
+
+  }
+
+}
+
+function deconnecter(){
+
+  if(typeof logoutFirebase === "function"){
+    logoutFirebase();
+  }
+
+}
+
+function connecter(){
+
+  if(typeof loginFirebase === "function"){
+    loginFirebase();
+  }
+
+}
+
+function connecterAvecGoogle(){
+
+  if(typeof loginGoogleFirebase === "function"){
+    loginGoogleFirebase();
+  }
+
+}
+
+
+/* Fonctions temporaires */
+
+function ajouterEtudiant(){
+  alert("Fonksyon Ajouter Étudiant ap aktive nan pati Firebase la.");
+}
+
+function ajouterProfesseur(){
+  alert("Fonksyon Ajouter Professeur ap aktive nan pati Firebase la.");
+}
+
+function ajouterClasse(){
+  alert("Fonksyon Ajouter Classe ap aktive nan pati Firebase la.");
+}
+
+function ajouterFiliere(){
+  alert("Fonksyon Ajouter Filière ap aktive nan pati Firebase la.");
+}
+
+function ajouterMatiere(){
+  alert("Fonksyon Ajouter Matière ap aktive nan pati Firebase la.");
+}
+
+function ajouterAnnee(){
+  alert("Fonksyon Ajouter Année ap aktive nan pati Firebase la.");
+}
+
+function ajouterCours(){
+  alert("Fonksyon Ajouter Cours ap aktive nan pati Firebase la.");
+}
+
+function ajouterDevoir(){
+  alert("Fonksyon Ajouter Devoir ap aktive nan pati Firebase la.");
+}
+
+</script>
+
+</body>
+</html>
