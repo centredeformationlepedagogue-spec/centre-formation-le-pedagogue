@@ -1982,75 +1982,194 @@ window.addEventListener("DOMContentLoaded", async () => {
 });
 
 
+
 /* ================= AUTH STATE OBSERVER ================= */
 
 onAuthStateChanged(auth, async user => {
-  if(user){
-    currentUser = user;
-    const userRef = doc(db, "users", user.uid);
-    let userSnap;
 
-    try {
+  if (!user) {
+
+    currentUser = null;
+    currentUserData = null;
+
+    document.getElementById("authPage").classList.remove("hidden");
+    document.getElementById("appPage").classList.add("hidden");
+
+    return;
+  }
+
+  currentUser = user;
+
+  const userRef = doc(db, "users", user.uid);
+
+  try {
+
+    let userSnap = await getDoc(userRef);
+
+    /*
+      SI PROFIL LA PA EGZISTE:
+      Kreye li kòm elèv an attente.
+    */
+
+    if (!userSnap.exists()) {
+
+      await setDoc(userRef, {
+        uid: user.uid,
+        email: user.email || "",
+        nom: user.displayName || "Utilisateur",
+        role: "eleve",
+        status: "attente",
+        createdAt: serverTimestamp()
+      });
+
       userSnap = await getDoc(userRef);
-    } catch (readErr) {
-      console.error("Erè lekti profil users/{uid}:", readErr);
-      authMessage("Erè lekti profil la nan baz done a.");
-      return;
-    }
-
-    if(!userSnap.exists()){
-      try {
-        const defaultRole = "eleve";
-        const defaultStatus = "attente";
-        await setDoc(userRef, {
-          uid: user.uid,
-          email: user.email || "",
-          nom: user.displayName || "Utilisateur",
-          role: defaultRole,
-          status: defaultStatus,
-          createdAt: serverTimestamp()
-        });
-        userSnap = await getDoc(userRef);
-      } catch (createErr) {
-        handleFirebaseError(createErr, "users", "auto-create-profile");
-        authMessage("Echèk kreyasyon profil otomatik pou nouvo user.");
-        return;
-      }
     }
 
     currentUserData = userSnap.data();
 
-    if(currentUserData.status !== "accepted"){
-      document.getElementById("authPage").classList.remove("hidden");
-      document.getElementById("appPage").classList.add("hidden");
-      authMessage("⏳ Kont ou an ap tann apwobasyon yon administratè.");
+    console.log("👤 PROFIL FIREBASE:", {
+      uid: user.uid,
+      email: user.email,
+      role: currentUserData.role,
+      status: currentUserData.status
+    });
+
+
+    /* =================================================
+       ADMINISTRATEUR AKSEPTE
+       ================================================= */
+
+    const isAdminAccepted =
+      currentUserData.role === "administrateur" &&
+      currentUserData.status === "accepted";
+
+
+    /* =================================================
+       NENPÒT LÒT ITILIZATÈ AKSEPTE
+       ================================================= */
+
+    const isAccepted =
+      currentUserData.status === "accepted";
+
+
+    /*
+      SI ADMINISTRATÈ A AKSEPTE
+      OSWA nenpòt lòt itilizatè aksepte,
+      montre aplikasyon an.
+    */
+
+    if (isAdminAccepted || isAccepted) {
+
+      document
+        .getElementById("authPage")
+        .classList.add("hidden");
+
+      document
+        .getElementById("appPage")
+        .classList.remove("hidden");
+
+
+      /* EMAIL */
+
+      const emailEl =
+        document.getElementById("userEmail");
+
+      if (emailEl) {
+        emailEl.textContent =
+          user.email || currentUserData.email || "";
+      }
+
+
+      /* ROLE */
+
+      const roleEl =
+        document.getElementById("userRole");
+
+      if (roleEl) {
+
+        if (isAdminAccepted) {
+          roleEl.textContent = "ADMINISTRATEUR";
+        } else {
+          roleEl.textContent =
+            String(currentUserData.role || "eleve")
+              .toUpperCase();
+        }
+
+      }
+
+
+      /* MENU ITILIZATÈ YO */
+
+      const usersMenu =
+        document.getElementById("usersMenu");
+
+      if (usersMenu) {
+
+        if (isAdminAccepted) {
+          usersMenu.classList.remove("hidden");
+        } else {
+          usersMenu.classList.add("hidden");
+        }
+
+      }
+
+
+      /*
+        Chaje done aplikasyon an.
+      */
+
+      try {
+        await initializeFirestoreData();
+      } catch (e) {
+        console.error(
+          "Erè initializeFirestoreData:",
+          e
+        );
+      }
+
+      await loadAllData();
+
       return;
     }
 
-    await initializeFirestoreData();
 
-    document.getElementById("authPage").classList.add("hidden");
-    document.getElementById("appPage").classList.remove("hidden");
+    /* =================================================
+       ITILIZATÈ PA AKSEPTE
+       ================================================= */
 
-    document.getElementById("userEmail").textContent = user.email;
-    document.getElementById("userRole").textContent = currentUserData.role.toUpperCase();
+    document
+      .getElementById("authPage")
+      .classList.remove("hidden");
 
-    if(currentUserData.role === "administrateur"){
-      document.getElementById("usersMenu").classList.remove("hidden");
-    } else {
-      document.getElementById("usersMenu").classList.add("hidden");
-    }
+    document
+      .getElementById("appPage")
+      .classList.add("hidden");
 
-    loadAllData();
+    authMessage(
+      "⏳ Kont ou an ap tann apwobasyon yon administratè."
+    );
 
-  }else{
-    currentUser = null;
-    currentUserData = null;
-    document.getElementById("authPage").classList.remove("hidden");
-    document.getElementById("appPage").classList.add("hidden");
+  } catch (error) {
+
+    console.error(
+      "🔥 Erè load profil itilizatè:",
+      error
+    );
+
+    document
+      .getElementById("authPage")
+      .classList.remove("hidden");
+
+    document
+      .getElementById("appPage")
+      .classList.add("hidden");
+
+    authMessage(
+      "Erè pandan aplikasyon an t ap li pwofil itilizatè a."
+    );
   }
-});
 
+});
 
 /* ================= NAVIGATION & SECTIONS ================= */
 
