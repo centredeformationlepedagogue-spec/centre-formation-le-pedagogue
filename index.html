@@ -1535,6 +1535,7 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
   signInWithRedirect,
+  getRedirectResult,
   onAuthStateChanged,
   signOut,
   createUserWithEmailAndPassword,
@@ -1816,7 +1817,6 @@ async function initializeFirestoreData() {
       const colRef = collection(db, colName);
       const snapshot = await getDocs(colRef);
       if (snapshot.empty) {
-        // Create an initialization metadata document so collection exists without fake data
         await setDoc(doc(db, colName, "_init_metadata"), {
           initialized: true,
           createdAt: serverTimestamp(),
@@ -1902,9 +1902,15 @@ window.connecterAvecGoogle = async function(){
   try{
     await signInWithPopup(auth, googleProvider);
   }catch(error){
-    if(error.code === "auth/popup-blocked" || error.code === "auth/popup-closed-by-user"){
-      await signInWithRedirect(auth, googleProvider);
-      return;
+    if(error.code === "auth/popup-blocked" || error.code === "auth/popup-closed-by-user" || error.code === "auth/cancelled-popup-request"){
+      try {
+        await signInWithRedirect(auth, googleProvider);
+        return;
+      } catch (redirectError) {
+        handleFirebaseError(redirectError, "auth", "google-redirect");
+        authMessage("Google redirect echwe : " + redirectError.message);
+        return;
+      }
     }
     handleFirebaseError(error, "auth", "google-login");
     authMessage("Google pa konekte : " + error.message);
@@ -1942,9 +1948,15 @@ window.registerGoogle = async function(){
   try{
     await signInWithPopup(auth, googleProvider);
   }catch(error){
-    if(error.code === "auth/popup-blocked" || error.code === "auth/popup-closed-by-user"){
-      await signInWithRedirect(auth, googleProvider);
-      return;
+    if(error.code === "auth/popup-blocked" || error.code === "auth/popup-closed-by-user" || error.code === "auth/cancelled-popup-request"){
+      try {
+        await signInWithRedirect(auth, googleProvider);
+        return;
+      } catch (redirectError) {
+        handleFirebaseError(redirectError, "auth", "google-redirect-register");
+        authMessage("Google redirect enskripsyon echwe : " + redirectError.message);
+        return;
+      }
     }
     handleFirebaseError(error, "users", "google-register");
     authMessage("Google enskripsyon echwe : " + error.message);
@@ -1956,27 +1968,54 @@ window.logout = async function(){
 };
 
 
+/* ================= HANDLE REDIRECT RESULT ON LOAD ================= */
+
+window.addEventListener("DOMContentLoaded", async () => {
+  try {
+    const result = await getRedirectResult(auth);
+    if (result && result.user) {
+      console.log("Google redirect login reyisi pou:", result.user.email);
+    }
+  } catch (redirectErr) {
+    console.error("Erè getRedirectResult:", redirectErr);
+  }
+});
+
+
 /* ================= AUTH STATE OBSERVER ================= */
 
 onAuthStateChanged(auth, async user => {
   if(user){
     currentUser = user;
     const userRef = doc(db, "users", user.uid);
-    let userSnap = await getDoc(userRef);
+    let userSnap;
+
+    try {
+      userSnap = await getDoc(userRef);
+    } catch (readErr) {
+      console.error("Erè lekti profil users/{uid}:", readErr);
+      authMessage("Erè lekti profil la nan baz done a.");
+      return;
+    }
 
     if(!userSnap.exists()){
-      // Auto create user profile if missing
-      const defaultRole = "eleve";
-      const defaultStatus = "attente";
-      await setDoc(userRef, {
-        uid: user.uid,
-        email: user.email || "",
-        nom: user.displayName || "Utilisateur",
-        role: defaultRole,
-        status: defaultStatus,
-        createdAt: serverTimestamp()
-      });
-      userSnap = await getDoc(userRef);
+      try {
+        const defaultRole = "eleve";
+        const defaultStatus = "attente";
+        await setDoc(userRef, {
+          uid: user.uid,
+          email: user.email || "",
+          nom: user.displayName || "Utilisateur",
+          role: defaultRole,
+          status: defaultStatus,
+          createdAt: serverTimestamp()
+        });
+        userSnap = await getDoc(userRef);
+      } catch (createErr) {
+        handleFirebaseError(createErr, "users", "auto-create-profile");
+        authMessage("Echèk kreyasyon profil otomatik pou nouvo user.");
+        return;
+      }
     }
 
     currentUserData = userSnap.data();
@@ -1984,11 +2023,10 @@ onAuthStateChanged(auth, async user => {
     if(currentUserData.status !== "accepted"){
       document.getElementById("authPage").classList.remove("hidden");
       document.getElementById("appPage").classList.add("hidden");
-      authMessage("Kont ou an ap tann apwobasyon yon administratè.");
+      authMessage("⏳ Kont ou an ap tann apwobasyon yon administratè.");
       return;
     }
 
-    // Initialize Firestore collections if admin
     await initializeFirestoreData();
 
     document.getElementById("authPage").classList.add("hidden");
@@ -2024,659 +2062,461 @@ window.showSection = function(sectionId){
   document.querySelectorAll(".section").forEach(sec => sec.classList.remove("active"));
   document.getElementById(sectionId).classList.add("active");
   document.getElementById("sidebar").classList.remove("open");
-  loadSectionData(sectionId);
 };
 
-function loadSectionData(sectionId){
-  if(sectionId === "home") loadStats();
-  if(sectionId === "etudiants") loadStudents();
-  if(sectionId === "professeurs") loadTeachers();
-  if(sectionId === "departements") loadDepartments();
-  if(sectionId === "programmes") loadPrograms();
-  if(sectionId === "cours") loadCourses();
-  if(sectionId === "classes") loadClasses();
-  if(sectionId === "devoirs") loadAssignments();
-  if(sectionId === "remises") loadSubmissions();
-  if(sectionId === "resultats") loadResults();
-  if(sectionId === "horaires") loadSchedules();
-  if(sectionId === "statistiques") loadStats();
-  if(sectionId === "users") loadUsersManagement();
+
+/* ================= DATA MANAGEMENT & LOADERS ================= */
+
+async function loadAllData(){
+  await loadStats();
+  await loadStudents();
+  await loadTeachers();
+  await loadDepartments();
+  await loadPrograms();
+  await loadCourses();
+  await loadClasses();
+  await loadAssignments();
+  await loadSubmissions();
+  await loadSchedules();
+  await loadResults();
+  if(currentUserData && currentUserData.role === "administrateur"){
+    await loadUsersManagement();
+  }
 }
 
-function loadAllData(){
-  loadStats();
-  loadStudents();
-  loadTeachers();
-  loadCourses();
-  loadClasses();
+async function loadStats(){
+  try {
+    const sSnap = await getDocs(collection(db, "etudiants"));
+    const tSnap = await getDocs(collection(db, "professeurs"));
+    const cSnap = await getDocs(collection(db, "cours"));
+    const clSnap = await getDocs(collection(db, "classes"));
+
+    document.getElementById("statEtudiants").textContent = sSnap.size;
+    document.getElementById("statProfesseurs").textContent = tSnap.size;
+    document.getElementById("statCours").textContent = cSnap.size;
+    document.getElementById("statClasses").textContent = clSnap.size;
+
+    document.getElementById("statsStudents").textContent = sSnap.size;
+    document.getElementById("statsTeachers").textContent = tSnap.size;
+    document.getElementById("statsCourses").textContent = cSnap.size;
+    document.getElementById("statsClasses").textContent = clSnap.size;
+  } catch (e) {
+    console.error("Erè nan chajman estatistik yo:", e);
+  }
 }
 
-
-/* ================= DATA CRUD FUNCTIONS ================= */
-
-// ETUDIANTS
 window.addStudent = async function(){
-  const name = document.getElementById("studentName").value.trim();
+  const nom = document.getElementById("studentName").value.trim();
   const email = document.getElementById("studentEmail").value.trim();
-  const phone = document.getElementById("studentPhone").value.trim();
-  const className = document.getElementById("studentClass").value.trim();
+  const telephone = document.getElementById("studentPhone").value.trim();
+  const classe = document.getElementById("studentClass").value.trim();
 
-  if(!name){ alert("Tanpri antre non etidyan an."); return; }
+  if(!nom || !email){
+    alert("Non ak imèl obligatwa!");
+    return;
+  }
 
-  try{
+  try {
     await addDoc(collection(db, "etudiants"), {
-      name, email, phone, className,
-      createdAt: serverTimestamp(),
-      createdBy: currentUser.uid
+      nom, email, telephone, classe, createdAt: serverTimestamp()
     });
     document.getElementById("studentName").value = "";
     document.getElementById("studentEmail").value = "";
     document.getElementById("studentPhone").value = "";
     document.getElementById("studentClass").value = "";
-    loadStudents();
-    loadStats();
-    alert("Etidyan an ajoute avèk siksè!");
-  }catch(e){
+    await loadStudents();
+    await loadStats();
+    alert("Elèv la ajoute ak siksè!");
+  } catch (e) {
     handleFirebaseError(e, "etudiants", "add");
   }
 };
 
 async function loadStudents(){
-  const container = document.getElementById("studentList");
-  container.innerHTML = "<div class=\"empty\">Chajman...</div>";
-  try{
+  const listEl = document.getElementById("studentList");
+  try {
     const snap = await getDocs(collection(db, "etudiants"));
     if(snap.empty){
-      container.innerHTML = "<div class=\"empty\">Pa gen etidyan anrejistre pou kounye a.</div>";
+      listEl.innerHTML = `<div class="empty">Okenn elèv pou kounye a.</div>`;
       return;
     }
     let html = "";
-    snap.forEach(docSnap => {
-      if(docSnap.id === "_init_metadata") return;
-      const d = docSnap.data();
+    snap.forEach(d => {
+      if(d.id === "_init_metadata") return;
+      const data = d.data();
       html += `
         <div class="item">
-          <div class="item-title">${escapeHtml(d.name || "")}</div>
-          <div class="item-info">📧 ${escapeHtml(d.email || "N/A")} | 📱 ${escapeHtml(d.phone || "N/A")} | 🏫 ${escapeHtml(d.className || "N/A")}</div>
+          <div class="item-title">${data.nom || "San non"}</div>
+          <div class="item-info">📧 ${data.email || ""} | 📞 ${data.telephone || "N/A"} | 🏫 ${data.classe || "N/A"}</div>
           ${currentUserData && currentUserData.role === "administrateur" ? `
             <div class="actions">
-              <button class="danger-btn" onclick="deleteDocItem('etudiants', '${docSnap.id}')">Efase</button>
+              <button class="danger-btn" onclick="deleteItem('etudiants', '${d.id}')">Efase</button>
             </div>
           ` : ""}
         </div>
       `;
     });
-    container.innerHTML = html || "<div class=\"empty\">Pa gen etidyan anrejistre.</div>";
-  }catch(e){
-    handleFirebaseError(e, "etudiants", "list");
+    listEl.innerHTML = html || `<div class="empty">Okenn elèv pou kounye a.</div>`;
+  } catch (e) {
+    listEl.innerHTML = `<div class="empty">Erè nan chajman elèv yo.</div>`;
   }
 }
 
-
-// PROFESSEURS
 window.addTeacher = async function(){
-  const name = document.getElementById("teacherName").value.trim();
+  const nom = document.getElementById("teacherName").value.trim();
   const email = document.getElementById("teacherEmail").value.trim();
-  const phone = document.getElementById("teacherPhone").value.trim();
-  const subject = document.getElementById("teacherSubject").value.trim();
+  const telephone = document.getElementById("teacherPhone").value.trim();
+  const matiere = document.getElementById("teacherSubject").value.trim();
 
-  if(!name){ alert("Tanpri antre non pwofesè a."); return; }
+  if(!nom || !email){
+    alert("Non ak imèl obligatwa!");
+    return;
+  }
 
-  try{
+  try {
     await addDoc(collection(db, "professeurs"), {
-      name, email, phone, subject,
-      createdAt: serverTimestamp(),
-      createdBy: currentUser.uid
+      nom, email, telephone, matiere, createdAt: serverTimestamp()
     });
     document.getElementById("teacherName").value = "";
     document.getElementById("teacherEmail").value = "";
     document.getElementById("teacherPhone").value = "";
     document.getElementById("teacherSubject").value = "";
-    loadTeachers();
-    loadStats();
-    alert("Pwofesè a ajoute avèk siksè!");
-  }catch(e){
+    await loadTeachers();
+    await loadStats();
+    alert("Pwofesè a ajoute ak siksè!");
+  } catch (e) {
     handleFirebaseError(e, "professeurs", "add");
   }
 };
 
 async function loadTeachers(){
-  const container = document.getElementById("teacherList");
-  container.innerHTML = "<div class=\"empty\">Chajman...</div>";
-  try{
+  const listEl = document.getElementById("teacherList");
+  try {
     const snap = await getDocs(collection(db, "professeurs"));
     if(snap.empty){
-      container.innerHTML = "<div class=\"empty\">Pa gen pwofesè anrejistre.</div>";
+      listEl.innerHTML = `<div class="empty">Okenn pwofesè pou kounye a.</div>`;
       return;
     }
     let html = "";
-    snap.forEach(docSnap => {
-      if(docSnap.id === "_init_metadata") return;
-      const d = docSnap.data();
+    snap.forEach(d => {
+      if(d.id === "_init_metadata") return;
+      const data = d.data();
       html += `
         <div class="item">
-          <div class="item-title">${escapeHtml(d.name || "")}</div>
-          <div class="item-info">📧 ${escapeHtml(d.email || "N/A")} | 📱 ${escapeHtml(d.phone || "N/A")} | 📚 ${escapeHtml(d.subject || "N/A")}</div>
+          <div class="item-title">${data.nom || "San non"}</div>
+          <div class="item-info">📧 ${data.email || ""} | 📞 ${data.telephone || "N/A"} | 📚 ${data.matiere || "N/A"}</div>
           ${currentUserData && currentUserData.role === "administrateur" ? `
             <div class="actions">
-              <button class="danger-btn" onclick="deleteDocItem('professeurs', '${docSnap.id}')">Efase</button>
+              <button class="danger-btn" onclick="deleteItem('professeurs', '${d.id}')">Efase</button>
             </div>
           ` : ""}
         </div>
       `;
     });
-    container.innerHTML = html || "<div class=\"empty\">Pa gen pwofesè anrejistre.</div>";
-  }catch(e){
-    handleFirebaseError(e, "professeurs", "list");
+    listEl.innerHTML = html || `<div class="empty">Okenn pwofesè pou kounye a.</div>`;
+  } catch (e) {
+    listEl.innerHTML = `<div class="empty">Erè nan chajman pwofesè yo.</div>`;
   }
 }
 
-
-// DEPARTEMENTS
 window.addDepartment = async function(){
-  const name = document.getElementById("departmentName").value.trim();
+  const nom = document.getElementById("departmentName").value.trim();
   const description = document.getElementById("departmentDescription").value.trim();
-  if(!name){ alert("Tanpri antre non depatman an."); return; }
-  try{
-    await addDoc(collection(db, "departements"), { name, description, createdAt: serverTimestamp() });
+  if(!nom) return;
+  try {
+    await addDoc(collection(db, "departements"), { nom, description, createdAt: serverTimestamp() });
     document.getElementById("departmentName").value = "";
     document.getElementById("departmentDescription").value = "";
-    loadDepartments();
-    alert("Depatman an ajoute avèk siksè!");
-  }catch(e){
-    handleFirebaseError(e, "departements", "add");
-  }
+    await loadDepartments();
+    alert("Depatman ajoute!");
+  } catch (e) { handleFirebaseError(e, "departements", "add"); }
 };
 
 async function loadDepartments(){
-  const container = document.getElementById("departmentList");
-  container.innerHTML = "<div class=\"empty\">Chajman...</div>";
-  try{
+  const listEl = document.getElementById("departmentList");
+  try {
     const snap = await getDocs(collection(db, "departements"));
     let html = "";
-    snap.forEach(docSnap => {
-      if(docSnap.id === "_init_metadata") return;
-      const d = docSnap.data();
-      html += `
-        <div class="item">
-          <div class="item-title">${escapeHtml(d.name || "")}</div>
-          <div class="item-info">${escapeHtml(d.description || "")}</div>
-          ${currentUserData && currentUserData.role === "administrateur" ? `
-            <div class="actions">
-              <button class="danger-btn" onclick="deleteDocItem('departements', '${docSnap.id}')">Efase</button>
-            </div>
-          ` : ""}
-        </div>
-      `;
+    snap.forEach(d => {
+      if(d.id === "_init_metadata") return;
+      const data = d.data();
+      html += `<div class="item"><div class="item-title">${data.nom}</div><div class="item-info">${data.description || ""}</div></div>`;
     });
-    container.innerHTML = html || "<div class=\"empty\">Pa gen depatman.</div>";
-  }catch(e){
-    handleFirebaseError(e, "departements", "list");
-  }
+    listEl.innerHTML = html || `<div class="empty">Okenn depatman.</div>`;
+  } catch (e) { listEl.innerHTML = `<div class="empty">Erè.</div>`; }
 }
 
-
-// PROGRAMMES
 window.addProgram = async function(){
-  const name = document.getElementById("programName").value.trim();
+  const nom = document.getElementById("programName").value.trim();
   const description = document.getElementById("programDescription").value.trim();
-  if(!name){ alert("Tanpri antre non pwogram nan."); return; }
-  try{
-    await addDoc(collection(db, "programmes"), { name, description, createdAt: serverTimestamp() });
+  if(!nom) return;
+  try {
+    await addDoc(collection(db, "programmes"), { nom, description, createdAt: serverTimestamp() });
     document.getElementById("programName").value = "";
     document.getElementById("programDescription").value = "";
-    loadPrograms();
-    alert("Pwogram nan ajoute avèk siksè!");
-  }catch(e){
-    handleFirebaseError(e, "programmes", "add");
-  }
+    await loadPrograms();
+    alert("Pwogram ajoute!");
+  } catch (e) { handleFirebaseError(e, "programmes", "add"); }
 };
 
 async function loadPrograms(){
-  const container = document.getElementById("programList");
-  container.innerHTML = "<div class=\"empty\">Chajman...</div>";
-  try{
+  const listEl = document.getElementById("programList");
+  try {
     const snap = await getDocs(collection(db, "programmes"));
     let html = "";
-    snap.forEach(docSnap => {
-      if(docSnap.id === "_init_metadata") return;
-      const d = docSnap.data();
-      html += `
-        <div class="item">
-          <div class="item-title">${escapeHtml(d.name || "")}</div>
-          <div class="item-info">${escapeHtml(d.description || "")}</div>
-          ${currentUserData && currentUserData.role === "administrateur" ? `
-            <div class="actions">
-              <button class="danger-btn" onclick="deleteDocItem('programmes', '${docSnap.id}')">Efase</button>
-            </div>
-          ` : ""}
-        </div>
-      `;
+    snap.forEach(d => {
+      if(d.id === "_init_metadata") return;
+      const data = d.data();
+      html += `<div class="item"><div class="item-title">${data.nom}</div><div class="item-info">${data.description || ""}</div></div>`;
     });
-    container.innerHTML = html || "<div class=\"empty\">Pa gen pwogram.</div>";
-  }catch(e){
-    handleFirebaseError(e, "programmes", "list");
-  }
+    listEl.innerHTML = html || `<div class="empty">Okenn pwogram.</div>`;
+  } catch (e) { listEl.innerHTML = `<div class="empty">Erè.</div>`; }
 }
 
-
-// COURS
 window.addCourse = async function(){
-  const name = document.getElementById("courseName").value.trim();
-  const teacher = document.getElementById("courseTeacher").value.trim();
-  const className = document.getElementById("courseClass").value.trim();
-
-  if(!name){ alert("Tanpri antre non kous la."); return; }
-
-  try{
-    await addDoc(collection(db, "cours"), {
-      name, teacher, className,
-      createdAt: serverTimestamp()
-    });
+  const nom = document.getElementById("courseName").value.trim();
+  const professeur = document.getElementById("courseTeacher").value.trim();
+  const classe = document.getElementById("courseClass").value.trim();
+  if(!nom) return;
+  try {
+    await addDoc(collection(db, "cours"), { nom, professeur, classe, createdAt: serverTimestamp() });
     document.getElementById("courseName").value = "";
     document.getElementById("courseTeacher").value = "";
     document.getElementById("courseClass").value = "";
-    loadCourses();
-    loadStats();
-    alert("Kous la ajoute avèk siksè!");
-  }catch(e){
-    handleFirebaseError(e, "cours", "add");
-  }
+    await loadCourses();
+    await loadStats();
+    alert("Kous ajoute!");
+  } catch (e) { handleFirebaseError(e, "cours", "add"); }
 };
 
 async function loadCourses(){
-  const container = document.getElementById("courseList");
-  container.innerHTML = "<div class=\"empty\">Chajman...</div>";
-  try{
+  const listEl = document.getElementById("courseList");
+  try {
     const snap = await getDocs(collection(db, "cours"));
     let html = "";
-    snap.forEach(docSnap => {
-      if(docSnap.id === "_init_metadata") return;
-      const d = docSnap.data();
-      html += `
-        <div class="item">
-          <div class="item-title">${escapeHtml(d.name || "")}</div>
-          <div class="item-info">👨‍🏫 Pwofesè: ${escapeHtml(d.teacher || "N/A")} | 🏫 Klas: ${escapeHtml(d.className || "N/A")}</div>
-          ${currentUserData && currentUserData.role === "administrateur" ? `
-            <div class="actions">
-              <button class="danger-btn" onclick="deleteDocItem('cours', '${docSnap.id}')">Efase</button>
-            </div>
-          ` : ""}
-        </div>
-      `;
+    snap.forEach(d => {
+      if(d.id === "_init_metadata") return;
+      const data = d.data();
+      html += `<div class="item"><div class="item-title">${data.nom}</div><div class="item-info">Pwofesè: ${data.professeur || "N/A"} | Klas: ${data.classe || "N/A"}</div></div>`;
     });
-    container.innerHTML = html || "<div class=\"empty\">Pa gen kous anrejistre.</div>";
-  }catch(e){
-    handleFirebaseError(e, "cours", "list");
-  }
+    listEl.innerHTML = html || `<div class="empty">Okenn kous.</div>`;
+  } catch (e) { listEl.innerHTML = `<div class="empty">Erè.</div>`; }
 }
 
-
-// CLASSES
 window.addClass = async function(){
-  const name = document.getElementById("className").value.trim();
-  const level = document.getElementById("classLevel").value.trim();
-
-  if(!name){ alert("Tanpri antre non klas la."); return; }
-
-  try{
-    await addDoc(collection(db, "classes"), {
-      name, level,
-      createdAt: serverTimestamp()
-    });
+  const nom = document.getElementById("className").value.trim();
+  const niveau = document.getElementById("classLevel").value.trim();
+  if(!nom) return;
+  try {
+    await addDoc(collection(db, "classes"), { nom, niveau, createdAt: serverTimestamp() });
     document.getElementById("className").value = "";
     document.getElementById("classLevel").value = "";
-    loadClasses();
-    loadStats();
-    alert("Klas la ajoute avèk siksè!");
-  }catch(e){
-    handleFirebaseError(e, "classes", "add");
-  }
+    await loadClasses();
+    await loadStats();
+    alert("Klas ajoute!");
+  } catch (e) { handleFirebaseError(e, "classes", "add"); }
 };
 
 async function loadClasses(){
-  const container = document.getElementById("classList");
-  container.innerHTML = "<div class=\"empty\">Chajman...</div>";
-  try{
+  const listEl = document.getElementById("classList");
+  try {
     const snap = await getDocs(collection(db, "classes"));
     let html = "";
-    snap.forEach(docSnap => {
-      if(docSnap.id === "_init_metadata") return;
-      const d = docSnap.data();
-      html += `
-        <div class="item">
-          <div class="item-title">${escapeHtml(d.name || "")}</div>
-          <div class="item-info">📈 Nivo: ${escapeHtml(d.level || "N/A")}</div>
-          ${currentUserData && currentUserData.role === "administrateur" ? `
-            <div class="actions">
-              <button class="danger-btn" onclick="deleteDocItem('classes', '${docSnap.id}')">Efase</button>
-            </div>
-          ` : ""}
-        </div>
-      `;
+    snap.forEach(d => {
+      if(d.id === "_init_metadata") return;
+      const data = d.data();
+      html += `<div class="item"><div class="item-title">${data.nom}</div><div class="item-info">Nivo: ${data.niveau || "N/A"}</div></div>`;
     });
-    container.innerHTML = html || "<div class=\"empty\">Pa gen klas anrejistre.</div>";
-  }catch(e){
-    handleFirebaseError(e, "classes", "list");
-  }
+    listEl.innerHTML = html || `<div class="empty">Okenn klas.</div>`;
+  } catch (e) { listEl.innerHTML = `<div class="empty">Erè.</div>`; }
 }
 
-
-// DEVOIRS
 window.addAssignment = async function(){
-  const title = document.getElementById("assignmentTitle").value.trim();
-  const course = document.getElementById("assignmentCourse").value.trim();
-  const date = document.getElementById("assignmentDate").value;
+  const titre = document.getElementById("assignmentTitle").value.trim();
+  const cours = document.getElementById("assignmentCourse").value.trim();
+  const dateLimite = document.getElementById("assignmentDate").value;
   const description = document.getElementById("assignmentDescription").value.trim();
-
-  if(!title){ alert("Tanpri antre tit devwa a."); return; }
-
-  try{
-    await addDoc(collection(db, "devoirs"), {
-      title, course, date, description,
-      createdAt: serverTimestamp()
-    });
+  if(!titre) return;
+  try {
+    await addDoc(collection(db, "devoirs"), { titre, cours, dateLimite, description, createdAt: serverTimestamp() });
     document.getElementById("assignmentTitle").value = "";
     document.getElementById("assignmentCourse").value = "";
     document.getElementById("assignmentDate").value = "";
     document.getElementById("assignmentDescription").value = "";
-    loadAssignments();
-    alert("Devwa a pibliye avèk siksè!");
-  }catch(e){
-    handleFirebaseError(e, "devoirs", "add");
-  }
+    await loadAssignments();
+    alert("Devwa pibliye!");
+  } catch (e) { handleFirebaseError(e, "devoirs", "add"); }
 };
 
 async function loadAssignments(){
-  const container = document.getElementById("assignmentList");
-  container.innerHTML = "<div class=\"empty\">Chajman...</div>";
-  try{
+  const listEl = document.getElementById("assignmentList");
+  try {
     const snap = await getDocs(collection(db, "devoirs"));
     let html = "";
-    snap.forEach(docSnap => {
-      if(docSnap.id === "_init_metadata") return;
-      const d = docSnap.data();
-      html += `
-        <div class="item">
-          <div class="item-title">${escapeHtml(d.title || "")}</div>
-          <div class="item-info">📖 Kous: ${escapeHtml(d.course || "N/A")} | 📅 Dat limit: ${escapeHtml(d.date || "N/A")}</div>
-          <div class="item-info">${escapeHtml(d.description || "")}</div>
-          ${currentUserData && currentUserData.role === "administrateur" ? `
-            <div class="actions">
-              <button class="danger-btn" onclick="deleteDocItem('devoirs', '${docSnap.id}')">Efase</button>
-            </div>
-          ` : ""}
-        </div>
-      `;
+    snap.forEach(d => {
+      if(d.id === "_init_metadata") return;
+      const data = d.data();
+      html += `<div class="item"><div class="item-title">${data.titre}</div><div class="item-info">Kous: ${data.cours || "N/A"} | Limit: ${data.dateLimite || "N/A"}</div><div>${data.description || ""}</div></div>`;
     });
-    container.innerHTML = html || "<div class=\"empty\">Pa gen devwa.</div>";
-  }catch(e){
-    handleFirebaseError(e, "devoirs", "list");
-  }
+    listEl.innerHTML = html || `<div class="empty">Okenn devwa.</div>`;
+  } catch (e) { listEl.innerHTML = `<div class="empty">Erè.</div>`; }
 }
 
-
-// REMISES
 window.addSubmission = async function(){
-  const student = document.getElementById("submissionStudent").value.trim();
-  const assignment = document.getElementById("submissionAssignment").value.trim();
-  const note = document.getElementById("submissionNote").value.trim();
-  const comment = document.getElementById("submissionComment").value.trim();
-
-  if(!student){ alert("Tanpri antre non etidyan an."); return; }
-
-  try{
-    await addDoc(collection(db, "remises"), {
-      student, assignment, note, comment,
-      createdAt: serverTimestamp()
-    });
+  const etudiant = document.getElementById("submissionStudent").value.trim();
+  const devoir = document.getElementById("submissionAssignment").value.trim();
+  const note = document.getElementById("submissionNote").value;
+  const commentaire = document.getElementById("submissionComment").value.trim();
+  if(!etudiant) return;
+  try {
+    await addDoc(collection(db, "remises"), { etudiant, devoir, note, commentaire, createdAt: serverTimestamp() });
     document.getElementById("submissionStudent").value = "";
     document.getElementById("submissionAssignment").value = "";
     document.getElementById("submissionNote").value = "";
     document.getElementById("submissionComment").value = "";
-    loadSubmissions();
-    alert("Evalyasyon anrejistre avèk siksè!");
-  }catch(e){
-    handleFirebaseError(e, "remises", "add");
-  }
+    await loadSubmissions();
+    await loadResults();
+    alert("Remiz anrejistre!");
+  } catch (e) { handleFirebaseError(e, "remises", "add"); }
 };
 
 async function loadSubmissions(){
-  const container = document.getElementById("submissionList");
-  container.innerHTML = "<div class=\"empty\">Chajman...</div>";
-  try{
+  const listEl = document.getElementById("submissionList");
+  try {
     const snap = await getDocs(collection(db, "remises"));
     let html = "";
-    snap.forEach(docSnap => {
-      if(docSnap.id === "_init_metadata") return;
-      const d = docSnap.data();
-      html += `
-        <div class="item">
-          <div class="item-title">👨‍🎓 ${escapeHtml(d.student || "")} - Dekwa: ${escapeHtml(d.assignment || "")}</div>
-          <div class="item-info">📊 Nòt: <strong>${escapeHtml(d.note || "0")} / 100</strong></div>
-          <div class="item-info">💬 Kòmantè: ${escapeHtml(d.comment || "N/A")}</div>
-          ${currentUserData && currentUserData.role === "administrateur" ? `
-            <div class="actions">
-              <button class="danger-btn" onclick="deleteDocItem('remises', '${docSnap.id}')">Efase</button>
-            </div>
-          ` : ""}
-        </div>
-      `;
+    snap.forEach(d => {
+      if(d.id === "_init_metadata") return;
+      const data = d.data();
+      html += `<div class="item"><div class="item-title">${data.etudiant} - ${data.devoir || ""}</div><div class="item-info">Nòt: ${data.note || "0"}/100</div><div>${data.commentaire || ""}</div></div>`;
     });
-    container.innerHTML = html || "<div class=\"empty\">Pa gen remiz.</div>";
-  }catch(e){
-    handleFirebaseError(e, "remises", "list");
-  }
+    listEl.innerHTML = html || `<div class="empty">Okenn remiz.</div>`;
+  } catch (e) { listEl.innerHTML = `<div class="empty">Erè.</div>`; }
 }
 
-
-// RESULTATS
-async function loadResults(){
-  const container = document.getElementById("resultList");
-  container.innerHTML = "<div class=\"empty\">Chajman...</div>";
-  try{
-    const snap = await getDocs(collection(db, "remises"));
-    let html = "";
-    snap.forEach(docSnap => {
-      if(docSnap.id === "_init_metadata") return;
-      const d = docSnap.data();
-      html += `
-        <div class="item">
-          <div class="item-title">🎓 ${escapeHtml(d.student || "")}</div>
-          <div class="item-info">Devwa / Travay: ${escapeHtml(d.assignment || "N/A")} | Nòt: <strong>${escapeHtml(d.note || "0")} / 100</strong></div>
-        </div>
-      `;
-    });
-    container.innerHTML = html || "<div class=\"empty\">Pa gen rezilta disponib.</div>";
-  }catch(e){
-    handleFirebaseError(e, "resultats", "list");
-  }
-}
-
-
-// HORAIRES
 window.addSchedule = async function(){
-  const day = document.getElementById("scheduleDay").value.trim();
-  const course = document.getElementById("scheduleCourse").value.trim();
-  const time = document.getElementById("scheduleTime").value.trim();
-  const className = document.getElementById("scheduleClass").value.trim();
-
-  if(!day){ alert("Tanpri ranpli jou a."); return; }
-
-  try{
-    await addDoc(collection(db, "emplois_du_temps"), {
-      day, course, time, className,
-      createdAt: serverTimestamp()
-    });
+  const jour = document.getElementById("scheduleDay").value.trim();
+  const cours = document.getElementById("scheduleCourse").value.trim();
+  const heure = document.getElementById("scheduleTime").value.trim();
+  const classe = document.getElementById("scheduleClass").value.trim();
+  if(!jour) return;
+  try {
+    await addDoc(collection(db, "emplois_du_temps"), { jour, cours, heure, classe, createdAt: serverTimestamp() });
     document.getElementById("scheduleDay").value = "";
     document.getElementById("scheduleCourse").value = "";
     document.getElementById("scheduleTime").value = "";
     document.getElementById("scheduleClass").value = "";
-    loadSchedules();
-    alert("Orè ajoute avèk siksè!");
-  }catch(e){
-    handleFirebaseError(e, "emplois_du_temps", "add");
-  }
+    await loadSchedules();
+    alert("Horaire ajoute!");
+  } catch (e) { handleFirebaseError(e, "emplois_du_temps", "add"); }
 };
 
 async function loadSchedules(){
-  const container = document.getElementById("scheduleList");
-  container.innerHTML = "<div class=\"empty\">Chajman...</div>";
-  try{
+  const listEl = document.getElementById("scheduleList");
+  try {
     const snap = await getDocs(collection(db, "emplois_du_temps"));
     let html = "";
-    snap.forEach(docSnap => {
-      if(docSnap.id === "_init_metadata") return;
-      const d = docSnap.data();
-      html += `
-        <div class="item">
-          <div class="item-title">📅 ${escapeHtml(d.day || "")} : ${escapeHtml(d.course || "")}</div>
-          <div class="item-info">⏰ Lè: ${escapeHtml(d.time || "N/A")} | 🏫 Klas: ${escapeHtml(d.className || "N/A")}</div>
-          ${currentUserData && currentUserData.role === "administrateur" ? `
-            <div class="actions">
-              <button class="danger-btn" onclick="deleteDocItem('emplois_du_temps', '${docSnap.id}')">Efase</button>
-            </div>
-          ` : ""}
-        </div>
-      `;
+    snap.forEach(d => {
+      if(d.id === "_init_metadata") return;
+      const data = d.data();
+      html += `<div class="item"><div class="item-title">${data.jour} : ${data.cours || ""}</div><div class="item-info">Lè: ${data.heure || ""} | Klas: ${data.classe || ""}</div></div>`;
     });
-    container.innerHTML = html || "<div class=\"empty\">Pa gen orè anrejistre.</div>";
-  }catch(e){
-    handleFirebaseError(e, "emplois_du_temps", "list");
-  }
+    listEl.innerHTML = html || `<div class="empty">Okenn anplwa ditan.</div>`;
+  } catch (e) { listEl.innerHTML = `<div class="empty">Erè.</div>`; }
 }
 
-
-// STATS
-async function loadStats(){
-  try{
-    const studentsSnap = await getDocs(collection(db, "etudiants"));
-    const teachersSnap = await getDocs(collection(db, "professeurs"));
-    const coursesSnap = await getDocs(collection(db, "cours"));
-    const classesSnap = await getDocs(collection(db, "classes"));
-
-    const countStudents = studentsSnap.docs.filter(d => d.id !== "_init_metadata").length;
-    const countTeachers = teachersSnap.docs.filter(d => d.id !== "_init_metadata").length;
-    const countCourses = coursesSnap.docs.filter(d => d.id !== "_init_metadata").length;
-    const countClasses = classesSnap.docs.filter(d => d.id !== "_init_metadata").length;
-
-    ["statEtudiants", "statsStudents"].forEach(id => {
-      const el = document.getElementById(id);
-      if(el) el.textContent = countStudents;
+async function loadResults(){
+  const listEl = document.getElementById("resultList");
+  try {
+    const snap = await getDocs(collection(db, "remises"));
+    let html = "";
+    snap.forEach(d => {
+      if(d.id === "_init_metadata") return;
+      const data = d.data();
+      html += `<div class="item"><div class="item-title">${data.etudiant}</div><div class="item-info">Devwa: ${data.devoir || ""} | Nòt: ${data.note || "0"}/100</div></div>`;
     });
-    ["statProfesseurs", "statsTeachers"].forEach(id => {
-      const el = document.getElementById(id);
-      if(el) el.textContent = countTeachers;
-    });
-    ["statCours", "statsCourses"].forEach(id => {
-      const el = document.getElementById(id);
-      if(el) el.textContent = countCourses;
-    });
-    ["statClasses", "statsClasses"].forEach(id => {
-      const el = document.getElementById(id);
-      if(el) el.textContent = countClasses;
-    });
-  }catch(e){
-    console.error("Erè chajman estatistik:", e);
-  }
+    listEl.innerHTML = html || `<div class="empty">Okenn rezilta disponib.</div>`;
+  } catch (e) { listEl.innerHTML = `<div class="empty">Erè rezilta.</div>`; }
 }
 
-
-// USERS MANAGEMENT (ADMIN ONLY)
 async function loadUsersManagement(){
-  if(!currentUserData || currentUserData.role !== "administrateur") return;
-
-  const pendingContainer = document.getElementById("pendingUsers");
-  const allContainer = document.getElementById("allUsers");
-
-  pendingContainer.innerHTML = "<div class=\"empty\">Chajman...</div>";
-  allContainer.innerHTML = "<div class=\"empty\">Chajman...</div>";
-
-  try{
+  const pendingEl = document.getElementById("pendingUsers");
+  const allEl = document.getElementById("allUsers");
+  try {
     const snap = await getDocs(collection(db, "users"));
     let pendingHtml = "";
     let allHtml = "";
 
-    snap.forEach(docSnap => {
-      const d = docSnap.data();
-      const uid = d.uid;
-      const email = d.email || "N/A";
-      const nom = d.nom || "N/A";
-      const role = d.role || "eleve";
-      const status = d.status || "attente";
-
+    snap.forEach(d => {
+      const u = d.data();
+      const badgeClass = u.status === "accepted" ? "accepted" : "pending";
+      
       const card = `
         <div class="item">
-          <div class="item-title">${escapeHtml(nom)} (${escapeHtml(email)})</div>
-          <div class="item-info">Wòl: <span class="badge">${escapeHtml(role)}</span> | Estati: <span class="badge ${escapeHtml(status)}">${escapeHtml(status)}</span></div>
+          <div class="item-title">${u.nom || "Utilisateur"} (${u.email || ""})</div>
+          <div class="item-info">
+            Rôle: <b>${u.role || "eleve"}</b> | Statut: <span class="badge ${badgeClass}">${u.status || "attente"}</span>
+          </div>
           <div class="actions">
-            ${status === "attente" ? `
-              <button class="success-btn" onclick="updateUserStatus('${uid}', 'accepted')">Apwouve</button>
-              <button class="danger-btn" onclick="updateUserStatus('${uid}', 'refused')">Refize</button>
-            ` : ""}
-            ${role !== "administrateur" ? `
-              <button class="primary-btn" style="width:auto; padding:8px 14px; font-size:14px;" onclick="updateUserRole('${uid}', 'administrateur')">Fè l' Administratè</button>
-            ` : `
-              <button class="secondary-btn" onclick="updateUserRole('${uid}', 'eleve')"> Retire Admin </button>
-            `}
+            <select id="role_${d.id}" onchange="updateUserRole('${d.id}', this.value)">
+              <option value="eleve" ${u.role === 'eleve' ? 'selected' : ''}>Elèv</option>
+              <option value="professeur" ${u.role === 'professeur' ? 'selected' : ''}>Pwofesè</option>
+              <option value="administrateur" ${u.role === 'administrateur' ? 'selected' : ''}>Administratè</option>
+            </select>
+            ${u.status !== 'accepted' ? `<button class="success-btn" onclick="updateUserStatus('${d.id}', 'accepted')">Aksepte</button>` : `<button class="secondary-btn" onclick="updateUserStatus('${d.id}', 'attente')">Mete nan attente</button>`}
+            <button class="danger-btn" onclick="deleteItem('users', '${d.id}')">Efase</button>
           </div>
         </div>
       `;
 
-      if(status === "attente"){
+      allHtml += card;
+      if(u.status !== "accepted"){
         pendingHtml += card;
       }
-      allHtml += card;
     });
 
-    pendingContainer.innerHTML = pendingHtml || "<div class=\"empty\">Pa gen itilizatè an atanta.</div>";
-    allContainer.innerHTML = allHtml || "<div class=\"empty\">Pa gen itilizatè.</div>";
-
-  }catch(e){
-    handleFirebaseError(e, "users", "list");
+    pendingEl.innerHTML = pendingHtml || `<div class="empty">Okenn itilizatè k ap tann.</div>`;
+    allEl.innerHTML = allHtml || `<div class="empty">Okenn itilizatè.</div>`;
+  } catch (e) {
+    console.error("Erè lekti users:", e);
   }
 }
-
-window.updateUserStatus = async function(uid, newStatus){
-  try{
-    await updateDoc(doc(db, "users", uid), { status: newStatus });
-    alert("Estati itilizatè a chanje avèk siksè!");
-    loadUsersManagement();
-  }catch(e){
-    handleFirebaseError(e, "users", "updateStatus");
-  }
-};
 
 window.updateUserRole = async function(uid, newRole){
-  try{
+  try {
     await updateDoc(doc(db, "users", uid), { role: newRole });
-    alert("Wòl itilizatè a chanje avèk siksè!");
-    loadUsersManagement();
-  }catch(e){
-    handleFirebaseError(e, "users", "updateRole");
+    await loadUsersManagement();
+    alert("Wòl nan chanje ak siksè!");
+  } catch (e) {
+    handleFirebaseError(e, "users", "update-role");
   }
 };
 
-window.deleteDocItem = async function(colName, docId){
+window.updateUserStatus = async function(uid, newStatus){
+  try {
+    await updateDoc(doc(db, "users", uid), { status: newStatus });
+    await loadUsersManagement();
+    alert("Estati itilizatè a mete ajou!");
+  } catch (e) {
+    handleFirebaseError(e, "users", "update-status");
+  }
+};
+
+window.deleteItem = async function(col, id){
   if(!confirm("Èske ou sèten ou vle efase eleman sa a?")) return;
-  try{
-    await deleteDoc(doc(db, colName, docId));
-    alert("Eleman an efase avèk siksè!");
-    loadSectionData(document.querySelector(".section.active").id);
-  }catch(e){
-    handleFirebaseError(e, colName, "delete");
+  try {
+    await deleteDoc(doc(db, col, id));
+    if(col === "etudiants") await loadStudents();
+    if(col === "professeurs") await loadTeachers();
+    if(col === "users") await loadUsersManagement();
+    await loadStats();
+    alert("Eleman an efase.");
+  } catch (e) {
+    handleFirebaseError(e, col, "delete");
   }
 };
-
-function escapeHtml(str) {
-  return String(str)
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
-}
 
 </script>
+
 </body>
 </html>
