@@ -26,10 +26,10 @@
   --sidebar-width: 260px;
   --header-height: 70px;
   --text-main: #0f172a;
-  --text-muted: #64748b;
+  --text-muted: #475569;
   --bg-main: #f8fafc;
   --card-bg: #ffffff;
-  --border-color: #e2e8f0;
+  --border-color: #cbd5e1;
   --radius-lg: 16px;
   --radius-md: 10px;
   --radius-sm: 6px;
@@ -48,7 +48,7 @@ body {
   font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   background: var(--bg-main);
   color: var(--text-main);
-  line-height: 1.5;
+  line-height: 1.6;
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
 }
@@ -65,7 +65,7 @@ button, input, select, textarea {
 button {
   cursor: pointer;
   transition: all 0.2s ease;
-  min-height: 44px;
+  min-height: 48px;
 }
 
 /* ================= AUTHENTICATION DESIGN ================= */
@@ -165,29 +165,29 @@ button {
 }
 
 .form-group {
-  margin-bottom: 18px;
+  margin-bottom: 20px;
 }
 
 .form-group label {
   display: block;
-  margin-bottom: 7px;
-  font-weight: 600;
-  font-size: 14px;
-  color: #334155;
+  margin-bottom: 8px;
+  font-weight: 700;
+  font-size: 15px;
+  color: #1e293b;
 }
 
 .form-group input,
 .form-group select,
 .form-group textarea {
   width: 100%;
-  padding: 12px 16px;
+  padding: 14px 16px;
   border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
   outline: none;
-  background: #f8fafc;
+  background: #ffffff;
   color: var(--text-main);
   transition: all 0.2s ease;
-  font-size: 15px;
+  font-size: 16px;
 }
 
 .form-group input:focus,
@@ -199,7 +199,7 @@ button {
 }
 
 .form-group textarea {
-  min-height: 100px;
+  min-height: 120px;
   resize: vertical;
 }
 
@@ -209,14 +209,14 @@ button {
 .success-btn,
 .secondary-btn {
   border: 0;
-  padding: 12px 20px;
+  padding: 14px 20px;
   border-radius: var(--radius-md);
   font-weight: 700;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  font-size: 15px;
+  font-size: 16px;
 }
 
 .primary-btn {
@@ -247,6 +247,8 @@ button {
 .danger-btn {
   background: #ef4444;
   color: white;
+  padding: 8px 14px;
+  font-size: 14px;
 }
 
 .danger-btn:hover {
@@ -256,6 +258,8 @@ button {
 .success-btn {
   background: #10b981;
   color: white;
+  padding: 8px 14px;
+  font-size: 14px;
 }
 
 .success-btn:hover {
@@ -265,6 +269,8 @@ button {
 .secondary-btn {
   background: #f1f5f9;
   color: #334155;
+  padding: 8px 14px;
+  font-size: 14px;
 }
 
 .secondary-btn:hover {
@@ -277,8 +283,8 @@ button {
   gap: 12px;
   margin: 20px 0;
   color: var(--text-muted);
-  font-size: 12px;
-  font-weight: 600;
+  font-size: 13px;
+  font-weight: 700;
   text-transform: uppercase;
 }
 
@@ -295,10 +301,10 @@ button {
   padding: 12px;
   border-radius: var(--radius-md);
   text-align: center;
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 15px;
+  font-weight: 700;
   background: #f1f5f9;
-  color: #334155;
+  color: #1e293b;
 }
 
 /* ================= APP LAYOUT ================= */
@@ -332,8 +338,8 @@ button {
   background: #f1f5f9;
   color: var(--text-main);
   font-size: 22px;
-  width: 44px;
-  height: 44px;
+  width: 46px;
+  height: 46px;
   border-radius: 10px;
   display: flex;
   align-items: center;
@@ -351,7 +357,7 @@ button {
 
 .app-title {
   font-weight: 800;
-  font-size: 16px;
+  font-size: 17px;
   color: #0f172a;
   letter-spacing: -0.01em;
   display: flex;
@@ -360,7 +366,7 @@ button {
 }
 
 .app-subtitle {
-  font-size: 11px;
+  font-size: 12px;
   color: var(--primary);
   font-weight: 700;
   letter-spacing: 0.05em;
@@ -382,13 +388,13 @@ button {
 }
 
 .user-email {
-  font-size: 13px;
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: 700;
   color: #1e293b;
 }
 
 .user-role {
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
   color: var(--primary);
   background: var(--primary-light);
@@ -401,7 +407,7 @@ button {
 
 .header-actions {
   display: flex;
-  gap: 8px;
+  gap: 10px;
   align-items: center;
 }
 
@@ -410,12 +416,12 @@ button {
   border-radius: 8px;
   border: 1px solid var(--border-color);
   background: #f8fafc;
-  font-weight: 600;
-  font-size: 13px;
-  color: #334155;
+  font-weight: 700;
+  font-size: 14px;
+  color: #1e293b;
   outline: none;
   cursor: pointer;
-  height: 40px;
+  height: 42px;
 }
 
 .install-btn {
@@ -425,8 +431,8 @@ button {
   padding: 8px 14px;
   border-radius: 8px;
   font-weight: 700;
-  font-size: 13px;
-  height: 40px;
+  font-size: 14px;
+  height: 42px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -443,8 +449,8 @@ button {
   padding: 8px 14px;
   border-radius: 8px;
   font-weight: 700;
-  font-size: 13px;
-  height: 40px;
+  font-size: 14px;
+  height: 42px;
 }
 
 .logout-btn:hover {
@@ -472,7 +478,7 @@ button {
 .sidebar-nav {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
 }
 
 .sidebar button {
@@ -482,18 +488,18 @@ button {
   width: 100%;
   border: 0;
   background: transparent;
-  color: #94a3b8;
+  color: #cbd5e1;
   text-align: left;
   padding: 12px 16px;
   border-radius: 10px;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 600;
   min-height: 48px;
 }
 
 .sidebar button:hover {
   background: var(--dark-surface);
-  color: #f8fafc;
+  color: #ffffff;
 }
 
 .sidebar button.active {
@@ -502,17 +508,22 @@ button {
   box-shadow: 0 4px 12px rgba(30, 64, 175, 0.3);
 }
 
-/* ================= MAIN CONTENT ================= */
+/* ================= MAIN CONTENT (VERTICAL LAYOUT) ================= */
 
 .main {
   margin-left: var(--sidebar-width);
   padding: calc(var(--header-height) + 28px) 32px 40px;
   min-height: 100vh;
   transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
 
 .section {
   display: none;
+  flex-direction: column;
+  gap: 24px;
   animation: fadeIn 0.25s ease-in-out;
 }
 
@@ -522,11 +533,11 @@ button {
 }
 
 .section.active {
-  display: block;
+  display: flex;
 }
 
 .page-header {
-  margin-bottom: 24px;
+  margin-bottom: 4px;
 }
 
 .page-title {
@@ -536,13 +547,13 @@ button {
   letter-spacing: -0.02em;
 }
 
-/* ================= DASHBOARD & CARDS ================= */
+/* ================= DASHBOARD & CARDS VERTICAL ================= */
 
 .stats-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
-  margin-bottom: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
 }
 
 .stat-card {
@@ -553,6 +564,7 @@ button {
   box-shadow: var(--shadow-sm);
   position: relative;
   overflow: hidden;
+  width: 100%;
 }
 
 .stat-card::after {
@@ -567,14 +579,14 @@ button {
 
 .stat-card h3 {
   color: var(--text-muted);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
 
 .stat-number {
-  font-size: 36px;
+  font-size: 38px;
   font-weight: 800;
   color: #0f172a;
   margin-top: 8px;
@@ -585,83 +597,89 @@ button {
   background: white;
   border-radius: var(--radius-lg);
   padding: 28px;
-  margin-bottom: 28px;
   border: 1px solid var(--border-color);
   box-shadow: var(--shadow-sm);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .panel-header {
-  margin-bottom: 20px;
   padding-bottom: 14px;
   border-bottom: 1px solid var(--border-color);
 }
 
 .panel h2 {
-  font-size: 18px;
-  font-weight: 700;
+  font-size: 20px;
+  font-weight: 800;
   color: #0f172a;
 }
 
 .grid-form {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
+  flex-direction: column;
   gap: 20px;
 }
 
 .full {
-  grid-column: 1 / -1;
+  width: 100%;
 }
 
 /* ================= LISTS & ITEMS ================= */
 
 .list {
-  display: grid;
-  gap: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
 }
 
 .item {
   border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
-  padding: 18px 20px;
+  padding: 20px;
   background: #ffffff;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 10px;
   transition: all 0.2s ease;
+  width: 100%;
 }
 
 .item:hover {
-  border-color: #cbd5e1;
+  border-color: #94a3b8;
   box-shadow: var(--shadow-md);
 }
 
 .item-title {
-  font-weight: 700;
-  font-size: 16px;
+  font-weight: 800;
+  font-size: 18px;
   color: #0f172a;
 }
 
 .item-info {
   color: var(--text-muted);
-  font-size: 14px;
+  font-size: 15px;
+  font-weight: 500;
 }
 
 .actions {
   display: flex;
-  gap: 10px;
+  gap: 12px;
   flex-wrap: wrap;
   margin-top: 10px;
-  padding-top: 10px;
+  padding-top: 12px;
   border-top: 1px dashed var(--border-color);
 }
 
 .badge {
   display: inline-block;
-  padding: 4px 10px;
+  padding: 6px 12px;
   border-radius: 20px;
   background: #dbeafe;
   color: #1d4ed8;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 700;
   text-transform: capitalize;
 }
@@ -685,13 +703,34 @@ button {
   text-align: center;
   padding: 40px;
   color: var(--text-muted);
-  font-weight: 500;
+  font-weight: 600;
+  font-size: 16px;
   background: #f8fafc;
   border-radius: var(--radius-md);
   border: 2px dashed var(--border-color);
 }
 
 /* ================= RESPONSIVE DESIGN ================= */
+
+@media (min-width: 768px) {
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .grid-form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .full {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (min-width: 1025px) {
+  .stats-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
 
 @media (max-width: 1024px) {
   .sidebar {
@@ -713,12 +752,8 @@ button {
     display: none;
   }
   
-  .grid-form {
-    grid-template-columns: 1fr;
-  }
-  
   .app-title {
-    font-size: 14px;
+    font-size: 15px;
   }
   
   .app-subtitle {
@@ -726,8 +761,8 @@ button {
   }
 
   .header-actions select {
-    padding: 4px 8px;
-    font-size: 12px;
+    padding: 6px 8px;
+    font-size: 13px;
   }
 }
 </style>
@@ -975,7 +1010,7 @@ button {
     <p style="color: var(--text-muted);" data-i18n="welcomeDesc">
       Utilisez le menu latéral pour accéder aux différentes sections de gestion administrative.
     </p>
-    <div style="margin-top:15px;">
+    <div>
       <button id="dashInstallBtn" class="primary-btn" style="display:none; max-width:250px;">
         📲 Installer l'application
       </button>
@@ -1106,14 +1141,16 @@ button {
       <h2 data-i18n="addDept">Nouveau Département</h2>
     </div>
 
-    <div class="form-group">
-      <label data-i18n="nomDept">Nom du département</label>
-      <input id="departmentName" placeholder="ex: Sciences Informatiques">
-    </div>
+    <div class="grid-form">
+      <div class="form-group full">
+        <label data-i18n="nomDept">Nom du département</label>
+        <input id="departmentName" placeholder="ex: Sciences Informatiques">
+      </div>
 
-    <div class="form-group">
-      <label data-i18n="description">Description</label>
-      <textarea id="departmentDescription" placeholder="Description des objectifs du département..."></textarea>
+      <div class="form-group full">
+        <label data-i18n="description">Description</label>
+        <textarea id="departmentDescription" placeholder="Description des objectifs du département..."></textarea>
+      </div>
     </div>
 
     <button class="primary-btn" onclick="addDepartment()" data-i18n="btnAddDept">
@@ -1144,14 +1181,16 @@ button {
       <h2 data-i18n="addProg">Nouveau Programme</h2>
     </div>
 
-    <div class="form-group">
-      <label data-i18n="nomProg">Nom du programme</label>
-      <input id="programName" placeholder="ex: Licence en Gestion des Affaires">
-    </div>
+    <div class="grid-form">
+      <div class="form-group full">
+        <label data-i18n="nomProg">Nom du programme</label>
+        <input id="programName" placeholder="ex: Licence en Gestion des Affaires">
+      </div>
 
-    <div class="form-group">
-      <label data-i18n="description">Description</label>
-      <textarea id="programDescription" placeholder="Détails du programme d'études..."></textarea>
+      <div class="form-group full">
+        <label data-i18n="description">Description</label>
+        <textarea id="programDescription" placeholder="Détails du programme d'études..."></textarea>
+      </div>
     </div>
 
     <button class="primary-btn" onclick="addProgram()" data-i18n="btnAddProg">
@@ -1183,7 +1222,6 @@ button {
     </div>
 
     <div class="grid-form">
-
       <div class="form-group">
         <label data-i18n="nomCours">Nom du cours</label>
         <input id="courseName" placeholder="ex: Algorithmique I">
@@ -1194,11 +1232,10 @@ button {
         <input id="courseTeacher" placeholder="Nom du professeur">
       </div>
 
-      <div class="form-group">
+      <div class="form-group full">
         <label data-i18n="classe">Classe</label>
         <input id="courseClass" placeholder="ex: L1 Info">
       </div>
-
     </div>
 
     <button class="primary-btn" onclick="addCourse()" data-i18n="btnAddCours">
@@ -1229,14 +1266,16 @@ button {
       <h2 data-i18n="addClass">Ajouter une classe</h2>
     </div>
 
-    <div class="form-group">
-      <label data-i18n="nomClasse">Nom de la classe</label>
-      <input id="className" placeholder="ex: Salle A-101">
-    </div>
+    <div class="grid-form">
+      <div class="form-group">
+        <label data-i18n="nomClasse">Nom de la classe</label>
+        <input id="className" placeholder="ex: Salle A-101">
+      </div>
 
-    <div class="form-group">
-      <label data-i18n="niveau">Niveau</label>
-      <input id="classLevel" placeholder="ex: Licence 1">
+      <div class="form-group">
+        <label data-i18n="niveau">Niveau</label>
+        <input id="classLevel" placeholder="ex: Licence 1">
+      </div>
     </div>
 
     <button class="primary-btn" onclick="addClass()" data-i18n="btnAddClass">
@@ -1267,12 +1306,11 @@ button {
       <h2 data-i18n="addDevoir">Créer un devoir</h2>
     </div>
 
-    <div class="form-group">
-      <label data-i18n="titreDevoir">Titre du devoir</label>
-      <input id="assignmentTitle" placeholder="ex: TP2 - Base de Données">
-    </div>
-
     <div class="grid-form">
+      <div class="form-group full">
+        <label data-i18n="titreDevoir">Titre du devoir</label>
+        <input id="assignmentTitle" placeholder="ex: TP2 - Base de Données">
+      </div>
 
       <div class="form-group">
         <label data-i18n="nomCours">Cours</label>
@@ -1284,11 +1322,10 @@ button {
         <input id="assignmentDate" type="date">
       </div>
 
-    </div>
-
-    <div class="form-group">
-      <label data-i18n="description">Description & Consignes</label>
-      <textarea id="assignmentDescription" placeholder="Instructions pour les étudiants..."></textarea>
+      <div class="form-group full">
+        <label data-i18n="description">Description & Consignes</label>
+        <textarea id="assignmentDescription" placeholder="Instructions pour les étudiants..."></textarea>
+      </div>
     </div>
 
     <button class="primary-btn" onclick="addAssignment()" data-i18n="btnAddDevoir">
@@ -1319,24 +1356,26 @@ button {
       <h2 data-i18n="addRemise">Enregistrer une remise ou évaluation</h2>
     </div>
 
-    <div class="form-group">
-      <label data-i18n="etudiant">Étudiant</label>
-      <input id="submissionStudent" placeholder="Nom de l'étudiant">
-    </div>
+    <div class="grid-form">
+      <div class="form-group">
+        <label data-i18n="etudiant">Étudiant</label>
+        <input id="submissionStudent" placeholder="Nom de l'étudiant">
+      </div>
 
-    <div class="form-group">
-      <label data-i18n="titreDevoir">Devoir</label>
-      <input id="submissionAssignment" placeholder="Titre du devoir">
-    </div>
+      <div class="form-group">
+        <label data-i18n="titreDevoir">Devoir</label>
+        <input id="submissionAssignment" placeholder="Titre du devoir">
+      </div>
 
-    <div class="form-group">
-      <label data-i18n="note">Note / 100</label>
-      <input id="submissionNote" type="number" min="0" max="100" placeholder="85">
-    </div>
+      <div class="form-group full">
+        <label data-i18n="note">Note / 100</label>
+        <input id="submissionNote" type="number" min="0" max="100" placeholder="85">
+      </div>
 
-    <div class="form-group">
-      <label data-i18n="commentaire">Correction / Commentaire</label>
-      <textarea id="submissionComment" placeholder="Commentaires du professeur..."></textarea>
+      <div class="form-group full">
+        <label data-i18n="commentaire">Correction / Commentaire</label>
+        <textarea id="submissionComment" placeholder="Commentaires du professeur..."></textarea>
+      </div>
     </div>
 
     <button class="primary-btn" onclick="addSubmission()" data-i18n="btnAddRemise">
@@ -1386,7 +1425,6 @@ button {
     </div>
 
     <div class="grid-form">
-
       <div class="form-group">
         <label data-i18n="jour">Jour</label>
         <input id="scheduleDay" placeholder="ex: Lundi">
@@ -1406,7 +1444,6 @@ button {
         <label data-i18n="classe">Classe</label>
         <input id="scheduleClass" placeholder="ex: Room A">
       </div>
-
     </div>
 
     <button class="primary-btn" onclick="addSchedule()" data-i18n="btnAddHoraire">
@@ -1498,12 +1535,10 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
   signInWithRedirect,
-  getRedirectResult,
   onAuthStateChanged,
   signOut,
   createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  updateProfile
+  signInWithEmailAndPassword
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
 
 import {
@@ -1513,6 +1548,8 @@ import {
   setDoc,
   getDoc,
   getDocs,
+  addDoc,
+  updateDoc,
   deleteDoc,
   serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
@@ -1538,6 +1575,23 @@ googleProvider.setCustomParameters({ prompt:"select_account" });
 let currentUser = null;
 let currentUserData = null;
 let deferredPrompt = null;
+
+const ALL_COLLECTIONS = [
+  "users",
+  "eleves",
+  "etudiants",
+  "professeurs",
+  "classes",
+  "matieres",
+  "devoirs",
+  "remises",
+  "resultats",
+  "departements",
+  "programmes",
+  "cours",
+  "emplois_du_temps",
+  "sauvegardes"
+];
 
 /* ================= TRADUCTION / DICTIONNAIRE ================= */
 
@@ -1727,7 +1781,6 @@ window.changeLanguage = function(lang){
   });
 };
 
-/* Apply saved language immediately */
 const savedLang = localStorage.getItem("app_lang") || "ht";
 document.getElementById("languageSelect").value = savedLang;
 changeLanguage(savedLang);
@@ -1752,6 +1805,31 @@ function handleFirebaseError(error, collectionName, operation) {
 }
 
 
+/* ================= INITIALIZE FIRESTORE DATA AUTOMATICALLY ================= */
+
+async function initializeFirestoreData() {
+  if (!currentUser || !currentUserData) return;
+  if (currentUserData.role !== "administrateur" || currentUserData.status !== "accepted") return;
+
+  try {
+    for (const colName of ALL_COLLECTIONS) {
+      const colRef = collection(db, colName);
+      const snapshot = await getDocs(colRef);
+      if (snapshot.empty) {
+        // Create an initialization metadata document so collection exists without fake data
+        await setDoc(doc(db, colName, "_init_metadata"), {
+          initialized: true,
+          createdAt: serverTimestamp(),
+          note: "Collection initialized automatically"
+        });
+      }
+    }
+  } catch (error) {
+    console.error("Erè pandan y ap tcheke oubyen kreye collections yo:", error);
+  }
+}
+
+
 /* ================= INSTALL PWA ================= */
 
 window.addEventListener("beforeinstallprompt", event => {
@@ -1765,7 +1843,7 @@ window.addEventListener("beforeinstallprompt", event => {
 
 async function triggerPwaInstall() {
   if(!deferredPrompt){
-    alert("L'application est déjà installée ou peut être installée depuis le menu Chrome/Safari.");
+    alert("L'application est déjà installée ou peut être installée depuis le menu du navigateur.");
     return;
   }
   deferredPrompt.prompt();
@@ -1801,7 +1879,7 @@ window.showRegister = function(){
 };
 
 
-/* ================= EMAIL LOGIN ================= */
+/* ================= AUTHENTICATION ACTIONS ================= */
 
 window.connecter = async function(){
   const email = document.getElementById("loginEmail").value.trim();
@@ -1820,9 +1898,6 @@ window.connecter = async function(){
   }
 };
 
-
-/* ================= GOOGLE LOGIN ================= */
-
 window.connecterAvecGoogle = async function(){
   try{
     await signInWithPopup(auth, googleProvider);
@@ -1836,31 +1911,6 @@ window.connecterAvecGoogle = async function(){
   }
 };
 
-
-/* ================= CREATE USER PROFILE ================= */
-
-async function createUserProfile(user, name=""){
-  const ref = doc(db, "users", user.uid);
-  try {
-    const snap = await getDoc(ref);
-    if(snap.exists()) return;
-
-    await setDoc(ref, {
-      uid: user.uid,
-      email: user.email || "",
-      nom: name || user.displayName || "",
-      role: "eleve",
-      status: "attente",
-      createdAt: serverTimestamp()
-    });
-  } catch(e) {
-    handleFirebaseError(e, "users", "createUserProfile");
-  }
-}
-
-
-/* ================= EMAIL REGISTER ================= */
-
 window.registerAccount = async function(){
   const name = document.getElementById("registerName").value.trim();
   const email = document.getElementById("registerEmail").value.trim();
@@ -1871,874 +1921,762 @@ window.registerAccount = async function(){
     return;
   }
 
-  if(password.length < 6){
-    authMessage("Modpas la dwe gen omwen 6 karaktè.");
-    return;
-  }
-
   try{
-    const result = await createUserWithEmailAndPassword(auth, email, password);
-    await updateProfile(result.user, { displayName: name });
-    await createUserProfile(result.user, name);
-    await signOut(auth);
-    authMessage("Kont ou kreye. Tanpri tann administratè a apwouve li.");
-    showLogin();
+    const cred = await createUserWithEmailAndPassword(auth, email, password);
+    await setDoc(doc(db, "users", cred.user.uid), {
+      uid: cred.user.uid,
+      email: email,
+      nom: name,
+      role: "eleve",
+      status: "attente",
+      createdAt: serverTimestamp()
+    });
+    authMessage("Kont ou kreye avèk siksè! Tann yon administratè apwouve li.");
   }catch(error){
-    handleFirebaseError(error, "auth", "register");
+    handleFirebaseError(error, "users", "register");
     authMessage("Enskripsyon echwe : " + error.message);
   }
 };
 
-
-/* ================= GOOGLE REGISTER ================= */
-
 window.registerGoogle = async function(){
   try{
-    const result = await signInWithPopup(auth, googleProvider);
-    await createUserProfile(result.user, result.user.displayName || "");
-    await signOut(auth);
-    authMessage("Kont ou kreye. Tanpri tann administratè a apwouve li.");
-    showLogin();
+    await signInWithPopup(auth, googleProvider);
   }catch(error){
-    handleFirebaseError(error, "auth", "google-register");
-    authMessage("Enskripsyon Google echwe : " + error.message);
+    if(error.code === "auth/popup-blocked" || error.code === "auth/popup-closed-by-user"){
+      await signInWithRedirect(auth, googleProvider);
+      return;
+    }
+    handleFirebaseError(error, "users", "google-register");
+    authMessage("Google enskripsyon echwe : " + error.message);
   }
 };
 
-
-/* ================= USER PROFILE ================= */
-
-async function loadUserProfile(user){
-  const ref = doc(db, "users", user.uid);
-  try {
-    const snap = await getDoc(ref);
-
-    if(!snap.exists()){
-      await setDoc(ref, {
-        uid: user.uid,
-        email: user.email || "",
-        nom: user.displayName || "",
-        role: "eleve",
-        status: "attente",
-        createdAt: serverTimestamp()
-      });
-
-      await signOut(auth);
-      authMessage("Kont ou anrejistre. Tanpri tann administratè a apwouve kont ou.");
-      return false;
-    }
-
-    currentUserData = snap.data();
-    const status = String(currentUserData.status || "").trim().toLowerCase();
-    const userRole = String(currentUserData.role || "").trim().toLowerCase();
-
-    if(status !== "accepted" && userRole !== "administrateur" && userRole !== "admin"){
-      await signOut(auth);
-      authMessage("Kont ou poko apwouve pa administratè a (Statut: " + status + ").");
-      return false;
-    }
-
-    return true;
-  } catch(error) {
-    handleFirebaseError(error, "users", "loadUserProfile");
-    return false;
-  }
-}
+window.logout = async function(){
+  await signOut(auth);
+};
 
 
-/* ================= ROLE ================= */
-
-function role(){
-  return String(currentUserData?.role || "").trim().toLowerCase();
-}
-
-function isAdmin(){
-  const r = role();
-  return r === "administrateur" || r === "admin";
-}
-
-function isProf(){
-  const r = role();
-  return r === "professeur" || r === "prof" || isAdmin();
-}
-
-function requireAdmin(){
-  if(!isAdmin()){
-    alert("Aksè sa a rezève pou administratè.");
-    return false;
-  }
-  return true;
-}
-
-function requireProfOrAdmin(){
-  if(!isProf()){
-    alert("Aksè sa a rezève pou pwofesè ak administratè.");
-    return false;
-  }
-  return true;
-}
-
-
-/* ================= AUTH STATE ================= */
+/* ================= AUTH STATE OBSERVER ================= */
 
 onAuthStateChanged(auth, async user => {
-  if(!user){
+  if(user){
+    currentUser = user;
+    const userRef = doc(db, "users", user.uid);
+    let userSnap = await getDoc(userRef);
+
+    if(!userSnap.exists()){
+      // Auto create user profile if missing
+      const defaultRole = "eleve";
+      const defaultStatus = "attente";
+      await setDoc(userRef, {
+        uid: user.uid,
+        email: user.email || "",
+        nom: user.displayName || "Utilisateur",
+        role: defaultRole,
+        status: defaultStatus,
+        createdAt: serverTimestamp()
+      });
+      userSnap = await getDoc(userRef);
+    }
+
+    currentUserData = userSnap.data();
+
+    if(currentUserData.status !== "accepted"){
+      document.getElementById("authPage").classList.remove("hidden");
+      document.getElementById("appPage").classList.add("hidden");
+      authMessage("Kont ou an ap tann apwobasyon yon administratè.");
+      return;
+    }
+
+    // Initialize Firestore collections if admin
+    await initializeFirestoreData();
+
+    document.getElementById("authPage").classList.add("hidden");
+    document.getElementById("appPage").classList.remove("hidden");
+
+    document.getElementById("userEmail").textContent = user.email;
+    document.getElementById("userRole").textContent = currentUserData.role.toUpperCase();
+
+    if(currentUserData.role === "administrateur"){
+      document.getElementById("usersMenu").classList.remove("hidden");
+    } else {
+      document.getElementById("usersMenu").classList.add("hidden");
+    }
+
+    loadAllData();
+
+  }else{
     currentUser = null;
     currentUserData = null;
     document.getElementById("authPage").classList.remove("hidden");
     document.getElementById("appPage").classList.add("hidden");
-    return;
-  }
-
-  currentUser = user;
-
-  try{
-    const accepted = await loadUserProfile(user);
-    if(accepted){
-      await openApp();
-    }
-  }catch(error){
-    handleFirebaseError(error, "users", "onAuthStateChanged");
-    authMessage("Erè Firebase : " + error.message);
   }
 });
 
 
-/* ================= OPEN APP ================= */
-
-async function openApp(){
-  document.getElementById("authPage").classList.add("hidden");
-  document.getElementById("appPage").classList.remove("hidden");
-
-  document.getElementById("userEmail").textContent = currentUser?.email || "";
-  document.getElementById("userRole").textContent = "Wòl: " + (currentUserData?.role || "");
-
-  const admin = isAdmin();
-  document.getElementById("usersMenu").classList.toggle("hidden", !admin);
-
-  await loadAllData();
-
-  if(admin){
-    await loadUsers();
-  }
-}
-
-
-/* ================= SIDEBAR ================= */
+/* ================= NAVIGATION & SECTIONS ================= */
 
 window.toggleSidebar = function(){
   document.getElementById("sidebar").classList.toggle("open");
 };
 
-window.showSection = function(id){
-  document.querySelectorAll(".section").forEach(section => section.classList.remove("active"));
-  const section = document.getElementById(id);
-  if(section){
-    section.classList.add("active");
-  }
+window.showSection = function(sectionId){
+  document.querySelectorAll(".section").forEach(sec => sec.classList.remove("active"));
+  document.getElementById(sectionId).classList.add("active");
   document.getElementById("sidebar").classList.remove("open");
+  loadSectionData(sectionId);
 };
 
+function loadSectionData(sectionId){
+  if(sectionId === "home") loadStats();
+  if(sectionId === "etudiants") loadStudents();
+  if(sectionId === "professeurs") loadTeachers();
+  if(sectionId === "departements") loadDepartments();
+  if(sectionId === "programmes") loadPrograms();
+  if(sectionId === "cours") loadCourses();
+  if(sectionId === "classes") loadClasses();
+  if(sectionId === "devoirs") loadAssignments();
+  if(sectionId === "remises") loadSubmissions();
+  if(sectionId === "resultats") loadResults();
+  if(sectionId === "horaires") loadSchedules();
+  if(sectionId === "statistiques") loadStats();
+  if(sectionId === "users") loadUsersManagement();
+}
 
-/* ================= GENERIC ADD ================= */
+function loadAllData(){
+  loadStats();
+  loadStudents();
+  loadTeachers();
+  loadCourses();
+  loadClasses();
+}
 
-async function addDocument(collectionName, data){
-  try {
-    const id = crypto.randomUUID();
-    await setDoc(doc(db, collectionName, id), {
-      ...data,
+
+/* ================= DATA CRUD FUNCTIONS ================= */
+
+// ETUDIANTS
+window.addStudent = async function(){
+  const name = document.getElementById("studentName").value.trim();
+  const email = document.getElementById("studentEmail").value.trim();
+  const phone = document.getElementById("studentPhone").value.trim();
+  const className = document.getElementById("studentClass").value.trim();
+
+  if(!name){ alert("Tanpri antre non etidyan an."); return; }
+
+  try{
+    await addDoc(collection(db, "etudiants"), {
+      name, email, phone, className,
       createdAt: serverTimestamp(),
       createdBy: currentUser.uid
     });
-  } catch(error) {
-    handleFirebaseError(error, collectionName, "addDocument");
-    throw error;
-  }
-}
-
-
-/* ================= STUDENT ================= */
-
-window.addStudent = async function(){
-  if(!requireAdmin()) return;
-
-  const name = document.getElementById("studentName").value.trim();
-  if(!name){ alert("Mete non elèv la."); return; }
-
-  try{
-    await addDocument("etudiants", {
-      nom: name,
-      email: document.getElementById("studentEmail").value.trim(),
-      telephone: document.getElementById("studentPhone").value.trim(),
-      classe: document.getElementById("studentClass").value.trim()
-    });
-
-    document.getElementById("studentName").value="";
-    document.getElementById("studentEmail").value="";
-    document.getElementById("studentPhone").value="";
-    document.getElementById("studentClass").value="";
-
-    alert("Elèv la ajoute ak siksè!");
-    await loadStudents();
+    document.getElementById("studentName").value = "";
+    document.getElementById("studentEmail").value = "";
+    document.getElementById("studentPhone").value = "";
+    document.getElementById("studentClass").value = "";
+    loadStudents();
+    loadStats();
+    alert("Etidyan an ajoute avèk siksè!");
   }catch(e){
-    /* Handled by handleFirebaseError */
+    handleFirebaseError(e, "etudiants", "add");
   }
 };
-
-
-/* ================= TEACHER ================= */
-
-window.addTeacher = async function(){
-  if(!requireAdmin()) return;
-
-  const name = document.getElementById("teacherName").value.trim();
-  if(!name){ alert("Mete non pwofesè la."); return; }
-
-  try{
-    await addDocument("professeurs", {
-      nom: name,
-      email: document.getElementById("teacherEmail").value.trim(),
-      telephone: document.getElementById("teacherPhone").value.trim(),
-      matiere: document.getElementById("teacherSubject").value.trim()
-    });
-
-    document.getElementById("teacherName").value="";
-    document.getElementById("teacherEmail").value="";
-    document.getElementById("teacherPhone").value="";
-    document.getElementById("teacherSubject").value="";
-
-    alert("Pwofesè a ajoute ak siksè!");
-    await loadTeachers();
-  }catch(e){
-    /* Handled */
-  }
-};
-
-
-/* ================= DEPARTMENT ================= */
-
-window.addDepartment = async function(){
-  if(!requireAdmin()) return;
-  const name = document.getElementById("departmentName").value.trim();
-  if(!name){ alert("Mete non depatman an."); return; }
-
-  try{
-    await addDocument("departements", {
-      nom: name,
-      description: document.getElementById("departmentDescription").value.trim()
-    });
-
-    document.getElementById("departmentName").value="";
-    document.getElementById("departmentDescription").value="";
-
-    alert("Depatman an ajoute!");
-    await loadDepartments();
-  }catch(e){ /* Handled */ }
-};
-
-
-/* ================= PROGRAM ================= */
-
-window.addProgram = async function(){
-  if(!requireAdmin()) return;
-  const name = document.getElementById("programName").value.trim();
-  if(!name){ alert("Mete non pwogram nan."); return; }
-
-  try{
-    await addDocument("programmes", {
-      nom: name,
-      description: document.getElementById("programDescription").value.trim()
-    });
-
-    document.getElementById("programName").value="";
-    document.getElementById("programDescription").value="";
-
-    alert("Pwogram nan ajoute!");
-    await loadPrograms();
-  }catch(e){ /* Handled */ }
-};
-
-
-/* ================= COURSE ================= */
-
-window.addCourse = async function(){
-  if(!requireAdmin()) return;
-  const name = document.getElementById("courseName").value.trim();
-  if(!name){ alert("Mete non kous la."); return; }
-
-  try{
-    await addDocument("cours", {
-      nom: name,
-      professeur: document.getElementById("courseTeacher").value.trim(),
-      classe: document.getElementById("courseClass").value.trim()
-    });
-
-    document.getElementById("courseName").value="";
-    document.getElementById("courseTeacher").value="";
-    document.getElementById("courseClass").value="";
-
-    alert("Kous la ajoute!");
-    await loadCourses();
-  }catch(e){ /* Handled */ }
-};
-
-
-/* ================= CLASS ================= */
-
-window.addClass = async function(){
-  if(!requireAdmin()) return;
-  const name = document.getElementById("className").value.trim();
-  if(!name){ alert("Mete non klas la."); return; }
-
-  try{
-    await addDocument("classes", {
-      nom: name,
-      niveau: document.getElementById("classLevel").value.trim()
-    });
-
-    document.getElementById("className").value="";
-    document.getElementById("classLevel").value="";
-
-    alert("Klas la ajoute!");
-    await loadClasses();
-  }catch(e){ /* Handled */ }
-};
-
-
-/* ================= ASSIGNMENT ================= */
-
-window.addAssignment = async function(){
-  if(!requireProfOrAdmin()) return;
-
-  const title = document.getElementById("assignmentTitle").value.trim();
-  if(!title){ alert("Mete tit devwa a."); return; }
-
-  try{
-    await addDocument("devoirs", {
-      titre: title,
-      cours: document.getElementById("assignmentCourse").value.trim(),
-      date: document.getElementById("assignmentDate").value,
-      description: document.getElementById("assignmentDescription").value.trim()
-    });
-
-    document.getElementById("assignmentTitle").value="";
-    document.getElementById("assignmentCourse").value="";
-    document.getElementById("assignmentDate").value="";
-    document.getElementById("assignmentDescription").value="";
-
-    alert("Devwa a pibliye!");
-    await loadAssignments();
-  }catch(e){ /* Handled */ }
-};
-
-
-/* ================= SUBMISSION ================= */
-
-window.addSubmission = async function(){
-  if(!currentUser) return;
-
-  const note = Number(document.getElementById("submissionNote").value);
-  if(Number.isNaN(note) || note < 0 || note > 100){
-    alert("Nòt la dwe ant 0 ak 100.");
-    return;
-  }
-
-  try{
-    await addDocument("remises", {
-      etudiant: document.getElementById("submissionStudent").value.trim(),
-      devoir: document.getElementById("submissionAssignment").value.trim(),
-      note: note,
-      correction: document.getElementById("submissionComment").value.trim()
-    });
-
-    document.getElementById("submissionStudent").value="";
-    document.getElementById("submissionAssignment").value="";
-    document.getElementById("submissionNote").value="";
-    document.getElementById("submissionComment").value="";
-
-    alert("Remiz/Evalyasyon anrejistre!");
-    await loadSubmissions();
-  }catch(e){ /* Handled */ }
-};
-
-
-/* ================= SCHEDULE ================= */
-
-window.addSchedule = async function(){
-  if(!requireAdmin()) return;
-
-  try{
-    await addDocument("emplois_du_temps", {
-      jour: document.getElementById("scheduleDay").value.trim(),
-      cours: document.getElementById("scheduleCourse").value.trim(),
-      heure: document.getElementById("scheduleTime").value.trim(),
-      classe: document.getElementById("scheduleClass").value.trim()
-    });
-
-    document.getElementById("scheduleDay").value="";
-    document.getElementById("scheduleCourse").value="";
-    document.getElementById("scheduleTime").value="";
-    document.getElementById("scheduleClass").value="";
-
-    alert("Lè kous sa a ajoute!");
-    await loadSchedules();
-  }catch(e){ /* Handled */ }
-};
-
-
-/* ================= HTML ESCAPE ================= */
-
-function escapeHTML(value){
-  return String(value ?? "")
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
-}
-
-
-/* ================= GET COLLECTION ================= */
-
-async function getCollectionData(collectionName){
-  try {
-    const snap = await getDocs(collection(db, collectionName));
-    return snap.docs.map(d => ({ id: d.id, ...d.data() }));
-  } catch(error) {
-    handleFirebaseError(error, collectionName, "getDocs");
-    throw error;
-  }
-}
-
-
-/* ================= STUDENTS LIST ================= */
 
 async function loadStudents(){
-  const box = document.getElementById("studentList");
-  box.innerHTML = '<div class="empty">Chargement...</div>';
-
+  const container = document.getElementById("studentList");
+  container.innerHTML = "<div class=\"empty\">Chajman...</div>";
   try{
-    const data = await getCollectionData("etudiants");
-    if(!data.length){
-      box.innerHTML = '<div class="empty">Pa gen etidyan ankò.</div>';
-    }else{
-      box.innerHTML = data.map(item => `
-        <div class="item">
-          <div class="item-title">${escapeHTML(item.nom)}</div>
-          <div class="item-info">Email: ${escapeHTML(item.email)}</div>
-          <div class="item-info">Téléphone: ${escapeHTML(item.telephone)}</div>
-          <div class="item-info">Classe: ${escapeHTML(item.classe)}</div>
-          ${isAdmin() ? `
-            <div class="actions">
-              <button class="danger-btn" onclick="deleteDocument('etudiants','${item.id}')">Efase</button>
-            </div>` : ""}
-        </div>
-      `).join("");
+    const snap = await getDocs(collection(db, "etudiants"));
+    if(snap.empty){
+      container.innerHTML = "<div class=\"empty\">Pa gen etidyan anrejistre pou kounye a.</div>";
+      return;
     }
-
-    document.getElementById("statEtudiants").textContent = data.length;
-    document.getElementById("statsStudents").textContent = data.length;
-  }catch(error){
-    box.innerHTML = '<div class="empty">Erè nan chajman dat yo.</div>';
+    let html = "";
+    snap.forEach(docSnap => {
+      if(docSnap.id === "_init_metadata") return;
+      const d = docSnap.data();
+      html += `
+        <div class="item">
+          <div class="item-title">${escapeHtml(d.name || "")}</div>
+          <div class="item-info">📧 ${escapeHtml(d.email || "N/A")} | 📱 ${escapeHtml(d.phone || "N/A")} | 🏫 ${escapeHtml(d.className || "N/A")}</div>
+          ${currentUserData && currentUserData.role === "administrateur" ? `
+            <div class="actions">
+              <button class="danger-btn" onclick="deleteDocItem('etudiants', '${docSnap.id}')">Efase</button>
+            </div>
+          ` : ""}
+        </div>
+      `;
+    });
+    container.innerHTML = html || "<div class=\"empty\">Pa gen etidyan anrejistre.</div>";
+  }catch(e){
+    handleFirebaseError(e, "etudiants", "list");
   }
 }
 
 
-/* ================= TEACHERS LIST ================= */
+// PROFESSEURS
+window.addTeacher = async function(){
+  const name = document.getElementById("teacherName").value.trim();
+  const email = document.getElementById("teacherEmail").value.trim();
+  const phone = document.getElementById("teacherPhone").value.trim();
+  const subject = document.getElementById("teacherSubject").value.trim();
+
+  if(!name){ alert("Tanpri antre non pwofesè a."); return; }
+
+  try{
+    await addDoc(collection(db, "professeurs"), {
+      name, email, phone, subject,
+      createdAt: serverTimestamp(),
+      createdBy: currentUser.uid
+    });
+    document.getElementById("teacherName").value = "";
+    document.getElementById("teacherEmail").value = "";
+    document.getElementById("teacherPhone").value = "";
+    document.getElementById("teacherSubject").value = "";
+    loadTeachers();
+    loadStats();
+    alert("Pwofesè a ajoute avèk siksè!");
+  }catch(e){
+    handleFirebaseError(e, "professeurs", "add");
+  }
+};
 
 async function loadTeachers(){
-  const box = document.getElementById("teacherList");
-  box.innerHTML = '<div class="empty">Chargement...</div>';
-
+  const container = document.getElementById("teacherList");
+  container.innerHTML = "<div class=\"empty\">Chajman...</div>";
   try{
-    const data = await getCollectionData("professeurs");
-    if(!data.length){
-      box.innerHTML = '<div class="empty">Pa gen pwofesè ankò.</div>';
-    }else{
-      box.innerHTML = data.map(item => `
-        <div class="item">
-          <div class="item-title">${escapeHTML(item.nom)}</div>
-          <div class="item-info">Email: ${escapeHTML(item.email)}</div>
-          <div class="item-info">Téléphone: ${escapeHTML(item.telephone)}</div>
-          <div class="item-info">Matière: ${escapeHTML(item.matiere)}</div>
-          ${isAdmin() ? `
-            <div class="actions">
-              <button class="danger-btn" onclick="deleteDocument('professeurs','${item.id}')">Efase</button>
-            </div>` : ""}
-        </div>
-      `).join("");
+    const snap = await getDocs(collection(db, "professeurs"));
+    if(snap.empty){
+      container.innerHTML = "<div class=\"empty\">Pa gen pwofesè anrejistre.</div>";
+      return;
     }
-
-    document.getElementById("statProfesseurs").textContent = data.length;
-    document.getElementById("statsTeachers").textContent = data.length;
-  }catch(error){
-    box.innerHTML = '<div class="empty">Erè nan chajman.</div>';
+    let html = "";
+    snap.forEach(docSnap => {
+      if(docSnap.id === "_init_metadata") return;
+      const d = docSnap.data();
+      html += `
+        <div class="item">
+          <div class="item-title">${escapeHtml(d.name || "")}</div>
+          <div class="item-info">📧 ${escapeHtml(d.email || "N/A")} | 📱 ${escapeHtml(d.phone || "N/A")} | 📚 ${escapeHtml(d.subject || "N/A")}</div>
+          ${currentUserData && currentUserData.role === "administrateur" ? `
+            <div class="actions">
+              <button class="danger-btn" onclick="deleteDocItem('professeurs', '${docSnap.id}')">Efase</button>
+            </div>
+          ` : ""}
+        </div>
+      `;
+    });
+    container.innerHTML = html || "<div class=\"empty\">Pa gen pwofesè anrejistre.</div>";
+  }catch(e){
+    handleFirebaseError(e, "professeurs", "list");
   }
 }
 
 
-/* ================= DEPARTMENTS ================= */
+// DEPARTEMENTS
+window.addDepartment = async function(){
+  const name = document.getElementById("departmentName").value.trim();
+  const description = document.getElementById("departmentDescription").value.trim();
+  if(!name){ alert("Tanpri antre non depatman an."); return; }
+  try{
+    await addDoc(collection(db, "departements"), { name, description, createdAt: serverTimestamp() });
+    document.getElementById("departmentName").value = "";
+    document.getElementById("departmentDescription").value = "";
+    loadDepartments();
+    alert("Depatman an ajoute avèk siksè!");
+  }catch(e){
+    handleFirebaseError(e, "departements", "add");
+  }
+};
 
 async function loadDepartments(){
-  const box = document.getElementById("departmentList");
-  try {
-    const data = await getCollectionData("departements");
-    box.innerHTML = data.length ? data.map(item => `
-      <div class="item">
-        <div class="item-title">${escapeHTML(item.nom)}</div>
-        <div class="item-info">${escapeHTML(item.description)}</div>
-        ${isAdmin() ? `<div class="actions"><button class="danger-btn" onclick="deleteDocument('departements','${item.id}')">Efase</button></div>` : ""}
-      </div>
-    `).join("") : '<div class="empty">Pa gen depatman.</div>';
-  } catch(e) { box.innerHTML = '<div class="empty">Erè nan chajman.</div>'; }
+  const container = document.getElementById("departmentList");
+  container.innerHTML = "<div class=\"empty\">Chajman...</div>";
+  try{
+    const snap = await getDocs(collection(db, "departements"));
+    let html = "";
+    snap.forEach(docSnap => {
+      if(docSnap.id === "_init_metadata") return;
+      const d = docSnap.data();
+      html += `
+        <div class="item">
+          <div class="item-title">${escapeHtml(d.name || "")}</div>
+          <div class="item-info">${escapeHtml(d.description || "")}</div>
+          ${currentUserData && currentUserData.role === "administrateur" ? `
+            <div class="actions">
+              <button class="danger-btn" onclick="deleteDocItem('departements', '${docSnap.id}')">Efase</button>
+            </div>
+          ` : ""}
+        </div>
+      `;
+    });
+    container.innerHTML = html || "<div class=\"empty\">Pa gen depatman.</div>";
+  }catch(e){
+    handleFirebaseError(e, "departements", "list");
+  }
 }
 
 
-/* ================= PROGRAMS ================= */
+// PROGRAMMES
+window.addProgram = async function(){
+  const name = document.getElementById("programName").value.trim();
+  const description = document.getElementById("programDescription").value.trim();
+  if(!name){ alert("Tanpri antre non pwogram nan."); return; }
+  try{
+    await addDoc(collection(db, "programmes"), { name, description, createdAt: serverTimestamp() });
+    document.getElementById("programName").value = "";
+    document.getElementById("programDescription").value = "";
+    loadPrograms();
+    alert("Pwogram nan ajoute avèk siksè!");
+  }catch(e){
+    handleFirebaseError(e, "programmes", "add");
+  }
+};
 
 async function loadPrograms(){
-  const box = document.getElementById("programList");
-  try {
-    const data = await getCollectionData("programmes");
-    box.innerHTML = data.length ? data.map(item => `
-      <div class="item">
-        <div class="item-title">${escapeHTML(item.nom)}</div>
-        <div class="item-info">${escapeHTML(item.description)}</div>
-        ${isAdmin() ? `<div class="actions"><button class="danger-btn" onclick="deleteDocument('programmes','${item.id}')">Efase</button></div>` : ""}
-      </div>
-    `).join("") : '<div class="empty">Pa gen pwogram.</div>';
-  } catch(e) { box.innerHTML = '<div class="empty">Erè nan chajman.</div>'; }
+  const container = document.getElementById("programList");
+  container.innerHTML = "<div class=\"empty\">Chajman...</div>";
+  try{
+    const snap = await getDocs(collection(db, "programmes"));
+    let html = "";
+    snap.forEach(docSnap => {
+      if(docSnap.id === "_init_metadata") return;
+      const d = docSnap.data();
+      html += `
+        <div class="item">
+          <div class="item-title">${escapeHtml(d.name || "")}</div>
+          <div class="item-info">${escapeHtml(d.description || "")}</div>
+          ${currentUserData && currentUserData.role === "administrateur" ? `
+            <div class="actions">
+              <button class="danger-btn" onclick="deleteDocItem('programmes', '${docSnap.id}')">Efase</button>
+            </div>
+          ` : ""}
+        </div>
+      `;
+    });
+    container.innerHTML = html || "<div class=\"empty\">Pa gen pwogram.</div>";
+  }catch(e){
+    handleFirebaseError(e, "programmes", "list");
+  }
 }
 
 
-/* ================= COURSES ================= */
+// COURS
+window.addCourse = async function(){
+  const name = document.getElementById("courseName").value.trim();
+  const teacher = document.getElementById("courseTeacher").value.trim();
+  const className = document.getElementById("courseClass").value.trim();
+
+  if(!name){ alert("Tanpri antre non kous la."); return; }
+
+  try{
+    await addDoc(collection(db, "cours"), {
+      name, teacher, className,
+      createdAt: serverTimestamp()
+    });
+    document.getElementById("courseName").value = "";
+    document.getElementById("courseTeacher").value = "";
+    document.getElementById("courseClass").value = "";
+    loadCourses();
+    loadStats();
+    alert("Kous la ajoute avèk siksè!");
+  }catch(e){
+    handleFirebaseError(e, "cours", "add");
+  }
+};
 
 async function loadCourses(){
-  const box = document.getElementById("courseList");
-  try {
-    const data = await getCollectionData("cours");
-    box.innerHTML = data.length ? data.map(item => `
-      <div class="item">
-        <div class="item-title">${escapeHTML(item.nom)}</div>
-        <div class="item-info">Professeur: ${escapeHTML(item.professeur)}</div>
-        <div class="item-info">Classe: ${escapeHTML(item.classe)}</div>
-        ${isAdmin() ? `<div class="actions"><button class="danger-btn" onclick="deleteDocument('cours','${item.id}')">Efase</button></div>` : ""}
-      </div>
-    `).join("") : '<div class="empty">Pa gen kous.</div>';
-
-    document.getElementById("statCours").textContent = data.length;
-    document.getElementById("statsCourses").textContent = data.length;
-  } catch(e) { box.innerHTML = '<div class="empty">Erè nan chajman.</div>'; }
+  const container = document.getElementById("courseList");
+  container.innerHTML = "<div class=\"empty\">Chajman...</div>";
+  try{
+    const snap = await getDocs(collection(db, "cours"));
+    let html = "";
+    snap.forEach(docSnap => {
+      if(docSnap.id === "_init_metadata") return;
+      const d = docSnap.data();
+      html += `
+        <div class="item">
+          <div class="item-title">${escapeHtml(d.name || "")}</div>
+          <div class="item-info">👨‍🏫 Pwofesè: ${escapeHtml(d.teacher || "N/A")} | 🏫 Klas: ${escapeHtml(d.className || "N/A")}</div>
+          ${currentUserData && currentUserData.role === "administrateur" ? `
+            <div class="actions">
+              <button class="danger-btn" onclick="deleteDocItem('cours', '${docSnap.id}')">Efase</button>
+            </div>
+          ` : ""}
+        </div>
+      `;
+    });
+    container.innerHTML = html || "<div class=\"empty\">Pa gen kous anrejistre.</div>";
+  }catch(e){
+    handleFirebaseError(e, "cours", "list");
+  }
 }
 
 
-/* ================= CLASSES ================= */
+// CLASSES
+window.addClass = async function(){
+  const name = document.getElementById("className").value.trim();
+  const level = document.getElementById("classLevel").value.trim();
+
+  if(!name){ alert("Tanpri antre non klas la."); return; }
+
+  try{
+    await addDoc(collection(db, "classes"), {
+      name, level,
+      createdAt: serverTimestamp()
+    });
+    document.getElementById("className").value = "";
+    document.getElementById("classLevel").value = "";
+    loadClasses();
+    loadStats();
+    alert("Klas la ajoute avèk siksè!");
+  }catch(e){
+    handleFirebaseError(e, "classes", "add");
+  }
+};
 
 async function loadClasses(){
-  const box = document.getElementById("classList");
-  try {
-    const data = await getCollectionData("classes");
-    box.innerHTML = data.length ? data.map(item => `
-      <div class="item">
-        <div class="item-title">${escapeHTML(item.nom)}</div>
-        <div class="item-info">Niveau: ${escapeHTML(item.niveau)}</div>
-        ${isAdmin() ? `<div class="actions"><button class="danger-btn" onclick="deleteDocument('classes','${item.id}')">Efase</button></div>` : ""}
-      </div>
-    `).join("") : '<div class="empty">Pa gen klas.</div>';
-
-    document.getElementById("statClasses").textContent = data.length;
-    document.getElementById("statsClasses").textContent = data.length;
-  } catch(e) { box.innerHTML = '<div class="empty">Erè nan chajman.</div>'; }
+  const container = document.getElementById("classList");
+  container.innerHTML = "<div class=\"empty\">Chajman...</div>";
+  try{
+    const snap = await getDocs(collection(db, "classes"));
+    let html = "";
+    snap.forEach(docSnap => {
+      if(docSnap.id === "_init_metadata") return;
+      const d = docSnap.data();
+      html += `
+        <div class="item">
+          <div class="item-title">${escapeHtml(d.name || "")}</div>
+          <div class="item-info">📈 Nivo: ${escapeHtml(d.level || "N/A")}</div>
+          ${currentUserData && currentUserData.role === "administrateur" ? `
+            <div class="actions">
+              <button class="danger-btn" onclick="deleteDocItem('classes', '${docSnap.id}')">Efase</button>
+            </div>
+          ` : ""}
+        </div>
+      `;
+    });
+    container.innerHTML = html || "<div class=\"empty\">Pa gen klas anrejistre.</div>";
+  }catch(e){
+    handleFirebaseError(e, "classes", "list");
+  }
 }
 
 
-/* ================= ASSIGNMENTS ================= */
+// DEVOIRS
+window.addAssignment = async function(){
+  const title = document.getElementById("assignmentTitle").value.trim();
+  const course = document.getElementById("assignmentCourse").value.trim();
+  const date = document.getElementById("assignmentDate").value;
+  const description = document.getElementById("assignmentDescription").value.trim();
+
+  if(!title){ alert("Tanpri antre tit devwa a."); return; }
+
+  try{
+    await addDoc(collection(db, "devoirs"), {
+      title, course, date, description,
+      createdAt: serverTimestamp()
+    });
+    document.getElementById("assignmentTitle").value = "";
+    document.getElementById("assignmentCourse").value = "";
+    document.getElementById("assignmentDate").value = "";
+    document.getElementById("assignmentDescription").value = "";
+    loadAssignments();
+    alert("Devwa a pibliye avèk siksè!");
+  }catch(e){
+    handleFirebaseError(e, "devoirs", "add");
+  }
+};
 
 async function loadAssignments(){
-  const box = document.getElementById("assignmentList");
-  try {
-    const data = await getCollectionData("devoirs");
-    box.innerHTML = data.length ? data.map(item => `
-      <div class="item">
-        <div class="item-title">${escapeHTML(item.titre)}</div>
-        <div class="item-info">Cours: ${escapeHTML(item.cours)}</div>
-        <div class="item-info">Date: ${escapeHTML(item.date)}</div>
-        <div class="item-info">${escapeHTML(item.description)}</div>
-        ${isProf() ? `<div class="actions"><button class="danger-btn" onclick="deleteDocument('devoirs','${item.id}')">Efase</button></div>` : ""}
-      </div>
-    `).join("") : '<div class="empty">Pa gen devwa.</div>';
-  } catch(e) { box.innerHTML = '<div class="empty">Erè nan chajman.</div>'; }
+  const container = document.getElementById("assignmentList");
+  container.innerHTML = "<div class=\"empty\">Chajman...</div>";
+  try{
+    const snap = await getDocs(collection(db, "devoirs"));
+    let html = "";
+    snap.forEach(docSnap => {
+      if(docSnap.id === "_init_metadata") return;
+      const d = docSnap.data();
+      html += `
+        <div class="item">
+          <div class="item-title">${escapeHtml(d.title || "")}</div>
+          <div class="item-info">📖 Kous: ${escapeHtml(d.course || "N/A")} | 📅 Dat limit: ${escapeHtml(d.date || "N/A")}</div>
+          <div class="item-info">${escapeHtml(d.description || "")}</div>
+          ${currentUserData && currentUserData.role === "administrateur" ? `
+            <div class="actions">
+              <button class="danger-btn" onclick="deleteDocItem('devoirs', '${docSnap.id}')">Efase</button>
+            </div>
+          ` : ""}
+        </div>
+      `;
+    });
+    container.innerHTML = html || "<div class=\"empty\">Pa gen devwa.</div>";
+  }catch(e){
+    handleFirebaseError(e, "devoirs", "list");
+  }
 }
 
 
-/* ================= SUBMISSIONS ================= */
+// REMISES
+window.addSubmission = async function(){
+  const student = document.getElementById("submissionStudent").value.trim();
+  const assignment = document.getElementById("submissionAssignment").value.trim();
+  const note = document.getElementById("submissionNote").value.trim();
+  const comment = document.getElementById("submissionComment").value.trim();
+
+  if(!student){ alert("Tanpri antre non etidyan an."); return; }
+
+  try{
+    await addDoc(collection(db, "remises"), {
+      student, assignment, note, comment,
+      createdAt: serverTimestamp()
+    });
+    document.getElementById("submissionStudent").value = "";
+    document.getElementById("submissionAssignment").value = "";
+    document.getElementById("submissionNote").value = "";
+    document.getElementById("submissionComment").value = "";
+    loadSubmissions();
+    alert("Evalyasyon anrejistre avèk siksè!");
+  }catch(e){
+    handleFirebaseError(e, "remises", "add");
+  }
+};
 
 async function loadSubmissions(){
-  const box = document.getElementById("submissionList");
-  try {
-    const data = await getCollectionData("remises");
-    box.innerHTML = data.length ? data.map(item => `
-      <div class="item">
-        <div class="item-title">Élève: ${escapeHTML(item.etudiant)}</div>
-        <div class="item-info">Devoir: ${escapeHTML(item.devoir)}</div>
-        <div class="item-info"><strong>Nòt: ${escapeHTML(item.note)}/100</strong></div>
-        <div class="item-info">Correction: ${escapeHTML(item.correction)}</div>
-        ${isProf() ? `<div class="actions"><button class="danger-btn" onclick="deleteDocument('remises','${item.id}')">Efase</button></div>` : ""}
-      </div>
-    `).join("") : '<div class="empty">Pa gen remiz.</div>';
-  } catch(e) { box.innerHTML = '<div class="empty">Erè nan chajman.</div>'; }
+  const container = document.getElementById("submissionList");
+  container.innerHTML = "<div class=\"empty\">Chajman...</div>";
+  try{
+    const snap = await getDocs(collection(db, "remises"));
+    let html = "";
+    snap.forEach(docSnap => {
+      if(docSnap.id === "_init_metadata") return;
+      const d = docSnap.data();
+      html += `
+        <div class="item">
+          <div class="item-title">👨‍🎓 ${escapeHtml(d.student || "")} - Dekwa: ${escapeHtml(d.assignment || "")}</div>
+          <div class="item-info">📊 Nòt: <strong>${escapeHtml(d.note || "0")} / 100</strong></div>
+          <div class="item-info">💬 Kòmantè: ${escapeHtml(d.comment || "N/A")}</div>
+          ${currentUserData && currentUserData.role === "administrateur" ? `
+            <div class="actions">
+              <button class="danger-btn" onclick="deleteDocItem('remises', '${docSnap.id}')">Efase</button>
+            </div>
+          ` : ""}
+        </div>
+      `;
+    });
+    container.innerHTML = html || "<div class=\"empty\">Pa gen remiz.</div>";
+  }catch(e){
+    handleFirebaseError(e, "remises", "list");
+  }
 }
 
 
-/* ================= RESULTS ================= */
-
+// RESULTATS
 async function loadResults(){
-  const box = document.getElementById("resultList");
-  try {
-    const data = await getCollectionData("resultats");
-    box.innerHTML = data.length ? data.map(item => `
-      <div class="item">
-        <div class="item-title">${escapeHTML(item.etudiant || "")}</div>
-        <div class="item-info">Matière: ${escapeHTML(item.matiere || "")}</div>
-        <div class="item-info"><strong>Note: ${escapeHTML(item.note || 0)}/100</strong></div>
-      </div>
-    `).join("") : '<div class="empty">Pa gen rezilta.</div>';
-  } catch(e) { box.innerHTML = '<div class="empty">Erè nan chajman.</div>'; }
+  const container = document.getElementById("resultList");
+  container.innerHTML = "<div class=\"empty\">Chajman...</div>";
+  try{
+    const snap = await getDocs(collection(db, "remises"));
+    let html = "";
+    snap.forEach(docSnap => {
+      if(docSnap.id === "_init_metadata") return;
+      const d = docSnap.data();
+      html += `
+        <div class="item">
+          <div class="item-title">🎓 ${escapeHtml(d.student || "")}</div>
+          <div class="item-info">Devwa / Travay: ${escapeHtml(d.assignment || "N/A")} | Nòt: <strong>${escapeHtml(d.note || "0")} / 100</strong></div>
+        </div>
+      `;
+    });
+    container.innerHTML = html || "<div class=\"empty\">Pa gen rezilta disponib.</div>";
+  }catch(e){
+    handleFirebaseError(e, "resultats", "list");
+  }
 }
 
 
-/* ================= SCHEDULES ================= */
+// HORAIRES
+window.addSchedule = async function(){
+  const day = document.getElementById("scheduleDay").value.trim();
+  const course = document.getElementById("scheduleCourse").value.trim();
+  const time = document.getElementById("scheduleTime").value.trim();
+  const className = document.getElementById("scheduleClass").value.trim();
+
+  if(!day){ alert("Tanpri ranpli jou a."); return; }
+
+  try{
+    await addDoc(collection(db, "emplois_du_temps"), {
+      day, course, time, className,
+      createdAt: serverTimestamp()
+    });
+    document.getElementById("scheduleDay").value = "";
+    document.getElementById("scheduleCourse").value = "";
+    document.getElementById("scheduleTime").value = "";
+    document.getElementById("scheduleClass").value = "";
+    loadSchedules();
+    alert("Orè ajoute avèk siksè!");
+  }catch(e){
+    handleFirebaseError(e, "emplois_du_temps", "add");
+  }
+};
 
 async function loadSchedules(){
-  const box = document.getElementById("scheduleList");
-  try {
-    const data = await getCollectionData("emplois_du_temps");
-    box.innerHTML = data.length ? data.map(item => `
-      <div class="item">
-        <div class="item-title">Jour: ${escapeHTML(item.jour)}</div>
-        <div class="item-info">Cours: ${escapeHTML(item.cours)}</div>
-        <div class="item-info">Heure: ${escapeHTML(item.heure)}</div>
-        <div class="item-info">Classe: ${escapeHTML(item.classe)}</div>
-        ${isAdmin() ? `<div class="actions"><button class="danger-btn" onclick="deleteDocument('emplois_du_temps','${item.id}')">Efase</button></div>` : ""}
-      </div>
-    `).join("") : '<div class="empty">Pa gen horaire.</div>';
-  } catch(e) { box.innerHTML = '<div class="empty">Erè nan chajman.</div>'; }
-}
-
-
-/* ================= DELETE ================= */
-
-window.deleteDocument = async function(collectionName, id){
-  if(!requireAdmin()) return;
-
-  const ok = confirm("Èske ou sèten ou vle efase eleman sa a?");
-  if(!ok) return;
-
+  const container = document.getElementById("scheduleList");
+  container.innerHTML = "<div class=\"empty\">Chajman...</div>";
   try{
-    await deleteDoc(doc(db, collectionName, id));
-    await loadAllData();
-  }catch(error){
-    handleFirebaseError(error, collectionName, "deleteDoc");
-  }
-};
-
-
-/* ================= USERS ================= */
-
-async function loadUsers(){
-  if(!isAdmin()) return;
-
-  const pending = document.getElementById("pendingUsers");
-  const all = document.getElementById("allUsers");
-
-  pending.innerHTML = '<div class="empty">Chargement...</div>';
-  all.innerHTML = '<div class="empty">Chargement...</div>';
-
-  try{
-    const data = await getCollectionData("users");
-    const pendingData = data.filter(u => String(u.status || "").toLowerCase() === "attente");
-
-    pending.innerHTML = pendingData.length
-      ? pendingData.map(user => userCard(user, true)).join("")
-      : '<div class="empty">Pa gen itilizatè an attente.</div>';
-
-    all.innerHTML = data.length
-      ? data.map(user => userCard(user, false)).join("")
-      : '<div class="empty">Pa gen itilizatè.</div>';
-
-  }catch(error){
-    handleFirebaseError(error, "users", "loadUsers");
-    pending.innerHTML = '<div class="empty">Erè nan chajman.</div>';
-    all.innerHTML = '<div class="empty">Erè nan chajman.</div>';
+    const snap = await getDocs(collection(db, "emplois_du_temps"));
+    let html = "";
+    snap.forEach(docSnap => {
+      if(docSnap.id === "_init_metadata") return;
+      const d = docSnap.data();
+      html += `
+        <div class="item">
+          <div class="item-title">📅 ${escapeHtml(d.day || "")} : ${escapeHtml(d.course || "")}</div>
+          <div class="item-info">⏰ Lè: ${escapeHtml(d.time || "N/A")} | 🏫 Klas: ${escapeHtml(d.className || "N/A")}</div>
+          ${currentUserData && currentUserData.role === "administrateur" ? `
+            <div class="actions">
+              <button class="danger-btn" onclick="deleteDocItem('emplois_du_temps', '${docSnap.id}')">Efase</button>
+            </div>
+          ` : ""}
+        </div>
+      `;
+    });
+    container.innerHTML = html || "<div class=\"empty\">Pa gen orè anrejistre.</div>";
+  }catch(e){
+    handleFirebaseError(e, "emplois_du_temps", "list");
   }
 }
 
 
-function userCard(user, isPending){
-  const status = String(user.status || "").toLowerCase();
-  const dateStr = user.createdAt?.seconds 
-    ? new Date(user.createdAt.seconds * 1000).toLocaleDateString() 
-    : "N/A";
+// STATS
+async function loadStats(){
+  try{
+    const studentsSnap = await getDocs(collection(db, "etudiants"));
+    const teachersSnap = await getDocs(collection(db, "professeurs"));
+    const coursesSnap = await getDocs(collection(db, "cours"));
+    const classesSnap = await getDocs(collection(db, "classes"));
 
-  return `
-    <div class="item">
-      <div class="item-title">${escapeHTML(user.nom || user.email || "Utilisateur")}</div>
-      <div class="item-info">Email: ${escapeHTML(user.email || "")}</div>
-      <div class="item-info">UID: ${escapeHTML(user.uid || user.id || "")}</div>
-      <div class="item-info">Date Inscription: ${dateStr}</div>
+    const countStudents = studentsSnap.docs.filter(d => d.id !== "_init_metadata").length;
+    const countTeachers = teachersSnap.docs.filter(d => d.id !== "_init_metadata").length;
+    const countCourses = coursesSnap.docs.filter(d => d.id !== "_init_metadata").length;
+    const countClasses = classesSnap.docs.filter(d => d.id !== "_init_metadata").length;
 
-      <div class="item-info" style="margin-top:6px;">
-        Wòl: 
-        <select id="role_${user.id}">
-          <option value="eleve" ${(user.role==="eleve"||user.role==="étudiant")?"selected":""}>Élève / Étudiant</option>
-          <option value="professeur" ${(user.role==="professeur"||user.role==="prof")?"selected":""}>Professeur</option>
-          <option value="administrateur" ${(user.role==="administrateur"||user.role==="admin")?"selected":""}>Administrateur</option>
-        </select>
-        <button class="secondary-btn" style="padding:4px 8px; font-size:12px; margin-left:6px;" onclick="updateUserRole('${user.id}')">Sove Wòl</button>
-      </div>
-
-      <div class="item-info">
-        Statut: <span class="badge ${status}">${escapeHTML(user.status || "")}</span>
-      </div>
-
-      <div class="actions">
-        ${isPending ? `
-          <button class="success-btn" onclick="approveUser('${user.id}')">Accepter</button>
-          <button class="danger-btn" onclick="refuseUser('${user.id}')">Refuser</button>
-        ` : ""}
-
-        ${user.id !== currentUser?.uid ? `
-          <button class="danger-btn" onclick="deleteUser('${user.id}')">Supprimer</button>
-        ` : ""}
-      </div>
-    </div>
-  `;
+    ["statEtudiants", "statsStudents"].forEach(id => {
+      const el = document.getElementById(id);
+      if(el) el.textContent = countStudents;
+    });
+    ["statProfesseurs", "statsTeachers"].forEach(id => {
+      const el = document.getElementById(id);
+      if(el) el.textContent = countTeachers;
+    });
+    ["statCours", "statsCourses"].forEach(id => {
+      const el = document.getElementById(id);
+      if(el) el.textContent = countCourses;
+    });
+    ["statClasses", "statsClasses"].forEach(id => {
+      const el = document.getElementById(id);
+      if(el) el.textContent = countClasses;
+    });
+  }catch(e){
+    console.error("Erè chajman estatistik:", e);
+  }
 }
 
 
-/* ================= APPROVE / REFUSE / ROLE / DELETE USER ================= */
+// USERS MANAGEMENT (ADMIN ONLY)
+async function loadUsersManagement(){
+  if(!currentUserData || currentUserData.role !== "administrateur") return;
 
-window.approveUser = async function(uid){
-  if(!requireAdmin()) return;
-  const roleSelect = document.getElementById("role_"+uid);
-  const selectedRole = roleSelect ? roleSelect.value : "eleve";
+  const pendingContainer = document.getElementById("pendingUsers");
+  const allContainer = document.getElementById("allUsers");
 
-  try{
-    await setDoc(doc(db, "users", uid), {
-      role: selectedRole,
-      status: "accepted",
-      approvedBy: currentUser.uid,
-      approvedAt: serverTimestamp()
-    }, { merge: true });
-
-    alert("Itilizatè sa a apwouve ak siksè!");
-    await loadUsers();
-  }catch(error){
-    handleFirebaseError(error, "users", "approveUser");
-  }
-};
-
-window.refuseUser = async function(uid){
-  if(!requireAdmin()) return;
-  try{
-    await setDoc(doc(db, "users", uid), {
-      status: "refused",
-      refusedBy: currentUser.uid,
-      refusedAt: serverTimestamp()
-    }, { merge: true });
-
-    alert("Itilizatè sa a refize.");
-    await loadUsers();
-  }catch(error){
-    handleFirebaseError(error, "users", "refuseUser");
-  }
-};
-
-window.updateUserRole = async function(uid){
-  if(!requireAdmin()) return;
-  const roleSelect = document.getElementById("role_"+uid);
-  if(!roleSelect) return;
+  pendingContainer.innerHTML = "<div class=\"empty\">Chajman...</div>";
+  allContainer.innerHTML = "<div class=\"empty\">Chajman...</div>";
 
   try{
-    await setDoc(doc(db, "users", uid), {
-      role: roleSelect.value
-    }, { merge: true });
+    const snap = await getDocs(collection(db, "users"));
+    let pendingHtml = "";
+    let allHtml = "";
 
-    alert("Wòl la modifye ak siksè!");
-    await loadUsers();
-  }catch(error){
-    handleFirebaseError(error, "users", "updateUserRole");
+    snap.forEach(docSnap => {
+      const d = docSnap.data();
+      const uid = d.uid;
+      const email = d.email || "N/A";
+      const nom = d.nom || "N/A";
+      const role = d.role || "eleve";
+      const status = d.status || "attente";
+
+      const card = `
+        <div class="item">
+          <div class="item-title">${escapeHtml(nom)} (${escapeHtml(email)})</div>
+          <div class="item-info">Wòl: <span class="badge">${escapeHtml(role)}</span> | Estati: <span class="badge ${escapeHtml(status)}">${escapeHtml(status)}</span></div>
+          <div class="actions">
+            ${status === "attente" ? `
+              <button class="success-btn" onclick="updateUserStatus('${uid}', 'accepted')">Apwouve</button>
+              <button class="danger-btn" onclick="updateUserStatus('${uid}', 'refused')">Refize</button>
+            ` : ""}
+            ${role !== "administrateur" ? `
+              <button class="primary-btn" style="width:auto; padding:8px 14px; font-size:14px;" onclick="updateUserRole('${uid}', 'administrateur')">Fè l' Administratè</button>
+            ` : `
+              <button class="secondary-btn" onclick="updateUserRole('${uid}', 'eleve')"> Retire Admin </button>
+            `}
+          </div>
+        </div>
+      `;
+
+      if(status === "attente"){
+        pendingHtml += card;
+      }
+      allHtml += card;
+    });
+
+    pendingContainer.innerHTML = pendingHtml || "<div class=\"empty\">Pa gen itilizatè an atanta.</div>";
+    allContainer.innerHTML = allHtml || "<div class=\"empty\">Pa gen itilizatè.</div>";
+
+  }catch(e){
+    handleFirebaseError(e, "users", "list");
   }
-};
-
-window.deleteUser = async function(uid){
-  if(!requireAdmin()) return;
-  if(uid === currentUser.uid){
-    alert("Ou pa ka efase pwòp kont administratè sa a.");
-    return;
-  }
-
-  const ok = confirm("Èske ou sèten ou vle efase itilizatè sa a nan baz de done a?");
-  if(!ok) return;
-
-  try{
-    await deleteDoc(doc(db, "users", uid));
-    alert("Itilizatè efase!");
-    await loadUsers();
-  }catch(error){
-    handleFirebaseError(error, "users", "deleteUser");
-  }
-};
-
-
-/* ================= LOAD ALL DATA ================= */
-
-async function loadAllData(){
-  await Promise.all([
-    loadStudents(),
-    loadTeachers(),
-    loadDepartments(),
-    loadPrograms(),
-    loadCourses(),
-    loadClasses(),
-    loadAssignments(),
-    loadSubmissions(),
-    loadResults(),
-    loadSchedules()
-  ]);
 }
 
-
-/* ================= LOGOUT ================= */
-
-window.logout = async function(){
+window.updateUserStatus = async function(uid, newStatus){
   try{
-    await signOut(auth);
-  }catch(error){
-    handleFirebaseError(error, "auth", "logout");
+    await updateDoc(doc(db, "users", uid), { status: newStatus });
+    alert("Estati itilizatè a chanje avèk siksè!");
+    loadUsersManagement();
+  }catch(e){
+    handleFirebaseError(e, "users", "updateStatus");
   }
 };
 
+window.updateUserRole = async function(uid, newRole){
+  try{
+    await updateDoc(doc(db, "users", uid), { role: newRole });
+    alert("Wòl itilizatè a chanje avèk siksè!");
+    loadUsersManagement();
+  }catch(e){
+    handleFirebaseError(e, "users", "updateRole");
+  }
+};
 
-/* ================= REDIRECT RESULT ================= */
+window.deleteDocItem = async function(colName, docId){
+  if(!confirm("Èske ou sèten ou vle efase eleman sa a?")) return;
+  try{
+    await deleteDoc(doc(db, colName, docId));
+    alert("Eleman an efase avèk siksè!");
+    loadSectionData(document.querySelector(".section.active").id);
+  }catch(e){
+    handleFirebaseError(e, colName, "delete");
+  }
+};
 
-getRedirectResult(auth).catch(error => {
-  if(error) console.error("Redirect:", error);
-});
+function escapeHtml(str) {
+  return String(str)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
 
 </script>
-
-
-<!-- ================= SERVICE WORKER ================= -->
-
-<script>
-if("serviceWorker" in navigator){
-  window.addEventListener("load", () => {
-    navigator.serviceWorker.register("./service-worker.js")
-    .catch(error => console.log("Service Worker:", error));
-  });
-}
-</script>
-
 </body>
 </html>
