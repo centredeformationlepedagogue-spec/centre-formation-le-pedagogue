@@ -2,15 +2,14 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<meta name="theme-color" content="#1d4ed8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#0f4c81">
 <meta name="description" content="Centre de Formation Le Pédagogue - Gestion universitaire et école professionnelle">
+<link rel="manifest" href="./manifest.json">
 
 <title>Centre de Formation Le Pédagogue</title>
 
 <style>
-
 *{
   box-sizing:border-box;
   margin:0;
@@ -19,91 +18,224 @@
 
 body{
   font-family:Arial,Helvetica,sans-serif;
-  background:#f1f5f9;
+  background:#f4f7fb;
   color:#172033;
 }
 
-/* ================= HEADER ================= */
+button,input,select,textarea{
+  font:inherit;
+}
 
-.header{
-  height:70px;
-  background:#ffffff;
-  border-bottom:1px solid #e2e8f0;
+button{
+  cursor:pointer;
+}
+
+.hidden{
+  display:none!important;
+}
+
+/* =========================
+   LOGIN
+========================= */
+
+#authPage{
+  min-height:100vh;
   display:flex;
   align-items:center;
-  justify-content:space-between;
-  padding:0 20px;
+  justify-content:center;
+  padding:20px;
+  background:linear-gradient(135deg,#0f4c81,#12355b);
+}
+
+.auth-box{
+  width:100%;
+  max-width:450px;
+  background:#fff;
+  border-radius:20px;
+  padding:30px;
+  box-shadow:0 25px 70px rgba(0,0,0,.25);
+}
+
+.auth-logo{
+  width:78px;
+  height:78px;
+  margin:0 auto 15px;
+  border-radius:20px;
+  background:#0f4c81;
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:38px;
+}
+
+.auth-box h1{
+  text-align:center;
+  font-size:21px;
+  color:#102a43;
+}
+
+.auth-subtitle{
+  text-align:center;
+  color:#6b7c93;
+  font-size:13px;
+  margin:8px 0 25px;
+}
+
+.form-group{
+  margin-bottom:15px;
+}
+
+.form-group label{
+  display:block;
+  font-size:13px;
+  font-weight:700;
+  margin-bottom:6px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea{
+  width:100%;
+  padding:12px;
+  border:1px solid #ccd6e0;
+  border-radius:9px;
+  outline:none;
+  background:#fff;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus{
+  border-color:#0f4c81;
+}
+
+.primary-btn{
+  border:0;
+  border-radius:9px;
+  background:#0f4c81;
+  color:#fff;
+  padding:11px 16px;
+  font-weight:700;
+}
+
+.full-btn{
+  width:100%;
+  margin-top:5px;
+}
+
+.google-btn{
+  width:100%;
+  margin-top:10px;
+  padding:11px;
+  border:1px solid #ccd6e0;
+  border-radius:9px;
+  background:#fff;
+  color:#172033;
+  font-weight:700;
+}
+
+.link-btn{
+  border:0;
+  background:none;
+  color:#0f4c81;
+  font-weight:700;
+  margin-top:16px;
+}
+
+.auth-message{
+  margin-top:15px;
+  padding:11px;
+  border-radius:9px;
+  background:#f1f5f9;
+  color:#475569;
+  text-align:center;
+  font-size:13px;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.header{
   position:fixed;
   top:0;
   left:0;
   right:0;
+  height:70px;
+  background:#fff;
+  border-bottom:1px solid #e2e8f0;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 18px;
   z-index:1000;
 }
 
 .brand{
   display:flex;
   align-items:center;
-  gap:12px;
+  gap:11px;
 }
 
-.logo{
+.brand-logo{
   width:45px;
   height:45px;
   border-radius:12px;
-  background:#1d4ed8;
-  color:white;
+  background:#0f4c81;
+  color:#fff;
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:23px;
-  font-weight:bold;
+  font-size:22px;
 }
 
-.brand h1{
-  font-size:18px;
-  color:#0f172a;
+.brand-name{
+  font-size:17px;
+  font-weight:800;
+  color:#102a43;
 }
 
-.brand small{
-  display:block;
-  color:#64748b;
+.brand-subtitle{
   font-size:11px;
+  color:#718096;
   margin-top:3px;
 }
 
 .header-right{
   display:flex;
   align-items:center;
-  gap:10px;
+  gap:8px;
 }
 
-.lang-select{
-  border:1px solid #cbd5e1;
-  border-radius:8px;
+.language-select{
   padding:8px;
-  background:white;
-}
-
-.install-btn,
-.logout-btn{
-  border:0;
+  border:1px solid #ccd6e0;
   border-radius:8px;
-  padding:9px 13px;
-  cursor:pointer;
-  font-weight:bold;
+  background:#fff;
 }
 
 .install-btn{
-  background:#2563eb;
-  color:white;
+  border:0;
+  border-radius:8px;
+  padding:9px 12px;
+  background:#0f4c81;
+  color:#fff;
+  font-weight:700;
 }
 
 .logout-btn{
+  border:0;
+  border-radius:8px;
+  padding:9px 12px;
   background:#fee2e2;
   color:#b91c1c;
+  font-weight:700;
 }
 
-/* ================= SIDEBAR ================= */
+/* =========================
+   SIDEBAR
+========================= */
 
 .sidebar{
   position:fixed;
@@ -111,40 +243,40 @@ body{
   left:0;
   bottom:0;
   width:250px;
-  background:#0f172a;
-  padding:18px 12px;
+  background:#102a43;
+  padding:15px 10px;
   overflow-y:auto;
   z-index:900;
 }
 
-.sidebar-title{
-  color:#94a3b8;
-  font-size:11px;
+.menu-title{
+  color:#9fb3c8;
+  font-size:10px;
   text-transform:uppercase;
-  padding:10px 12px;
-  margin-top:8px;
+  padding:12px;
+  font-weight:700;
 }
 
-.nav-btn{
+.menu-btn{
   width:100%;
   border:0;
   background:transparent;
-  color:#cbd5e1;
-  text-align:left;
-  padding:12px;
+  color:#d9e2ec;
+  padding:11px 12px;
   border-radius:8px;
+  text-align:left;
   margin-bottom:3px;
-  cursor:pointer;
-  font-size:14px;
 }
 
-.nav-btn:hover,
-.nav-btn.active{
-  background:#1d4ed8;
-  color:white;
+.menu-btn:hover,
+.menu-btn.active{
+  background:#0f4c81;
+  color:#fff;
 }
 
-/* ================= MAIN ================= */
+/* =========================
+   MAIN
+========================= */
 
 .main{
   margin-left:250px;
@@ -165,77 +297,82 @@ body{
 
 .page-title h2{
   font-size:25px;
-  color:#0f172a;
+  color:#102a43;
 }
 
 .page-title p{
-  color:#64748b;
+  color:#718096;
   margin-top:5px;
 }
 
-/* ================= CARDS ================= */
+/* =========================
+   DASHBOARD
+========================= */
 
-.cards{
+.stats-grid{
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  gap:18px;
-  margin-bottom:25px;
-}
-
-.card{
-  background:white;
-  border-radius:14px;
-  padding:20px;
-  box-shadow:0 3px 12px rgba(15,23,42,.06);
-  border:1px solid #e2e8f0;
+  gap:16px;
+  margin-bottom:20px;
 }
 
 .stat-card{
+  background:#fff;
+  border:1px solid #e2e8f0;
+  border-radius:15px;
+  padding:20px;
   display:flex;
   align-items:center;
   justify-content:space-between;
+  box-shadow:0 3px 12px rgba(15,23,42,.05);
+}
+
+.stat-label{
+  color:#718096;
+  font-size:13px;
+}
+
+.stat-number{
+  font-size:28px;
+  font-weight:800;
+  margin-top:5px;
+  color:#102a43;
 }
 
 .stat-icon{
   width:48px;
   height:48px;
   border-radius:12px;
+  background:#e5f0fa;
   display:flex;
   align-items:center;
   justify-content:center;
   font-size:22px;
-  background:#dbeafe;
 }
 
-.stat-number{
-  font-size:27px;
-  font-weight:bold;
-  margin-top:5px;
-}
+/* =========================
+   CONTENT
+========================= */
 
-.stat-label{
-  color:#64748b;
-  font-size:13px;
-}
-
-/* ================= TABLE ================= */
-
-.table-card{
-  background:white;
-  border-radius:14px;
+.content-card{
+  background:#fff;
   border:1px solid #e2e8f0;
+  border-radius:15px;
+  margin-bottom:20px;
   overflow:hidden;
 }
 
-.table-header{
-  padding:18px;
+.content-header{
+  padding:16px 18px;
   border-bottom:1px solid #e2e8f0;
   display:flex;
   justify-content:space-between;
   align-items:center;
+  gap:10px;
 }
 
-.table-wrap{
+.table-container{
+  width:100%;
   overflow-x:auto;
 }
 
@@ -246,147 +383,132 @@ table{
 
 th,
 td{
-  padding:13px 15px;
-  text-align:left;
+  padding:12px 14px;
   border-bottom:1px solid #e2e8f0;
+  text-align:left;
+  font-size:13px;
 }
 
 th{
   background:#f8fafc;
-  font-size:13px;
   color:#475569;
 }
 
-td{
-  font-size:14px;
-}
-
-/* ================= BUTTONS ================= */
-
-.primary-btn{
-  background:#2563eb;
-  color:white;
-  border:0;
-  border-radius:8px;
-  padding:10px 15px;
-  cursor:pointer;
-  font-weight:bold;
-}
-
-.secondary-btn{
-  background:#e2e8f0;
-  color:#334155;
-  border:0;
-  border-radius:8px;
-  padding:10px 15px;
-  cursor:pointer;
-}
-
-/* ================= LOGIN ================= */
-
-#authPage{
-  min-height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:linear-gradient(135deg,#1d4ed8,#0f172a);
-  padding:20px;
-}
-
-.auth-box{
-  width:100%;
-  max-width:430px;
-  background:white;
-  border-radius:18px;
+.empty{
   padding:30px;
-  box-shadow:0 20px 50px rgba(0,0,0,.25);
+  text-align:center;
+  color:#718096;
 }
 
-.auth-logo{
-  width:70px;
-  height:70px;
-  margin:0 auto 15px;
-  border-radius:18px;
-  background:#1d4ed8;
-  color:white;
-  display:flex;
+/* =========================
+   BADGES
+========================= */
+
+.badge{
+  display:inline-block;
+  padding:4px 9px;
+  border-radius:20px;
+  font-size:11px;
+  font-weight:700;
+}
+
+.badge-success{
+  background:#dcfce7;
+  color:#166534;
+}
+
+.badge-warning{
+  background:#fef3c7;
+  color:#92400e;
+}
+
+.badge-danger{
+  background:#fee2e2;
+  color:#991b1b;
+}
+
+.badge-blue{
+  background:#dbeafe;
+  color:#1e40af;
+}
+
+/* =========================
+   SMALL BUTTONS
+========================= */
+
+.action-btn{
+  border:0;
+  border-radius:7px;
+  padding:7px 10px;
+  font-size:12px;
+  font-weight:700;
+}
+
+.edit-btn{
+  background:#dbeafe;
+  color:#1e40af;
+}
+
+.delete-btn{
+  background:#fee2e2;
+  color:#b91c1c;
+}
+
+.accept-btn{
+  background:#dcfce7;
+  color:#166534;
+}
+
+/* =========================
+   MODAL
+========================= */
+
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(15,23,42,.55);
+  display:none;
   align-items:center;
   justify-content:center;
-  font-size:32px;
+  padding:15px;
+  z-index:3000;
 }
 
-.auth-box h2{
-  text-align:center;
-  color:#0f172a;
+.modal.show{
+  display:flex;
 }
 
-.auth-subtitle{
-  text-align:center;
-  color:#64748b;
-  font-size:13px;
-  margin:7px 0 25px;
-}
-
-.form-group{
-  margin-bottom:15px;
-}
-
-.form-group label{
-  display:block;
-  font-size:13px;
-  font-weight:bold;
-  margin-bottom:6px;
-}
-
-.form-group input{
+.modal-box{
   width:100%;
-  padding:12px;
-  border:1px solid #cbd5e1;
-  border-radius:8px;
-  outline:none;
+  max-width:550px;
+  max-height:90vh;
+  overflow-y:auto;
+  background:#fff;
+  border-radius:15px;
+  padding:22px;
 }
 
-.form-group input:focus{
-  border-color:#2563eb;
+.modal-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:18px;
 }
 
-.auth-btn{
-  width:100%;
-  padding:12px;
+.close-btn{
   border:0;
-  border-radius:8px;
-  background:#2563eb;
-  color:white;
-  font-weight:bold;
-  cursor:pointer;
+  background:#e2e8f0;
+  border-radius:7px;
+  padding:7px 10px;
 }
 
-.google-btn{
-  width:100%;
-  padding:12px;
-  margin-top:10px;
-  border:1px solid #cbd5e1;
-  border-radius:8px;
-  background:white;
-  cursor:pointer;
-  font-weight:bold;
-}
+/* =========================
+   MOBILE
+========================= */
 
-.auth-message{
-  margin-top:15px;
-  padding:10px;
-  border-radius:8px;
-  background:#f1f5f9;
-  color:#475569;
-  font-size:13px;
-  text-align:center;
-}
+@media(max-width:950px){
 
-/* ================= MOBILE ================= */
-
-@media(max-width:900px){
-
-  .cards{
+  .stats-grid{
     grid-template-columns:repeat(2,1fr);
   }
 
@@ -395,19 +517,15 @@ td{
 @media(max-width:700px){
 
   .header{
-    padding:0 10px;
+    padding:0 8px;
   }
 
-  .brand h1{
-    font-size:14px;
+  .brand-name{
+    font-size:13px;
   }
 
-  .brand small{
+  .brand-subtitle{
     display:none;
-  }
-
-  .header-right{
-    gap:5px;
   }
 
   .install-btn{
@@ -415,9 +533,9 @@ td{
   }
 
   .sidebar{
-    width:220px;
+    width:225px;
     transform:translateX(-100%);
-    transition:.25s;
+    transition:.2s;
   }
 
   .sidebar.open{
@@ -426,32 +544,23 @@ td{
 
   .main{
     margin-left:0;
-    padding:90px 12px 25px;
+    padding:88px 10px 25px;
   }
 
-  .cards{
+  .stats-grid{
     grid-template-columns:1fr 1fr;
-    gap:10px;
+    gap:9px;
   }
 
-  .card{
-    padding:15px;
+  .stat-card{
+    padding:13px;
+  }
+
+  .stat-number{
+    font-size:22px;
   }
 
 }
-
-/* ================= UTILITY ================= */
-
-.hidden{
-  display:none !important;
-}
-
-.empty{
-  padding:30px;
-  text-align:center;
-  color:#64748b;
-}
-
 </style>
 </head>
 
@@ -469,45 +578,112 @@ td{
       🎓
     </div>
 
-    <h2>
+    <h1>
       Centre de Formation Le Pédagogue
-    </h2>
+    </h1>
 
     <div class="auth-subtitle">
       Gestion universitaire et école professionnelle
     </div>
 
-    <div class="form-group">
-      <label>Email</label>
-      <input
-        type="email"
-        id="loginEmail"
-        placeholder="Votre adresse email"
+    <div id="loginForm">
+
+      <div class="form-group">
+        <label>Email</label>
+        <input
+          id="loginEmail"
+          type="email"
+          autocomplete="email"
+          placeholder="Votre adresse email"
+        >
+      </div>
+
+      <div class="form-group">
+        <label>Mot de passe</label>
+        <input
+          id="loginPassword"
+          type="password"
+          autocomplete="current-password"
+          placeholder="Votre mot de passe"
+        >
+      </div>
+
+      <button
+        class="primary-btn full-btn"
+        onclick="connecter()"
       >
+        Se connecter
+      </button>
+
+      <button
+        class="google-btn"
+        onclick="connecterAvecGoogle()"
+      >
+        🔵 Continuer avec Google
+      </button>
+
+      <div style="text-align:center">
+        <button
+          class="link-btn"
+          onclick="afficherInscription()"
+        >
+          Créer un compte
+        </button>
+      </div>
+
     </div>
 
-    <div class="form-group">
-      <label>Mot de passe</label>
-      <input
-        type="password"
-        id="loginPassword"
-        placeholder="Votre mot de passe"
+
+    <div
+      id="registerForm"
+      class="hidden"
+    >
+
+      <div class="form-group">
+        <label>Nom complet</label>
+        <input
+          id="registerName"
+          type="text"
+          placeholder="Nom et prénom"
+        >
+      </div>
+
+      <div class="form-group">
+        <label>Email</label>
+        <input
+          id="registerEmail"
+          type="email"
+          placeholder="Votre email"
+        >
+      </div>
+
+      <div class="form-group">
+        <label>Mot de passe</label>
+        <input
+          id="registerPassword"
+          type="password"
+          placeholder="Minimum 6 caractères"
+        >
+      </div>
+
+      <button
+        class="primary-btn full-btn"
+        onclick="inscrire()"
       >
+        Créer mon compte
+      </button>
+
+      <div style="text-align:center">
+        <button
+          class="link-btn"
+          onclick="afficherConnexion()"
+        >
+          Retour à la connexion
+        </button>
+      </div>
+
     </div>
 
-    <button
-      class="auth-btn"
-      onclick="connecter()"
-    >
-      Se connecter
-    </button>
-
-    <button
-      class="google-btn"
-      onclick="connecterAvecGoogle()"
-    >
-      🔵 Continuer avec Google
-    </button>
 
     <div
       id="authMessage"
@@ -525,1058 +701,3054 @@ td{
      APPLICATION
 ===================================================== -->
 
-<section id="appPage" class="hidden">
+<section
+  id="appPage"
+  class="hidden"
+>
 
-  <!-- HEADER -->
+<header class="header">
 
-  <header class="header">
+  <div class="brand">
 
-    <div class="brand">
+    <div class="brand-logo">
+      🎓
+    </div>
 
-      <div class="logo">
+    <div>
+
+      <div class="brand-name">
+        Centre de Formation Le Pédagogue
+      </div>
+
+      <div class="brand-subtitle">
+        Gestion universitaire & école professionnelle
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="header-right">
+
+    <select
+      id="languageSelect"
+      class="language-select"
+      onchange="changerLangue()"
+    >
+      <option value="fr">🇫🇷 Français</option>
+      <option value="ht">🇭🇹 Kreyòl</option>
+    </select>
+
+
+    <button
+      id="installButton"
+      class="install-btn hidden"
+      onclick="installerApplication()"
+    >
+      📱 Installer
+    </button>
+
+
+    <button
+      class="logout-btn"
+      onclick="deconnecter()"
+    >
+      Déconnexion
+    </button>
+
+  </div>
+
+</header>
+
+
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
+
+<aside
+  id="sidebar"
+  class="sidebar"
+>
+
+  <div class="menu-title">
+    Principal
+  </div>
+
+  <button
+    class="menu-btn active"
+    onclick="ouvrirPage('home',this)"
+  >
+    🏠 Tableau de bord
+  </button>
+
+
+  <div class="menu-title">
+    Gestion académique
+  </div>
+
+  <button
+    class="menu-btn"
+    onclick="ouvrirPage('etudiants',this)"
+  >
+    🎓 Étudiants
+  </button>
+
+  <button
+    class="menu-btn"
+    onclick="ouvrirPage('professeurs',this)"
+  >
+    👨‍🏫 Professeurs
+  </button>
+
+  <button
+    class="menu-btn"
+    onclick="ouvrirPage('classes',this)"
+  >
+    🏫 Classes / Groupes
+  </button>
+
+  <button
+    class="menu-btn"
+    onclick="ouvrirPage('filieres',this)"
+  >
+    🎓 Filières / Programmes
+  </button>
+
+  <button
+    class="menu-btn"
+    onclick="ouvrirPage('matieres',this)"
+  >
+    📚 Matières
+  </button>
+
+  <button
+    class="menu-btn"
+    onclick="ouvrirPage('annees',this)"
+  >
+    📅 Années académiques
+  </button>
+
+  <button
+    class="menu-btn"
+    onclick="ouvrirPage('cours',this)"
+  >
+    📖 Cours
+  </button>
+
+  <button
+    class="menu-btn"
+    onclick="ouvrirPage('devoirs',this)"
+  >
+    📝 Devoirs
+  </button>
+
+  <button
+    class="menu-btn"
+    onclick="ouvrirPage('remises',this)"
+  >
+    📥 Remises
+  </button>
+
+
+  <div class="menu-title">
+    Résultats
+  </div>
+
+  <button
+    class="menu-btn"
+    onclick="ouvrirPage('resultats',this)"
+  >
+    📊 Résultats
+  </button>
+
+  <button
+    class="menu-btn"
+    onclick="ouvrirPage('statistiques',this)"
+  >
+    📈 Statistiques
+  </button>
+
+
+  <div class="menu-title">
+    Administration
+  </div>
+
+  <button
+    id="menuUsers"
+    class="menu-btn"
+    onclick="ouvrirPage('users',this)"
+  >
+    👥 Utilisateurs
+  </button>
+
+  <button
+    class="menu-btn"
+    onclick="ouvrirPage('configuration',this)"
+  >
+    ⚙️ Configuration
+  </button>
+
+</aside>
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="main">
+
+
+<!-- ================= HOME ================= -->
+
+<section
+  id="page-home"
+  class="page active"
+>
+
+  <div class="page-title">
+
+    <h2>
+      Tableau de bord
+    </h2>
+
+    <p id="welcomeText">
+      Bienvenue dans Centre de Formation Le Pédagogue.
+    </p>
+
+  </div>
+
+
+  <div class="stats-grid">
+
+    <div class="stat-card">
+      <div>
+        <div class="stat-label">
+          Étudiants
+        </div>
+
+        <div
+          id="statEtudiants"
+          class="stat-number"
+        >
+          0
+        </div>
+      </div>
+
+      <div class="stat-icon">
         🎓
       </div>
+    </div>
 
+
+    <div class="stat-card">
       <div>
-        <h1>
-          Centre de Formation Le Pédagogue
-        </h1>
+        <div class="stat-label">
+          Professeurs
+        </div>
 
-        <small>
-          Gestion universitaire & école professionnelle
-        </small>
+        <div
+          id="statProfesseurs"
+          class="stat-number"
+        >
+          0
+        </div>
       </div>
+
+      <div class="stat-icon">
+        👨‍🏫
+      </div>
+    </div>
+
+
+    <div class="stat-card">
+      <div>
+        <div class="stat-label">
+          Classes
+        </div>
+
+        <div
+          id="statClasses"
+          class="stat-number"
+        >
+          0
+        </div>
+      </div>
+
+      <div class="stat-icon">
+        🏫
+      </div>
+    </div>
+
+
+    <div class="stat-card">
+      <div>
+        <div class="stat-label">
+          Matières
+        </div>
+
+        <div
+          id="statMatieres"
+          class="stat-number"
+        >
+          0
+        </div>
+      </div>
+
+      <div class="stat-icon">
+        📚
+      </div>
+    </div>
+
+  </div>
+
+
+  <div class="stats-grid">
+
+    <div class="stat-card">
+      <div>
+        <div class="stat-label">
+          Devoirs
+        </div>
+
+        <div
+          id="statDevoirs"
+          class="stat-number"
+        >
+          0
+        </div>
+      </div>
+
+      <div class="stat-icon">
+        📝
+      </div>
+    </div>
+
+
+    <div class="stat-card">
+      <div>
+        <div class="stat-label">
+          Remises
+        </div>
+
+        <div
+          id="statRemises"
+          class="stat-number"
+        >
+          0
+        </div>
+      </div>
+
+      <div class="stat-icon">
+        📥
+      </div>
+    </div>
+
+
+    <div class="stat-card">
+      <div>
+        <div class="stat-label">
+          Résultats
+        </div>
+
+        <div
+          id="statResultats"
+          class="stat-number"
+        >
+          0
+        </div>
+      </div>
+
+      <div class="stat-icon">
+        📊
+      </div>
+    </div>
+
+
+    <div class="stat-card">
+      <div>
+        <div class="stat-label">
+          Utilisateurs
+        </div>
+
+        <div
+          id="statUsers"
+          class="stat-number"
+        >
+          0
+        </div>
+      </div>
+
+      <div class="stat-icon">
+        👥
+      </div>
+    </div>
+
+  </div>
+
+
+  <div class="content-card">
+
+    <div class="content-header">
+      <strong>
+        Compte connecté
+      </strong>
+    </div>
+
+    <div style="padding:20px">
+
+      <p>
+        Email :
+        <strong id="currentEmail">
+          —
+        </strong>
+      </p>
+
+      <p style="margin-top:8px">
+        Rôle :
+        <strong id="currentRole">
+          —
+        </strong>
+      </p>
+
+      <p style="margin-top:8px">
+        Statut :
+        <strong id="currentStatus">
+          —
+        </strong>
+      </p>
 
     </div>
 
-    <div class="header-right">
+  </div>
 
-      <select
-        id="languageSelect"
-        class="lang-select"
-        onchange="changerLangue()"
-      >
-        <option value="fr">🇫🇷 Français</option>
-        <option value="ht">🇭🇹 Kreyòl</option>
-      </select>
+</section>
+
+
+<!-- ================= ETUDIANTS ================= -->
+
+<section
+  id="page-etudiants"
+  class="page"
+>
+
+  <div class="page-title">
+    <h2>🎓 Étudiants</h2>
+    <p>Gestion des étudiants et élèves.</p>
+  </div>
+
+  <div class="content-card">
+
+    <div class="content-header">
+
+      <strong>
+        Liste des étudiants
+      </strong>
 
       <button
-        id="installBtn"
-        class="install-btn hidden"
-        onclick="installerApplication()"
+        class="primary-btn"
+        onclick="ouvrirFormulaire('etudiants')"
       >
-        📱 Installer
+        + Ajouter
       </button>
+
+    </div>
+
+    <div id="liste-etudiants"></div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= PROFESSEURS ================= -->
+
+<section
+  id="page-professeurs"
+  class="page"
+>
+
+  <div class="page-title">
+    <h2>👨‍🏫 Professeurs</h2>
+    <p>Gestion du personnel enseignant.</p>
+  </div>
+
+  <div class="content-card">
+
+    <div class="content-header">
+
+      <strong>
+        Liste des professeurs
+      </strong>
 
       <button
-        class="logout-btn"
-        onclick="deconnecter()"
+        class="primary-btn"
+        onclick="ouvrirFormulaire('professeurs')"
       >
-        Déconnexion
+        + Ajouter
       </button>
 
     </div>
 
-  </header>
+    <div id="liste-professeurs"></div>
 
+  </div>
 
-  <!-- SIDEBAR -->
+</section>
 
-  <aside id="sidebar" class="sidebar">
 
-    <div class="sidebar-title">
-      Principal
-    </div>
+<!-- ================= CLASSES ================= -->
 
-    <button
-      class="nav-btn active"
-      onclick="ouvrirPage('home',this)"
-    >
-      🏠 Tableau de bord
-    </button>
+<section
+  id="page-classes"
+  class="page"
+>
 
+  <div class="page-title">
+    <h2>🏫 Classes / Groupes</h2>
+    <p>Gestion des classes et groupes.</p>
+  </div>
 
-    <div class="sidebar-title">
-      Gestion académique
-    </div>
+  <div class="content-card">
 
-    <button
-      class="nav-btn"
-      onclick="ouvrirPage('etudiants',this)"
-    >
-      🎓 Étudiants
-    </button>
+    <div class="content-header">
 
-    <button
-      class="nav-btn"
-      onclick="ouvrirPage('professeurs',this)"
-    >
-      👨‍🏫 Professeurs
-    </button>
+      <strong>
+        Classes
+      </strong>
 
-    <button
-      class="nav-btn"
-      onclick="ouvrirPage('classes',this)"
-    >
-      🏫 Classes / Groupes
-    </button>
-
-    <button
-      class="nav-btn"
-      onclick="ouvrirPage('filieres',this)"
-    >
-      🎓 Filières / Programmes
-    </button>
-
-    <button
-      class="nav-btn"
-      onclick="ouvrirPage('matieres',this)"
-    >
-      📚 Matières
-    </button>
-
-    <button
-      class="nav-btn"
-      onclick="ouvrirPage('annees',this)"
-    >
-      📅 Années académiques
-    </button>
-
-    <button
-      class="nav-btn"
-      onclick="ouvrirPage('cours',this)"
-    >
-      📖 Cours
-    </button>
-
-    <button
-      class="nav-btn"
-      onclick="ouvrirPage('devoirs',this)"
-    >
-      📝 Devoirs
-    </button>
-
-    <button
-      class="nav-btn"
-      onclick="ouvrirPage('remises',this)"
-    >
-      📥 Remises
-    </button>
-
-
-    <div class="sidebar-title">
-      Résultats
-    </div>
-
-    <button
-      class="nav-btn"
-      onclick="ouvrirPage('resultats',this)"
-    >
-      📊 Résultats
-    </button>
-
-    <button
-      class="nav-btn"
-      onclick="ouvrirPage('statistiques',this)"
-    >
-      📈 Statistiques
-    </button>
-
-
-    <div class="sidebar-title">
-      Administration
-    </div>
-
-    <button
-      id="usersMenu"
-      class="nav-btn"
-      onclick="ouvrirPage('users',this)"
-    >
-      👥 Utilisateurs
-    </button>
-
-    <button
-      class="nav-btn"
-      onclick="ouvrirPage('configuration',this)"
-    >
-      ⚙️ Configuration
-    </button>
-
-  </aside>
-
-
-  <!-- MAIN -->
-
-  <main class="main">
-
-
-    <!-- HOME -->
-
-    <section
-      id="page-home"
-      class="page active"
-    >
-
-      <div class="page-title">
-
-        <h2>
-          Tableau de bord
-        </h2>
-
-        <p id="welcomeText">
-          Bienvenue dans votre espace de gestion.
-        </p>
-
-      </div>
-
-
-      <div class="cards">
-
-        <div class="card stat-card">
-
-          <div>
-            <div class="stat-label">
-              Étudiants
-            </div>
-
-            <div
-              id="statEtudiants"
-              class="stat-number"
-            >
-              0
-            </div>
-          </div>
-
-          <div class="stat-icon">
-            🎓
-          </div>
-
-        </div>
-
-
-        <div class="card stat-card">
-
-          <div>
-            <div class="stat-label">
-              Professeurs
-            </div>
-
-            <div
-              id="statProfesseurs"
-              class="stat-number"
-            >
-              0
-            </div>
-          </div>
-
-          <div class="stat-icon">
-            👨‍🏫
-          </div>
-
-        </div>
-
-
-        <div class="card stat-card">
-
-          <div>
-            <div class="stat-label">
-              Classes
-            </div>
-
-            <div
-              id="statClasses"
-              class="stat-number"
-            >
-              0
-            </div>
-          </div>
-
-          <div class="stat-icon">
-            🏫
-          </div>
-
-        </div>
-
-
-        <div class="card stat-card">
-
-          <div>
-            <div class="stat-label">
-              Matières
-            </div>
-
-            <div
-              id="statMatieres"
-              class="stat-number"
-            >
-              0
-            </div>
-          </div>
-
-          <div class="stat-icon">
-            📚
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <div class="cards">
-
-        <div class="card">
-
-          <div class="stat-label">
-            Devoirs
-          </div>
-
-          <div
-            id="statDevoirs"
-            class="stat-number"
-          >
-            0
-          </div>
-
-        </div>
-
-
-        <div class="card">
-
-          <div class="stat-label">
-            Remises
-          </div>
-
-          <div
-            id="statRemises"
-            class="stat-number"
-          >
-            0
-          </div>
-
-        </div>
-
-
-        <div class="card">
-
-          <div class="stat-label">
-            Résultats
-          </div>
-
-          <div
-            id="statResultats"
-            class="stat-number"
-          >
-            0
-          </div>
-
-        </div>
-
-
-        <div class="card">
-
-          <div class="stat-label">
-            Utilisateurs
-          </div>
-
-          <div
-            id="statUsers"
-            class="stat-number"
-          >
-            0
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <div class="table-card">
-
-        <div class="table-header">
-
-          <strong>
-            Informations du compte
-          </strong>
-
-        </div>
-
-        <div style="padding:20px">
-
-          <p>
-            <strong>Email :</strong>
-            <span id="currentEmail">—</span>
-          </p>
-
-          <p style="margin-top:8px">
-            <strong>Rôle :</strong>
-            <span id="currentRole">—</span>
-          </p>
-
-          <p style="margin-top:8px">
-            <strong>Statut :</strong>
-            <span id="currentStatus">—</span>
-          </p>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- ETUDIANTS -->
-
-    <section
-      id="page-etudiants"
-      class="page"
-    >
-
-      <div class="page-title">
-
-        <h2>🎓 Étudiants</h2>
-
-        <p>
-          Gestion des étudiants et élèves.
-        </p>
-
-      </div>
-
-      <div class="table-card">
-
-        <div class="table-header">
-
-          <strong>
-            Liste des étudiants
-          </strong>
-
-          <button
-            class="primary-btn"
-            onclick="ajouterEtudiant()"
-          >
-            + Ajouter
-          </button>
-
-        </div>
-
-        <div
-          id="listeEtudiants"
-          class="empty"
-        >
-          Chargement...
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- PROFESSEURS -->
-
-    <section
-      id="page-professeurs"
-      class="page"
-    >
-
-      <div class="page-title">
-
-        <h2>👨‍🏫 Professeurs</h2>
-
-        <p>
-          Gestion du personnel enseignant.
-        </p>
-
-      </div>
-
-      <div class="table-card">
-
-        <div class="table-header">
-
-          <strong>
-            Liste des professeurs
-          </strong>
-
-          <button
-            class="primary-btn"
-            onclick="ajouterProfesseur()"
-          >
-            + Ajouter
-          </button>
-
-        </div>
-
-        <div
-          id="listeProfesseurs"
-          class="empty"
-        >
-          Chargement...
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- CLASSES -->
-
-    <section
-      id="page-classes"
-      class="page"
-    >
-
-      <div class="page-title">
-
-        <h2>🏫 Classes / Groupes</h2>
-
-        <p>
-          Gestion des classes et groupes.
-        </p>
-
-      </div>
-
-      <div class="table-card">
-
-        <div class="table-header">
-
-          <strong>Classes</strong>
-
-          <button
-            class="primary-btn"
-            onclick="ajouterClasse()"
-          >
-            + Ajouter
-          </button>
-
-        </div>
-
-        <div
-          id="listeClasses"
-          class="empty"
-        >
-          Chargement...
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- FILIERES -->
-
-    <section
-      id="page-filieres"
-      class="page"
-    >
-
-      <div class="page-title">
-
-        <h2>🎓 Filières / Programmes</h2>
-
-        <p>
-          Programmes de formation professionnelle et universitaire.
-        </p>
-
-      </div>
-
-      <div class="table-card">
-
-        <div class="table-header">
-
-          <strong>Filières</strong>
-
-          <button
-            class="primary-btn"
-            onclick="ajouterFiliere()"
-          >
-            + Ajouter
-          </button>
-
-        </div>
-
-        <div
-          id="listeFilieres"
-          class="empty"
-        >
-          Chargement...
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- MATIERES -->
-
-    <section
-      id="page-matieres"
-      class="page"
-    >
-
-      <div class="page-title">
-
-        <h2>📚 Matières</h2>
-
-        <p>
-          Gestion des matières académiques.
-        </p>
-
-      </div>
-
-      <div class="table-card">
-
-        <div class="table-header">
-
-          <strong>Matières</strong>
-
-          <button
-            class="primary-btn"
-            onclick="ajouterMatiere()"
-          >
-            + Ajouter
-          </button>
-
-        </div>
-
-        <div
-          id="listeMatieres"
-          class="empty"
-        >
-          Chargement...
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- ANNEES -->
-
-    <section
-      id="page-annees"
-      class="page"
-    >
-
-      <div class="page-title">
-
-        <h2>📅 Années académiques</h2>
-
-        <p>
-          Gestion des années académiques.
-        </p>
-
-      </div>
-
-      <div class="table-card">
-
-        <div class="table-header">
-
-          <strong>Années académiques</strong>
-
-          <button
-            class="primary-btn"
-            onclick="ajouterAnnee()"
-          >
-            + Ajouter
-          </button>
-
-        </div>
-
-        <div
-          id="listeAnnees"
-          class="empty"
-        >
-          Chargement...
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- COURS -->
-
-    <section
-      id="page-cours"
-      class="page"
-    >
-
-      <div class="page-title">
-
-        <h2>📖 Cours</h2>
-
-        <p>
-          Gestion des cours.
-        </p>
-
-      </div>
-
-      <div class="table-card">
-
-        <div class="table-header">
-
-          <strong>Cours</strong>
-
-          <button
-            class="primary-btn"
-            onclick="ajouterCours()"
-          >
-            + Ajouter
-          </button>
-
-        </div>
-
-        <div
-          id="listeCours"
-          class="empty"
-        >
-          Chargement...
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- DEVOIRS -->
-
-    <section
-      id="page-devoirs"
-      class="page"
-    >
-
-      <div class="page-title">
-
-        <h2>📝 Devoirs</h2>
-
-        <p>
-          Gestion des devoirs et évaluations.
-        </p>
-
-      </div>
-
-      <div class="table-card">
-
-        <div class="table-header">
-
-          <strong>Devoirs</strong>
-
-          <button
-            class="primary-btn"
-            onclick="ajouterDevoir()"
-          >
-            + Ajouter
-          </button>
-
-        </div>
-
-        <div
-          id="listeDevoirs"
-          class="empty"
-        >
-          Chargement...
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- REMISES -->
-
-    <section
-      id="page-remises"
-      class="page"
-    >
-
-      <div class="page-title">
-
-        <h2>📥 Remises</h2>
-
-        <p>
-          Travaux remis par les étudiants.
-        </p>
-
-      </div>
-
-      <div class="table-card">
-
-        <div class="table-header">
-
-          <strong>Remises</strong>
-
-        </div>
-
-        <div
-          id="listeRemises"
-          class="empty"
-        >
-          Chargement...
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- RESULTATS -->
-
-    <section
-      id="page-resultats"
-      class="page"
-    >
-
-      <div class="page-title">
-
-        <h2>📊 Résultats</h2>
-
-        <p>
-          Notes et résultats académiques.
-        </p>
-
-      </div>
-
-      <div class="table-card">
-
-        <div class="table-header">
-
-          <strong>Résultats</strong>
-
-        </div>
-
-        <div
-          id="listeResultats"
-          class="empty"
-        >
-          Chargement...
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- STATISTIQUES -->
-
-    <section
-      id="page-statistiques"
-      class="page"
-    >
-
-      <div class="page-title">
-
-        <h2>📈 Statistiques</h2>
-
-        <p>
-          Vue générale des données académiques.
-        </p>
-
-      </div>
-
-      <div
-        id="statistiquesContent"
-        class="cards"
+      <button
+        class="primary-btn"
+        onclick="ouvrirFormulaire('classes')"
       >
-      </div>
+        + Ajouter
+      </button>
 
-    </section>
+    </div>
 
+    <div id="liste-classes"></div>
 
-    <!-- USERS -->
+  </div>
 
-    <section
-      id="page-users"
-      class="page"
-    >
-
-      <div class="page-title">
-
-        <h2>👥 Utilisateurs</h2>
-
-        <p>
-          Gestion des comptes et des autorisations.
-        </p>
-
-      </div>
-
-      <div class="table-card">
-
-        <div class="table-header">
-
-          <strong>
-            Utilisateurs en attente
-          </strong>
-
-        </div>
-
-        <div
-          id="listeUsers"
-          class="empty"
-        >
-          Chargement...
-        </div>
-
-      </div>
-
-    </section>
+</section>
 
 
-    <!-- CONFIGURATION -->
+<!-- ================= FILIERES ================= -->
 
-    <section
-      id="page-configuration"
-      class="page"
-    >
+<section
+  id="page-filieres"
+  class="page"
+>
 
-      <div class="page-title">
+  <div class="page-title">
+    <h2>🎓 Filières / Programmes</h2>
+    <p>Programmes universitaires et professionnels.</p>
+  </div>
 
-        <h2>⚙️ Configuration</h2>
+  <div class="content-card">
 
-        <p>
-          Configuration générale du Centre de Formation Le Pédagogue.
-        </p>
+    <div class="content-header">
 
-      </div>
+      <strong>
+        Filières
+      </strong>
 
-      <div class="card">
+      <button
+        class="primary-btn"
+        onclick="ouvrirFormulaire('filieres')"
+      >
+        + Ajouter
+      </button>
 
-        <h3>
-          Centre de Formation Le Pédagogue
-        </h3>
+    </div>
 
-        <p style="margin-top:10px;color:#64748b">
-          Gestion universitaire et école professionnelle.
-        </p>
+    <div id="liste-filieres"></div>
 
-        <hr style="margin:20px 0;border:0;border-top:1px solid #e2e8f0">
+  </div>
 
-        <p>
-          Version :
-          <strong>1.0</strong>
-        </p>
-
-        <p style="margin-top:10px">
-          Firebase :
-          <strong>Activé</strong>
-        </p>
-
-      </div>
-
-    </section>
+</section>
 
 
-  </main>
+<!-- ================= MATIERES ================= -->
+
+<section
+  id="page-matieres"
+  class="page"
+>
+
+  <div class="page-title">
+    <h2>📚 Matières</h2>
+    <p>Gestion des matières académiques.</p>
+  </div>
+
+  <div class="content-card">
+
+    <div class="content-header">
+
+      <strong>
+        Matières
+      </strong>
+
+      <button
+        class="primary-btn"
+        onclick="ouvrirFormulaire('matieres')"
+      >
+        + Ajouter
+      </button>
+
+    </div>
+
+    <div id="liste-matieres"></div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= ANNEES ================= -->
+
+<section
+  id="page-annees"
+  class="page"
+>
+
+  <div class="page-title">
+    <h2>📅 Années académiques</h2>
+    <p>Gestion des années académiques.</p>
+  </div>
+
+  <div class="content-card">
+
+    <div class="content-header">
+
+      <strong>
+        Années académiques
+      </strong>
+
+      <button
+        class="primary-btn"
+        onclick="ouvrirFormulaire('annees')"
+      >
+        + Ajouter
+      </button>
+
+    </div>
+
+    <div id="liste-annees"></div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= COURS ================= -->
+
+<section
+  id="page-cours"
+  class="page"
+>
+
+  <div class="page-title">
+    <h2>📖 Cours</h2>
+    <p>Gestion des cours.</p>
+  </div>
+
+  <div class="content-card">
+
+    <div class="content-header">
+
+      <strong>
+        Cours
+      </strong>
+
+      <button
+        class="primary-btn"
+        onclick="ouvrirFormulaire('cours')"
+      >
+        + Ajouter
+      </button>
+
+    </div>
+
+    <div id="liste-cours"></div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= DEVOIRS ================= -->
+
+<section
+  id="page-devoirs"
+  class="page"
+>
+
+  <div class="page-title">
+    <h2>📝 Devoirs</h2>
+    <p>Gestion des devoirs et évaluations.</p>
+  </div>
+
+  <div class="content-card">
+
+    <div class="content-header">
+
+      <strong>
+        Devoirs
+      </strong>
+
+      <button
+        class="primary-btn"
+        onclick="ouvrirFormulaire('devoirs')"
+      >
+        + Ajouter
+      </button>
+
+    </div>
+
+    <div id="liste-devoirs"></div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= REMISES ================= -->
+
+<section
+  id="page-remises"
+  class="page"
+>
+
+  <div class="page-title">
+    <h2>📥 Remises</h2>
+    <p>Travaux remis et corrections des professeurs.</p>
+  </div>
+
+  <div class="content-card">
+
+    <div class="content-header">
+
+      <strong>
+        Remises
+      </strong>
+
+    </div>
+
+    <div id="liste-remises"></div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= RESULTATS ================= -->
+
+<section
+  id="page-resultats"
+  class="page"
+>
+
+  <div class="page-title">
+    <h2>📊 Résultats</h2>
+    <p>Notes et résultats académiques.</p>
+  </div>
+
+  <div class="content-card">
+
+    <div class="content-header">
+
+      <strong>
+        Résultats
+      </strong>
+
+      <button
+        class="primary-btn"
+        onclick="ouvrirFormulaire('resultats')"
+      >
+        + Ajouter
+      </button>
+
+    </div>
+
+    <div id="liste-resultats"></div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= STATISTIQUES ================= -->
+
+<section
+  id="page-statistiques"
+  class="page"
+>
+
+  <div class="page-title">
+    <h2>📈 Statistiques</h2>
+    <p>Vue générale de l'établissement.</p>
+  </div>
+
+  <div
+    id="statistiquesBox"
+    class="stats-grid"
+  ></div>
+
+</section>
+
+
+<!-- ================= USERS ================= -->
+
+<section
+  id="page-users"
+  class="page"
+>
+
+  <div class="page-title">
+    <h2>👥 Utilisateurs</h2>
+    <p>Gestion des comptes, statuts et rôles.</p>
+  </div>
+
+  <div class="content-card">
+
+    <div class="content-header">
+
+      <strong>
+        Utilisateurs
+      </strong>
+
+    </div>
+
+    <div id="liste-users"></div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= CONFIGURATION ================= -->
+
+<section
+  id="page-configuration"
+  class="page"
+>
+
+  <div class="page-title">
+    <h2>⚙️ Configuration</h2>
+    <p>Configuration générale du centre.</p>
+  </div>
+
+  <div class="content-card">
+
+    <div style="padding:22px">
+
+      <h3>
+        Centre de Formation Le Pédagogue
+      </h3>
+
+      <p style="margin-top:10px;color:#718096">
+        Gestion universitaire et école professionnelle.
+      </p>
+
+      <p style="margin-top:15px">
+        Version :
+        <strong>1.0</strong>
+      </p>
+
+      <p style="margin-top:8px">
+        Base de données :
+        <strong>Firebase Firestore</strong>
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+</main>
 
 </section>
 
 
 <!-- =====================================================
-     JAVASCRIPT
+     MODAL
 ===================================================== -->
 
-<script>
+<div
+  id="modal"
+  class="modal"
+>
 
-function ouvrirPage(page, bouton){
+  <div class="modal-box">
+
+    <div class="modal-header">
+
+      <h3 id="modalTitle">
+        Ajouter
+      </h3>
+
+      <button
+        class="close-btn"
+        onclick="fermerModal()"
+      >
+        ✕
+      </button>
+
+    </div>
+
+    <div id="modalBody"></div>
+
+  </div>
+
+</div>
+
+
+<!-- =====================================================
+     FIREBASE
+===================================================== -->
+
+<script type="module">
+
+import {
+  initializeApp
+}
+from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+
+
+import {
+  getAuth,
+  onAuthStateChanged,
+  GoogleAuthProvider,
+  signInWithPopup,
+  signInWithRedirect,
+  getRedirectResult,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  setPersistence,
+  browserLocalPersistence
+}
+from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+
+
+import {
+  getFirestore,
+  doc,
+  setDoc,
+  getDoc,
+  getDocs,
+  deleteDoc,
+  collection,
+  serverTimestamp
+}
+from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
+
+
+/* =====================================================
+   FIREBASE CONFIGURATION
+===================================================== */
+
+const firebaseConfig = {
+
+  apiKey:
+    "AIzaSyDx6Rpd31eaFVQ0BL17BXCnIniLd0Fk7cA",
+
+  authDomain:
+    "centre-de-formation-le-ped.firebaseapp.com",
+
+  projectId:
+    "centre-de-formation-le-ped",
+
+  storageBucket:
+    "centre-de-formation-le-ped.firebasestorage.app",
+
+  messagingSenderId:
+    "883893680829",
+
+  appId:
+    "1:883893680829:web:621cdf54d136cece6fd5d4"
+
+};
+
+
+/* =====================================================
+   INITIALISATION
+===================================================== */
+
+const firebaseApp =
+  initializeApp(firebaseConfig);
+
+const auth =
+  getAuth(firebaseApp);
+
+const db =
+  getFirestore(firebaseApp);
+
+const googleProvider =
+  new GoogleAuthProvider();
+
+googleProvider.setCustomParameters({
+  prompt:"select_account"
+});
+
+setPersistence(
+  auth,
+  browserLocalPersistence
+).catch(()=>{});
+
+
+/* =====================================================
+   ADMINISTRATEUR PRINCIPAL
+===================================================== */
+
+const ADMIN_EMAIL =
+  "centredeformationlepedagogue@gmail.com";
+
+
+let currentUser = null;
+let currentUserData = null;
+let deferredPrompt = null;
+
+
+/* =====================================================
+   COLLECTIONS
+===================================================== */
+
+const COLLECTIONS = {
+
+  etudiants:
+    "etudiants",
+
+  professeurs:
+    "professeurs",
+
+  classes:
+    "classes",
+
+  filieres:
+    "filieres",
+
+  matieres:
+    "matieres",
+
+  annees:
+    "annees_academiques",
+
+  cours:
+    "cours",
+
+  devoirs:
+    "devoirs",
+
+  remises:
+    "remises",
+
+  resultats:
+    "resultats",
+
+  users:
+    "users"
+
+};
+
+
+/* =====================================================
+   UTILITAIRES
+===================================================== */
+
+function setAuthMessage(message){
 
   document
-    .querySelectorAll(".page")
-    .forEach(p => p.classList.remove("active"));
-
-  const cible =
-    document.getElementById("page-" + page);
-
-  if(cible){
-    cible.classList.add("active");
-  }
-
-  document
-    .querySelectorAll(".nav-btn")
-    .forEach(b => b.classList.remove("active"));
-
-  if(bouton){
-    bouton.classList.add("active");
-  }
+    .getElementById("authMessage")
+    .textContent = message;
 
 }
 
-function changerLangue(){
 
-  const langue =
-    document.getElementById("languageSelect").value;
+function escapeHTML(value){
 
-  localStorage.setItem(
-    "cfp_language",
-    langue
+  return String(value ?? "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+function isAdmin(){
+
+  return currentUserData
+    && currentUserData.role === "administrateur"
+    && currentUserData.status === "accepted";
+
+}
+
+
+function isAccepted(){
+
+  return currentUserData
+    && currentUserData.status === "accepted";
+
+}
+
+
+/* =====================================================
+   AFFICHAGE LOGIN / INSCRIPTION
+===================================================== */
+
+window.afficherInscription =
+function(){
+
+  document
+    .getElementById("loginForm")
+    .classList.add("hidden");
+
+  document
+    .getElementById("registerForm")
+    .classList.remove("hidden");
+
+  setAuthMessage(
+    "Créez votre compte. Il sera soumis à l'approbation de l'administrateur."
+  );
+
+};
+
+
+window.afficherConnexion =
+function(){
+
+  document
+    .getElementById("registerForm")
+    .classList.add("hidden");
+
+  document
+    .getElementById("loginForm")
+    .classList.remove("hidden");
+
+  setAuthMessage(
+    "Connectez-vous pour accéder à votre espace."
+  );
+
+};
+
+
+/* =====================================================
+   CONNEXION EMAIL
+===================================================== */
+
+window.connecter =
+async function(){
+
+  const email =
+    document
+      .getElementById("loginEmail")
+      .value
+      .trim();
+
+  const password =
+    document
+      .getElementById("loginPassword")
+      .value;
+
+
+  if(!email || !password){
+
+    setAuthMessage(
+      "Veuillez entrer votre email et votre mot de passe."
+    );
+
+    return;
+  }
+
+
+  try{
+
+    await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+
+  }catch(error){
+
+    setAuthMessage(
+      firebaseError(error)
+    );
+
+  }
+
+};
+
+
+/* =====================================================
+   GOOGLE
+===================================================== */
+
+window.connecterAvecGoogle =
+async function(){
+
+  try{
+
+    await signInWithPopup(
+      auth,
+      googleProvider
+    );
+
+  }catch(error){
+
+    if(
+      error.code === "auth/popup-blocked" ||
+      error.code === "auth/popup-cancelled" ||
+      error.code === "auth/operation-not-supported-in-this-environment"
+    ){
+
+      await signInWithRedirect(
+        auth,
+        googleProvider
+      );
+
+      return;
+    }
+
+    setAuthMessage(
+      firebaseError(error)
+    );
+
+  }
+
+};
+
+
+/* =====================================================
+   INSCRIPTION
+===================================================== */
+
+window.inscrire =
+async function(){
+
+  const name =
+    document
+      .getElementById("registerName")
+      .value
+      .trim();
+
+  const email =
+    document
+      .getElementById("registerEmail")
+      .value
+      .trim();
+
+  const password =
+    document
+      .getElementById("registerPassword")
+      .value;
+
+
+  if(!name){
+
+    setAuthMessage(
+      "Veuillez entrer votre nom complet."
+    );
+
+    return;
+  }
+
+
+  if(!email){
+
+    setAuthMessage(
+      "Veuillez entrer votre email."
+    );
+
+    return;
+  }
+
+
+  if(password.length < 6){
+
+    setAuthMessage(
+      "Le mot de passe doit contenir au moins 6 caractères."
+    );
+
+    return;
+  }
+
+
+  try{
+
+    const credential =
+      await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
+
+    await createUserProfile(
+      credential.user,
+      name
+    );
+
+
+    setAuthMessage(
+      "Compte créé. Votre demande est en attente d'approbation."
+    );
+
+
+  }catch(error){
+
+    setAuthMessage(
+      firebaseError(error)
+    );
+
+  }
+
+};
+
+
+/* =====================================================
+   CREATION PROFIL
+===================================================== */
+
+async function createUserProfile(
+  user,
+  name=""
+){
+
+  const email =
+    (user.email || "")
+      .trim()
+      .toLowerCase();
+
+
+  const isMainAdmin =
+    email === ADMIN_EMAIL;
+
+
+  const reference =
+    doc(
+      db,
+      "users",
+      user.uid
+    );
+
+
+  const existing =
+    await getDoc(reference);
+
+
+  if(existing.exists()){
+
+    return;
+
+  }
+
+
+  await setDoc(
+    reference,
+    {
+
+      uid:
+        user.uid,
+
+      email:
+        user.email || "",
+
+      nom:
+        name ||
+        user.displayName ||
+        "",
+
+      role:
+        isMainAdmin
+          ? "administrateur"
+          : "attente",
+
+      status:
+        isMainAdmin
+          ? "accepted"
+          : "pending",
+
+      createdAt:
+        serverTimestamp()
+
+    }
   );
 
 }
 
-function installerApplication(){
 
-  if(window.deferredInstallPrompt){
+/* =====================================================
+   CHARGER PROFIL
+===================================================== */
 
-    window.deferredInstallPrompt.prompt();
+async function loadCurrentProfile(
+  user
+){
+
+  const reference =
+    doc(
+      db,
+      "users",
+      user.uid
+    );
+
+
+  let snapshot =
+    await getDoc(reference);
+
+
+  if(!snapshot.exists()){
+
+    await createUserProfile(
+      user
+    );
+
+    snapshot =
+      await getDoc(reference);
+
+  }
+
+
+  if(!snapshot.exists()){
+
+    throw new Error(
+      "Impossible de créer le profil utilisateur."
+    );
+
+  }
+
+
+  currentUserData =
+    snapshot.data();
+
+
+  document
+    .getElementById("currentEmail")
+    .textContent =
+      currentUserData.email ||
+      user.email ||
+      "—";
+
+
+  document
+    .getElementById("currentRole")
+    .textContent =
+      currentUserData.role ||
+      "—";
+
+
+  document
+    .getElementById("currentStatus")
+    .textContent =
+      currentUserData.status ||
+      "—";
+
+
+  document
+    .getElementById("welcomeText")
+    .textContent =
+      "Bienvenue " +
+      (
+        currentUserData.nom ||
+        user.displayName ||
+        user.email ||
+        ""
+      );
+
+
+  document
+    .getElementById("menuUsers")
+    .classList.toggle(
+      "hidden",
+      !isAdmin()
+    );
+
+}
+
+
+/* =====================================================
+   INITIALISATION DES COLLECTIONS
+===================================================== */
+
+async function initialiserBase(){
+
+  if(!isAdmin()){
+
+    return;
+
+  }
+
+
+  const structures = [
+
+    {
+      id:"etudiants",
+      nom:"Étudiants"
+    },
+
+    {
+      id:"professeurs",
+      nom:"Professeurs"
+    },
+
+    {
+      id:"classes",
+      nom:"Classes / Groupes"
+    },
+
+    {
+      id:"filieres",
+      nom:"Filières / Programmes"
+    },
+
+    {
+      id:"matieres",
+      nom:"Matières"
+    },
+
+    {
+      id:"annees",
+      nom:"Années académiques"
+    },
+
+    {
+      id:"cours",
+      nom:"Cours"
+    },
+
+    {
+      id:"devoirs",
+      nom:"Devoirs"
+    },
+
+    {
+      id:"remises",
+      nom:"Remises"
+    },
+
+    {
+      id:"resultats",
+      nom:"Résultats"
+    }
+
+  ];
+
+
+  /*
+   * Firestore ne conserve pas les collections vides.
+   * Ces documents système servent uniquement à initialiser
+   * proprement la structure.
+   */
+
+  for(
+    const item of structures
+  ){
+
+    const reference =
+      doc(
+        db,
+        "configuration",
+        item.id
+      );
+
+
+    const snapshot =
+      await getDoc(reference);
+
+
+    if(!snapshot.exists()){
+
+      await setDoc(
+        reference,
+        {
+
+          type:"system",
+
+          collection:
+            item.id,
+
+          nom:
+            item.nom,
+
+          createdAt:
+            serverTimestamp()
+
+        }
+      );
+
+    }
 
   }
 
 }
 
-function deconnecter(){
 
-  if(typeof logoutFirebase === "function"){
-    logoutFirebase();
+/* =====================================================
+   AUTH STATE
+===================================================== */
+
+onAuthStateChanged(
+  auth,
+  async user => {
+
+    if(!user){
+
+      currentUser = null;
+      currentUserData = null;
+
+      document
+        .getElementById("authPage")
+        .classList.remove("hidden");
+
+      document
+        .getElementById("appPage")
+        .classList.add("hidden");
+
+      return;
+
+    }
+
+
+    currentUser = user;
+
+
+    try{
+
+      await loadCurrentProfile(
+        user
+      );
+
+
+      if(
+        !currentUserData ||
+        currentUserData.status !== "accepted"
+      ){
+
+        document
+          .getElementById("authPage")
+          .classList.remove("hidden");
+
+        document
+          .getElementById("appPage")
+          .classList.add("hidden");
+
+
+        setAuthMessage(
+          "Votre compte est en attente d'approbation par l'administrateur."
+        );
+
+
+        await signOut(auth);
+
+        return;
+
+      }
+
+
+      await initialiserBase();
+
+
+      document
+        .getElementById("authPage")
+        .classList.add("hidden");
+
+      document
+        .getElementById("appPage")
+        .classList.remove("hidden");
+
+
+      await chargerDashboard();
+
+    }catch(error){
+
+      console.error(error);
+
+      document
+        .getElementById("authPage")
+        .classList.remove("hidden");
+
+      document
+        .getElementById("appPage")
+        .classList.add("hidden");
+
+
+      setAuthMessage(
+        "Erreur Firebase : " +
+        error.message
+      );
+
+    }
+
+  }
+);
+
+
+/* =====================================================
+   REDIRECT GOOGLE
+===================================================== */
+
+getRedirectResult(auth)
+  .catch(error => {
+
+    console.error(
+      "Google redirect:",
+      error
+    );
+
+  });
+
+
+/* =====================================================
+   LOGOUT
+===================================================== */
+
+window.deconnecter =
+async function(){
+
+  await signOut(
+    auth
+  );
+
+};
+
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+window.ouvrirPage =
+function(
+  pageName,
+  button
+){
+
+  document
+    .querySelectorAll(".page")
+    .forEach(
+      page =>
+        page.classList.remove("active")
+    );
+
+
+  const page =
+    document.getElementById(
+      "page-" + pageName
+    );
+
+
+  if(page){
+
+    page.classList.add(
+      "active"
+    );
+
+  }
+
+
+  document
+    .querySelectorAll(".menu-btn")
+    .forEach(
+      btn =>
+        btn.classList.remove("active")
+    );
+
+
+  if(button){
+
+    button.classList.add(
+      "active"
+    );
+
+  }
+
+
+  if(pageName === "users"){
+
+    chargerUsers();
+
+  }
+
+
+  if(pageName === "statistiques"){
+
+    chargerStatistiques();
+
+  }
+
+};
+
+
+/* =====================================================
+   DASHBOARD
+===================================================== */
+
+async function chargerDashboard(){
+
+  const names = [
+
+    ["etudiants","statEtudiants"],
+
+    ["professeurs","statProfesseurs"],
+
+    ["classes","statClasses"],
+
+    ["matieres","statMatieres"],
+
+    ["devoirs","statDevoirs"],
+
+    ["remises","statRemises"],
+
+    ["resultats","statResultats"],
+
+    ["users","statUsers"]
+
+  ];
+
+
+  for(
+    const [collectionName,id]
+    of names
+  ){
+
+    try{
+
+      const snapshot =
+        await getDocs(
+          collection(
+            db,
+            collectionName
+          )
+        );
+
+
+      document
+        .getElementById(id)
+        .textContent =
+          snapshot.size;
+
+    }catch(error){
+
+      document
+        .getElementById(id)
+        .textContent =
+          "—";
+
+    }
+
   }
 
 }
 
-function connecter(){
 
-  if(typeof loginFirebase === "function"){
-    loginFirebase();
+/* =====================================================
+   FORMULAIRES
+===================================================== */
+
+window.ouvrirFormulaire =
+function(
+  type
+){
+
+  if(
+    !isAdmin() &&
+    currentUserData.role !== "professeur"
+  ){
+
+    alert(
+      "Vous n'avez pas l'autorisation."
+    );
+
+    return;
+
+  }
+
+
+  const labels = {
+
+    etudiants:
+      "Ajouter un étudiant",
+
+    professeurs:
+      "Ajouter un professeur",
+
+    classes:
+      "Ajouter une classe",
+
+    filieres:
+      "Ajouter une filière",
+
+    matieres:
+      "Ajouter une matière",
+
+    annees:
+      "Ajouter une année académique",
+
+    cours:
+      "Ajouter un cours",
+
+    devoirs:
+      "Ajouter un devoir",
+
+    resultats:
+      "Ajouter un résultat"
+
+  };
+
+
+  document
+    .getElementById("modalTitle")
+    .textContent =
+      labels[type] ||
+      "Ajouter";
+
+
+  let html = `
+
+    <div class="form-group">
+
+      <label>
+        Nom / Titre
+      </label>
+
+      <input
+        id="formNom"
+        type="text"
+        placeholder="Nom ou titre"
+      >
+
+    </div>
+
+    <div class="form-group">
+
+      <label>
+        Code / Information
+      </label>
+
+      <input
+        id="formInfo"
+        type="text"
+        placeholder="Code ou information"
+      >
+
+    </div>
+
+  `;
+
+
+  if(type === "resultats"){
+
+    html += `
+
+      <div class="form-group">
+
+        <label>
+          Note sur 20
+        </label>
+
+        <input
+          id="formNote"
+          type="number"
+          min="0"
+          max="20"
+          step="0.01"
+          placeholder="15"
+        >
+
+      </div>
+
+      <div class="form-group">
+
+        <label>
+          Correction / Commentaire
+        </label>
+
+        <textarea
+          id="formCorrection"
+          placeholder="Commentaire du professeur"
+        ></textarea>
+
+      </div>
+
+    `;
+
+  }
+
+
+  html += `
+
+    <button
+      class="primary-btn"
+      onclick="enregistrerElement('${type}')"
+    >
+      Enregistrer
+    </button>
+
+  `;
+
+
+  document
+    .getElementById("modalBody")
+    .innerHTML =
+      html;
+
+
+  document
+    .getElementById("modal")
+    .classList.add("show");
+
+};
+
+
+/* =====================================================
+   ENREGISTRER
+===================================================== */
+
+window.enregistrerElement =
+async function(
+  type
+){
+
+  const nom =
+    document
+      .getElementById("formNom")
+      .value
+      .trim();
+
+
+  const info =
+    document
+      .getElementById("formInfo")
+      .value
+      .trim();
+
+
+  if(!nom){
+
+    alert(
+      "Le nom ou titre est obligatoire."
+    );
+
+    return;
+
+  }
+
+
+  const collectionName =
+    type === "annees"
+      ? "annees_academiques"
+      : type;
+
+
+  const data = {
+
+    nom:
+      nom,
+
+    info:
+      info,
+
+    createdBy:
+      currentUser.uid,
+
+    createdAt:
+      serverTimestamp()
+
+  };
+
+
+  if(type === "resultats"){
+
+    const note =
+      Number(
+        document
+          .getElementById("formNote")
+          .value
+      );
+
+
+    if(
+      isNaN(note) ||
+      note < 0 ||
+      note > 20
+    ){
+
+      alert(
+        "La note doit être comprise entre 0 et 20."
+      );
+
+      return;
+
+    }
+
+
+    data.note20 =
+      note;
+
+
+    data.noteSur20 =
+      note;
+
+
+    data.correction =
+      document
+        .getElementById("formCorrection")
+        .value
+        .trim();
+
+  }
+
+
+  try{
+
+    await setDoc(
+      doc(
+        collection(
+          db,
+          collectionName
+        )
+      ),
+      data
+    );
+
+
+    fermerModal();
+
+
+    await chargerDashboard();
+
+
+    await chargerCollection(
+      collectionName
+    );
+
+
+    alert(
+      "Enregistrement effectué."
+    );
+
+  }catch(error){
+
+    alert(
+      "Erreur Firebase : " +
+      error.message
+    );
+
+  }
+
+};
+
+
+/* =====================================================
+   FERMER MODAL
+===================================================== */
+
+window.fermerModal =
+function(){
+
+  document
+    .getElementById("modal")
+    .classList.remove("show");
+
+};
+
+
+/* =====================================================
+   CHARGER COLLECTION
+===================================================== */
+
+async function chargerCollection(
+  collectionName
+){
+
+  let elementId =
+    "liste-" +
+    collectionName;
+
+
+  if(collectionName === "annees_academiques"){
+
+    elementId =
+      "liste-annees";
+
+  }
+
+
+  const element =
+    document.getElementById(
+      elementId
+    );
+
+
+  if(!element){
+
+    return;
+
+  }
+
+
+  element.innerHTML =
+    `<div class="empty">
+      Chargement...
+    </div>`;
+
+
+  try{
+
+    const snapshot =
+      await getDocs(
+        collection(
+          db,
+          collectionName
+        )
+      );
+
+
+    if(snapshot.empty){
+
+      element.innerHTML =
+        `<div class="empty">
+          Aucune donnée pour le moment.
+        </div>`;
+
+      return;
+
+    }
+
+
+    let rows = "";
+
+
+    snapshot.forEach(
+      item => {
+
+        const data =
+          item.data();
+
+
+        const title =
+          data.nom ||
+          data.titre ||
+          data.email ||
+          "Sans nom";
+
+
+        let extra =
+          data.info ||
+          "";
+
+
+        if(
+          collectionName === "resultats"
+        ){
+
+          extra =
+            (data.noteSur20 ?? "—") +
+            "/20";
+
+        }
+
+
+        rows += `
+
+          <tr>
+
+            <td>
+              ${escapeHTML(title)}
+            </td>
+
+            <td>
+              ${escapeHTML(extra)}
+            </td>
+
+            <td>
+
+              <button
+                class="action-btn delete-btn"
+                onclick="supprimerElement(
+                  '${collectionName}',
+                  '${item.id}'
+                )"
+              >
+                Supprimer
+              </button>
+
+            </td>
+
+          </tr>
+
+        `;
+
+      }
+    );
+
+
+    element.innerHTML = `
+
+      <div class="table-container">
+
+        <table>
+
+          <thead>
+
+            <tr>
+
+              <th>
+                Nom / Titre
+              </th>
+
+              <th>
+                Information
+              </th>
+
+              <th>
+                Action
+              </th>
+
+            </tr>
+
+          </thead>
+
+          <tbody>
+
+            ${rows}
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    `;
+
+  }catch(error){
+
+    element.innerHTML =
+      `<div class="empty">
+        Erreur Firebase :
+        ${escapeHTML(error.message)}
+      </div>`;
+
   }
 
 }
 
-function connecterAvecGoogle(){
 
-  if(typeof loginGoogleFirebase === "function"){
-    loginGoogleFirebase();
+/* =====================================================
+   CHARGER TOUTES LES LISTES
+===================================================== */
+
+async function chargerToutesLesListes(){
+
+  const names = [
+
+    "etudiants",
+    "professeurs",
+    "classes",
+    "filieres",
+    "matieres",
+    "annees_academiques",
+    "cours",
+    "devoirs",
+    "remises",
+    "resultats"
+
+  ];
+
+
+  for(
+    const name
+    of names
+  ){
+
+    await chargerCollection(
+      name
+    );
+
   }
 
 }
 
 
-/* Fonctions temporaires */
+/* =====================================================
+   SUPPRIMER
+===================================================== */
 
-function ajouterEtudiant(){
-  alert("Fonksyon Ajouter Étudiant ap aktive nan pati Firebase la.");
+window.supprimerElement =
+async function(
+  collectionName,
+  id
+){
+
+  if(!isAdmin()){
+
+    alert(
+      "Seul l'administrateur peut supprimer ces données."
+    );
+
+    return;
+
+  }
+
+
+  if(
+    !confirm(
+      "Êtes-vous sûr de vouloir supprimer cet élément ?"
+    )
+  ){
+
+    return;
+
+  }
+
+
+  try{
+
+    await deleteDoc(
+      doc(
+        db,
+        collectionName,
+        id
+      )
+    );
+
+
+    await chargerDashboard();
+
+
+    await chargerCollection(
+      collectionName
+    );
+
+  }catch(error){
+
+    alert(
+      "Erreur Firebase : " +
+      error.message
+    );
+
+  }
+
+};
+
+
+/* =====================================================
+   UTILISATEURS
+===================================================== */
+
+async function chargerUsers(){
+
+  const container =
+    document.getElementById(
+      "liste-users"
+    );
+
+
+  if(!isAdmin()){
+
+    container.innerHTML =
+      `<div class="empty">
+        Accès réservé à l'administrateur.
+      </div>`;
+
+    return;
+
+  }
+
+
+  container.innerHTML =
+    `<div class="empty">
+      Chargement...
+    </div>`;
+
+
+  try{
+
+    const snapshot =
+      await getDocs(
+        collection(
+          db,
+          "users"
+        )
+      );
+
+
+    if(snapshot.empty){
+
+      container.innerHTML =
+        `<div class="empty">
+          Aucun utilisateur.
+        </div>`;
+
+      return;
+
+    }
+
+
+    let rows = "";
+
+
+    snapshot.forEach(
+      item => {
+
+        const data =
+          item.data();
+
+
+        const accepted =
+          data.status === "accepted";
+
+
+        rows += `
+
+          <tr>
+
+            <td>
+              ${escapeHTML(
+                data.nom || "—"
+              )}
+            </td>
+
+            <td>
+              ${escapeHTML(
+                data.email || "—"
+              )}
+            </td>
+
+            <td>
+              ${escapeHTML(
+                data.role || "attente"
+              )}
+            </td>
+
+            <td>
+
+              <span class="badge ${
+                accepted
+                  ? "badge-success"
+                  : "badge-warning"
+              }">
+
+                ${accepted
+                  ? "accepted"
+                  : "pending"}
+
+              </span>
+
+            </td>
+
+            <td>
+
+              ${
+                !accepted
+                ? `
+                  <button
+                    class="action-btn accept-btn"
+                    onclick="accepterUtilisateur('${item.id}')"
+                  >
+                    Accepter
+                  </button>
+                `
+                : ""
+              }
+
+              ${
+                item.id !== currentUser.uid
+                ? `
+                  <button
+                    class="action-btn delete-btn"
+                    onclick="supprimerElement('users','${item.id}')"
+                  >
+                    Supprimer
+                  </button>
+                `
+                : ""
+              }
+
+            </td>
+
+          </tr>
+
+        `;
+
+      }
+    );
+
+
+    container.innerHTML = `
+
+      <div class="table-container">
+
+        <table>
+
+          <thead>
+
+            <tr>
+
+              <th>
+                Nom
+              </th>
+
+              <th>
+                Email
+              </th>
+
+              <th>
+                Rôle
+              </th>
+
+              <th>
+                Statut
+              </th>
+
+              <th>
+                Actions
+              </th>
+
+            </tr>
+
+          </thead>
+
+          <tbody>
+
+            ${rows}
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    `;
+
+  }catch(error){
+
+    container.innerHTML =
+      `<div class="empty">
+        Erreur Firebase :
+        ${escapeHTML(error.message)}
+      </div>`;
+
+  }
+
 }
 
-function ajouterProfesseur(){
-  alert("Fonksyon Ajouter Professeur ap aktive nan pati Firebase la.");
+
+/* =====================================================
+   ACCEPTER UTILISATEUR
+===================================================== */
+
+window.accepterUtilisateur =
+async function(
+  uid
+){
+
+  if(!isAdmin()){
+
+    return;
+
+  }
+
+
+  const role =
+    prompt(
+      "Choisissez le rôle : professeur ou etudiant",
+      "etudiant"
+    );
+
+
+  if(!role){
+
+    return;
+
+  }
+
+
+  const normalized =
+    role
+      .trim()
+      .toLowerCase();
+
+
+  if(
+    normalized !== "professeur" &&
+    normalized !== "etudiant" &&
+    normalized !== "eleve"
+  ){
+
+    alert(
+      "Rôle invalide."
+    );
+
+    return;
+
+  }
+
+
+  try{
+
+    await setDoc(
+      doc(
+        db,
+        "users",
+        uid
+      ),
+      {
+
+        role:
+          normalized === "eleve"
+            ? "etudiant"
+            : normalized,
+
+        status:
+          "accepted",
+
+        approvedBy:
+          currentUser.uid,
+
+        approvedAt:
+          serverTimestamp()
+
+      },
+      {
+        merge:true
+      }
+    );
+
+
+    await chargerUsers();
+
+
+  }catch(error){
+
+    alert(
+      "Erreur Firebase : " +
+      error.message
+    );
+
+  }
+
+};
+
+
+/* =====================================================
+   STATISTIQUES
+===================================================== */
+
+async function chargerStatistiques(){
+
+  const box =
+    document.getElementById(
+      "statistiquesBox"
+    );
+
+
+  box.innerHTML =
+    `<div class="empty">
+      Chargement...
+    </div>`;
+
+
+  const data = [
+
+    ["Étudiants","statEtudiants","🎓"],
+
+    ["Professeurs","statProfesseurs","👨‍🏫"],
+
+    ["Classes","statClasses","🏫"],
+
+    ["Matières","statMatieres","📚"],
+
+    ["Devoirs","statDevoirs","📝"],
+
+    ["Remises","statRemises","📥"],
+
+    ["Résultats","statResultats","📊"],
+
+    ["Utilisateurs","statUsers","👥"]
+
+  ];
+
+
+  box.innerHTML =
+    data
+      .map(
+        item => `
+
+          <div class="stat-card">
+
+            <div>
+
+              <div class="stat-label">
+                ${item[0]}
+              </div>
+
+              <div class="stat-number">
+                ${
+                  document
+                    .getElementById(item[1])
+                    .textContent
+                }
+              </div>
+
+            </div>
+
+            <div class="stat-icon">
+              ${item[2]}
+            </div>
+
+          </div>
+
+        `
+      )
+      .join("");
+
 }
 
-function ajouterClasse(){
-  alert("Fonksyon Ajouter Classe ap aktive nan pati Firebase la.");
+
+/* =====================================================
+   LANGUE
+===================================================== */
+
+window.changerLangue =
+function(){
+
+  const language =
+    document
+      .getElementById(
+        "languageSelect"
+      )
+      .value;
+
+
+  localStorage.setItem(
+    "cfp_language",
+    language
+  );
+
+
+  /*
+   * Baz lang yo pare.
+   * Tout etikèt sistèm yo rete Français nan premye vèsyon an;
+   * Kreyòl la ka aktive nan pwochen dictionary san chanje Firebase.
+   */
+
+};
+
+
+/* =====================================================
+   PWA INSTALL
+===================================================== */
+
+window.addEventListener(
+  "beforeinstallprompt",
+  event => {
+
+    event.preventDefault();
+
+    deferredPrompt =
+      event;
+
+    document
+      .getElementById(
+        "installButton"
+      )
+      .classList.remove(
+        "hidden"
+      );
+
+  }
+);
+
+
+window.installerApplication =
+async function(){
+
+  if(!deferredPrompt){
+
+    return;
+
+  }
+
+
+  deferredPrompt.prompt();
+
+
+  await deferredPrompt.userChoice;
+
+
+  deferredPrompt =
+    null;
+
+
+  document
+    .getElementById(
+      "installButton"
+    )
+    .classList.add(
+      "hidden"
+    );
+
+};
+
+
+/* =====================================================
+   FIREBASE ERRORS
+===================================================== */
+
+function firebaseError(
+  error
+){
+
+  const messages = {
+
+    "auth/invalid-credential":
+      "Email ou mot de passe incorrect.",
+
+    "auth/invalid-email":
+      "Adresse email invalide.",
+
+    "auth/email-already-in-use":
+      "Cette adresse email est déjà utilisée.",
+
+    "auth/weak-password":
+      "Le mot de passe est trop faible.",
+
+    "auth/popup-closed-by-user":
+      "La fenêtre Google a été fermée.",
+
+    "auth/network-request-failed":
+      "Problème de connexion internet.",
+
+    "auth/too-many-requests":
+      "Trop de tentatives. Réessayez plus tard."
+
+  };
+
+
+  return (
+    messages[error.code] ||
+    error.message ||
+    "Une erreur est survenue."
+  );
+
 }
 
-function ajouterFiliere(){
-  alert("Fonksyon Ajouter Filière ap aktive nan pati Firebase la.");
+
+/* =====================================================
+   CHARGEMENT INITIAL DES DONNEES
+===================================================== */
+
+async function chargerApplication(){
+
+  await chargerDashboard();
+
+  await chargerToutesLesListes();
+
 }
 
-function ajouterMatiere(){
-  alert("Fonksyon Ajouter Matière ap aktive nan pati Firebase la.");
+
+</script>
+
+
+<script>
+
+/* =====================================================
+   PETITES FONCTIONS UI
+===================================================== */
+
+function ouvrirMenuMobile(){
+
+  document
+    .getElementById("sidebar")
+    .classList.toggle("open");
+
 }
 
-function ajouterAnnee(){
-  alert("Fonksyon Ajouter Année ap aktive nan pati Firebase la.");
+
+/*
+ * Fermer le menu mobile lorsqu'une page est sélectionnée.
+ */
+
+const oldOpenPage =
+  window.ouvrirPage;
+
+
+window.ouvrirPage =
+function(
+  page,
+  button
+){
+
+  oldOpenPage(
+    page,
+    button
+  );
+
+
+  document
+    .getElementById("sidebar")
+    .classList.remove(
+      "open"
+    );
+
+};
+
+
+/*
+ * Langue sauvegardée
+ */
+
+const savedLanguage =
+  localStorage.getItem(
+    "cfp_language"
+  );
+
+
+if(savedLanguage){
+
+  const selector =
+    document.getElementById(
+      "languageSelect"
+    );
+
+  if(selector){
+
+    selector.value =
+      savedLanguage;
+
+  }
+
 }
 
-function ajouterCours(){
-  alert("Fonksyon Ajouter Cours ap aktive nan pati Firebase la.");
-}
 
-function ajouterDevoir(){
-  alert("Fonksyon Ajouter Devoir ap aktive nan pati Firebase la.");
-}
+/*
+ * Fermer modal avec Escape
+ */
+
+document.addEventListener(
+  "keydown",
+  event => {
+
+    if(
+      event.key === "Escape"
+    ){
+
+      document
+        .getElementById("modal")
+        .classList.remove(
+          "show"
+        );
+
+    }
+
+  }
+);
 
 </script>
 
