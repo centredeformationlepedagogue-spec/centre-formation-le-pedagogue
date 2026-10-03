@@ -1612,122 +1612,82 @@ textarea.form-control{
 
 
         <!--
-          IMPORTANT:
-          4 CARDS PAR LIGNE SUR DESKTOP
-          2 SUR TABLETTE
-          1 SUR TELEPHONE
+          STATISTICS GRID
+          ROW 1: Élèves | Professeurs | Classes | Matières
+          ROW 2: Devoirs | Remises | Résultats | Utilisateurs en attente
         -->
 
         <div class="stats-grid">
 
           <div class="stat-card">
-
             <div class="stat-top">
               <div class="stat-icon">👨‍🎓</div>
             </div>
-
             <div class="stat-label">Élèves</div>
-
             <div id="statEleves" class="stat-number">0</div>
-
           </div>
 
-
           <div class="stat-card">
-
             <div class="stat-top">
               <div class="stat-icon">👨‍🏫</div>
             </div>
-
             <div class="stat-label">Professeurs</div>
-
             <div id="statProfesseurs" class="stat-number">0</div>
-
           </div>
 
-
           <div class="stat-card">
-
             <div class="stat-top">
               <div class="stat-icon">🏫</div>
             </div>
-
             <div class="stat-label">Classes</div>
-
             <div id="statClasses" class="stat-number">0</div>
-
           </div>
 
-
           <div class="stat-card">
-
             <div class="stat-top">
               <div class="stat-icon">📚</div>
             </div>
-
             <div class="stat-label">Matières</div>
-
             <div id="statMatieres" class="stat-number">0</div>
-
           </div>
 
-
           <div class="stat-card">
-
             <div class="stat-top">
               <div class="stat-icon">📝</div>
             </div>
-
             <div class="stat-label">Devoirs</div>
-
             <div id="statDevoirs" class="stat-number">0</div>
-
           </div>
 
-
           <div class="stat-card">
-
             <div class="stat-top">
               <div class="stat-icon">📤</div>
             </div>
-
             <div class="stat-label">Remises</div>
-
             <div id="statRemises" class="stat-number">0</div>
-
           </div>
 
-
           <div class="stat-card">
-
             <div class="stat-top">
               <div class="stat-icon">📊</div>
             </div>
-
             <div class="stat-label">Résultats</div>
-
             <div id="statResultats" class="stat-number">0</div>
-
           </div>
 
-
           <div class="stat-card">
-
             <div class="stat-top">
               <div class="stat-icon">⏳</div>
             </div>
-
             <div class="stat-label">Utilisateurs en attente</div>
-
             <div id="statPending" class="stat-number">0</div>
-
           </div>
 
         </div>
 
 
         <!--
-          2 GRANDES SECTIONS COTE A COTE
+          LOWER SECTION: Activités récentes & Statistiques
         -->
 
         <div class="dashboard-lower">
@@ -1758,67 +1718,43 @@ textarea.form-control{
             <div class="mini-bars">
 
               <div class="mini-bar-row">
-
                 <span class="mini-bar-label">Élèves</span>
-
                 <div class="mini-bar-bg">
                   <div id="barEleves" class="mini-bar-fill"></div>
                 </div>
-
                 <span id="barElevesNumber" class="mini-bar-number">0</span>
-
               </div>
 
-
               <div class="mini-bar-row">
-
                 <span class="mini-bar-label">Professeurs</span>
-
                 <div class="mini-bar-bg">
                   <div id="barProfesseurs" class="mini-bar-fill"></div>
                 </div>
-
                 <span id="barProfesseursNumber" class="mini-bar-number">0</span>
-
               </div>
 
-
               <div class="mini-bar-row">
-
                 <span class="mini-bar-label">Classes</span>
-
                 <div class="mini-bar-bg">
                   <div id="barClasses" class="mini-bar-fill"></div>
                 </div>
-
                 <span id="barClassesNumber" class="mini-bar-number">0</span>
-
               </div>
 
-
               <div class="mini-bar-row">
-
                 <span class="mini-bar-label">Matières</span>
-
                 <div class="mini-bar-bg">
                   <div id="barMatieres" class="mini-bar-fill"></div>
                 </div>
-
                 <span id="barMatieresNumber" class="mini-bar-number">0</span>
-
               </div>
 
-
               <div class="mini-bar-row">
-
                 <span class="mini-bar-label">Devoirs</span>
-
                 <div class="mini-bar-bg">
                   <div id="barDevoirs" class="mini-bar-fill"></div>
                 </div>
-
                 <span id="barDevoirsNumber" class="mini-bar-number">0</span>
-
               </div>
 
             </div>
@@ -2960,6 +2896,8 @@ function showToast(
   },4500);
 }
 
+window.showToast = showToast;
+
 
 /* =========================================
    FRIENDLY FIREBASE ERRORS
@@ -3032,6 +2970,12 @@ function authMessage(
     document.getElementById("authMessage");
 
   if(!box) return;
+
+  if(!message){
+    box.textContent = "";
+    box.className = "auth-message";
+    return;
+  }
 
   box.textContent = message;
 
@@ -3363,52 +3307,78 @@ async function(){
 
 
 /* =========================================
-   ROLE HELPERS
+   LOGOUT
+========================================= */
+
+window.logout = async function(){
+  try{
+    await signOut(auth);
+  }catch(err){
+    console.error("Logout error:", err);
+  }
+};
+
+
+/* =========================================
+   ROLE & STATUS HELPERS
 ========================================= */
 
 function normalizeRole(role){
 
+  if(typeof role !== "string") return "eleve";
+
+  const cleanRole = role.trim().toLowerCase();
+
   if(
-    role==="étudiant" ||
-    role==="etudiant"
+    cleanRole === "étudiant" ||
+    cleanRole === "etudiant"
   ){
-
     return "eleve";
-
   }
 
-  if(role==="admin"){
+  if(cleanRole === "admin" || cleanRole === "administrateur"){
     return "administrateur";
   }
 
-  return role || "eleve";
+  if(cleanRole === "professeur" || cleanRole === "prof"){
+    return "professeur";
+  }
+
+  return cleanRole || "eleve";
 }
 
 
 function normalizeStatus(status){
 
+  if(typeof status !== "string") return "attente";
+
+  const cleanStatus = status.trim().toLowerCase();
+
   if(
-    status==="pending" ||
-    status==="attente"
+    cleanStatus === "pending" ||
+    cleanStatus === "attente" ||
+    cleanStatus === "en attente"
   ){
-
     return "attente";
-
   }
 
-  return status || "attente";
+  if(cleanStatus === "accepted" || cleanStatus === "accepte" || cleanStatus === "aksepte"){
+    return "accepted";
+  }
+
+  if(cleanStatus === "refused" || cleanStatus === "refuse" || cleanStatus === "rejete"){
+    return "refused";
+  }
+
+  return cleanStatus || "attente";
 }
 
 
 function isAdmin(){
 
   return currentUserData &&
-    normalizeRole(
-      currentUserData.role
-    )==="administrateur" &&
-    normalizeStatus(
-      currentUserData.status
-    )==="accepted";
+    normalizeRole(currentUserData.role) === "administrateur" &&
+    normalizeStatus(currentUserData.status) === "accepted";
 
 }
 
@@ -3416,12 +3386,8 @@ function isAdmin(){
 function isProfessor(){
 
   return currentUserData &&
-    normalizeRole(
-      currentUserData.role
-    )==="professeur" &&
-    normalizeStatus(
-      currentUserData.status
-    )==="accepted";
+    normalizeRole(currentUserData.role) === "professeur" &&
+    normalizeStatus(currentUserData.status) === "accepted";
 
 }
 
@@ -3429,12 +3395,8 @@ function isProfessor(){
 function isStudent(){
 
   return currentUserData &&
-    normalizeRole(
-      currentUserData.role
-    )==="eleve" &&
-    normalizeStatus(
-      currentUserData.status
-    )==="accepted";
+    normalizeRole(currentUserData.role) === "eleve" &&
+    normalizeStatus(currentUserData.status) === "accepted";
 
 }
 
@@ -3442,9 +3404,7 @@ function isStudent(){
 function isAccepted(){
 
   return currentUserData &&
-    normalizeStatus(
-      currentUserData.status
-    )==="accepted";
+    normalizeStatus(currentUserData.status) === "accepted";
 
 }
 
@@ -3480,21 +3440,18 @@ async function loadUserProfile(user){
       await signOut(auth);
 
       authMessage(
-        "Kont ou kreye. Li an attente validation administrateur.",
-        "success"
+        "Kont ou an attente validation administrateur.",
+        "error"
       );
 
       return false;
     }
 
-    const data =
-      snapshot.data();
+    const data = snapshot.data();
 
-    const status =
-      normalizeStatus(data.status);
+    const status = normalizeStatus(data.status);
 
-    const role =
-      normalizeRole(data.role);
+    const role = normalizeRole(data.role);
 
     currentUserData = {
       ...data,
@@ -3502,11 +3459,11 @@ async function loadUserProfile(user){
       status
     };
 
-    if(status!=="accepted"){
+    if(status !== "accepted"){
 
       await signOut(auth);
 
-      if(status==="refused"){
+      if(status === "refused"){
 
         authMessage(
           "Administrateur la poko aksepte kont sa a.",
@@ -3516,7 +3473,7 @@ async function loadUserProfile(user){
       }else{
 
         authMessage(
-          "Kont ou an attente validation administrateur.",
+          "Compte en attente validation par l'administrateur.",
           "error"
         );
 
@@ -3530,7 +3487,7 @@ async function loadUserProfile(user){
   }catch(error){
 
     console.error(
-      "Profile loading:",
+      "Profile loading error:",
       error
     );
 
@@ -3576,7 +3533,6 @@ onAuthStateChanged(
     }
 
     if(registrationInProgress){
-
       return;
     }
 
@@ -3638,6 +3594,7 @@ function updateUserHeader(){
 
   const letter =
     (
+      currentUserData?.displayName ||
       currentUser.displayName ||
       email ||
       "A"
@@ -3919,6 +3876,8 @@ async function loadAllData(){
 
 }
 
+window.refreshData = loadAllData;
+
 
 /* =========================================
    RENDER ALL
@@ -3958,3151 +3917,646 @@ function renderAll(){
 
 
 /* =========================================
-   ADD STUDENT
+   UTILITY
 ========================================= */
 
-document
-.getElementById("studentForm")
-.addEventListener(
-  "submit",
-  async event=>{
+function escapeHtml(str){
+  if(!str) return "";
+  return String(str)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
 
-    event.preventDefault();
-
-    if(!isAdmin()){
-
-      showToast(
-        "Se administrateur ki ka ajoute elèv.",
-        "warning"
-      );
-
-      return;
-    }
-
-    const name =
-      document
-      .getElementById("studentName")
-      .value.trim();
-
-    const email =
-      document
-      .getElementById("studentEmail")
-      .value.trim();
-
-    const phone =
-      document
-      .getElementById("studentPhone")
-      .value.trim();
-
-    const classe =
-      document
-      .getElementById("studentClass")
-      .value.trim();
-
-    if(!name){
-
-      showToast(
-        "Non elèv la obligatwa.",
-        "warning"
-      );
-
-      return;
-    }
-
-    try{
-
-      await addDoc(
-        collection(db,"eleves"),
-        {
-          name,
-          email,
-          phone,
-          classe,
-          createdBy:currentUser.uid,
-          createdAt:serverTimestamp()
-        }
-      );
-
-      event.target.reset();
-
-      showToast(
-        "Elèv la ajoute avèk siksè.",
-        "success"
-      );
-
-      await loadAllData();
-
-    }catch(error){
-
-      showToast(
-        friendlyError(error),
-        "error"
-      );
-
-    }
-
-  }
-);
+window.filterRecords = function(containerId, value){
+  const container = document.getElementById(containerId);
+  if(!container) return;
+  const filter = value.toLowerCase();
+  const records = container.querySelectorAll(".record, .user-record");
+  records.forEach(rec => {
+    const text = rec.textContent.toLowerCase();
+    rec.style.display = text.includes(filter) ? "" : "none";
+  });
+};
 
 
 /* =========================================
-   RENDER STUDENTS
+   STATISTICS & ACTIVITIES
 ========================================= */
 
-function renderStudents(){
+function updateStatistics(){
 
-  const box =
-    document.getElementById(
-      "studentList"
-    );
+  const pendingCount = allData.users.filter(u => normalizeStatus(u.status) === "attente").length;
 
+  const countEleves = allData.eleves.length;
+  const countProfs = allData.professeurs.length;
+  const countClasses = allData.classes.length;
+  const countMatieres = allData.matieres.length;
+  const countDevoirs = allData.devoirs.length;
+  const countRemises = allData.remises.length;
+  const countResultats = allData.resultats.length;
+
+  document.getElementById("statEleves").textContent = countEleves;
+  document.getElementById("statProfesseurs").textContent = countProfs;
+  document.getElementById("statClasses").textContent = countClasses;
+  document.getElementById("statMatieres").textContent = countMatieres;
+  document.getElementById("statDevoirs").textContent = countDevoirs;
+  document.getElementById("statRemises").textContent = countRemises;
+  document.getElementById("statResultats").textContent = countResultats;
+  document.getElementById("statPending").textContent = pendingCount;
+
+  const bigEleves = document.getElementById("bigStatEleves");
+  if(bigEleves) bigEleves.textContent = countEleves;
+  const bigProfs = document.getElementById("bigStatProfesseurs");
+  if(bigProfs) bigProfs.textContent = countProfs;
+  const bigClasses = document.getElementById("bigStatClasses");
+  if(bigClasses) bigClasses.textContent = countClasses;
+  const bigMatieres = document.getElementById("bigStatMatieres");
+  if(bigMatieres) bigMatieres.textContent = countMatieres;
+  const bigDevoirs = document.getElementById("bigStatDevoirs");
+  if(bigDevoirs) bigDevoirs.textContent = countDevoirs;
+  const bigRemises = document.getElementById("bigStatRemises");
+  if(bigRemises) bigRemises.textContent = countRemises;
+  const bigResultats = document.getElementById("bigStatResultats");
+  if(bigResultats) bigResultats.textContent = countResultats;
+  const bigPending = document.getElementById("bigStatPending");
+  if(bigPending) bigPending.textContent = pendingCount;
+
+  const maxVal = Math.max(countEleves, countProfs, countClasses, countMatieres, countDevoirs, 1);
+
+  setMiniBar("barEleves", "barElevesNumber", countEleves, maxVal);
+  setMiniBar("barProfesseurs", "barProfesseursNumber", countProfs, maxVal);
+  setMiniBar("barClasses", "barClassesNumber", countClasses, maxVal);
+  setMiniBar("barMatieres", "barMatieresNumber", countMatieres, maxVal);
+  setMiniBar("barDevoirs", "barDevoirsNumber", countDevoirs, maxVal);
+}
+
+function setMiniBar(barId, numId, value, maxVal){
+  const bar = document.getElementById(barId);
+  const num = document.getElementById(numId);
+  if(bar) bar.style.width = Math.round((value / maxVal) * 100) + "%";
+  if(num) num.textContent = value;
+}
+
+function renderRecentActivities(){
+  const box = document.getElementById("recentActivities");
   if(!box) return;
 
-  box.innerHTML = "";
+  let activities = [];
 
-  if(!allData.eleves.length){
+  allData.eleves.forEach(item => {
+    activities.push({
+      title: `Élève ajouté: ${item.name || item.nom || "Sans nom"}`,
+      time: item.createdAt,
+      icon: "👨‍🎓"
+    });
+  });
 
-    box.innerHTML =
-      `<div class="empty">Pa gen elèv pou montre.</div>`;
+  allData.devoirs.forEach(item => {
+    activities.push({
+      title: `Devoir créé: ${item.title || item.titre || "Devoir"}`,
+      time: item.createdAt,
+      icon: "📝"
+    });
+  });
 
+  allData.remises.forEach(item => {
+    activities.push({
+      title: `Remise effectuée: ${item.student || item.eleve || "Élève"}`,
+      time: item.createdAt,
+      icon: "📤"
+    });
+  });
+
+  if(activities.length === 0){
+    box.innerHTML = `<div class="empty">Aucune activité récente.</div>`;
     return;
   }
 
+  box.innerHTML = activities.slice(0, 6).map(act => `
+    <div class="activity-item">
+      <div class="activity-icon">${act.icon}</div>
+      <div class="activity-text">
+        <div class="activity-title">${escapeHtml(act.title)}</div>
+        <div class="activity-meta">Activité du système</div>
+      </div>
+    </div>
+  `).join("");
+}
+
+
+/* =========================================
+   ADD & RENDER FUNCTIONS
+========================================= */
+
+// Generic delete
+window.deleteRecord = async function(coll, id){
+  if(!isAdmin()){
+    showToast("Se administrateur ki ka efase done.", "warning");
+    return;
+  }
+  if(!confirm("Èske ou sèten ou vle efase sa a?")) return;
+
+  try{
+    await deleteDoc(doc(db, coll, id));
+    showToast("Done efase avèk siksè.", "success");
+    await loadAllData();
+  }catch(err){
+    showToast(friendlyError(err), "error");
+  }
+};
+
+// Generic edit placeholder
+window.editRecord = function(coll, id, type){
+  showToast("Fonksyon modifikasyon an ap amelyore.", "warning");
+};
+
+/* STUDENTS */
+document.getElementById("studentForm").addEventListener("submit", async event=>{
+  event.preventDefault();
+  if(!isAdmin()){ showToast("Se administrateur ki ka ajoute elèv.", "warning"); return; }
+  const name = document.getElementById("studentName").value.trim();
+  const email = document.getElementById("studentEmail").value.trim();
+  const phone = document.getElementById("studentPhone").value.trim();
+  const classe = document.getElementById("studentClass").value.trim();
+
+  if(!name){ showToast("Non elèv la obligatwa.", "warning"); return; }
+
+  try{
+    await addDoc(collection(db,"eleves"), {
+      name, email, phone, classe, createdBy:currentUser.uid, createdAt:serverTimestamp()
+    });
+    event.target.reset();
+    showToast("Elèv la ajoute avèk siksè.", "success");
+    await loadAllData();
+  }catch(error){ showToast(friendlyError(error), "error"); }
+});
+
+function renderStudents(){
+  const box = document.getElementById("studentList");
+  if(!box) return;
+  box.innerHTML = "";
+  if(!allData.eleves.length){
+    box.innerHTML = `<div class="empty">Pa gen elèv pou montre.</div>`;
+    return;
+  }
   allData.eleves.forEach(student=>{
-
-    const name =
-      student.name ||
-      student.nom ||
-      student.fullName ||
-      "Sans nom";
-
-    const email =
-      student.email || "—";
-
-    const phone =
-      student.phone ||
-      student.telephone ||
-      "—";
-
-    const classe =
-      student.classe ||
-      student.class ||
-      "—";
-
-    const actions =
-      isAdmin()
-      ? `
-        <button
-          class="btn btn-light btn-small"
-          onclick="editRecord('${student._collection}','${student.id}','student')">
-          ✏️ Modifier
-        </button>
-
-        <button
-          class="btn btn-danger btn-small"
-          onclick="deleteRecord('${student._collection}','${student.id}')">
-          🗑️ Supprimer
-        </button>
-      `
-      : "";
+    const name = student.name || student.nom || student.fullName || "Sans nom";
+    const email = student.email || "—";
+    const phone = student.phone || student.telephone || "—";
+    const classe = student.classe || student.class || "—";
+    const actions = isAdmin() ? `
+      <button class="btn btn-light btn-small" onclick="editRecord('${student._collection}','${student.id}','student')">✏️ Modifier</button>
+      <button class="btn btn-danger btn-small" onclick="deleteRecord('${student._collection}','${student.id}')">🗑️ Supprimer</button>
+    ` : "";
 
     box.innerHTML += `
       <div class="record">
-
         <div class="record-main">
-
-          <div class="record-title">
-            👨‍🎓 ${escapeHtml(name)}
-          </div>
-
+          <div class="record-title">👨‍🎓 ${escapeHtml(name)}</div>
           <div class="record-meta">
             <span>✉️ ${escapeHtml(email)}</span>
             <span>📱 ${escapeHtml(phone)}</span>
             <span>🏫 ${escapeHtml(classe)}</span>
           </div>
-
         </div>
-
-        <div class="record-actions">
-          ${actions}
-        </div>
-
+        <div class="record-actions">${actions}</div>
       </div>
     `;
-
   });
-
 }
 
+/* TEACHERS */
+document.getElementById("teacherForm").addEventListener("submit", async event=>{
+  event.preventDefault();
+  if(!isAdmin()) return;
+  const name = document.getElementById("teacherName").value.trim();
+  const email = document.getElementById("teacherEmail").value.trim();
+  const phone = document.getElementById("teacherPhone").value.trim();
+  const subject = document.getElementById("teacherSubject").value.trim();
 
-/* =========================================
-   ADD TEACHER
-========================================= */
+  if(!name){ showToast("Non pwofesè a obligatwa.", "warning"); return; }
 
-document
-.getElementById("teacherForm")
-.addEventListener(
-  "submit",
-  async event=>{
-
-    event.preventDefault();
-
-    if(!isAdmin()) return;
-
-    const name =
-      document
-      .getElementById("teacherName")
-      .value.trim();
-
-    const email =
-      document
-      .getElementById("teacherEmail")
-      .value.trim();
-
-    const phone =
-      document
-      .getElementById("teacherPhone")
-      .value.trim();
-
-    const subject =
-      document
-      .getElementById("teacherSubject")
-      .value.trim();
-
-    if(!name){
-
-      showToast(
-        "Non pwofesè a obligatwa.",
-        "warning"
-      );
-
-      return;
-    }
-
-    try{
-
-      await addDoc(
-        collection(db,"professeurs"),
-        {
-          name,
-          email,
-          phone,
-          subject,
-          createdBy:currentUser.uid,
-          createdAt:serverTimestamp()
-        }
-      );
-
-      event.target.reset();
-
-      showToast(
-        "Pwofesè a ajoute avèk siksè.",
-        "success"
-      );
-
-      await loadAllData();
-
-    }catch(error){
-
-      showToast(
-        friendlyError(error),
-        "error"
-      );
-
-    }
-
-  }
-);
-
-
-/* =========================================
-   RENDER TEACHERS
-========================================= */
+  try{
+    await addDoc(collection(db,"professeurs"), {
+      name, email, phone, subject, createdBy:currentUser.uid, createdAt:serverTimestamp()
+    });
+    event.target.reset();
+    showToast("Pwofesè a ajoute avèk siksè.", "success");
+    await loadAllData();
+  }catch(error){ showToast(friendlyError(error), "error"); }
+});
 
 function renderTeachers(){
-
-  const box =
-    document.getElementById(
-      "teacherList"
-    );
-
+  const box = document.getElementById("teacherList");
   if(!box) return;
-
   box.innerHTML = "";
-
   if(!allData.professeurs.length){
-
-    box.innerHTML =
-      `<div class="empty">Pa gen pwofesè pou montre.</div>`;
-
+    box.innerHTML = `<div class="empty">Pa gen pwofesè pou montre.</div>`;
     return;
   }
-
-  allData.professeurs.forEach(teacher=>{
-
-    const name =
-      teacher.name ||
-      teacher.nom ||
-      teacher.fullName ||
-      "Sans nom";
-
-    const email =
-      teacher.email || "—";
-
-    const phone =
-      teacher.phone ||
-      teacher.telephone ||
-      "—";
-
-    const subject =
-      teacher.subject ||
-      teacher.matiere ||
-      "—";
+  allData.professeurs.forEach(item=>{
+    const name = item.name || item.nom || "Sans nom";
+    const email = item.email || "—";
+    const subject = item.subject || item.matiere || "—";
+    const actions = isAdmin() ? `
+      <button class="btn btn-danger btn-small" onclick="deleteRecord('${item._collection}','${item.id}')">🗑️ Supprimer</button>
+    ` : "";
 
     box.innerHTML += `
       <div class="record">
-
         <div class="record-main">
-
-          <div class="record-title">
-            👨‍🏫 ${escapeHtml(name)}
-          </div>
-
+          <div class="record-title">👨‍🏫 ${escapeHtml(name)}</div>
           <div class="record-meta">
             <span>✉️ ${escapeHtml(email)}</span>
-            <span>📱 ${escapeHtml(phone)}</span>
             <span>📚 ${escapeHtml(subject)}</span>
           </div>
-
         </div>
-
-        <div class="record-actions">
-
-          ${
-            isAdmin()
-            ? `
-              <button
-                class="btn btn-light btn-small"
-                onclick="editRecord('professeurs','${teacher.id}','teacher')">
-                ✏️ Modifier
-              </button>
-
-              <button
-                class="btn btn-danger btn-small"
-                onclick="deleteRecord('professeurs','${teacher.id}')">
-                🗑️ Supprimer
-              </button>
-            `
-            : ""
-          }
-
-        </div>
-
+        <div class="record-actions">${actions}</div>
       </div>
     `;
-
   });
-
 }
 
+/* CLASSES */
+document.getElementById("classForm").addEventListener("submit", async event=>{
+  event.preventDefault();
+  if(!isAdmin()) return;
+  const name = document.getElementById("className").value.trim();
+  const level = document.getElementById("classLevel").value.trim();
 
-/* =========================================
-   ADD CLASS
-========================================= */
+  if(!name){ showToast("Nom de classe requis.", "warning"); return; }
 
-document
-.getElementById("classForm")
-.addEventListener(
-  "submit",
-  async event=>{
-
-    event.preventDefault();
-
-    if(!isAdmin()) return;
-
-    const name =
-      document
-      .getElementById("className")
-      .value.trim();
-
-    const level =
-      document
-      .getElementById("classLevel")
-      .value.trim();
-
-    if(!name){
-
-      showToast(
-        "Non klas la obligatwa.",
-        "warning"
-      );
-
-      return;
-    }
-
-    try{
-
-      await addDoc(
-        collection(db,"classes"),
-        {
-          name,
-          level,
-          createdBy:currentUser.uid,
-          createdAt:serverTimestamp()
-        }
-      );
-
-      event.target.reset();
-
-      showToast(
-        "Klas la ajoute avèk siksè.",
-        "success"
-      );
-
-      await loadAllData();
-
-    }catch(error){
-
-      showToast(
-        friendlyError(error),
-        "error"
-      );
-
-    }
-
-  }
-);
-
-
-/* =========================================
-   RENDER CLASSES
-========================================= */
+  try{
+    await addDoc(collection(db,"classes"), {
+      name, level, createdBy:currentUser.uid, createdAt:serverTimestamp()
+    });
+    event.target.reset();
+    showToast("Classe ajoutée avec succès.", "success");
+    await loadAllData();
+  }catch(error){ showToast(friendlyError(error), "error"); }
+});
 
 function renderClasses(){
-
-  const box =
-    document.getElementById(
-      "classList"
-    );
-
+  const box = document.getElementById("classList");
   if(!box) return;
-
   box.innerHTML = "";
-
   if(!allData.classes.length){
-
-    box.innerHTML =
-      `<div class="empty">Pa gen klas pou montre.</div>`;
-
+    box.innerHTML = `<div class="empty">Aucune classe disponible.</div>`;
     return;
   }
-
   allData.classes.forEach(item=>{
-
+    const actions = isAdmin() ? `<button class="btn btn-danger btn-small" onclick="deleteRecord('${item._collection}','${item.id}')">🗑️ Supprimer</button>` : "";
     box.innerHTML += `
       <div class="record">
-
         <div class="record-main">
-
-          <div class="record-title">
-            🏫 ${escapeHtml(item.name || item.nom || "Sans nom")}
-          </div>
-
-          <div class="record-meta">
-            <span>Nivo: ${escapeHtml(item.level || item.niveau || "—")}</span>
-          </div>
-
+          <div class="record-title">🏫 ${escapeHtml(item.name || item.nom || "Classe")}</div>
+          <div class="record-meta"><span>Niveau: ${escapeHtml(item.level || item.niveau || "—")}</span></div>
         </div>
-
-        <div class="record-actions">
-
-          ${
-            isAdmin()
-            ? `
-              <button
-                class="btn btn-light btn-small"
-                onclick="editRecord('classes','${item.id}','class')">
-                ✏️ Modifier
-              </button>
-
-              <button
-                class="btn btn-danger btn-small"
-                onclick="deleteRecord('classes','${item.id}')">
-                🗑️ Supprimer
-              </button>
-            `
-            : ""
-          }
-
-        </div>
-
+        <div class="record-actions">${actions}</div>
       </div>
     `;
-
   });
-
 }
 
+/* SUBJECTS */
+document.getElementById("subjectForm").addEventListener("submit", async event=>{
+  event.preventDefault();
+  if(!isAdmin()) return;
+  const name = document.getElementById("subjectName").value.trim();
+  const description = document.getElementById("subjectDescription").value.trim();
 
-/* =========================================
-   ADD SUBJECT
-========================================= */
+  if(!name){ showToast("Nom de la matière requis.", "warning"); return; }
 
-document
-.getElementById("subjectForm")
-.addEventListener(
-  "submit",
-  async event=>{
-
-    event.preventDefault();
-
-    if(!isAdmin()) return;
-
-    const name =
-      document
-      .getElementById("subjectName")
-      .value.trim();
-
-    const description =
-      document
-      .getElementById("subjectDescription")
-      .value.trim();
-
-    if(!name){
-
-      showToast(
-        "Non matyè a obligatwa.",
-        "warning"
-      );
-
-      return;
-    }
-
-    try{
-
-      await addDoc(
-        collection(db,"matieres"),
-        {
-          name,
-          description,
-          createdBy:currentUser.uid,
-          createdAt:serverTimestamp()
-        }
-      );
-
-      event.target.reset();
-
-      showToast(
-        "Matière la ajoute avèk siksè.",
-        "success"
-      );
-
-      await loadAllData();
-
-    }catch(error){
-
-      showToast(
-        friendlyError(error),
-        "error"
-      );
-
-    }
-
-  }
-);
-
-
-/* =========================================
-   RENDER SUBJECTS
-========================================= */
+  try{
+    await addDoc(collection(db,"matieres"), {
+      name, description, createdBy:currentUser.uid, createdAt:serverTimestamp()
+    });
+    event.target.reset();
+    showToast("Matière ajoutée avec succès.", "success");
+    await loadAllData();
+  }catch(error){ showToast(friendlyError(error), "error"); }
+});
 
 function renderSubjects(){
-
-  const box =
-    document.getElementById(
-      "subjectList"
-    );
-
+  const box = document.getElementById("subjectList");
   if(!box) return;
-
   box.innerHTML = "";
-
   if(!allData.matieres.length){
-
-    box.innerHTML =
-      `<div class="empty">Pa gen matière pou montre.</div>`;
-
+    box.innerHTML = `<div class="empty">Aucune matière disponible.</div>`;
     return;
   }
-
   allData.matieres.forEach(item=>{
-
+    const actions = isAdmin() ? `<button class="btn btn-danger btn-small" onclick="deleteRecord('${item._collection}','${item.id}')">🗑️ Supprimer</button>` : "";
     box.innerHTML += `
       <div class="record">
-
         <div class="record-main">
-
-          <div class="record-title">
-            📚 ${escapeHtml(item.name || item.nom || "Sans nom")}
-          </div>
-
-          <div class="record-meta">
-            <span>
-              ${escapeHtml(item.description || "Pa gen deskripsyon.")}
-            </span>
-          </div>
-
+          <div class="record-title">📚 ${escapeHtml(item.name || item.nom || "Matière")}</div>
+          <div class="record-meta"><span>${escapeHtml(item.description || "Pas de description")}</span></div>
         </div>
-
-        <div class="record-actions">
-
-          ${
-            isAdmin()
-            ? `
-              <button
-                class="btn btn-light btn-small"
-                onclick="editRecord('matieres','${item.id}','subject')">
-                ✏️ Modifier
-              </button>
-
-              <button
-                class="btn btn-danger btn-small"
-                onclick="deleteRecord('matieres','${item.id}')">
-                🗑️ Supprimer
-              </button>
-            `
-            : ""
-          }
-
-        </div>
-
+        <div class="record-actions">${actions}</div>
       </div>
     `;
-
   });
-
 }
 
+/* ASSIGNMENTS */
+document.getElementById("assignmentForm").addEventListener("submit", async event=>{
+  event.preventDefault();
+  if(!isAdmin() && !isProfessor()) return;
+  const title = document.getElementById("assignmentTitle").value.trim();
+  const course = document.getElementById("assignmentCourse").value.trim();
+  const date = document.getElementById("assignmentDate").value;
+  const description = document.getElementById("assignmentDescription").value.trim();
 
-/* =========================================
-   ADD ASSIGNMENT
-========================================= */
+  if(!title){ showToast("Titre du devoir requis.", "warning"); return; }
 
-document
-.getElementById("assignmentForm")
-.addEventListener(
-  "submit",
-  async event=>{
-
-    event.preventDefault();
-
-    if(!isAdmin() && !isProfessor()){
-
-      showToast(
-        "Ou pa gen pèmisyon pou ajoute devoir.",
-        "warning"
-      );
-
-      return;
-    }
-
-    const title =
-      document
-      .getElementById("assignmentTitle")
-      .value.trim();
-
-    const course =
-      document
-      .getElementById("assignmentCourse")
-      .value.trim();
-
-    const date =
-      document
-      .getElementById("assignmentDate")
-      .value;
-
-    const description =
-      document
-      .getElementById("assignmentDescription")
-      .value.trim();
-
-    if(!title){
-
-      showToast(
-        "Titre devoir la obligatwa.",
-        "warning"
-      );
-
-      return;
-    }
-
-    try{
-
-      await addDoc(
-        collection(db,"devoirs"),
-        {
-          title,
-          course,
-          date,
-          description,
-          createdBy:currentUser.uid,
-          createdAt:serverTimestamp()
-        }
-      );
-
-      event.target.reset();
-
-      showToast(
-        "Devoir la ajoute avèk siksè.",
-        "success"
-      );
-
-      await loadAllData();
-
-    }catch(error){
-
-      showToast(
-        friendlyError(error),
-        "error"
-      );
-
-    }
-
-  }
-);
-
-
-/* =========================================
-   RENDER ASSIGNMENTS
-========================================= */
+  try{
+    await addDoc(collection(db,"devoirs"), {
+      title, course, date, description, createdBy:currentUser.uid, createdAt:serverTimestamp()
+    });
+    event.target.reset();
+    showToast("Devoir créé avec succès.", "success");
+    await loadAllData();
+  }catch(error){ showToast(friendlyError(error), "error"); }
+});
 
 function renderAssignments(){
-
-  const box =
-    document.getElementById(
-      "assignmentList"
-    );
-
+  const box = document.getElementById("assignmentList");
   if(!box) return;
-
   box.innerHTML = "";
-
   if(!allData.devoirs.length){
-
-    box.innerHTML =
-      `<div class="empty">Pa gen devoir pou montre.</div>`;
-
+    box.innerHTML = `<div class="empty">Aucun devoir disponible.</div>`;
     return;
   }
-
   allData.devoirs.forEach(item=>{
-
-    const title =
-      item.title ||
-      item.titre ||
-      "Sans titre";
-
-    const course =
-      item.course ||
-      item.matiere ||
-      "—";
-
-    const date =
-      item.date || "—";
-
-    const canManage =
-      isAdmin() ||
-      (
-        isProfessor() &&
-        item.createdBy===currentUser?.uid
-      );
-
+    const actions = (isAdmin() || isProfessor()) ? `<button class="btn btn-danger btn-small" onclick="deleteRecord('${item._collection}','${item.id}')">🗑️ Supprimer</button>` : "";
     box.innerHTML += `
       <div class="record">
-
         <div class="record-main">
-
-          <div class="record-title">
-            📝 ${escapeHtml(title)}
-          </div>
-
+          <div class="record-title">📝 ${escapeHtml(item.title || item.titre || "Devoir")}</div>
           <div class="record-meta">
-
-            <span>
-              📚 ${escapeHtml(course)}
-            </span>
-
-            <span>
-              📅 ${escapeHtml(date)}
-            </span>
-
-            <span>
-              ${escapeHtml(item.description || "")}
-            </span>
-
+            <span>📚 ${escapeHtml(item.course || item.matiere || "Matière")}</span>
+            <span>📅 ${escapeHtml(item.date || "Pas de date")}</span>
           </div>
-
         </div>
-
-        <div class="record-actions">
-
-          ${
-            canManage
-            ? `
-              <button
-                class="btn btn-light btn-small"
-                onclick="editRecord('devoirs','${item.id}','assignment')">
-                ✏️ Modifier
-              </button>
-
-              <button
-                class="btn btn-danger btn-small"
-                onclick="deleteRecord('devoirs','${item.id}')">
-                🗑️ Supprimer
-              </button>
-            `
-            : ""
-          }
-
-        </div>
-
+        <div class="record-actions">${actions}</div>
       </div>
     `;
-
   });
-
 }
 
+/* SUBMISSIONS */
+document.getElementById("submissionForm").addEventListener("submit", async event=>{
+  event.preventDefault();
+  if(!isAccepted()) return;
+  const student = document.getElementById("submissionStudent").value.trim();
+  const assignment = document.getElementById("submissionAssignment").value.trim();
+  const note = document.getElementById("submissionNote").value;
+  const comment = document.getElementById("submissionComment").value.trim();
 
-/* =========================================
-   ADD SUBMISSION
-========================================= */
-
-document
-.getElementById("submissionForm")
-.addEventListener(
-  "submit",
-  async event=>{
-
-    event.preventDefault();
-
-    if(!isAccepted()) return;
-
-    const student =
-      document
-      .getElementById("submissionStudent")
-      .value.trim();
-
-    const assignment =
-      document
-      .getElementById("submissionAssignment")
-      .value.trim();
-
-    const note =
-      document
-      .getElementById("submissionNote")
-      .value;
-
-    const comment =
-      document
-      .getElementById("submissionComment")
-      .value.trim();
-
-    if(!student || !assignment){
-
-      showToast(
-        "Elèv ak devoir la obligatwa.",
-        "warning"
-      );
-
-      return;
-    }
-
-    try{
-
-      await addDoc(
-        collection(db,"remises"),
-        {
-          student,
-          assignment,
-          note:note==="" ? null : Number(note),
-          comment,
-          correction:comment,
-          createdBy:currentUser.uid,
-          createdAt:serverTimestamp()
-        }
-      );
-
-      event.target.reset();
-
-      showToast(
-        "Remise la ajoute avèk siksè.",
-        "success"
-      );
-
-      await loadAllData();
-
-    }catch(error){
-
-      showToast(
-        friendlyError(error),
-        "error"
-      );
-
-    }
-
-  }
-);
-
-
-/* =========================================
-   RENDER SUBMISSIONS
-========================================= */
+  try{
+    await addDoc(collection(db,"remises"), {
+      student, assignment, note, comment, createdBy:currentUser.uid, createdAt:serverTimestamp()
+    });
+    event.target.reset();
+    showToast("Remise enregistrée.", "success");
+    await loadAllData();
+  }catch(error){ showToast(friendlyError(error), "error"); }
+});
 
 function renderSubmissions(){
-
-  const box =
-    document.getElementById(
-      "submissionList"
-    );
-
+  const box = document.getElementById("submissionList");
   if(!box) return;
-
   box.innerHTML = "";
-
   if(!allData.remises.length){
-
-    box.innerHTML =
-      `<div class="empty">Pa gen remise pou montre.</div>`;
-
+    box.innerHTML = `<div class="empty">Aucune remise disponible.</div>`;
     return;
   }
-
   allData.remises.forEach(item=>{
-
-    const note =
-      item.note !== undefined &&
-      item.note !== null
-      ? `${item.note}/20`
-      : "—";
-
-    const canManage =
-      isAdmin() ||
-      (
-        isProfessor() &&
-        item.createdBy===currentUser?.uid
-      );
-
     box.innerHTML += `
       <div class="record">
-
         <div class="record-main">
-
-          <div class="record-title">
-            📤 ${escapeHtml(item.student || "Élève")}
-          </div>
-
+          <div class="record-title">📤 ${escapeHtml(item.student || item.eleve || "Élève")} - ${escapeHtml(item.assignment || item.devoir || "Devoir")}</div>
           <div class="record-meta">
-
-            <span>
-              📝 ${escapeHtml(item.assignment || "—")}
-            </span>
-
-            <span>
-              <strong>${escapeHtml(note)}</strong>
-            </span>
-
-            <span>
-              ${escapeHtml(
-                item.comment ||
-                item.correction ||
-                ""
-              )}
-            </span>
-
+            <span>Note: ${escapeHtml(item.note || "N/A")}/20</span>
+            <span>Commentaire: ${escapeHtml(item.comment || "Aucun")}</span>
           </div>
-
         </div>
-
-        <div class="record-actions">
-
-          ${
-            canManage
-            ? `
-              <button
-                class="btn btn-light btn-small"
-                onclick="editRecord('remises','${item.id}','submission')">
-                ✏️ Modifier
-              </button>
-
-              <button
-                class="btn btn-danger btn-small"
-                onclick="deleteRecord('remises','${item.id}')">
-                🗑️ Supprimer
-              </button>
-            `
-            : ""
-          }
-
-        </div>
-
       </div>
     `;
-
   });
-
 }
 
+/* RESULTS */
+document.getElementById("resultForm").addEventListener("submit", async event=>{
+  event.preventDefault();
+  if(!isAdmin() && !isProfessor()) return;
+  const student = document.getElementById("resultStudent").value.trim();
+  const subject = document.getElementById("resultSubject").value.trim();
+  const note = document.getElementById("resultNote").value;
+  const comment = document.getElementById("resultComment").value.trim();
 
-/* =========================================
-   ADD RESULT
-========================================= */
-
-document
-.getElementById("resultForm")
-.addEventListener(
-  "submit",
-  async event=>{
-
-    event.preventDefault();
-
-    if(!isAdmin() && !isProfessor()){
-
-      showToast(
-        "Ou pa gen pèmisyon pou ajoute résultat.",
-        "warning"
-      );
-
-      return;
-    }
-
-    const student =
-      document
-      .getElementById("resultStudent")
-      .value.trim();
-
-    const subject =
-      document
-      .getElementById("resultSubject")
-      .value.trim();
-
-    const note =
-      document
-      .getElementById("resultNote")
-      .value;
-
-    const comment =
-      document
-      .getElementById("resultComment")
-      .value.trim();
-
-    if(
-      !student ||
-      !subject ||
-      note===""
-    ){
-
-      showToast(
-        "Elèv, matière ak note obligatwa.",
-        "warning"
-      );
-
-      return;
-    }
-
-    const numericNote =
-      Number(note);
-
-    if(
-      numericNote<0 ||
-      numericNote>20
-    ){
-
-      showToast(
-        "Nòt la dwe ant 0 ak 20.",
-        "warning"
-      );
-
-      return;
-    }
-
-    try{
-
-      await addDoc(
-        collection(db,"resultats"),
-        {
-          student,
-          subject,
-          note:numericNote,
-          comment,
-          createdBy:currentUser.uid,
-          createdAt:serverTimestamp()
-        }
-      );
-
-      event.target.reset();
-
-      showToast(
-        "Résultat la ajoute avèk siksè.",
-        "success"
-      );
-
-      await loadAllData();
-
-    }catch(error){
-
-      showToast(
-        friendlyError(error),
-        "error"
-      );
-
-    }
-
-  }
-);
-
-
-/* =========================================
-   RENDER RESULTS
-========================================= */
+  try{
+    await addDoc(collection(db,"resultats"), {
+      student, subject, note, comment, createdBy:currentUser.uid, createdAt:serverTimestamp()
+    });
+    event.target.reset();
+    showToast("Résultat enregistré avec succès.", "success");
+    await loadAllData();
+  }catch(error){ showToast(friendlyError(error), "error"); }
+});
 
 function renderResults(){
-
-  const box =
-    document.getElementById(
-      "resultList"
-    );
-
+  const box = document.getElementById("resultList");
   if(!box) return;
-
   box.innerHTML = "";
-
   if(!allData.resultats.length){
-
-    box.innerHTML =
-      `<div class="empty">Pa gen résultat pou montre.</div>`;
-
+    box.innerHTML = `<div class="empty">Aucun résultat disponible.</div>`;
     return;
   }
-
   allData.resultats.forEach(item=>{
-
-    const note =
-      item.note !== undefined &&
-      item.note !== null
-      ? `${item.note}/20`
-      : "—";
-
-    const canManage =
-      isAdmin() ||
-      (
-        isProfessor() &&
-        item.createdBy===currentUser?.uid
-      );
-
     box.innerHTML += `
       <div class="record">
-
         <div class="record-main">
-
-          <div class="record-title">
-            📊 ${escapeHtml(item.student || "Élève")}
-          </div>
-
+          <div class="record-title">📊 ${escapeHtml(item.student || item.eleve || "Élève")} - ${escapeHtml(item.subject || item.matiere || "Matière")}</div>
           <div class="record-meta">
-
-            <span>
-              📚 ${escapeHtml(item.subject || "—")}
-            </span>
-
-            <span>
-              <strong>${escapeHtml(note)}</strong>
-            </span>
-
-            <span>
-              ${escapeHtml(item.comment || "")}
-            </span>
-
+            <span>Note: <strong>${escapeHtml(item.note || "0")}/20</strong></span>
+            <span>Observation: ${escapeHtml(item.comment || "Aucune")}</span>
           </div>
-
         </div>
-
-        <div class="record-actions">
-
-          ${
-            canManage
-            ? `
-              <button
-                class="btn btn-light btn-small"
-                onclick="editRecord('resultats','${item.id}','result')">
-                ✏️ Modifier
-              </button>
-
-              <button
-                class="btn btn-danger btn-small"
-                onclick="deleteRecord('resultats','${item.id}')">
-                🗑️ Supprimer
-              </button>
-            `
-            : ""
-          }
-
-        </div>
-
       </div>
     `;
-
   });
-
 }
 
-
-/* =========================================
-   DEPARTMENTS
-========================================= */
-
-document
-.getElementById("departmentForm")
-.addEventListener(
-  "submit",
-  async event=>{
-
-    event.preventDefault();
-
-    if(!isAdmin()) return;
-
-    const name =
-      document
-      .getElementById("departmentName")
-      .value.trim();
-
-    const description =
-      document
-      .getElementById("departmentDescription")
-      .value.trim();
-
-    if(!name) return;
-
-    try{
-
-      await addDoc(
-        collection(db,"departements"),
-        {
-          name,
-          description,
-          createdBy:currentUser.uid,
-          createdAt:serverTimestamp()
-        }
-      );
-
-      event.target.reset();
-
-      showToast(
-        "Département ajouté.",
-        "success"
-      );
-
-      await loadAllData();
-
-    }catch(error){
-
-      showToast(
-        friendlyError(error),
-        "error"
-      );
-
-    }
-
-  }
-);
-
+/* DEPARTMENTS, PROGRAMS, COURSES, SCHEDULES */
+document.getElementById("departmentForm").addEventListener("submit", async e=>{
+  e.preventDefault(); if(!isAdmin()) return;
+  const name = document.getElementById("departmentName").value.trim();
+  const description = document.getElementById("departmentDescription").value.trim();
+  try{
+    await addDoc(collection(db,"departements"), { name, description, createdAt:serverTimestamp() });
+    e.target.reset(); showToast("Département ajouté.", "success"); loadAllData();
+  }catch(err){ showToast(friendlyError(err), "error"); }
+});
 
 function renderDepartments(){
-
-  const box =
-    document.getElementById(
-      "departmentList"
-    );
-
-  if(!box) return;
-
-  box.innerHTML = "";
-
-  if(!allData.departements.length){
-
-    box.innerHTML =
-      `<div class="empty">Pa gen département.</div>`;
-
-    return;
-  }
-
-  allData.departements.forEach(item=>{
-
-    box.innerHTML += `
-      <div class="record">
-
-        <div class="record-main">
-
-          <div class="record-title">
-            🏢 ${escapeHtml(item.name || item.nom || "Sans nom")}
-          </div>
-
-          <div class="record-meta">
-            ${escapeHtml(item.description || "")}
-          </div>
-
-        </div>
-
-        <div class="record-actions">
-
-          ${
-            isAdmin()
-            ? `
-              <button
-                class="btn btn-light btn-small"
-                onclick="editRecord('departements','${item.id}','department')">
-                ✏️ Modifier
-              </button>
-
-              <button
-                class="btn btn-danger btn-small"
-                onclick="deleteRecord('departements','${item.id}')">
-                🗑️ Supprimer
-              </button>
-            `
-            : ""
-          }
-
-        </div>
-
-      </div>
-    `;
-
-  });
-
+  const box = document.getElementById("departmentList"); if(!box) return;
+  box.innerHTML = allData.departements.length ? allData.departements.map(d=>`
+    <div class="record"><div class="record-main"><div class="record-title">🏢 ${escapeHtml(d.name||"")}</div></div></div>
+  `).join("") : `<div class="empty">Aucun département.</div>`;
 }
 
-
-/* =========================================
-   PROGRAMMES
-========================================= */
-
-document
-.getElementById("programForm")
-.addEventListener(
-  "submit",
-  async event=>{
-
-    event.preventDefault();
-
-    if(!isAdmin()) return;
-
-    const name =
-      document
-      .getElementById("programName")
-      .value.trim();
-
-    const description =
-      document
-      .getElementById("programDescription")
-      .value.trim();
-
-    if(!name) return;
-
-    try{
-
-      await addDoc(
-        collection(db,"programmes"),
-        {
-          name,
-          description,
-          createdBy:currentUser.uid,
-          createdAt:serverTimestamp()
-        }
-      );
-
-      event.target.reset();
-
-      showToast(
-        "Programme ajouté.",
-        "success"
-      );
-
-      await loadAllData();
-
-    }catch(error){
-
-      showToast(
-        friendlyError(error),
-        "error"
-      );
-
-    }
-
-  }
-);
-
+document.getElementById("programForm").addEventListener("submit", async e=>{
+  e.preventDefault(); if(!isAdmin()) return;
+  const name = document.getElementById("programName").value.trim();
+  const description = document.getElementById("programDescription").value.trim();
+  try{
+    await addDoc(collection(db,"programmes"), { name, description, createdAt:serverTimestamp() });
+    e.target.reset(); showToast("Programme ajouté.", "success"); loadAllData();
+  }catch(err){ showToast(friendlyError(err), "error"); }
+});
 
 function renderPrograms(){
-
-  const box =
-    document.getElementById(
-      "programList"
-    );
-
-  if(!box) return;
-
-  box.innerHTML = "";
-
-  if(!allData.programmes.length){
-
-    box.innerHTML =
-      `<div class="empty">Pa gen programme.</div>`;
-
-    return;
-  }
-
-  allData.programmes.forEach(item=>{
-
-    box.innerHTML += `
-      <div class="record">
-
-        <div class="record-main">
-
-          <div class="record-title">
-            🎓 ${escapeHtml(item.name || item.nom || "Sans nom")}
-          </div>
-
-          <div class="record-meta">
-            ${escapeHtml(item.description || "")}
-          </div>
-
-        </div>
-
-        <div class="record-actions">
-
-          ${
-            isAdmin()
-            ? `
-              <button
-                class="btn btn-light btn-small"
-                onclick="editRecord('programmes','${item.id}','program')">
-                ✏️ Modifier
-              </button>
-
-              <button
-                class="btn btn-danger btn-small"
-                onclick="deleteRecord('programmes','${item.id}')">
-                🗑️ Supprimer
-              </button>
-            `
-            : ""
-          }
-
-        </div>
-
-      </div>
-    `;
-
-  });
-
+  const box = document.getElementById("programList"); if(!box) return;
+  box.innerHTML = allData.programmes.length ? allData.programmes.map(p=>`
+    <div class="record"><div class="record-main"><div class="record-title">🎓 ${escapeHtml(p.name||"")}</div></div></div>
+  `).join("") : `<div class="empty">Aucun programme.</div>`;
 }
 
-
-/* =========================================
-   COURSES
-========================================= */
-
-document
-.getElementById("courseForm")
-.addEventListener(
-  "submit",
-  async event=>{
-
-    event.preventDefault();
-
-    if(!isAdmin()) return;
-
-    const name =
-      document
-      .getElementById("courseName")
-      .value.trim();
-
-    const subject =
-      document
-      .getElementById("courseSubject")
-      .value.trim();
-
-    if(!name) return;
-
-    try{
-
-      await addDoc(
-        collection(db,"cours"),
-        {
-          name,
-          subject,
-          createdBy:currentUser.uid,
-          createdAt:serverTimestamp()
-        }
-      );
-
-      event.target.reset();
-
-      showToast(
-        "Cours ajouté.",
-        "success"
-      );
-
-      await loadAllData();
-
-    }catch(error){
-
-      showToast(
-        friendlyError(error),
-        "error"
-      );
-
-    }
-
-  }
-);
-
+document.getElementById("courseForm").addEventListener("submit", async e=>{
+  e.preventDefault(); if(!isAdmin()) return;
+  const name = document.getElementById("courseName").value.trim();
+  const subject = document.getElementById("courseSubject").value.trim();
+  try{
+    await addDoc(collection(db,"cours"), { name, subject, createdAt:serverTimestamp() });
+    e.target.reset(); showToast("Cours ajouté.", "success"); loadAllData();
+  }catch(err){ showToast(friendlyError(err), "error"); }
+});
 
 function renderCourses(){
-
-  const box =
-    document.getElementById(
-      "courseList"
-    );
-
-  if(!box) return;
-
-  box.innerHTML = "";
-
-  if(!allData.cours.length){
-
-    box.innerHTML =
-      `<div class="empty">Pa gen cours.</div>`;
-
-    return;
-  }
-
-  allData.cours.forEach(item=>{
-
-    box.innerHTML += `
-      <div class="record">
-
-        <div class="record-main">
-
-          <div class="record-title">
-            📖 ${escapeHtml(item.name || item.nom || "Sans nom")}
-          </div>
-
-          <div class="record-meta">
-            <span>
-              📚 ${escapeHtml(item.subject || item.matiere || "—")}
-            </span>
-          </div>
-
-        </div>
-
-        <div class="record-actions">
-
-          ${
-            isAdmin()
-            ? `
-              <button
-                class="btn btn-light btn-small"
-                onclick="editRecord('cours','${item.id}','course')">
-                ✏️ Modifier
-              </button>
-
-              <button
-                class="btn btn-danger btn-small"
-                onclick="deleteRecord('cours','${item.id}')">
-                🗑️ Supprimer
-              </button>
-            `
-            : ""
-          }
-
-        </div>
-
-      </div>
-    `;
-
-  });
-
+  const box = document.getElementById("courseList"); if(!box) return;
+  box.innerHTML = allData.cours.length ? allData.cours.map(c=>`
+    <div class="record"><div class="record-main"><div class="record-title">📖 ${escapeHtml(c.name||"")}</div></div></div>
+  `).join("") : `<div class="empty">Aucun cours.</div>`;
 }
 
-
-/* =========================================
-   SCHEDULES
-========================================= */
-
-document
-.getElementById("scheduleForm")
-.addEventListener(
-  "submit",
-  async event=>{
-
-    event.preventDefault();
-
-    if(!isAdmin()) return;
-
-    const day =
-      document
-      .getElementById("scheduleDay")
-      .value;
-
-    const course =
-      document
-      .getElementById("scheduleCourse")
-      .value.trim();
-
-    const time =
-      document
-      .getElementById("scheduleTime")
-      .value.trim();
-
-    const classe =
-      document
-      .getElementById("scheduleClass")
-      .value.trim();
-
-    if(!course) return;
-
-    try{
-
-      await addDoc(
-        collection(db,"emplois_du_temps"),
-        {
-          day,
-          course,
-          time,
-          classe,
-          createdBy:currentUser.uid,
-          createdAt:serverTimestamp()
-        }
-      );
-
-      event.target.reset();
-
-      showToast(
-        "Horaire ajouté.",
-        "success"
-      );
-
-      await loadAllData();
-
-    }catch(error){
-
-      showToast(
-        friendlyError(error),
-        "error"
-      );
-
-    }
-
-  }
-);
-
+document.getElementById("scheduleForm").addEventListener("submit", async e=>{
+  e.preventDefault(); if(!isAdmin()) return;
+  const day = document.getElementById("scheduleDay").value;
+  const course = document.getElementById("scheduleCourse").value.trim();
+  const time = document.getElementById("scheduleTime").value.trim();
+  const classe = document.getElementById("scheduleClass").value.trim();
+  try{
+    await addDoc(collection(db,"emplois_du_temps"), { day, course, time, classe, createdAt:serverTimestamp() });
+    e.target.reset(); showToast("Horaire ajouté.", "success"); loadAllData();
+  }catch(err){ showToast(friendlyError(err), "error"); }
+});
 
 function renderSchedules(){
-
-  const box =
-    document.getElementById(
-      "scheduleList"
-    );
-
-  if(!box) return;
-
-  box.innerHTML = "";
-
-  if(!allData.horaires.length){
-
-    box.innerHTML =
-      `<div class="empty">Pa gen horaire.</div>`;
-
-    return;
-  }
-
-  allData.horaires.forEach(item=>{
-
-    box.innerHTML += `
-      <div class="record">
-
-        <div class="record-main">
-
-          <div class="record-title">
-            🕐 ${escapeHtml(item.day || "Jour")}
-          </div>
-
-          <div class="record-meta">
-
-            <span>
-              📖 ${escapeHtml(item.course || "—")}
-            </span>
-
-            <span>
-              ⏰ ${escapeHtml(item.time || "—")}
-            </span>
-
-            <span>
-              🏫 ${escapeHtml(item.classe || "—")}
-            </span>
-
-          </div>
-
-        </div>
-
-        <div class="record-actions">
-
-          ${
-            isAdmin()
-            ? `
-              <button
-                class="btn btn-light btn-small"
-                onclick="editRecord('emplois_du_temps','${item.id}','schedule')">
-                ✏️ Modifier
-              </button>
-
-              <button
-                class="btn btn-danger btn-small"
-                onclick="deleteRecord('emplois_du_temps','${item.id}')">
-                🗑️ Supprimer
-              </button>
-            `
-            : ""
-          }
-
-        </div>
-
+  const box = document.getElementById("scheduleList"); if(!box) return;
+  box.innerHTML = allData.horaires.length ? allData.horaires.map(h=>`
+    <div class="record">
+      <div class="record-main">
+        <div class="record-title">🕐 ${escapeHtml(h.day||"")} - ${escapeHtml(h.course||"")}</div>
+        <div class="record-meta"><span>${escapeHtml(h.time||"")} | Classe: ${escapeHtml(h.classe||"")}</span></div>
       </div>
-    `;
-
-  });
-
+    </div>
+  `).join("") : `<div class="empty">Aucun horaire.</div>`;
 }
 
 
 /* =========================================
-   USERS
+   USERS MANAGEMENT (ADMIN ONLY)
 ========================================= */
 
-async function loadUsers(){
-
-  if(!isAdmin()){
-
-    showToast(
-      "Se administrateur ki gen aksè.",
-      "warning"
-    );
-
-    return;
-  }
-
-  allData.users =
-    await getCollectionData("users");
-
+window.loadUsers = async function(){
+  if(!isAdmin()) return;
+  allData.users = await getCollectionData("users");
   renderUsers();
-
-  updateStatistics();
-}
-
-
-window.loadUsers = loadUsers;
-
+};
 
 function renderUsers(){
-
-  const box =
-    document.getElementById(
-      "usersList"
-    );
-
+  const box = document.getElementById("usersList");
   if(!box) return;
 
-  box.innerHTML = "";
-
   if(!isAdmin()){
-
-    box.innerHTML =
-      `<div class="empty">Aksè réservé à l'administrateur.</div>`;
-
+    box.innerHTML = `<div class="empty">Aksè an poze restriksyon.</div>`;
     return;
   }
 
   if(!allData.users.length){
-
-    box.innerHTML =
-      `<div class="empty">Pa gen utilisateurs.</div>`;
-
+    box.innerHTML = `<div class="empty">Aucun utilisateur trouvé.</div>`;
     return;
   }
 
-  allData.users.forEach(user=>{
+  box.innerHTML = "";
 
-    const role =
-      normalizeRole(user.role);
+  allData.users.forEach(u=>{
+    const status = normalizeStatus(u.status);
+    const role = normalizeRole(u.role);
+    const name = u.displayName || u.nom || "Utilisateur";
+    const email = u.email || "—";
 
-    const status =
-      normalizeStatus(user.status);
-
-    const name =
-      user.displayName ||
-      user.name ||
-      user.email ||
-      "Utilisateur";
-
-    let statusBadge =
-      `<span class="badge badge-warning">En attente</span>`;
-
-    if(status==="accepted"){
-
-      statusBadge =
-        `<span class="badge badge-success">Accepté</span>`;
-
-    }
-
-    if(status==="refused"){
-
-      statusBadge =
-        `<span class="badge badge-danger">Refusé</span>`;
-
-    }
+    let badgeClass = "badge-warning";
+    if(status === "accepted") badgeClass = "badge-success";
+    if(status === "refused") badgeClass = "badge-danger";
 
     box.innerHTML += `
       <div class="user-record">
-
         <div>
-
-          <div class="user-name">
-            ${escapeHtml(name)}
-          </div>
-
-          <div class="user-email-small">
-            ${escapeHtml(user.email || "—")}
-          </div>
-
-          <div style="margin-top:7px">
-            ${statusBadge}
-          </div>
-
+          <div class="user-name">${escapeHtml(name)}</div>
+          <div class="user-email-small">${escapeHtml(email)}</div>
         </div>
 
-
         <div>
-
-          <select
-            id="role-${user.id}"
-            class="user-role-select">
-
-            <option
-              value="eleve"
-              ${role==="eleve" ? "selected" : ""}>
-              Élève
-            </option>
-
-            <option
-              value="professeur"
-              ${role==="professeur" ? "selected" : ""}>
-              Professeur
-            </option>
-
-            <option
-              value="administrateur"
-              ${role==="administrateur" ? "selected" : ""}>
-              Administrateur
-            </option>
-
-            <option
-              value="secretariat"
-              ${role==="secretariat" ? "selected" : ""}>
-              Secrétariat
-            </option>
-
+          <select class="user-role-select" onchange="updateUserRole('${u.id}', this.value)">
+            <option value="eleve" ${role==='eleve'?'selected':''}>Élève</option>
+            <option value="professeur" ${role==='professeur'?'selected':''}>Professeur</option>
+            <option value="administrateur" ${role==='administrateur'?'selected':''}>Administrateur</option>
           </select>
-
         </div>
-
 
         <div>
-
-          <button
-            class="btn btn-light btn-small"
-            onclick="saveUserRole('${user.id}')">
-            💾 Modifier rôle
-          </button>
-
+          <span class="badge ${badgeClass}">${status.toUpperCase()}</span>
         </div>
 
-
-        <div class="record-actions">
-
-          ${
-            status!=="accepted"
-            ? `
-              <button
-                class="btn btn-success btn-small"
-                onclick="approveUser('${user.id}')">
-                ✓ Accepter
-              </button>
-            `
-            : ""
-          }
-
-          ${
-            status!=="refused"
-            ? `
-              <button
-                class="btn btn-warning btn-small"
-                onclick="refuseUser('${user.id}')">
-                ✕ Refuser
-              </button>
-            `
-            : ""
-          }
-
-          <button
-            class="btn btn-danger btn-small"
-            onclick="deleteUser('${user.id}')">
-            🗑️ Supprimer
-          </button>
-
+        <div style="display:flex;gap:5px;">
+          ${status !== 'accepted' ? `
+            <button class="btn btn-success btn-small" onclick="updateUserStatus('${u.id}','accepted')">Accepter</button>
+          ` : `
+            <button class="btn btn-warning btn-small" onclick="updateUserStatus('${u.id}','attente')">Mettre en attente</button>
+          `}
+          <button class="btn btn-danger btn-small" onclick="updateUserStatus('${u.id}','refused')">Refuser</button>
         </div>
-
       </div>
     `;
-
   });
-
 }
 
-
-window.saveUserRole =
-async function(uid){
-
+window.updateUserStatus = async function(userId, newStatus){
   if(!isAdmin()) return;
-
-  const select =
-    document.getElementById(
-      "role-"+uid
-    );
-
-  if(!select) return;
-
-  const role =
-    select.value;
-
   try{
-
-    await updateDoc(
-      doc(db,"users",uid),
-      {
-        role,
-        updatedAt:serverTimestamp()
-      }
-    );
-
-    showToast(
-      "Rôle utilisateur modifié.",
-      "success"
-    );
-
+    await updateDoc(doc(db, "users", userId), { status: newStatus });
+    showToast("Statut de l'utilisateur mis à jour.", "success");
     await loadUsers();
-
-  }catch(error){
-
-    showToast(
-      friendlyError(error),
-      "error"
-    );
-
+    updateStatistics();
+  }catch(err){
+    showToast(friendlyError(err), "error");
   }
 };
 
-
-window.approveUser =
-async function(uid){
-
+window.updateUserRole = async function(userId, newRole){
   if(!isAdmin()) return;
-
-  const select =
-    document.getElementById(
-      "role-"+uid
-    );
-
-  const role =
-    select?.value || "eleve";
-
   try{
-
-    await updateDoc(
-      doc(db,"users",uid),
-      {
-        role,
-        status:"accepted",
-        updatedAt:serverTimestamp()
-      }
-    );
-
-    showToast(
-      "Utilisateur accepté.",
-      "success"
-    );
-
+    await updateDoc(doc(db, "users", userId), { role: newRole });
+    showToast("Rôle de l'utilisateur mis à jour.", "success");
     await loadUsers();
-
-  }catch(error){
-
-    showToast(
-      friendlyError(error),
-      "error"
-    );
-
+  }catch(err){
+    showToast(friendlyError(err), "error");
   }
-};
-
-
-window.refuseUser =
-async function(uid){
-
-  if(!isAdmin()) return;
-
-  try{
-
-    await updateDoc(
-      doc(db,"users",uid),
-      {
-        status:"refused",
-        updatedAt:serverTimestamp()
-      }
-    );
-
-    showToast(
-      "Utilisateur refusé.",
-      "success"
-    );
-
-    await loadUsers();
-
-  }catch(error){
-
-    showToast(
-      friendlyError(error),
-      "error"
-    );
-
-  }
-};
-
-
-window.deleteUser =
-async function(uid){
-
-  if(!isAdmin()) return;
-
-  if(uid===currentUser?.uid){
-
-    showToast(
-      "Ou pa dwe efase pwòp kont administrateur ou la nan lis sa a.",
-      "warning"
-    );
-
-    return;
-  }
-
-  if(
-    !confirm(
-      "Èske ou sèten ou vle efase profil Firestore itilizatè sa a?"
-    )
-  ){
-
-    return;
-  }
-
-  try{
-
-    await deleteDoc(
-      doc(db,"users",uid)
-    );
-
-    showToast(
-      "Profil itilizatè a efase.",
-      "success"
-    );
-
-    await loadUsers();
-
-  }catch(error){
-
-    showToast(
-      friendlyError(error),
-      "error"
-    );
-
-  }
-};
-
-
-/* =========================================
-   EDIT RECORD
-========================================= */
-
-window.editRecord =
-async function(
-  collectionName,
-  id,
-  type
-){
-
-  const adminOnly = [
-    "student",
-    "teacher",
-    "class",
-    "subject",
-    "department",
-    "program",
-    "course",
-    "schedule"
-  ];
-
-  if(
-    adminOnly.includes(type) &&
-    !isAdmin()
-  ){
-
-    showToast(
-      "Se administrateur ki ka modifye done sa yo.",
-      "warning"
-    );
-
-    return;
-  }
-
-  if(
-    type==="assignment" &&
-    !isAdmin() &&
-    !isProfessor()
-  ){
-
-    return;
-  }
-
-  if(
-    type==="result" &&
-    !isAdmin() &&
-    !isProfessor()
-  ){
-
-    return;
-  }
-
-  try{
-
-    const snapshot =
-      await getDoc(
-        doc(db,collectionName,id)
-      );
-
-    if(!snapshot.exists()){
-
-      showToast(
-        "Done a pa egziste ankò.",
-        "error"
-      );
-
-      return;
-    }
-
-    const data =
-      snapshot.data();
-
-    let updated = {};
-
-
-    if(type==="student"){
-
-      const name =
-        prompt(
-          "Non elèv:",
-          data.name || data.nom || ""
-        );
-
-      if(name===null) return;
-
-      const email =
-        prompt(
-          "Email:",
-          data.email || ""
-        );
-
-      if(email===null) return;
-
-      const phone =
-        prompt(
-          "Téléphone:",
-          data.phone || ""
-        );
-
-      if(phone===null) return;
-
-      const classe =
-        prompt(
-          "Classe:",
-          data.classe || data.class || ""
-        );
-
-      if(classe===null) return;
-
-      updated = {
-        name,
-        email,
-        phone,
-        classe,
-        updatedAt:serverTimestamp()
-      };
-
-    }
-
-
-    if(type==="teacher"){
-
-      const name =
-        prompt(
-          "Nom professeur:",
-          data.name || data.nom || ""
-        );
-
-      if(name===null) return;
-
-      const email =
-        prompt(
-          "Email:",
-          data.email || ""
-        );
-
-      if(email===null) return;
-
-      const phone =
-        prompt(
-          "Téléphone:",
-          data.phone || ""
-        );
-
-      if(phone===null) return;
-
-      const subject =
-        prompt(
-          "Matière:",
-          data.subject || ""
-        );
-
-      if(subject===null) return;
-
-      updated = {
-        name,
-        email,
-        phone,
-        subject,
-        updatedAt:serverTimestamp()
-      };
-
-    }
-
-
-    if(type==="class"){
-
-      const name =
-        prompt(
-          "Nom classe:",
-          data.name || data.nom || ""
-        );
-
-      if(name===null) return;
-
-      const level =
-        prompt(
-          "Niveau:",
-          data.level || data.niveau || ""
-        );
-
-      if(level===null) return;
-
-      updated = {
-        name,
-        level,
-        updatedAt:serverTimestamp()
-      };
-
-    }
-
-
-    if(type==="subject"){
-
-      const name =
-        prompt(
-          "Nom matière:",
-          data.name || data.nom || ""
-        );
-
-      if(name===null) return;
-
-      const description =
-        prompt(
-          "Description:",
-          data.description || ""
-        );
-
-      if(description===null) return;
-
-      updated = {
-        name,
-        description,
-        updatedAt:serverTimestamp()
-      };
-
-    }
-
-
-    if(type==="assignment"){
-
-      if(
-        isProfessor() &&
-        data.createdBy!==currentUser.uid
-      ){
-
-        showToast(
-          "Ou pa ka modifye devoir yon lòt professeur.",
-          "warning"
-        );
-
-        return;
-      }
-
-      const title =
-        prompt(
-          "Titre devoir:",
-          data.title || ""
-        );
-
-      if(title===null) return;
-
-      const course =
-        prompt(
-          "Matière:",
-          data.course || ""
-        );
-
-      if(course===null) return;
-
-      const date =
-        prompt(
-          "Date:",
-          data.date || ""
-        );
-
-      if(date===null) return;
-
-      const description =
-        prompt(
-          "Description:",
-          data.description || ""
-        );
-
-      if(description===null) return;
-
-      updated = {
-        title,
-        course,
-        date,
-        description,
-        updatedAt:serverTimestamp()
-      };
-
-    }
-
-
-    if(type==="submission"){
-
-      if(
-        isProfessor() &&
-        data.createdBy!==currentUser.uid
-      ){
-
-        showToast(
-          "Ou pa ka modifye remèt yon lòt utilisateur.",
-          "warning"
-        );
-
-        return;
-      }
-
-      const student =
-        prompt(
-          "Élève:",
-          data.student || ""
-        );
-
-      if(student===null) return;
-
-      const assignment =
-        prompt(
-          "Devoir:",
-          data.assignment || ""
-        );
-
-      if(assignment===null) return;
-
-      const note =
-        prompt(
-          "Note /20:",
-          data.note ?? ""
-        );
-
-      if(note===null) return;
-
-      const comment =
-        prompt(
-          "Correction:",
-          data.comment ||
-          data.correction ||
-          ""
-        );
-
-      if(comment===null) return;
-
-      updated = {
-        student,
-        assignment,
-        note:
-          note===""
-          ? null
-          : Number(note),
-        comment,
-        correction:comment,
-        updatedAt:serverTimestamp()
-      };
-
-    }
-
-
-    if(type==="result"){
-
-      if(
-        isProfessor() &&
-        data.createdBy!==currentUser.uid
-      ){
-
-        showToast(
-          "Ou pa ka modifye rezilta yon lòt professeur.",
-          "warning"
-        );
-
-        return;
-      }
-
-      const student =
-        prompt(
-          "Élève:",
-          data.student || ""
-        );
-
-      if(student===null) return;
-
-      const subject =
-        prompt(
-          "Matière:",
-          data.subject || ""
-        );
-
-      if(subject===null) return;
-
-      const note =
-        prompt(
-          "Note /20:",
-          data.note ?? ""
-        );
-
-      if(note===null) return;
-
-      const comment =
-        prompt(
-          "Observation:",
-          data.comment || ""
-        );
-
-      if(comment===null) return;
-
-      updated = {
-        student,
-        subject,
-        note:Number(note),
-        comment,
-        updatedAt:serverTimestamp()
-      };
-
-    }
-
-
-    if(type==="department"){
-
-      const name =
-        prompt(
-          "Nom:",
-          data.name || ""
-        );
-
-      if(name===null) return;
-
-      const description =
-        prompt(
-          "Description:",
-          data.description || ""
-        );
-
-      if(description===null) return;
-
-      updated = {
-        name,
-        description,
-        updatedAt:serverTimestamp()
-      };
-
-    }
-
-
-    if(type==="program"){
-
-      const name =
-        prompt(
-          "Nom:",
-          data.name || ""
-        );
-
-      if(name===null) return;
-
-      const description =
-        prompt(
-          "Description:",
-          data.description || ""
-        );
-
-      if(description===null) return;
-
-      updated = {
-        name,
-        description,
-        updatedAt:serverTimestamp()
-      };
-
-    }
-
-
-    if(type==="course"){
-
-      const name =
-        prompt(
-          "Nom cours:",
-          data.name || ""
-        );
-
-      if(name===null) return;
-
-      const subject =
-        prompt(
-          "Matière:",
-          data.subject || ""
-        );
-
-      if(subject===null) return;
-
-      updated = {
-        name,
-        subject,
-        updatedAt:serverTimestamp()
-      };
-
-    }
-
-
-    if(type==="schedule"){
-
-      const day =
-        prompt(
-          "Jour:",
-          data.day || ""
-        );
-
-      if(day===null) return;
-
-      const course =
-        prompt(
-          "Cours:",
-          data.course || ""
-        );
-
-      if(course===null) return;
-
-      const time =
-        prompt(
-          "Heure:",
-          data.time || ""
-        );
-
-      if(time===null) return;
-
-      const classe =
-        prompt(
-          "Classe:",
-          data.classe || ""
-        );
-
-      if(classe===null) return;
-
-      updated = {
-        day,
-        course,
-        time,
-        classe,
-        updatedAt:serverTimestamp()
-      };
-
-    }
-
-
-    if(!Object.keys(updated).length){
-
-      return;
-    }
-
-    await updateDoc(
-      doc(db,collectionName,id),
-      updated
-    );
-
-    showToast(
-      "Modification enregistrée.",
-      "success"
-    );
-
-    await loadAllData();
-
-  }catch(error){
-
-    showToast(
-      friendlyError(error),
-      "error"
-    );
-
-  }
-};
-
-
-/* =========================================
-   DELETE RECORD
-========================================= */
-
-window.deleteRecord =
-async function(
-  collectionName,
-  id
-){
-
-  const adminCollections = [
-    "eleves",
-    "etudiants",
-    "professeurs",
-    "classes",
-    "matieres",
-    "departements",
-    "programmes",
-    "cours",
-    "emplois_du_temps"
-  ];
-
-  if(
-    adminCollections.includes(
-      collectionName
-    ) &&
-    !isAdmin()
-  ){
-
-    showToast(
-      "Se administrateur ki ka efase done sa yo.",
-      "warning"
-    );
-
-    return;
-  }
-
-
-  if(
-    ["devoirs","remises","resultats"]
-      .includes(collectionName)
-  ){
-
-    if(!isAdmin()){
-
-      showToast(
-        "Se administrateur ki gen dwa efase done sa yo nan interface sa a.",
-        "warning"
-      );
-
-      return;
-    }
-
-  }
-
-
-  if(
-    !confirm(
-      "Èske ou sèten ou vle efase done sa a?"
-    )
-  ){
-
-    return;
-  }
-
-
-  try{
-
-    await deleteDoc(
-      doc(db,collectionName,id)
-    );
-
-    showToast(
-      "Done a efase avèk siksè.",
-      "success"
-    );
-
-    await loadAllData();
-
-  }catch(error){
-
-    showToast(
-      friendlyError(error),
-      "error"
-    );
-
-  }
-
-};
-
-
-/* =========================================
-   STATISTICS
-========================================= */
-
-function updateStatistics(){
-
-  const counts = {
-
-    eleves:allData.eleves.length,
-
-    professeurs:
-      allData.professeurs.length,
-
-    classes:
-      allData.classes.length,
-
-    matieres:
-      allData.matieres.length,
-
-    devoirs:
-      allData.devoirs.length,
-
-    remises:
-      allData.remises.length,
-
-    resultats:
-      allData.resultats.length,
-
-    pending:
-      allData.users.filter(
-        user=>
-          normalizeStatus(
-            user.status
-          )!=="accepted"
-      ).length
-
-  };
-
-
-  setText(
-    "statEleves",
-    counts.eleves
-  );
-
-  setText(
-    "statProfesseurs",
-    counts.professeurs
-  );
-
-  setText(
-    "statClasses",
-    counts.classes
-  );
-
-  setText(
-    "statMatieres",
-    counts.matieres
-  );
-
-  setText(
-    "statDevoirs",
-    counts.devoirs
-  );
-
-  setText(
-    "statRemises",
-    counts.remises
-  );
-
-  setText(
-    "statResultats",
-    counts.resultats
-  );
-
-  setText(
-    "statPending",
-    isAdmin()
-      ? counts.pending
-      : 0
-  );
-
-
-  setText(
-    "bigStatEleves",
-    counts.eleves
-  );
-
-  setText(
-    "bigStatProfesseurs",
-    counts.professeurs
-  );
-
-  setText(
-    "bigStatClasses",
-    counts.classes
-  );
-
-  setText(
-    "bigStatMatieres",
-    counts.matieres
-  );
-
-  setText(
-    "bigStatDevoirs",
-    counts.devoirs
-  );
-
-  setText(
-    "bigStatRemises",
-    counts.remises
-  );
-
-  setText(
-    "bigStatResultats",
-    counts.resultats
-  );
-
-  setText(
-    "bigStatPending",
-    isAdmin()
-      ? counts.pending
-      : 0
-  );
-
-
-  updateBars(counts);
-
-}
-
-
-function updateBars(counts){
-
-  const values = [
-    counts.eleves,
-    counts.professeurs,
-    counts.classes,
-    counts.matieres,
-    counts.devoirs
-  ];
-
-  const max =
-    Math.max(
-      ...values,
-      1
-    );
-
-
-  setBar(
-    "barEleves",
-    "barElevesNumber",
-    counts.eleves,
-    max
-  );
-
-  setBar(
-    "barProfesseurs",
-    "barProfesseursNumber",
-    counts.professeurs,
-    max
-  );
-
-  setBar(
-    "barClasses",
-    "barClassesNumber",
-    counts.classes,
-    max
-  );
-
-  setBar(
-    "barMatieres",
-    "barMatieresNumber",
-    counts.matieres,
-    max
-  );
-
-  setBar(
-    "barDevoirs",
-    "barDevoirsNumber",
-    counts.devoirs,
-    max
-  );
-
-}
-
-
-function setBar(
-  barId,
-  numberId,
-  value,
-  max
-){
-
-  const bar =
-    document.getElementById(barId);
-
-  const number =
-    document.getElementById(numberId);
-
-  if(bar){
-
-    bar.style.width =
-      Math.max(
-        value===0 ? 0 : 5,
-        (value/max)*100
-      ) + "%";
-
-  }
-
-  if(number){
-
-    number.textContent =
-      value;
-
-  }
-
-}
-
-
-/* =========================================
-   RECENT ACTIVITIES
-========================================= */
-
-function renderRecentActivities(){
-
-  const box =
-    document.getElementById(
-      "recentActivities"
-    );
-
-  if(!box) return;
-
-  const activities = [];
-
-  allData.devoirs
-    .slice(-3)
-    .reverse()
-    .forEach(item=>{
-
-      activities.push({
-        icon:"📝",
-        title:
-          "Nouveau devoir : " +
-          (
-            item.title ||
-            item.titre ||
-            "Devoir"
-          ),
-        meta:
-          item.course ||
-          item.matiere ||
-          ""
-      });
-
-    });
-
-
-  allData.remises
-    .slice(-3)
-    .reverse()
-    .forEach(item=>{
-
-      activities.push({
-        icon:"📤",
-        title:
-          "Nouvelle remise : " +
-          (
-            item.student ||
-            "Élève"
-          ),
-        meta:
-          item.assignment ||
-          ""
-      });
-
-    });
-
-
-  allData.resultats
-    .slice(-3)
-    .reverse()
-    .forEach(item=>{
-
-      activities.push({
-        icon:"📊",
-        title:
-          "Résultat : " +
-          (
-            item.student ||
-            "Élève"
-          ),
-        meta:
-          (
-            item.subject ||
-            ""
-          ) +
-          " · " +
-          (
-            item.note ??
-            "—"
-          ) +
-          "/20"
-      });
-
-    });
-
-
-  if(!activities.length){
-
-    box.innerHTML =
-      `<div class="empty">
-        Pa gen aktivite resan pou montre.
-      </div>`;
-
-    return;
-  }
-
-
-  box.innerHTML =
-    activities
-      .slice(0,7)
-      .map(item=>`
-
-        <div class="activity-item">
-
-          <div class="activity-icon">
-            ${item.icon}
-          </div>
-
-          <div class="activity-text">
-
-            <div class="activity-title">
-              ${escapeHtml(item.title)}
-            </div>
-
-            <div class="activity-meta">
-              ${escapeHtml(item.meta)}
-            </div>
-
-          </div>
-
-        </div>
-
-      `)
-      .join("");
-
-}
-
-
-/* =========================================
-   REFRESH
-========================================= */
-
-window.refreshData =
-async function(){
-
-  showToast(
-    "Actualisation en cours...",
-    "success"
-  );
-
-  await loadAllData();
-
-  if(isAdmin()){
-
-    await loadUsers();
-
-  }
-
-  showToast(
-    "Données actualisées.",
-    "success"
-  );
-
-};
-
-
-/* =========================================
-   FILTER
-========================================= */
-
-window.filterRecords =
-function(
-  containerId,
-  search
-){
-
-  const container =
-    document.getElementById(
-      containerId
-    );
-
-  if(!container) return;
-
-  const value =
-    search
-      .toLowerCase()
-      .trim();
-
-  container
-    .querySelectorAll(".record")
-    .forEach(record=>{
-
-      record.style.display =
-        record.innerText
-          .toLowerCase()
-          .includes(value)
-          ? ""
-          : "none";
-
-    });
-
 };
 
 
@@ -7110,361 +4564,26 @@ function(
    EXPORT DATA
 ========================================= */
 
-window.exportData =
-async function(){
-
-  if(!isAccepted()){
-
-    showToast(
-      "Ou dwe konekte pou ekspòte done.",
-      "warning"
-    );
-
-    return;
-  }
-
-  try{
-
-    const exportObject = {
-
-      application:
-        "Centre de Formation Le Pédagogue",
-
-      exportedAt:
-        new Date().toISOString(),
-
-      eleves:
-        allData.eleves,
-
-      professeurs:
-        allData.professeurs,
-
-      classes:
-        allData.classes,
-
-      matieres:
-        allData.matieres,
-
-      devoirs:
-        allData.devoirs,
-
-      remises:
-        allData.remises,
-
-      resultats:
-        allData.resultats,
-
-      departements:
-        allData.departements,
-
-      programmes:
-        allData.programmes,
-
-      cours:
-        allData.cours,
-
-      horaires:
-        allData.horaires
-
-    };
-
-
-    if(isAdmin()){
-
-      exportObject.users =
-        allData.users;
-
-    }
-
-
-    const json =
-      JSON.stringify(
-        exportObject,
-        null,
-        2
-      );
-
-    const blob =
-      new Blob(
-        [json],
-        {
-          type:"application/json"
-        }
-      );
-
-    const url =
-      URL.createObjectURL(blob);
-
-    const link =
-      document.createElement("a");
-
-    const date =
-      new Date()
-      .toISOString()
-      .slice(0,10);
-
-    link.href = url;
-
-    link.download =
-      "sauvegarde-le-pedagogue-" +
-      date +
-      ".json";
-
-    document
-      .body
-      .appendChild(link);
-
-    link.click();
-
-    link.remove();
-
-    URL.revokeObjectURL(url);
-
-    showToast(
-      "Sauvegarde JSON créée.",
-      "success"
-    );
-
-  }catch(error){
-
-    console.error(
-      "Export:",
-      error
-    );
-
-    showToast(
-      "Impossible de créer la sauvegarde.",
-      "error"
-    );
-
-  }
-
+window.exportData = function(){
+  const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(allData, null, 2));
+  const dlAnchorElem = document.createElement('a');
+  dlAnchorElem.setAttribute("href", dataStr);
+  dlAnchorElem.setAttribute("download", `pedagogue_backup_${new Date().toISOString().slice(0,10)}.json`);
+  document.body.appendChild(dlAnchorElem);
+  dlAnchorElem.click();
+  dlAnchorElem.remove();
+  showToast("Données exportées avec succès.", "success");
 };
 
 
 /* =========================================
-   LOGOUT
+   LANGUAGES
 ========================================= */
 
-window.logout =
-async function(){
-
-  try{
-
-    await signOut(auth);
-
-    showToast(
-      "Déconnexion réussie.",
-      "success"
-    );
-
-  }catch(error){
-
-    showToast(
-      friendlyError(error),
-      "error"
-    );
-
-  }
-
+window.changeLanguage = function(lang){
+  showToast(lang === "fr" ? "Langue changée en Français" : "Lang chanje an Kreyòl", "success");
 };
-
-
-/* =========================================
-   LANGUAGE
-========================================= */
-
-const translations = {
-
-  ht:{
-    accueil:"Akèy",
-    eleves:"Elèv",
-    professeurs:"Pwofesè",
-    classes:"Klas",
-    matieres:"Matyè",
-    devoirs:"Devwa",
-    remises:"Remèt",
-    resultats:"Rezilta",
-    statistiques:"Estatistik",
-    utilisateurs:"Itilizatè",
-    donnees:"Done / Sauvegarde"
-  },
-
-  fr:{
-    accueil:"Accueil",
-    eleves:"Élèves",
-    professeurs:"Professeurs",
-    classes:"Classes",
-    matieres:"Matières",
-    devoirs:"Devoirs",
-    remises:"Remises",
-    resultats:"Résultats",
-    statistiques:"Statistiques",
-    utilisateurs:"Utilisateurs",
-    donnees:"Données / Sauvegarde"
-  }
-
-};
-
-
-function changeStaticLanguage(lang){
-
-  const dictionary =
-    translations[lang] ||
-    translations.ht;
-
-  document
-    .querySelectorAll(
-      ".nav-link"
-    )
-    .forEach(button=>{
-
-      const section =
-        button.dataset.section;
-
-      const span =
-        button.querySelector(
-          "span:last-child"
-        );
-
-      if(
-        span &&
-        dictionary[section]
-      ){
-
-        span.textContent =
-          dictionary[section];
-
-      }
-
-    });
-
-}
-
-
-window.changeLanguage =
-function(lang){
-
-  localStorage.setItem(
-    "pedagogue_language",
-    lang
-  );
-
-  document.documentElement.lang =
-    lang==="fr"
-      ? "fr"
-      : "ht";
-
-  changeStaticLanguage(lang);
-
-};
-
-
-/* =========================================
-   RESTORE LANGUAGE
-========================================= */
-
-const savedLanguage =
-  localStorage.getItem(
-    "pedagogue_language"
-  ) || "ht";
-
-const languageSelect =
-  document.getElementById(
-    "languageSelect"
-  );
-
-if(languageSelect){
-
-  languageSelect.value =
-    savedLanguage;
-
-}
-
-changeStaticLanguage(
-  savedLanguage
-);
-
-
-/* =========================================
-   ESCAPE HTML
-========================================= */
-
-function escapeHtml(value){
-
-  if(value===null || value===undefined){
-
-    return "";
-
-  }
-
-  return String(value)
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
-}
-
-
-/* =========================================
-   SET TEXT
-========================================= */
-
-function setText(
-  id,
-  value
-){
-
-  const element =
-    document.getElementById(id);
-
-  if(element){
-
-    element.textContent =
-      value;
-
-  }
-
-}
-
-
-/* =========================================
-   SERVICE WORKER
-========================================= */
-
-if(
-  "serviceWorker" in navigator
-){
-
-  window.addEventListener(
-    "load",
-    ()=>{
-      navigator
-        .serviceWorker
-        .register("./service-worker.js")
-        .then(
-          registration=>{
-            console.log(
-              "Service Worker enregistré:",
-              registration.scope
-            );
-          }
-        )
-        .catch(
-          error=>{
-            console.log(
-              "Service Worker non disponible:",
-              error
-            );
-          }
-        );
-    }
-  );
-
-}
 
 </script>
-
 </body>
 </html>
