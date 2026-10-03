@@ -1,10 +1,13 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="ht">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta name="theme-color" content="#0f4c81">
-<meta name="description" content="Centre de Formation Le Pédagogue - Gestion universitaire et école professionnelle">
+
+<meta name="theme-color" content="#2563eb">
+<meta name="description"
+      content="Centre de Formation Le Pédagogue - Système de gestion universitaire et professionnelle">
+
 <link rel="manifest" href="./manifest.json">
 
 <title>Centre de Formation Le Pédagogue</title>
@@ -18,11 +21,14 @@
 
 body{
   font-family:Arial,Helvetica,sans-serif;
-  background:#f4f7fb;
-  color:#172033;
+  background:#f1f5f9;
+  color:#0f172a;
 }
 
-button,input,select,textarea{
+button,
+input,
+select,
+textarea{
   font:inherit;
 }
 
@@ -34,9 +40,7 @@ button{
   display:none!important;
 }
 
-/* =========================
-   LOGIN
-========================= */
+/* AUTH */
 
 #authPage{
   min-height:100vh;
@@ -44,53 +48,73 @@ button{
   align-items:center;
   justify-content:center;
   padding:20px;
-  background:linear-gradient(135deg,#0f4c81,#12355b);
+  background:
+    linear-gradient(135deg,#1d4ed8,#2563eb,#0f172a);
 }
 
-.auth-box{
+.auth-card{
   width:100%;
-  max-width:450px;
+  max-width:430px;
   background:#fff;
-  border-radius:20px;
+  border-radius:22px;
   padding:30px;
-  box-shadow:0 25px 70px rgba(0,0,0,.25);
+  box-shadow:0 20px 60px rgba(0,0,0,.25);
 }
 
-.auth-logo{
-  width:78px;
-  height:78px;
-  margin:0 auto 15px;
+.logo{
+  width:75px;
+  height:75px;
   border-radius:20px;
-  background:#0f4c81;
-  color:#fff;
+  background:#2563eb;
+  color:white;
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:38px;
+  font-size:32px;
+  margin:0 auto 15px;
+  font-weight:bold;
 }
 
-.auth-box h1{
+.auth-card h1{
   text-align:center;
-  font-size:21px;
-  color:#102a43;
+  font-size:23px;
+  margin-bottom:7px;
 }
 
-.auth-subtitle{
+.auth-card .subtitle{
   text-align:center;
-  color:#6b7c93;
-  font-size:13px;
-  margin:8px 0 25px;
+  color:#64748b;
+  margin-bottom:25px;
+}
+
+.auth-tabs{
+  display:flex;
+  gap:8px;
+  margin-bottom:20px;
+}
+
+.auth-tabs button{
+  flex:1;
+  border:0;
+  padding:11px;
+  border-radius:10px;
+  background:#e2e8f0;
+}
+
+.auth-tabs button.active{
+  background:#2563eb;
+  color:white;
 }
 
 .form-group{
-  margin-bottom:15px;
+  margin-bottom:14px;
 }
 
 .form-group label{
   display:block;
-  font-size:13px;
-  font-weight:700;
   margin-bottom:6px;
+  font-weight:bold;
+  font-size:14px;
 }
 
 .form-group input,
@@ -98,281 +122,264 @@ button{
 .form-group textarea{
   width:100%;
   padding:12px;
-  border:1px solid #ccd6e0;
-  border-radius:9px;
+  border:1px solid #cbd5e1;
+  border-radius:10px;
   outline:none;
-  background:#fff;
+  background:white;
 }
 
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus{
-  border-color:#0f4c81;
+  border-color:#2563eb;
 }
 
 .primary-btn{
-  border:0;
-  border-radius:9px;
-  background:#0f4c81;
-  color:#fff;
-  padding:11px 16px;
-  font-weight:700;
-}
-
-.full-btn{
   width:100%;
-  margin-top:5px;
+  border:0;
+  background:#2563eb;
+  color:white;
+  padding:13px;
+  border-radius:10px;
+  font-weight:bold;
 }
 
 .google-btn{
   width:100%;
   margin-top:10px;
-  padding:11px;
-  border:1px solid #ccd6e0;
-  border-radius:9px;
-  background:#fff;
-  color:#172033;
-  font-weight:700;
+  border:1px solid #cbd5e1;
+  background:white;
+  padding:12px;
+  border-radius:10px;
+  font-weight:bold;
 }
 
-.link-btn{
-  border:0;
-  background:none;
-  color:#0f4c81;
-  font-weight:700;
-  margin-top:16px;
+.divider{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin:17px 0;
+  color:#94a3b8;
+  font-size:13px;
+}
+
+.divider:before,
+.divider:after{
+  content:"";
+  height:1px;
+  background:#e2e8f0;
+  flex:1;
 }
 
 .auth-message{
   margin-top:15px;
-  padding:11px;
-  border-radius:9px;
-  background:#f1f5f9;
-  color:#475569;
-  text-align:center;
-  font-size:13px;
+  padding:12px;
+  border-radius:10px;
+  display:none;
+  font-size:14px;
 }
 
-/* =========================
-   HEADER
-========================= */
+.auth-message.error{
+  display:block;
+  background:#fee2e2;
+  color:#991b1b;
+}
 
-.header{
-  position:fixed;
-  top:0;
-  left:0;
-  right:0;
-  height:70px;
+.auth-message.success{
+  display:block;
+  background:#dcfce7;
+  color:#166534;
+}
+
+/* APP */
+
+#appPage{
+  min-height:100vh;
+}
+
+.topbar{
+  height:68px;
   background:#fff;
   border-bottom:1px solid #e2e8f0;
   display:flex;
   align-items:center;
   justify-content:space-between;
   padding:0 18px;
+  position:sticky;
+  top:0;
   z-index:1000;
 }
 
 .brand{
   display:flex;
   align-items:center;
-  gap:11px;
+  gap:10px;
 }
 
-.brand-logo{
-  width:45px;
-  height:45px;
-  border-radius:12px;
-  background:#0f4c81;
+.brand-icon{
+  width:43px;
+  height:43px;
+  background:#2563eb;
   color:#fff;
+  border-radius:12px;
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:22px;
+  font-weight:bold;
 }
 
-.brand-name{
-  font-size:17px;
-  font-weight:800;
-  color:#102a43;
+.brand-text strong{
+  display:block;
+  font-size:15px;
 }
 
-.brand-subtitle{
-  font-size:11px;
-  color:#718096;
-  margin-top:3px;
+.brand-text small{
+  color:#64748b;
 }
 
-.header-right{
+.top-actions{
   display:flex;
   align-items:center;
   gap:8px;
 }
 
-.language-select{
-  padding:8px;
-  border:1px solid #ccd6e0;
-  border-radius:8px;
+.top-actions button,
+.top-actions select{
+  border:1px solid #cbd5e1;
   background:#fff;
+  border-radius:9px;
+  padding:8px 11px;
 }
 
 .install-btn{
-  border:0;
-  border-radius:8px;
-  padding:9px 12px;
-  background:#0f4c81;
-  color:#fff;
-  font-weight:700;
+  background:#2563eb!important;
+  color:white!important;
+  border-color:#2563eb!important;
 }
 
 .logout-btn{
-  border:0;
-  border-radius:8px;
-  padding:9px 12px;
-  background:#fee2e2;
-  color:#b91c1c;
-  font-weight:700;
+  background:#fee2e2!important;
+  color:#991b1b!important;
 }
 
-/* =========================
-   SIDEBAR
-========================= */
+.layout{
+  display:flex;
+  min-height:calc(100vh - 68px);
+}
 
 .sidebar{
+  width:245px;
+  background:#0f172a;
+  color:white;
+  padding:18px 12px;
   position:fixed;
-  top:70px;
   left:0;
+  top:68px;
   bottom:0;
-  width:250px;
-  background:#102a43;
-  padding:15px 10px;
   overflow-y:auto;
-  z-index:900;
 }
 
-.menu-title{
-  color:#9fb3c8;
-  font-size:10px;
+.sidebar-title{
+  color:#94a3b8;
+  font-size:12px;
   text-transform:uppercase;
-  padding:12px;
-  font-weight:700;
+  margin:10px 12px;
 }
 
 .menu-btn{
   width:100%;
+  text-align:left;
   border:0;
   background:transparent;
-  color:#d9e2ec;
-  padding:11px 12px;
-  border-radius:8px;
-  text-align:left;
+  color:#cbd5e1;
+  padding:11px 13px;
+  border-radius:9px;
   margin-bottom:3px;
 }
 
 .menu-btn:hover,
 .menu-btn.active{
-  background:#0f4c81;
-  color:#fff;
+  background:#2563eb;
+  color:white;
 }
-
-/* =========================
-   MAIN
-========================= */
 
 .main{
-  margin-left:250px;
-  padding:95px 25px 30px;
-}
-
-.page{
-  display:none;
-}
-
-.page.active{
-  display:block;
+  margin-left:245px;
+  padding:24px;
+  width:calc(100% - 245px);
 }
 
 .page-title{
-  margin-bottom:20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  margin-bottom:22px;
 }
 
 .page-title h2{
-  font-size:25px;
-  color:#102a43;
+  font-size:24px;
 }
 
 .page-title p{
-  color:#718096;
+  color:#64748b;
   margin-top:5px;
 }
 
-/* =========================
-   DASHBOARD
-========================= */
-
-.stats-grid{
+.cards{
   display:grid;
   grid-template-columns:repeat(4,1fr);
   gap:16px;
-  margin-bottom:20px;
+  margin-bottom:22px;
 }
 
-.stat-card{
+.card{
   background:#fff;
   border:1px solid #e2e8f0;
-  border-radius:15px;
+  border-radius:16px;
   padding:20px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
   box-shadow:0 3px 12px rgba(15,23,42,.05);
 }
 
-.stat-label{
-  color:#718096;
-  font-size:13px;
-}
-
 .stat-number{
-  font-size:28px;
-  font-weight:800;
-  margin-top:5px;
-  color:#102a43;
+  font-size:30px;
+  font-weight:bold;
+  margin-top:8px;
 }
 
-.stat-icon{
-  width:48px;
-  height:48px;
-  border-radius:12px;
-  background:#e5f0fa;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:22px;
+.stat-label{
+  color:#64748b;
 }
 
-/* =========================
-   CONTENT
-========================= */
-
-.content-card{
+.panel{
   background:#fff;
   border:1px solid #e2e8f0;
-  border-radius:15px;
+  border-radius:16px;
+  padding:20px;
   margin-bottom:20px;
-  overflow:hidden;
 }
 
-.content-header{
-  padding:16px 18px;
-  border-bottom:1px solid #e2e8f0;
+.panel-header{
   display:flex;
   justify-content:space-between;
   align-items:center;
+  margin-bottom:15px;
   gap:10px;
 }
 
-.table-container{
-  width:100%;
+.panel-header h3{
+  font-size:18px;
+}
+
+.add-btn{
+  border:0;
+  background:#2563eb;
+  color:#fff;
+  padding:10px 14px;
+  border-radius:9px;
+}
+
+.table-wrap{
   overflow-x:auto;
 }
 
@@ -383,33 +390,49 @@ table{
 
 th,
 td{
-  padding:12px 14px;
+  padding:12px;
   border-bottom:1px solid #e2e8f0;
   text-align:left;
-  font-size:13px;
 }
 
 th{
   background:#f8fafc;
-  color:#475569;
+  font-size:13px;
 }
 
-.empty{
-  padding:30px;
-  text-align:center;
-  color:#718096;
+.action-btn{
+  border:0;
+  border-radius:7px;
+  padding:7px 10px;
+  margin:2px;
 }
 
-/* =========================
-   BADGES
-========================= */
+.edit-btn{
+  background:#dbeafe;
+  color:#1d4ed8;
+}
+
+.delete-btn{
+  background:#fee2e2;
+  color:#b91c1c;
+}
+
+.accept-btn{
+  background:#dcfce7;
+  color:#166534;
+}
+
+.reject-btn{
+  background:#fee2e2;
+  color:#991b1b;
+}
 
 .badge{
   display:inline-block;
-  padding:4px 9px;
+  padding:5px 9px;
   border-radius:20px;
-  font-size:11px;
-  font-weight:700;
+  font-size:12px;
+  font-weight:bold;
 }
 
 .badge-success{
@@ -427,41 +450,13 @@ th{
   color:#991b1b;
 }
 
-.badge-blue{
-  background:#dbeafe;
-  color:#1e40af;
+.empty{
+  padding:35px;
+  text-align:center;
+  color:#64748b;
 }
 
-/* =========================
-   SMALL BUTTONS
-========================= */
-
-.action-btn{
-  border:0;
-  border-radius:7px;
-  padding:7px 10px;
-  font-size:12px;
-  font-weight:700;
-}
-
-.edit-btn{
-  background:#dbeafe;
-  color:#1e40af;
-}
-
-.delete-btn{
-  background:#fee2e2;
-  color:#b91c1c;
-}
-
-.accept-btn{
-  background:#dcfce7;
-  color:#166534;
-}
-
-/* =========================
-   MODAL
-========================= */
+/* MODAL */
 
 .modal{
   position:fixed;
@@ -470,7 +465,7 @@ th{
   display:none;
   align-items:center;
   justify-content:center;
-  padding:15px;
+  padding:20px;
   z-index:3000;
 }
 
@@ -480,1107 +475,1041 @@ th{
 
 .modal-box{
   width:100%;
-  max-width:550px;
+  max-width:600px;
   max-height:90vh;
   overflow-y:auto;
   background:#fff;
-  border-radius:15px;
+  border-radius:18px;
   padding:22px;
 }
 
 .modal-header{
   display:flex;
-  align-items:center;
   justify-content:space-between;
+  align-items:center;
   margin-bottom:18px;
 }
 
 .close-btn{
   border:0;
-  background:#e2e8f0;
-  border-radius:7px;
-  padding:7px 10px;
+  background:#f1f5f9;
+  width:35px;
+  height:35px;
+  border-radius:50%;
 }
 
-/* =========================
-   MOBILE
-========================= */
+.form-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
 
-@media(max-width:950px){
+.form-grid .full{
+  grid-column:1/-1;
+}
 
-  .stats-grid{
-    grid-template-columns:repeat(2,1fr);
+.modal-actions{
+  display:flex;
+  gap:10px;
+  margin-top:18px;
+}
+
+.modal-actions button{
+  flex:1;
+  padding:12px;
+  border-radius:9px;
+  border:0;
+}
+
+.cancel-btn{
+  background:#e2e8f0;
+}
+
+.save-btn{
+  background:#2563eb;
+  color:white;
+}
+
+/* TOAST */
+
+#toast{
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  z-index:5000;
+  max-width:350px;
+  display:none;
+  padding:14px 18px;
+  border-radius:12px;
+  color:white;
+  box-shadow:0 10px 30px rgba(0,0,0,.2);
+}
+
+#toast.show{
+  display:block;
+}
+
+#toast.success{
+  background:#16a34a;
+}
+
+#toast.error{
+  background:#dc2626;
+}
+
+#toast.info{
+  background:#2563eb;
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+  .sidebar{
+    width:210px;
   }
 
+  .main{
+    margin-left:210px;
+    width:calc(100% - 210px);
+  }
+
+  .cards{
+    grid-template-columns:repeat(2,1fr);
+  }
 }
 
 @media(max-width:700px){
 
-  .header{
-    padding:0 8px;
+  .topbar{
+    height:auto;
+    min-height:68px;
+    flex-wrap:wrap;
+    padding:10px;
   }
 
-  .brand-name{
-    font-size:13px;
-  }
-
-  .brand-subtitle{
+  .brand-text small{
     display:none;
   }
 
-  .install-btn{
-    display:none;
+  .top-actions{
+    width:100%;
+    justify-content:flex-end;
+    flex-wrap:wrap;
+  }
+
+  .layout{
+    display:block;
   }
 
   .sidebar{
-    width:225px;
-    transform:translateX(-100%);
-    transition:.2s;
-  }
-
-  .sidebar.open{
-    transform:translateX(0);
+    position:relative;
+    top:0;
+    width:100%;
+    height:auto;
+    max-height:none;
   }
 
   .main{
     margin-left:0;
-    padding:88px 10px 25px;
+    width:100%;
+    padding:15px;
   }
 
-  .stats-grid{
+  .cards{
     grid-template-columns:1fr 1fr;
-    gap:9px;
   }
 
-  .stat-card{
-    padding:13px;
+  .form-grid{
+    grid-template-columns:1fr;
   }
 
-  .stat-number{
-    font-size:22px;
+  .form-grid .full{
+    grid-column:auto;
   }
 
+  .page-title{
+    display:block;
+  }
+}
+
+@media(max-width:450px){
+
+  .cards{
+    grid-template-columns:1fr;
+  }
+
+  .top-actions button,
+  .top-actions select{
+    font-size:12px;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<!-- =====================================================
-     AUTHENTIFICATION
-===================================================== -->
+<!-- ================= AUTH ================= -->
 
 <section id="authPage">
 
-  <div class="auth-box">
+  <div class="auth-card">
 
-    <div class="auth-logo">
-      🎓
-    </div>
+    <div class="logo">CP</div>
 
-    <h1>
-      Centre de Formation Le Pédagogue
-    </h1>
+    <h1>Centre de Formation Le Pédagogue</h1>
 
-    <div class="auth-subtitle">
+    <p class="subtitle">
       Gestion universitaire et école professionnelle
+    </p>
+
+    <div class="auth-tabs">
+
+      <button
+        id="loginTab"
+        class="active"
+        onclick="showLogin()">
+        Connexion
+      </button>
+
+      <button
+        id="registerTab"
+        onclick="showRegister()">
+        Inscription
+      </button>
+
     </div>
 
-    <div id="loginForm">
+    <!-- LOGIN -->
+
+    <div id="loginBox">
 
       <div class="form-group">
         <label>Email</label>
+
         <input
           id="loginEmail"
           type="email"
           autocomplete="email"
-          placeholder="Votre adresse email"
-        >
+          placeholder="Votre adresse email">
       </div>
 
       <div class="form-group">
         <label>Mot de passe</label>
+
         <input
           id="loginPassword"
           type="password"
           autocomplete="current-password"
-          placeholder="Votre mot de passe"
-        >
+          placeholder="Votre mot de passe">
       </div>
 
       <button
-        class="primary-btn full-btn"
-        onclick="connecter()"
-      >
+        class="primary-btn"
+        onclick="connecter()">
         Se connecter
       </button>
 
+      <div class="divider">
+        ou
+      </div>
+
       <button
         class="google-btn"
-        onclick="connecterAvecGoogle()"
-      >
+        onclick="connecterAvecGoogle()">
         🔵 Continuer avec Google
       </button>
 
-      <div style="text-align:center">
-        <button
-          class="link-btn"
-          onclick="afficherInscription()"
-        >
-          Créer un compte
-        </button>
-      </div>
-
     </div>
 
+    <!-- REGISTER -->
 
-    <div
-      id="registerForm"
-      class="hidden"
-    >
+    <div id="registerBox" class="hidden">
 
       <div class="form-group">
         <label>Nom complet</label>
+
         <input
           id="registerName"
           type="text"
-          placeholder="Nom et prénom"
-        >
+          placeholder="Nom et prénom">
       </div>
 
       <div class="form-group">
         <label>Email</label>
+
         <input
           id="registerEmail"
           type="email"
-          placeholder="Votre email"
-        >
+          autocomplete="email"
+          placeholder="Votre adresse email">
       </div>
 
       <div class="form-group">
         <label>Mot de passe</label>
+
         <input
           id="registerPassword"
           type="password"
-          placeholder="Minimum 6 caractères"
-        >
+          autocomplete="new-password"
+          placeholder="Minimum 6 caractères">
       </div>
 
       <button
-        class="primary-btn full-btn"
-        onclick="inscrire()"
-      >
+        class="primary-btn"
+        onclick="inscrire()">
         Créer mon compte
       </button>
 
-      <div style="text-align:center">
-        <button
-          class="link-btn"
-          onclick="afficherConnexion()"
-        >
-          Retour à la connexion
-        </button>
+      <div class="divider">
+        ou
       </div>
 
+      <button
+        class="google-btn"
+        onclick="inscrireAvecGoogle()">
+        🔵 Créer avec Google
+      </button>
+
+      <p style="
+        margin-top:15px;
+        color:#64748b;
+        font-size:13px;
+        text-align:center;
+      ">
+        Les nouveaux comptes sont placés en attente
+        jusqu'à leur validation par l'administrateur.
+      </p>
+
     </div>
 
-
-    <div
-      id="authMessage"
-      class="auth-message"
-    >
-      Connectez-vous pour accéder à votre espace.
-    </div>
+    <div id="authMessage" class="auth-message"></div>
 
   </div>
 
 </section>
 
 
-<!-- =====================================================
-     APPLICATION
-===================================================== -->
+<!-- ================= APP ================= -->
 
-<section
-  id="appPage"
-  class="hidden"
->
+<section id="appPage" class="hidden">
 
-<header class="header">
+  <header class="topbar">
 
-  <div class="brand">
+    <div class="brand">
 
-    <div class="brand-logo">
-      🎓
-    </div>
-
-    <div>
-
-      <div class="brand-name">
-        Centre de Formation Le Pédagogue
+      <div class="brand-icon">
+        CP
       </div>
 
-      <div class="brand-subtitle">
-        Gestion universitaire & école professionnelle
-      </div>
+      <div class="brand-text">
 
-    </div>
-
-  </div>
-
-
-  <div class="header-right">
-
-    <select
-      id="languageSelect"
-      class="language-select"
-      onchange="changerLangue()"
-    >
-      <option value="fr">🇫🇷 Français</option>
-      <option value="ht">🇭🇹 Kreyòl</option>
-    </select>
-
-
-    <button
-      id="installButton"
-      class="install-btn hidden"
-      onclick="installerApplication()"
-    >
-      📱 Installer
-    </button>
-
-
-    <button
-      class="logout-btn"
-      onclick="deconnecter()"
-    >
-      Déconnexion
-    </button>
-
-  </div>
-
-</header>
-
-
-<!-- =====================================================
-     SIDEBAR
-===================================================== -->
-
-<aside
-  id="sidebar"
-  class="sidebar"
->
-
-  <div class="menu-title">
-    Principal
-  </div>
-
-  <button
-    class="menu-btn active"
-    onclick="ouvrirPage('home',this)"
-  >
-    🏠 Tableau de bord
-  </button>
-
-
-  <div class="menu-title">
-    Gestion académique
-  </div>
-
-  <button
-    class="menu-btn"
-    onclick="ouvrirPage('etudiants',this)"
-  >
-    🎓 Étudiants
-  </button>
-
-  <button
-    class="menu-btn"
-    onclick="ouvrirPage('professeurs',this)"
-  >
-    👨‍🏫 Professeurs
-  </button>
-
-  <button
-    class="menu-btn"
-    onclick="ouvrirPage('classes',this)"
-  >
-    🏫 Classes / Groupes
-  </button>
-
-  <button
-    class="menu-btn"
-    onclick="ouvrirPage('filieres',this)"
-  >
-    🎓 Filières / Programmes
-  </button>
-
-  <button
-    class="menu-btn"
-    onclick="ouvrirPage('matieres',this)"
-  >
-    📚 Matières
-  </button>
-
-  <button
-    class="menu-btn"
-    onclick="ouvrirPage('annees',this)"
-  >
-    📅 Années académiques
-  </button>
-
-  <button
-    class="menu-btn"
-    onclick="ouvrirPage('cours',this)"
-  >
-    📖 Cours
-  </button>
-
-  <button
-    class="menu-btn"
-    onclick="ouvrirPage('devoirs',this)"
-  >
-    📝 Devoirs
-  </button>
-
-  <button
-    class="menu-btn"
-    onclick="ouvrirPage('remises',this)"
-  >
-    📥 Remises
-  </button>
-
-
-  <div class="menu-title">
-    Résultats
-  </div>
-
-  <button
-    class="menu-btn"
-    onclick="ouvrirPage('resultats',this)"
-  >
-    📊 Résultats
-  </button>
-
-  <button
-    class="menu-btn"
-    onclick="ouvrirPage('statistiques',this)"
-  >
-    📈 Statistiques
-  </button>
-
-
-  <div class="menu-title">
-    Administration
-  </div>
-
-  <button
-    id="menuUsers"
-    class="menu-btn"
-    onclick="ouvrirPage('users',this)"
-  >
-    👥 Utilisateurs
-  </button>
-
-  <button
-    class="menu-btn"
-    onclick="ouvrirPage('configuration',this)"
-  >
-    ⚙️ Configuration
-  </button>
-
-</aside>
-
-
-<!-- =====================================================
-     MAIN
-===================================================== -->
-
-<main class="main">
-
-
-<!-- ================= HOME ================= -->
-
-<section
-  id="page-home"
-  class="page active"
->
-
-  <div class="page-title">
-
-    <h2>
-      Tableau de bord
-    </h2>
-
-    <p id="welcomeText">
-      Bienvenue dans Centre de Formation Le Pédagogue.
-    </p>
-
-  </div>
-
-
-  <div class="stats-grid">
-
-    <div class="stat-card">
-      <div>
-        <div class="stat-label">
-          Étudiants
-        </div>
-
-        <div
-          id="statEtudiants"
-          class="stat-number"
-        >
-          0
-        </div>
-      </div>
-
-      <div class="stat-icon">
-        🎓
-      </div>
-    </div>
-
-
-    <div class="stat-card">
-      <div>
-        <div class="stat-label">
-          Professeurs
-        </div>
-
-        <div
-          id="statProfesseurs"
-          class="stat-number"
-        >
-          0
-        </div>
-      </div>
-
-      <div class="stat-icon">
-        👨‍🏫
-      </div>
-    </div>
-
-
-    <div class="stat-card">
-      <div>
-        <div class="stat-label">
-          Classes
-        </div>
-
-        <div
-          id="statClasses"
-          class="stat-number"
-        >
-          0
-        </div>
-      </div>
-
-      <div class="stat-icon">
-        🏫
-      </div>
-    </div>
-
-
-    <div class="stat-card">
-      <div>
-        <div class="stat-label">
-          Matières
-        </div>
-
-        <div
-          id="statMatieres"
-          class="stat-number"
-        >
-          0
-        </div>
-      </div>
-
-      <div class="stat-icon">
-        📚
-      </div>
-    </div>
-
-  </div>
-
-
-  <div class="stats-grid">
-
-    <div class="stat-card">
-      <div>
-        <div class="stat-label">
-          Devoirs
-        </div>
-
-        <div
-          id="statDevoirs"
-          class="stat-number"
-        >
-          0
-        </div>
-      </div>
-
-      <div class="stat-icon">
-        📝
-      </div>
-    </div>
-
-
-    <div class="stat-card">
-      <div>
-        <div class="stat-label">
-          Remises
-        </div>
-
-        <div
-          id="statRemises"
-          class="stat-number"
-        >
-          0
-        </div>
-      </div>
-
-      <div class="stat-icon">
-        📥
-      </div>
-    </div>
-
-
-    <div class="stat-card">
-      <div>
-        <div class="stat-label">
-          Résultats
-        </div>
-
-        <div
-          id="statResultats"
-          class="stat-number"
-        >
-          0
-        </div>
-      </div>
-
-      <div class="stat-icon">
-        📊
-      </div>
-    </div>
-
-
-    <div class="stat-card">
-      <div>
-        <div class="stat-label">
-          Utilisateurs
-        </div>
-
-        <div
-          id="statUsers"
-          class="stat-number"
-        >
-          0
-        </div>
-      </div>
-
-      <div class="stat-icon">
-        👥
-      </div>
-    </div>
-
-  </div>
-
-
-  <div class="content-card">
-
-    <div class="content-header">
-      <strong>
-        Compte connecté
-      </strong>
-    </div>
-
-    <div style="padding:20px">
-
-      <p>
-        Email :
-        <strong id="currentEmail">
-          —
+        <strong>
+          Centre de Formation Le Pédagogue
         </strong>
-      </p>
 
-      <p style="margin-top:8px">
-        Rôle :
-        <strong id="currentRole">
-          —
-        </strong>
-      </p>
+        <small id="userInfo">
+          Chargement...
+        </small>
 
-      <p style="margin-top:8px">
-        Statut :
-        <strong id="currentStatus">
-          —
-        </strong>
-      </p>
+      </div>
 
     </div>
 
-  </div>
+    <div class="top-actions">
 
-</section>
+      <select id="languageSelect"
+              onchange="changeLanguage(this.value)">
 
+        <option value="ht">
+          🇭🇹 Kreyòl
+        </option>
 
-<!-- ================= ETUDIANTS ================= -->
+        <option value="fr">
+          🇫🇷 Français
+        </option>
 
-<section
-  id="page-etudiants"
-  class="page"
->
-
-  <div class="page-title">
-    <h2>🎓 Étudiants</h2>
-    <p>Gestion des étudiants et élèves.</p>
-  </div>
-
-  <div class="content-card">
-
-    <div class="content-header">
-
-      <strong>
-        Liste des étudiants
-      </strong>
+      </select>
 
       <button
-        class="primary-btn"
-        onclick="ouvrirFormulaire('etudiants')"
-      >
-        + Ajouter
+        id="installBtn"
+        class="install-btn hidden"
+        onclick="installerApp()">
+        📱 Installer
+      </button>
+
+      <button
+        class="logout-btn"
+        onclick="deconnecter()">
+        Déconnexion
       </button>
 
     </div>
 
-    <div id="liste-etudiants"></div>
-
-  </div>
-
-</section>
+  </header>
 
 
-<!-- ================= PROFESSEURS ================= -->
+  <div class="layout">
 
-<section
-  id="page-professeurs"
-  class="page"
->
+    <!-- SIDEBAR -->
 
-  <div class="page-title">
-    <h2>👨‍🏫 Professeurs</h2>
-    <p>Gestion du personnel enseignant.</p>
-  </div>
+    <aside class="sidebar">
 
-  <div class="content-card">
+      <div class="sidebar-title">
+        Navigation
+      </div>
 
-    <div class="content-header">
-
-      <strong>
-        Liste des professeurs
-      </strong>
-
-      <button
-        class="primary-btn"
-        onclick="ouvrirFormulaire('professeurs')"
-      >
-        + Ajouter
+      <button class="menu-btn active"
+              onclick="ouvrirSection('home',this)">
+        🏠 Accueil
       </button>
 
-    </div>
-
-    <div id="liste-professeurs"></div>
-
-  </div>
-
-</section>
-
-
-<!-- ================= CLASSES ================= -->
-
-<section
-  id="page-classes"
-  class="page"
->
-
-  <div class="page-title">
-    <h2>🏫 Classes / Groupes</h2>
-    <p>Gestion des classes et groupes.</p>
-  </div>
-
-  <div class="content-card">
-
-    <div class="content-header">
-
-      <strong>
-        Classes
-      </strong>
-
-      <button
-        class="primary-btn"
-        onclick="ouvrirFormulaire('classes')"
-      >
-        + Ajouter
+      <button class="menu-btn"
+              onclick="ouvrirSection('etudiants',this)">
+        👨‍🎓 Étudiants
       </button>
 
-    </div>
-
-    <div id="liste-classes"></div>
-
-  </div>
-
-</section>
-
-
-<!-- ================= FILIERES ================= -->
-
-<section
-  id="page-filieres"
-  class="page"
->
-
-  <div class="page-title">
-    <h2>🎓 Filières / Programmes</h2>
-    <p>Programmes universitaires et professionnels.</p>
-  </div>
-
-  <div class="content-card">
-
-    <div class="content-header">
-
-      <strong>
-        Filières
-      </strong>
-
-      <button
-        class="primary-btn"
-        onclick="ouvrirFormulaire('filieres')"
-      >
-        + Ajouter
+      <button class="menu-btn"
+              onclick="ouvrirSection('professeurs',this)">
+        👨‍🏫 Professeurs
       </button>
 
-    </div>
-
-    <div id="liste-filieres"></div>
-
-  </div>
-
-</section>
-
-
-<!-- ================= MATIERES ================= -->
-
-<section
-  id="page-matieres"
-  class="page"
->
-
-  <div class="page-title">
-    <h2>📚 Matières</h2>
-    <p>Gestion des matières académiques.</p>
-  </div>
-
-  <div class="content-card">
-
-    <div class="content-header">
-
-      <strong>
-        Matières
-      </strong>
-
-      <button
-        class="primary-btn"
-        onclick="ouvrirFormulaire('matieres')"
-      >
-        + Ajouter
+      <button class="menu-btn"
+              onclick="ouvrirSection('classes',this)">
+        🏫 Classes
       </button>
 
-    </div>
-
-    <div id="liste-matieres"></div>
-
-  </div>
-
-</section>
-
-
-<!-- ================= ANNEES ================= -->
-
-<section
-  id="page-annees"
-  class="page"
->
-
-  <div class="page-title">
-    <h2>📅 Années académiques</h2>
-    <p>Gestion des années académiques.</p>
-  </div>
-
-  <div class="content-card">
-
-    <div class="content-header">
-
-      <strong>
-        Années académiques
-      </strong>
-
-      <button
-        class="primary-btn"
-        onclick="ouvrirFormulaire('annees')"
-      >
-        + Ajouter
+      <button class="menu-btn"
+              onclick="ouvrirSection('filieres',this)">
+        🎓 Filières
       </button>
 
-    </div>
-
-    <div id="liste-annees"></div>
-
-  </div>
-
-</section>
-
-
-<!-- ================= COURS ================= -->
-
-<section
-  id="page-cours"
-  class="page"
->
-
-  <div class="page-title">
-    <h2>📖 Cours</h2>
-    <p>Gestion des cours.</p>
-  </div>
-
-  <div class="content-card">
-
-    <div class="content-header">
-
-      <strong>
-        Cours
-      </strong>
-
-      <button
-        class="primary-btn"
-        onclick="ouvrirFormulaire('cours')"
-      >
-        + Ajouter
+      <button class="menu-btn"
+              onclick="ouvrirSection('matieres',this)">
+        📚 Matières
       </button>
 
-    </div>
-
-    <div id="liste-cours"></div>
-
-  </div>
-
-</section>
-
-
-<!-- ================= DEVOIRS ================= -->
-
-<section
-  id="page-devoirs"
-  class="page"
->
-
-  <div class="page-title">
-    <h2>📝 Devoirs</h2>
-    <p>Gestion des devoirs et évaluations.</p>
-  </div>
-
-  <div class="content-card">
-
-    <div class="content-header">
-
-      <strong>
-        Devoirs
-      </strong>
-
-      <button
-        class="primary-btn"
-        onclick="ouvrirFormulaire('devoirs')"
-      >
-        + Ajouter
+      <button class="menu-btn"
+              onclick="ouvrirSection('annees',this)">
+        📅 Années académiques
       </button>
 
-    </div>
-
-    <div id="liste-devoirs"></div>
-
-  </div>
-
-</section>
-
-
-<!-- ================= REMISES ================= -->
-
-<section
-  id="page-remises"
-  class="page"
->
-
-  <div class="page-title">
-    <h2>📥 Remises</h2>
-    <p>Travaux remis et corrections des professeurs.</p>
-  </div>
-
-  <div class="content-card">
-
-    <div class="content-header">
-
-      <strong>
-        Remises
-      </strong>
-
-    </div>
-
-    <div id="liste-remises"></div>
-
-  </div>
-
-</section>
-
-
-<!-- ================= RESULTATS ================= -->
-
-<section
-  id="page-resultats"
-  class="page"
->
-
-  <div class="page-title">
-    <h2>📊 Résultats</h2>
-    <p>Notes et résultats académiques.</p>
-  </div>
-
-  <div class="content-card">
-
-    <div class="content-header">
-
-      <strong>
-        Résultats
-      </strong>
-
-      <button
-        class="primary-btn"
-        onclick="ouvrirFormulaire('resultats')"
-      >
-        + Ajouter
+      <button class="menu-btn"
+              onclick="ouvrirSection('cours',this)">
+        📖 Cours
       </button>
 
-    </div>
+      <button class="menu-btn"
+              onclick="ouvrirSection('devoirs',this)">
+        📝 Devoirs
+      </button>
 
-    <div id="liste-resultats"></div>
+      <button class="menu-btn"
+              onclick="ouvrirSection('remises',this)">
+        📤 Remises
+      </button>
+
+      <button class="menu-btn"
+              onclick="ouvrirSection('resultats',this)">
+        📊 Résultats
+      </button>
+
+      <button class="menu-btn"
+              onclick="ouvrirSection('statistiques',this)">
+        📈 Statistiques
+      </button>
+
+      <button
+        id="usersMenu"
+        class="menu-btn"
+        onclick="ouvrirSection('users',this)">
+        👥 Utilisateurs
+      </button>
+
+      <button
+        id="configMenu"
+        class="menu-btn"
+        onclick="ouvrirSection('configuration',this)">
+        ⚙️ Configuration
+      </button>
+
+    </aside>
+
+
+    <!-- MAIN -->
+
+    <main class="main">
+
+      <!-- HOME -->
+
+      <section id="section-home">
+
+        <div class="page-title">
+
+          <div>
+            <h2>Tableau de bord</h2>
+
+            <p>
+              Bienvenue dans votre système de gestion.
+            </p>
+          </div>
+
+        </div>
+
+        <div class="cards">
+
+          <div class="card">
+            <div class="stat-label">Étudiants</div>
+            <div class="stat-number" id="statEtudiants">0</div>
+          </div>
+
+          <div class="card">
+            <div class="stat-label">Professeurs</div>
+            <div class="stat-number" id="statProfesseurs">0</div>
+          </div>
+
+          <div class="card">
+            <div class="stat-label">Classes</div>
+            <div class="stat-number" id="statClasses">0</div>
+          </div>
+
+          <div class="card">
+            <div class="stat-label">Matières</div>
+            <div class="stat-number" id="statMatieres">0</div>
+          </div>
+
+        </div>
+
+        <div class="panel">
+
+          <div class="panel-header">
+            <h3>Centre de Formation Le Pédagogue</h3>
+          </div>
+
+          <p style="color:#64748b;line-height:1.7">
+            Système moderne de gestion universitaire et
+            d'école professionnelle avec authentification,
+            étudiants, professeurs, classes, matières,
+            devoirs, remises et résultats.
+          </p>
+
+        </div>
+
+      </section>
+
+
+      <!-- ETUDIANTS -->
+
+      <section id="section-etudiants" class="hidden">
+
+        <div class="page-title">
+          <div>
+            <h2>Étudiants</h2>
+            <p>Gestion des étudiants.</p>
+          </div>
+
+          <button
+            class="add-btn"
+            onclick="ouvrirFormulaire('etudiants')">
+            + Ajouter
+          </button>
+        </div>
+
+        <div class="panel">
+
+          <div class="table-wrap">
+
+            <table>
+
+              <thead>
+                <tr>
+                  <th>Nom</th>
+                  <th>Email</th>
+                  <th>Téléphone</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+
+              <tbody id="listeEtudiants"></tbody>
+
+            </table>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- PROFESSEURS -->
+
+      <section id="section-professeurs" class="hidden">
+
+        <div class="page-title">
+
+          <div>
+            <h2>Professeurs</h2>
+            <p>Gestion des professeurs.</p>
+          </div>
+
+          <button
+            id="addProfesseurBtn"
+            class="add-btn"
+            onclick="ouvrirFormulaire('professeurs')">
+            + Ajouter
+          </button>
+
+        </div>
+
+        <div class="panel">
+
+          <div class="table-wrap">
+
+            <table>
+
+              <thead>
+                <tr>
+                  <th>Nom</th>
+                  <th>Email</th>
+                  <th>Matière</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+
+              <tbody id="listeProfesseurs"></tbody>
+
+            </table>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- CLASSES -->
+
+      <section id="section-classes" class="hidden">
+
+        <div class="page-title">
+
+          <div>
+            <h2>Classes</h2>
+            <p>Gestion des classes.</p>
+          </div>
+
+          <button
+            class="add-btn"
+            onclick="ouvrirFormulaire('classes')">
+            + Ajouter
+          </button>
+
+        </div>
+
+        <div class="panel">
+
+          <div class="table-wrap">
+
+            <table>
+
+              <thead>
+                <tr>
+                  <th>Nom</th>
+                  <th>Niveau</th>
+                  <th>Filière</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+
+              <tbody id="listeClasses"></tbody>
+
+            </table>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- FILIERES -->
+
+      <section id="section-filieres" class="hidden">
+
+        <div class="page-title">
+
+          <div>
+            <h2>Filières</h2>
+            <p>Programmes et filières de formation.</p>
+          </div>
+
+          <button
+            class="add-btn"
+            onclick="ouvrirFormulaire('filieres')">
+            + Ajouter
+          </button>
+
+        </div>
+
+        <div class="panel">
+
+          <div class="table-wrap">
+
+            <table>
+
+              <thead>
+                <tr>
+                  <th>Nom</th>
+                  <th>Description</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+
+              <tbody id="listeFilieres"></tbody>
+
+            </table>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- MATIERES -->
+
+      <section id="section-matieres" class="hidden">
+
+        <div class="page-title">
+
+          <div>
+            <h2>Matières</h2>
+            <p>Gestion des matières.</p>
+          </div>
+
+          <button
+            class="add-btn"
+            onclick="ouvrirFormulaire('matieres')">
+            + Ajouter
+          </button>
+
+        </div>
+
+        <div class="panel">
+
+          <div class="table-wrap">
+
+            <table>
+
+              <thead>
+                <tr>
+                  <th>Nom</th>
+                  <th>Code</th>
+                  <th>Coefficient</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+
+              <tbody id="listeMatieres"></tbody>
+
+            </table>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- ANNEES -->
+
+      <section id="section-annees" class="hidden">
+
+        <div class="page-title">
+
+          <div>
+            <h2>Années académiques</h2>
+            <p>Gestion des années scolaires.</p>
+          </div>
+
+          <button
+            class="add-btn"
+            onclick="ouvrirFormulaire('annees_academiques')">
+            + Ajouter
+          </button>
+
+        </div>
+
+        <div class="panel">
+
+          <div class="table-wrap">
+
+            <table>
+
+              <thead>
+                <tr>
+                  <th>Année</th>
+                  <th>Début</th>
+                  <th>Fin</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+
+              <tbody id="listeAnnees"></tbody>
+
+            </table>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- COURS -->
+
+      <section id="section-cours" class="hidden">
+
+        <div class="page-title">
+
+          <div>
+            <h2>Cours</h2>
+            <p>Gestion des cours.</p>
+          </div>
+
+          <button
+            class="add-btn"
+            onclick="ouvrirFormulaire('cours')">
+            + Ajouter
+          </button>
+
+        </div>
+
+        <div class="panel">
+
+          <div id="listeCours"></div>
+
+        </div>
+
+      </section>
+
+
+      <!-- DEVOIRS -->
+
+      <section id="section-devoirs" class="hidden">
+
+        <div class="page-title">
+
+          <div>
+            <h2>Devoirs</h2>
+            <p>Gestion des devoirs.</p>
+          </div>
+
+          <button
+            class="add-btn"
+            onclick="ouvrirFormulaire('devoirs')">
+            + Ajouter
+          </button>
+
+        </div>
+
+        <div class="panel">
+
+          <div id="listeDevoirs"></div>
+
+        </div>
+
+      </section>
+
+
+      <!-- REMISES -->
+
+      <section id="section-remises" class="hidden">
+
+        <div class="page-title">
+
+          <div>
+            <h2>Remises</h2>
+            <p>Travaux remis par les étudiants.</p>
+          </div>
+
+          <button
+            class="add-btn"
+            onclick="ouvrirFormulaire('remises')">
+            + Ajouter
+          </button>
+
+        </div>
+
+        <div class="panel">
+
+          <div id="listeRemises"></div>
+
+        </div>
+
+      </section>
+
+
+      <!-- RESULTATS -->
+
+      <section id="section-resultats" class="hidden">
+
+        <div class="page-title">
+
+          <div>
+            <h2>Résultats</h2>
+            <p>Notes des étudiants sur 20.</p>
+          </div>
+
+          <button
+            class="add-btn"
+            onclick="ouvrirFormulaire('resultats')">
+            + Ajouter
+          </button>
+
+        </div>
+
+        <div class="panel">
+
+          <div id="listeResultats"></div>
+
+        </div>
+
+      </section>
+
+
+      <!-- STATISTIQUES -->
+
+      <section id="section-statistiques" class="hidden">
+
+        <div class="page-title">
+
+          <div>
+            <h2>Statistiques</h2>
+            <p>Vue générale de l'établissement.</p>
+          </div>
+
+        </div>
+
+        <div class="cards">
+
+          <div class="card">
+            <div class="stat-label">Étudiants</div>
+            <div class="stat-number" id="stat2Etudiants">0</div>
+          </div>
+
+          <div class="card">
+            <div class="stat-label">Professeurs</div>
+            <div class="stat-number" id="stat2Professeurs">0</div>
+          </div>
+
+          <div class="card">
+            <div class="stat-label">Classes</div>
+            <div class="stat-number" id="stat2Classes">0</div>
+          </div>
+
+          <div class="card">
+            <div class="stat-label">Matières</div>
+            <div class="stat-number" id="stat2Matieres">0</div>
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- USERS -->
+
+      <section id="section-users" class="hidden">
+
+        <div class="page-title">
+
+          <div>
+            <h2>Utilisateurs</h2>
+            <p>
+              Validation et gestion des comptes.
+            </p>
+          </div>
+
+        </div>
+
+        <div class="panel">
+
+          <div class="table-wrap">
+
+            <table>
+
+              <thead>
+
+                <tr>
+                  <th>Nom</th>
+                  <th>Email</th>
+                  <th>Rôle</th>
+                  <th>Statut</th>
+                  <th>Actions</th>
+                </tr>
+
+              </thead>
+
+              <tbody id="listeUsers"></tbody>
+
+            </table>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- CONFIGURATION -->
+
+      <section id="section-configuration" class="hidden">
+
+        <div class="page-title">
+
+          <div>
+            <h2>Configuration</h2>
+            <p>Configuration générale du système.</p>
+          </div>
+
+        </div>
+
+        <div class="panel">
+
+          <h3 style="margin-bottom:10px">
+            Base de données
+          </h3>
+
+          <p style="color:#64748b;line-height:1.7">
+
+            Les collections principales sont préparées
+            automatiquement lors de l'initialisation du système.
+
+          </p>
+
+          <div style="margin-top:18px">
+
+            <span class="badge badge-success">
+              Firebase connecté
+            </span>
+
+          </div>
+
+        </div>
+
+      </section>
+
+    </main>
 
   </div>
 
 </section>
 
 
-<!-- ================= STATISTIQUES ================= -->
+<!-- ================= MODAL ================= -->
 
-<section
-  id="page-statistiques"
-  class="page"
->
-
-  <div class="page-title">
-    <h2>📈 Statistiques</h2>
-    <p>Vue générale de l'établissement.</p>
-  </div>
-
-  <div
-    id="statistiquesBox"
-    class="stats-grid"
-  ></div>
-
-</section>
-
-
-<!-- ================= USERS ================= -->
-
-<section
-  id="page-users"
-  class="page"
->
-
-  <div class="page-title">
-    <h2>👥 Utilisateurs</h2>
-    <p>Gestion des comptes, statuts et rôles.</p>
-  </div>
-
-  <div class="content-card">
-
-    <div class="content-header">
-
-      <strong>
-        Utilisateurs
-      </strong>
-
-    </div>
-
-    <div id="liste-users"></div>
-
-  </div>
-
-</section>
-
-
-<!-- ================= CONFIGURATION ================= -->
-
-<section
-  id="page-configuration"
-  class="page"
->
-
-  <div class="page-title">
-    <h2>⚙️ Configuration</h2>
-    <p>Configuration générale du centre.</p>
-  </div>
-
-  <div class="content-card">
-
-    <div style="padding:22px">
-
-      <h3>
-        Centre de Formation Le Pédagogue
-      </h3>
-
-      <p style="margin-top:10px;color:#718096">
-        Gestion universitaire et école professionnelle.
-      </p>
-
-      <p style="margin-top:15px">
-        Version :
-        <strong>1.0</strong>
-      </p>
-
-      <p style="margin-top:8px">
-        Base de données :
-        <strong>Firebase Firestore</strong>
-      </p>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-</main>
-
-</section>
-
-
-<!-- =====================================================
-     MODAL
-===================================================== -->
-
-<div
-  id="modal"
-  class="modal"
->
+<div id="modal" class="modal">
 
   <div class="modal-box">
 
@@ -1592,64 +1521,62 @@ th{
 
       <button
         class="close-btn"
-        onclick="fermerModal()"
-      >
-        ✕
+        onclick="fermerModal()">
+        ×
       </button>
 
     </div>
 
-    <div id="modalBody"></div>
+    <div id="modalContent"></div>
 
   </div>
 
 </div>
 
 
-<!-- =====================================================
-     FIREBASE
-===================================================== -->
+<div id="toast"></div>
+
+
+<!-- ================= FIREBASE ================= -->
 
 <script type="module">
 
 import {
   initializeApp
-}
-from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
-
+} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
 
 import {
   getAuth,
-  onAuthStateChanged,
   GoogleAuthProvider,
   signInWithPopup,
   signInWithRedirect,
   getRedirectResult,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  onAuthStateChanged,
   signOut,
-  setPersistence,
-  browserLocalPersistence
-}
-from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
-
+  updateProfile,
+  browserLocalPersistence,
+  setPersistence
+} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
 
 import {
   getFirestore,
+  collection,
   doc,
   setDoc,
   getDoc,
   getDocs,
+  addDoc,
+  updateDoc,
   deleteDoc,
-  collection,
   serverTimestamp
-}
-from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
+} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
 
 
 /* =====================================================
    FIREBASE CONFIGURATION
-===================================================== */
+   ===================================================== */
 
 const firebaseConfig = {
 
@@ -1676,16 +1603,16 @@ const firebaseConfig = {
 
 /* =====================================================
    INITIALISATION
-===================================================== */
+   ===================================================== */
 
-const firebaseApp =
+const app =
   initializeApp(firebaseConfig);
 
 const auth =
-  getAuth(firebaseApp);
+  getAuth(app);
 
 const db =
-  getFirestore(firebaseApp);
+  getFirestore(app);
 
 const googleProvider =
   new GoogleAuthProvider();
@@ -1694,155 +1621,391 @@ googleProvider.setCustomParameters({
   prompt:"select_account"
 });
 
-setPersistence(
-  auth,
-  browserLocalPersistence
-).catch(()=>{});
-
 
 /* =====================================================
-   ADMINISTRATEUR PRINCIPAL
-===================================================== */
-
-const ADMIN_EMAIL =
-  "centredeformationlepedagogue@gmail.com";
-
+   VARIABLES
+   ===================================================== */
 
 let currentUser = null;
 let currentUserData = null;
+
 let deferredPrompt = null;
 
 
 /* =====================================================
-   COLLECTIONS
-===================================================== */
+   COLLECTIONS PRINCIPALES
+   ===================================================== */
 
-const COLLECTIONS = {
+const COLLECTIONS = [
 
-  etudiants:
-    "etudiants",
+  "etudiants",
+  "professeurs",
+  "classes",
+  "filieres",
+  "matieres",
+  "annees_academiques",
+  "cours",
+  "devoirs",
+  "remises",
+  "resultats",
+  "users",
+  "configuration"
 
-  professeurs:
-    "professeurs",
+];
 
-  classes:
-    "classes",
 
-  filieres:
-    "filieres",
+/* =====================================================
+   MESSAGE
+   ===================================================== */
 
-  matieres:
-    "matieres",
+function showAuthMessage(message,type="error"){
 
-  annees:
-    "annees_academiques",
+  const box =
+    document.getElementById("authMessage");
 
-  cours:
-    "cours",
+  box.textContent = message;
 
-  devoirs:
-    "devoirs",
+  box.className =
+    "auth-message " + type;
 
-  remises:
-    "remises",
+}
 
-  resultats:
-    "resultats",
 
-  users:
-    "users"
+function clearAuthMessage(){
+
+  const box =
+    document.getElementById("authMessage");
+
+  box.textContent = "";
+
+  box.className =
+    "auth-message";
+
+}
+
+
+/* =====================================================
+   TOAST
+   ===================================================== */
+
+window.toast =
+function(message,type="info"){
+
+  const box =
+    document.getElementById("toast");
+
+  box.textContent =
+    message;
+
+  box.className =
+    "";
+
+  box.id =
+    "toast";
+
+  box.classList.add(
+    "show",
+    type
+  );
+
+  setTimeout(()=>{
+
+    box.classList.remove("show");
+
+  },3500);
 
 };
 
 
 /* =====================================================
-   UTILITAIRES
-===================================================== */
+   AUTH TABS
+   ===================================================== */
 
-function setAuthMessage(message){
-
-  document
-    .getElementById("authMessage")
-    .textContent = message;
-
-}
-
-
-function escapeHTML(value){
-
-  return String(value ?? "")
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
-
-}
-
-
-function isAdmin(){
-
-  return currentUserData
-    && currentUserData.role === "administrateur"
-    && currentUserData.status === "accepted";
-
-}
-
-
-function isAccepted(){
-
-  return currentUserData
-    && currentUserData.status === "accepted";
-
-}
-
-
-/* =====================================================
-   AFFICHAGE LOGIN / INSCRIPTION
-===================================================== */
-
-window.afficherInscription =
+window.showLogin =
 function(){
 
   document
-    .getElementById("loginForm")
+    .getElementById("loginBox")
+    .classList.remove("hidden");
+
+  document
+    .getElementById("registerBox")
     .classList.add("hidden");
 
   document
-    .getElementById("registerForm")
-    .classList.remove("hidden");
+    .getElementById("loginTab")
+    .classList.add("active");
 
-  setAuthMessage(
-    "Créez votre compte. Il sera soumis à l'approbation de l'administrateur."
-  );
+  document
+    .getElementById("registerTab")
+    .classList.remove("active");
+
+  clearAuthMessage();
 
 };
 
 
-window.afficherConnexion =
+window.showRegister =
 function(){
 
   document
-    .getElementById("registerForm")
+    .getElementById("loginBox")
     .classList.add("hidden");
 
   document
-    .getElementById("loginForm")
+    .getElementById("registerBox")
     .classList.remove("hidden");
 
-  setAuthMessage(
-    "Connectez-vous pour accéder à votre espace."
-  );
+  document
+    .getElementById("loginTab")
+    .classList.remove("active");
+
+  document
+    .getElementById("registerTab")
+    .classList.add("active");
+
+  clearAuthMessage();
 
 };
 
 
 /* =====================================================
-   CONNEXION EMAIL
-===================================================== */
+   CREATE USER PROFILE
+   ===================================================== */
+
+async function creerProfilUtilisateur(user){
+
+  if(!user){
+    return null;
+  }
+
+  const ref =
+    doc(db,"users",user.uid);
+
+  const snap =
+    await getDoc(ref);
+
+  if(snap.exists()){
+
+    return snap.data();
+
+  }
+
+
+  const email =
+    (user.email || "").trim().toLowerCase();
+
+  const adminEmail =
+    "centredeformationlepedagogue@gmail.com";
+
+
+  const isAdmin =
+    email === adminEmail;
+
+
+  const profile = {
+
+    uid:user.uid,
+
+    email:user.email || "",
+
+    nom:user.displayName || "",
+
+    role:
+      isAdmin
+        ? "administrateur"
+        : "attente",
+
+    status:
+      isAdmin
+        ? "accepted"
+        : "pending",
+
+    provider:
+      user.providerData?.[0]?.providerId || "password",
+
+    createdAt:
+      serverTimestamp(),
+
+    updatedAt:
+      serverTimestamp()
+
+  };
+
+
+  await setDoc(
+    ref,
+    profile
+  );
+
+
+  return profile;
+
+}
+
+
+/* =====================================================
+   UPDATE ADMIN PROFILE
+   ===================================================== */
+
+async function verifierAdministrateur(user){
+
+  if(!user){
+    return;
+  }
+
+  const email =
+    (user.email || "")
+      .trim()
+      .toLowerCase();
+
+  const adminEmail =
+    "centredeformationlepedagogue@gmail.com";
+
+
+  if(email !== adminEmail){
+    return;
+  }
+
+
+  const ref =
+    doc(db,"users",user.uid);
+
+  const snap =
+    await getDoc(ref);
+
+
+  const adminData = {
+
+    uid:user.uid,
+
+    email:user.email,
+
+    nom:
+      user.displayName ||
+      "Administrateur",
+
+    role:
+      "administrateur",
+
+    status:
+      "accepted",
+
+    provider:
+      user.providerData?.[0]?.providerId ||
+      "google",
+
+    updatedAt:
+      serverTimestamp()
+
+  };
+
+
+  if(!snap.exists()){
+
+    adminData.createdAt =
+      serverTimestamp();
+
+    await setDoc(
+      ref,
+      adminData
+    );
+
+  }else{
+
+    await updateDoc(
+      ref,
+      adminData
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   PREPARER FIRESTORE
+   ===================================================== */
+
+async function preparerFirestore(){
+
+  if(!currentUserData){
+    return;
+  }
+
+  if(
+    currentUserData.role !==
+      "administrateur"
+  ){
+    return;
+  }
+
+  if(
+    currentUserData.status !==
+      "accepted"
+  ){
+    return;
+  }
+
+
+  /*
+   Firestore ne crée pas une collection
+   vide. On crée donc un document
+   de configuration dans chaque collection.
+  */
+
+  for(
+    const nomCollection of COLLECTIONS
+  ){
+
+    try{
+
+      const ref =
+        doc(
+          db,
+          "configuration",
+          nomCollection
+        );
+
+      await setDoc(
+        ref,
+        {
+          collection:
+            nomCollection,
+
+          active:true,
+
+          updatedAt:
+            serverTimestamp()
+        },
+        {
+          merge:true
+        }
+      );
+
+    }catch(error){
+
+      console.error(
+        "Configuration:",
+        nomCollection,
+        error
+      );
+
+    }
+
+  }
+
+}
+
+
+/* =====================================================
+   EMAIL LOGIN
+   ===================================================== */
 
 window.connecter =
 async function(){
+
+  clearAuthMessage();
 
   const email =
     document
@@ -1858,8 +2021,8 @@ async function(){
 
   if(!email || !password){
 
-    setAuthMessage(
-      "Veuillez entrer votre email et votre mot de passe."
+    showAuthMessage(
+      "Veuillez remplir tous les champs."
     );
 
     return;
@@ -1876,8 +2039,10 @@ async function(){
 
   }catch(error){
 
-    setAuthMessage(
-      firebaseError(error)
+    console.error(error);
+
+    showAuthMessage(
+      traduireErreurFirebase(error)
     );
 
   }
@@ -1886,50 +2051,13 @@ async function(){
 
 
 /* =====================================================
-   GOOGLE
-===================================================== */
-
-window.connecterAvecGoogle =
-async function(){
-
-  try{
-
-    await signInWithPopup(
-      auth,
-      googleProvider
-    );
-
-  }catch(error){
-
-    if(
-      error.code === "auth/popup-blocked" ||
-      error.code === "auth/popup-cancelled" ||
-      error.code === "auth/operation-not-supported-in-this-environment"
-    ){
-
-      await signInWithRedirect(
-        auth,
-        googleProvider
-      );
-
-      return;
-    }
-
-    setAuthMessage(
-      firebaseError(error)
-    );
-
-  }
-
-};
-
-
-/* =====================================================
-   INSCRIPTION
-===================================================== */
+   EMAIL REGISTER
+   ===================================================== */
 
 window.inscrire =
 async function(){
+
+  clearAuthMessage();
 
   const name =
     document
@@ -1949,20 +2077,10 @@ async function(){
       .value;
 
 
-  if(!name){
+  if(!name || !email || !password){
 
-    setAuthMessage(
-      "Veuillez entrer votre nom complet."
-    );
-
-    return;
-  }
-
-
-  if(!email){
-
-    setAuthMessage(
-      "Veuillez entrer votre email."
+    showAuthMessage(
+      "Veuillez remplir tous les champs."
     );
 
     return;
@@ -1971,8 +2089,8 @@ async function(){
 
   if(password.length < 6){
 
-    setAuthMessage(
-      "Le mot de passe doit contenir au moins 6 caractères."
+    showAuthMessage(
+      "Le mot de passe doit avoir au moins 6 caractères."
     );
 
     return;
@@ -1981,7 +2099,7 @@ async function(){
 
   try{
 
-    const credential =
+    const result =
       await createUserWithEmailAndPassword(
         auth,
         email,
@@ -1989,21 +2107,31 @@ async function(){
       );
 
 
-    await createUserProfile(
-      credential.user,
-      name
+    await updateProfile(
+      result.user,
+      {
+        displayName:name
+      }
     );
 
 
-    setAuthMessage(
-      "Compte créé. Votre demande est en attente d'approbation."
+    await creerProfilUtilisateur(
+      result.user
+    );
+
+
+    showAuthMessage(
+      "Compte créé. Il doit être validé par l'administrateur.",
+      "success"
     );
 
 
   }catch(error){
 
-    setAuthMessage(
-      firebaseError(error)
+    console.error(error);
+
+    showAuthMessage(
+      traduireErreurFirebase(error)
     );
 
   }
@@ -2012,295 +2140,135 @@ async function(){
 
 
 /* =====================================================
-   CREATION PROFIL
-===================================================== */
+   GOOGLE LOGIN
+   ===================================================== */
 
-async function createUserProfile(
-  user,
-  name=""
-){
+window.connecterAvecGoogle =
+async function(){
 
-  const email =
-    (user.email || "")
-      .trim()
-      .toLowerCase();
+  clearAuthMessage();
 
+  try{
 
-  const isMainAdmin =
-    email === ADMIN_EMAIL;
-
-
-  const reference =
-    doc(
-      db,
-      "users",
-      user.uid
+    await setPersistence(
+      auth,
+      browserLocalPersistence
     );
 
 
-  const existing =
-    await getDoc(reference);
+    await signInWithPopup(
+      auth,
+      googleProvider
+    );
 
 
-  if(existing.exists()){
+  }catch(error){
 
-    return;
+    console.error(
+      "Google login:",
+      error
+    );
+
+
+    /*
+      Si le popup est bloqué,
+      utiliser redirect.
+    */
+
+    if(
+      error.code ===
+        "auth/popup-blocked" ||
+
+      error.code ===
+        "auth/popup-closed-by-user" ||
+
+      error.code ===
+        "auth/cancelled-popup-request"
+    ){
+
+      try{
+
+        await signInWithRedirect(
+          auth,
+          googleProvider
+        );
+
+        return;
+
+      }catch(redirectError){
+
+        console.error(
+          redirectError
+        );
+
+      }
+
+    }
+
+
+    showAuthMessage(
+      traduireErreurFirebase(error)
+    );
 
   }
 
-
-  await setDoc(
-    reference,
-    {
-
-      uid:
-        user.uid,
-
-      email:
-        user.email || "",
-
-      nom:
-        name ||
-        user.displayName ||
-        "",
-
-      role:
-        isMainAdmin
-          ? "administrateur"
-          : "attente",
-
-      status:
-        isMainAdmin
-          ? "accepted"
-          : "pending",
-
-      createdAt:
-        serverTimestamp()
-
-    }
-  );
-
-}
+};
 
 
 /* =====================================================
-   CHARGER PROFIL
-===================================================== */
+   GOOGLE REGISTER
+   ===================================================== */
 
-async function loadCurrentProfile(
-  user
-){
+window.inscrireAvecGoogle =
+async function(){
 
-  const reference =
-    doc(
-      db,
-      "users",
-      user.uid
-    );
+  await connecterAvecGoogle();
 
-
-  let snapshot =
-    await getDoc(reference);
-
-
-  if(!snapshot.exists()){
-
-    await createUserProfile(
-      user
-    );
-
-    snapshot =
-      await getDoc(reference);
-
-  }
-
-
-  if(!snapshot.exists()){
-
-    throw new Error(
-      "Impossible de créer le profil utilisateur."
-    );
-
-  }
-
-
-  currentUserData =
-    snapshot.data();
-
-
-  document
-    .getElementById("currentEmail")
-    .textContent =
-      currentUserData.email ||
-      user.email ||
-      "—";
-
-
-  document
-    .getElementById("currentRole")
-    .textContent =
-      currentUserData.role ||
-      "—";
-
-
-  document
-    .getElementById("currentStatus")
-    .textContent =
-      currentUserData.status ||
-      "—";
-
-
-  document
-    .getElementById("welcomeText")
-    .textContent =
-      "Bienvenue " +
-      (
-        currentUserData.nom ||
-        user.displayName ||
-        user.email ||
-        ""
-      );
-
-
-  document
-    .getElementById("menuUsers")
-    .classList.toggle(
-      "hidden",
-      !isAdmin()
-    );
-
-}
+};
 
 
 /* =====================================================
-   INITIALISATION DES COLLECTIONS
-===================================================== */
+   REDIRECT RESULT
+   ===================================================== */
 
-async function initialiserBase(){
+getRedirectResult(auth)
+  .then(async result=>{
 
-  if(!isAdmin()){
-
-    return;
-
-  }
-
-
-  const structures = [
-
-    {
-      id:"etudiants",
-      nom:"Étudiants"
-    },
-
-    {
-      id:"professeurs",
-      nom:"Professeurs"
-    },
-
-    {
-      id:"classes",
-      nom:"Classes / Groupes"
-    },
-
-    {
-      id:"filieres",
-      nom:"Filières / Programmes"
-    },
-
-    {
-      id:"matieres",
-      nom:"Matières"
-    },
-
-    {
-      id:"annees",
-      nom:"Années académiques"
-    },
-
-    {
-      id:"cours",
-      nom:"Cours"
-    },
-
-    {
-      id:"devoirs",
-      nom:"Devoirs"
-    },
-
-    {
-      id:"remises",
-      nom:"Remises"
-    },
-
-    {
-      id:"resultats",
-      nom:"Résultats"
+    if(!result || !result.user){
+      return;
     }
 
-  ];
+    console.log(
+      "Google redirect connecté:",
+      result.user.email
+    );
 
+  })
+  .catch(error=>{
 
-  /*
-   * Firestore ne conserve pas les collections vides.
-   * Ces documents système servent uniquement à initialiser
-   * proprement la structure.
-   */
+    console.error(
+      "Redirect Google:",
+      error
+    );
 
-  for(
-    const item of structures
-  ){
-
-    const reference =
-      doc(
-        db,
-        "configuration",
-        item.id
-      );
-
-
-    const snapshot =
-      await getDoc(reference);
-
-
-    if(!snapshot.exists()){
-
-      await setDoc(
-        reference,
-        {
-
-          type:"system",
-
-          collection:
-            item.id,
-
-          nom:
-            item.nom,
-
-          createdAt:
-            serverTimestamp()
-
-        }
-      );
-
-    }
-
-  }
-
-}
+  });
 
 
 /* =====================================================
    AUTH STATE
-===================================================== */
+   ===================================================== */
 
 onAuthStateChanged(
   auth,
-  async user => {
+  async user=>{
 
     if(!user){
 
-      currentUser = null;
-      currentUserData = null;
+      currentUser =
+        null;
+
+      currentUserData =
+        null;
 
       document
         .getElementById("authPage")
@@ -2311,48 +2279,78 @@ onAuthStateChanged(
         .classList.add("hidden");
 
       return;
-
     }
-
-
-    currentUser = user;
 
 
     try{
 
-      await loadCurrentProfile(
+      currentUser =
+        user;
+
+
+      /*
+       Le compte administrateur
+       est reconnu automatiquement
+       grâce à son email.
+      */
+
+      await verifierAdministrateur(
         user
       );
 
 
-      if(
-        !currentUserData ||
-        currentUserData.status !== "accepted"
-      ){
-
-        document
-          .getElementById("authPage")
-          .classList.remove("hidden");
-
-        document
-          .getElementById("appPage")
-          .classList.add("hidden");
-
-
-        setAuthMessage(
-          "Votre compte est en attente d'approbation par l'administrateur."
+      currentUserData =
+        await creerProfilUtilisateur(
+          user
         );
 
 
+      /*
+       Relire le profil après
+       éventuelle mise à jour admin.
+      */
+
+      const profileSnap =
+        await getDoc(
+          doc(
+            db,
+            "users",
+            user.uid
+          )
+        );
+
+
+      if(profileSnap.exists()){
+
+        currentUserData =
+          profileSnap.data();
+
+      }
+
+
+      /*
+       Utilisateur en attente
+      */
+
+      if(
+        currentUserData.status !==
+          "accepted"
+      ){
+
         await signOut(auth);
+
+        showAuthMessage(
+          "Votre compte est en attente de validation par l'administrateur."
+        );
 
         return;
 
       }
 
 
-      await initialiserBase();
-
+      /*
+       Accès accepté.
+      */
 
       document
         .getElementById("authPage")
@@ -2363,100 +2361,174 @@ onAuthStateChanged(
         .classList.remove("hidden");
 
 
-      await chargerDashboard();
+      afficherUtilisateur();
+
+      appliquerPermissions();
+
+      await preparerFirestore();
+
+      await chargerTout();
 
     }catch(error){
 
-      console.error(error);
+      console.error(
+        "Erreur Firebase:",
+        error
+      );
 
-      document
-        .getElementById("authPage")
-        .classList.remove("hidden");
-
-      document
-        .getElementById("appPage")
-        .classList.add("hidden");
-
-
-      setAuthMessage(
+      showAuthMessage(
         "Erreur Firebase : " +
-        error.message
+        (error.message || error)
       );
 
     }
-
-  }
-);
-
-
-/* =====================================================
-   REDIRECT GOOGLE
-===================================================== */
-
-getRedirectResult(auth)
-  .catch(error => {
-
-    console.error(
-      "Google redirect:",
-      error
-    );
 
   });
 
 
 /* =====================================================
+   USER INFO
+   ===================================================== */
+
+function afficherUtilisateur(){
+
+  const info =
+    document.getElementById(
+      "userInfo"
+    );
+
+  if(!currentUserData){
+    return;
+  }
+
+  info.textContent =
+    (
+      currentUserData.email ||
+      currentUser?.email ||
+      ""
+    )
+    +
+    " • Rôle: "
+    +
+    (
+      currentUserData.role ||
+      ""
+    );
+
+}
+
+
+/* =====================================================
+   PERMISSIONS
+   ===================================================== */
+
+function appliquerPermissions(){
+
+  const admin =
+    currentUserData?.role ===
+      "administrateur";
+
+
+  document
+    .getElementById("usersMenu")
+    .classList.toggle(
+      "hidden",
+      !admin
+    );
+
+
+  document
+    .getElementById("configMenu")
+    .classList.toggle(
+      "hidden",
+      !admin
+    );
+
+
+  const addProf =
+    document
+      .getElementById(
+        "addProfesseurBtn"
+      );
+
+  if(addProf){
+
+    addProf.classList.toggle(
+      "hidden",
+      !admin
+    );
+
+  }
+
+}
+
+
+/* =====================================================
    LOGOUT
-===================================================== */
+   ===================================================== */
 
 window.deconnecter =
 async function(){
 
-  await signOut(
-    auth
-  );
+  try{
+
+    await signOut(auth);
+
+  }catch(error){
+
+    console.error(error);
+
+  }
 
 };
 
 
 /* =====================================================
    NAVIGATION
-===================================================== */
+   ===================================================== */
 
-window.ouvrirPage =
-function(
-  pageName,
-  button
-){
+window.ouvrirSection =
+async function(section,button){
 
   document
-    .querySelectorAll(".page")
-    .forEach(
-      page =>
-        page.classList.remove("active")
-    );
+    .querySelectorAll(
+      "main section"
+    )
+    .forEach(sectionElement=>{
+
+      sectionElement
+        .classList
+        .add("hidden");
+
+    });
 
 
-  const page =
+  const target =
     document.getElementById(
-      "page-" + pageName
+      "section-" + section
     );
 
 
-  if(page){
+  if(target){
 
-    page.classList.add(
-      "active"
+    target.classList.remove(
+      "hidden"
     );
 
   }
 
 
   document
-    .querySelectorAll(".menu-btn")
-    .forEach(
-      btn =>
-        btn.classList.remove("active")
-    );
+    .querySelectorAll(
+      ".menu-btn"
+    )
+    .forEach(btn=>{
+
+      btn.classList.remove(
+        "active"
+      );
+
+    });
 
 
   if(button){
@@ -2468,16 +2540,11 @@ function(
   }
 
 
-  if(pageName === "users"){
+  if(
+    section === "users"
+  ){
 
-    chargerUsers();
-
-  }
-
-
-  if(pageName === "statistiques"){
-
-    chargerStatistiques();
+    await chargerUsers();
 
   }
 
@@ -2485,417 +2552,83 @@ function(
 
 
 /* =====================================================
-   DASHBOARD
-===================================================== */
+   LOAD ALL
+   ===================================================== */
 
-async function chargerDashboard(){
+async function chargerTout(){
 
-  const names = [
+  await chargerCollection(
+    "etudiants",
+    "listeEtudiants"
+  );
 
-    ["etudiants","statEtudiants"],
+  await chargerCollection(
+    "professeurs",
+    "listeProfesseurs"
+  );
 
-    ["professeurs","statProfesseurs"],
+  await chargerCollection(
+    "classes",
+    "listeClasses"
+  );
 
-    ["classes","statClasses"],
+  await chargerCollection(
+    "filieres",
+    "listeFilieres"
+  );
 
-    ["matieres","statMatieres"],
+  await chargerCollection(
+    "matieres",
+    "listeMatieres"
+  );
 
-    ["devoirs","statDevoirs"],
+  await chargerCollection(
+    "annees_academiques",
+    "listeAnnees"
+  );
 
-    ["remises","statRemises"],
+  await chargerSimple(
+    "cours",
+    "listeCours"
+  );
 
-    ["resultats","statResultats"],
+  await chargerSimple(
+    "devoirs",
+    "listeDevoirs"
+  );
 
-    ["users","statUsers"]
+  await chargerSimple(
+    "remises",
+    "listeRemises"
+  );
 
-  ];
+  await chargerSimple(
+    "resultats",
+    "listeResultats"
+  );
 
-
-  for(
-    const [collectionName,id]
-    of names
-  ){
-
-    try{
-
-      const snapshot =
-        await getDocs(
-          collection(
-            db,
-            collectionName
-          )
-        );
-
-
-      document
-        .getElementById(id)
-        .textContent =
-          snapshot.size;
-
-    }catch(error){
-
-      document
-        .getElementById(id)
-        .textContent =
-          "—";
-
-    }
-
-  }
+  await chargerStats();
 
 }
 
 
 /* =====================================================
-   FORMULAIRES
-===================================================== */
-
-window.ouvrirFormulaire =
-function(
-  type
-){
-
-  if(
-    !isAdmin() &&
-    currentUserData.role !== "professeur"
-  ){
-
-    alert(
-      "Vous n'avez pas l'autorisation."
-    );
-
-    return;
-
-  }
-
-
-  const labels = {
-
-    etudiants:
-      "Ajouter un étudiant",
-
-    professeurs:
-      "Ajouter un professeur",
-
-    classes:
-      "Ajouter une classe",
-
-    filieres:
-      "Ajouter une filière",
-
-    matieres:
-      "Ajouter une matière",
-
-    annees:
-      "Ajouter une année académique",
-
-    cours:
-      "Ajouter un cours",
-
-    devoirs:
-      "Ajouter un devoir",
-
-    resultats:
-      "Ajouter un résultat"
-
-  };
-
-
-  document
-    .getElementById("modalTitle")
-    .textContent =
-      labels[type] ||
-      "Ajouter";
-
-
-  let html = `
-
-    <div class="form-group">
-
-      <label>
-        Nom / Titre
-      </label>
-
-      <input
-        id="formNom"
-        type="text"
-        placeholder="Nom ou titre"
-      >
-
-    </div>
-
-    <div class="form-group">
-
-      <label>
-        Code / Information
-      </label>
-
-      <input
-        id="formInfo"
-        type="text"
-        placeholder="Code ou information"
-      >
-
-    </div>
-
-  `;
-
-
-  if(type === "resultats"){
-
-    html += `
-
-      <div class="form-group">
-
-        <label>
-          Note sur 20
-        </label>
-
-        <input
-          id="formNote"
-          type="number"
-          min="0"
-          max="20"
-          step="0.01"
-          placeholder="15"
-        >
-
-      </div>
-
-      <div class="form-group">
-
-        <label>
-          Correction / Commentaire
-        </label>
-
-        <textarea
-          id="formCorrection"
-          placeholder="Commentaire du professeur"
-        ></textarea>
-
-      </div>
-
-    `;
-
-  }
-
-
-  html += `
-
-    <button
-      class="primary-btn"
-      onclick="enregistrerElement('${type}')"
-    >
-      Enregistrer
-    </button>
-
-  `;
-
-
-  document
-    .getElementById("modalBody")
-    .innerHTML =
-      html;
-
-
-  document
-    .getElementById("modal")
-    .classList.add("show");
-
-};
-
-
-/* =====================================================
-   ENREGISTRER
-===================================================== */
-
-window.enregistrerElement =
-async function(
-  type
-){
-
-  const nom =
-    document
-      .getElementById("formNom")
-      .value
-      .trim();
-
-
-  const info =
-    document
-      .getElementById("formInfo")
-      .value
-      .trim();
-
-
-  if(!nom){
-
-    alert(
-      "Le nom ou titre est obligatoire."
-    );
-
-    return;
-
-  }
-
-
-  const collectionName =
-    type === "annees"
-      ? "annees_academiques"
-      : type;
-
-
-  const data = {
-
-    nom:
-      nom,
-
-    info:
-      info,
-
-    createdBy:
-      currentUser.uid,
-
-    createdAt:
-      serverTimestamp()
-
-  };
-
-
-  if(type === "resultats"){
-
-    const note =
-      Number(
-        document
-          .getElementById("formNote")
-          .value
-      );
-
-
-    if(
-      isNaN(note) ||
-      note < 0 ||
-      note > 20
-    ){
-
-      alert(
-        "La note doit être comprise entre 0 et 20."
-      );
-
-      return;
-
-    }
-
-
-    data.note20 =
-      note;
-
-
-    data.noteSur20 =
-      note;
-
-
-    data.correction =
-      document
-        .getElementById("formCorrection")
-        .value
-        .trim();
-
-  }
-
-
-  try{
-
-    await setDoc(
-      doc(
-        collection(
-          db,
-          collectionName
-        )
-      ),
-      data
-    );
-
-
-    fermerModal();
-
-
-    await chargerDashboard();
-
-
-    await chargerCollection(
-      collectionName
-    );
-
-
-    alert(
-      "Enregistrement effectué."
-    );
-
-  }catch(error){
-
-    alert(
-      "Erreur Firebase : " +
-      error.message
-    );
-
-  }
-
-};
-
-
-/* =====================================================
-   FERMER MODAL
-===================================================== */
-
-window.fermerModal =
-function(){
-
-  document
-    .getElementById("modal")
-    .classList.remove("show");
-
-};
-
-
-/* =====================================================
-   CHARGER COLLECTION
-===================================================== */
+   LOAD COLLECTION
+   ===================================================== */
 
 async function chargerCollection(
-  collectionName
+  collectionName,
+  elementId
 ){
 
-  let elementId =
-    "liste-" +
-    collectionName;
-
-
-  if(collectionName === "annees_academiques"){
-
-    elementId =
-      "liste-annees";
-
-  }
-
-
-  const element =
+  const box =
     document.getElementById(
       elementId
     );
 
-
-  if(!element){
-
+  if(!box){
     return;
-
   }
-
-
-  element.innerHTML =
-    `<div class="empty">
-      Chargement...
-    </div>`;
 
 
   try{
@@ -2909,130 +2642,60 @@ async function chargerCollection(
       );
 
 
-    if(snapshot.empty){
+    const docs =
+      snapshot.docs.filter(
+        item =>
+          !item.id.startsWith("__")
+      );
 
-      element.innerHTML =
-        `<div class="empty">
-          Aucune donnée pour le moment.
-        </div>`;
+
+    if(docs.length === 0){
+
+      box.innerHTML =
+        `
+        <tr>
+          <td colspan="10">
+            Aucun élément pour le moment.
+          </td>
+        </tr>
+        `;
 
       return;
 
     }
 
 
-    let rows = "";
-
-
-    snapshot.forEach(
-      item => {
+    box.innerHTML =
+      docs.map(item=>{
 
         const data =
           item.data();
 
+        return genererLigne(
+          collectionName,
+          item.id,
+          data
+        );
 
-        const title =
-          data.nom ||
-          data.titre ||
-          data.email ||
-          "Sans nom";
+      }).join("");
 
-
-        let extra =
-          data.info ||
-          "";
-
-
-        if(
-          collectionName === "resultats"
-        ){
-
-          extra =
-            (data.noteSur20 ?? "—") +
-            "/20";
-
-        }
-
-
-        rows += `
-
-          <tr>
-
-            <td>
-              ${escapeHTML(title)}
-            </td>
-
-            <td>
-              ${escapeHTML(extra)}
-            </td>
-
-            <td>
-
-              <button
-                class="action-btn delete-btn"
-                onclick="supprimerElement(
-                  '${collectionName}',
-                  '${item.id}'
-                )"
-              >
-                Supprimer
-              </button>
-
-            </td>
-
-          </tr>
-
-        `;
-
-      }
-    );
-
-
-    element.innerHTML = `
-
-      <div class="table-container">
-
-        <table>
-
-          <thead>
-
-            <tr>
-
-              <th>
-                Nom / Titre
-              </th>
-
-              <th>
-                Information
-              </th>
-
-              <th>
-                Action
-              </th>
-
-            </tr>
-
-          </thead>
-
-          <tbody>
-
-            ${rows}
-
-          </tbody>
-
-        </table>
-
-      </div>
-
-    `;
 
   }catch(error){
 
-    element.innerHTML =
-      `<div class="empty">
-        Erreur Firebase :
-        ${escapeHTML(error.message)}
-      </div>`;
+    console.error(
+      collectionName,
+      error
+    );
+
+
+    box.innerHTML =
+      `
+      <tr>
+        <td colspan="10">
+          Impossible de charger les données.
+        </td>
+      </tr>
+      `;
 
   }
 
@@ -3040,35 +2703,320 @@ async function chargerCollection(
 
 
 /* =====================================================
-   CHARGER TOUTES LES LISTES
-===================================================== */
+   SIMPLE LISTS
+   ===================================================== */
 
-async function chargerToutesLesListes(){
+async function chargerSimple(
+  collectionName,
+  elementId
+){
 
-  const names = [
+  const box =
+    document.getElementById(
+      elementId
+    );
 
-    "etudiants",
-    "professeurs",
-    "classes",
-    "filieres",
-    "matieres",
-    "annees_academiques",
-    "cours",
-    "devoirs",
-    "remises",
-    "resultats"
+  if(!box){
+    return;
+  }
+
+
+  try{
+
+    const snapshot =
+      await getDocs(
+        collection(
+          db,
+          collectionName
+        )
+      );
+
+
+    const docs =
+      snapshot.docs.filter(
+        item =>
+          !item.id.startsWith("__")
+      );
+
+
+    if(docs.length === 0){
+
+      box.innerHTML =
+        `
+        <div class="empty">
+          Aucun élément pour le moment.
+        </div>
+        `;
+
+      return;
+
+    }
+
+
+    box.innerHTML =
+      docs.map(item=>{
+
+        const data =
+          item.data();
+
+        return `
+          <div class="card" style="margin-bottom:10px">
+
+            <strong>
+              ${
+                escapeHtml(
+                  data.nom ||
+                  data.titre ||
+                  data.name ||
+                  item.id
+                )
+              }
+            </strong>
+
+            <p style="color:#64748b;margin-top:6px">
+              ${
+                escapeHtml(
+                  data.description ||
+                  data.contenu ||
+                  data.commentaire ||
+                  ""
+                )
+              }
+            </p>
+
+            <div style="margin-top:10px">
+
+              <button
+                class="action-btn delete-btn"
+                onclick="supprimerDocument(
+                  '${collectionName}',
+                  '${item.id}'
+                )">
+                Supprimer
+              </button>
+
+            </div>
+
+          </div>
+        `;
+
+      }).join("");
+
+
+  }catch(error){
+
+    console.error(
+      collectionName,
+      error
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   GENERATE TABLE ROW
+   ===================================================== */
+
+function genererLigne(
+  collectionName,
+  id,
+  data
+){
+
+  let content = "";
+
+
+  if(collectionName === "etudiants"){
+
+    content =
+      `
+      <td>${escapeHtml(data.nom || "")}</td>
+      <td>${escapeHtml(data.email || "")}</td>
+      <td>${escapeHtml(data.telephone || "")}</td>
+      `;
+
+  }
+
+  else if(
+    collectionName === "professeurs"
+  ){
+
+    content =
+      `
+      <td>${escapeHtml(data.nom || "")}</td>
+      <td>${escapeHtml(data.email || "")}</td>
+      <td>${escapeHtml(data.matiere || "")}</td>
+      `;
+
+  }
+
+  else if(
+    collectionName === "classes"
+  ){
+
+    content =
+      `
+      <td>${escapeHtml(data.nom || "")}</td>
+      <td>${escapeHtml(data.niveau || "")}</td>
+      <td>${escapeHtml(data.filiere || "")}</td>
+      `;
+
+  }
+
+  else if(
+    collectionName === "filieres"
+  ){
+
+    content =
+      `
+      <td>${escapeHtml(data.nom || "")}</td>
+      <td>${escapeHtml(data.description || "")}</td>
+      `;
+
+  }
+
+  else if(
+    collectionName === "matieres"
+  ){
+
+    content =
+      `
+      <td>${escapeHtml(data.nom || "")}</td>
+      <td>${escapeHtml(data.code || "")}</td>
+      <td>${escapeHtml(data.coefficient || "")}</td>
+      `;
+
+  }
+
+  else if(
+    collectionName ===
+      "annees_academiques"
+  ){
+
+    content =
+      `
+      <td>${escapeHtml(data.annee || "")}</td>
+      <td>${escapeHtml(data.debut || "")}</td>
+      <td>${escapeHtml(data.fin || "")}</td>
+      `;
+
+  }
+
+
+  return `
+    <tr>
+
+      ${content}
+
+      <td>
+
+        <button
+          class="action-btn delete-btn"
+          onclick="supprimerDocument(
+            '${collectionName}',
+            '${id}'
+          )">
+          Supprimer
+        </button>
+
+      </td>
+
+    </tr>
+  `;
+
+}
+
+
+/* =====================================================
+   STATS
+   ===================================================== */
+
+async function chargerStats(){
+
+  const collections = [
+
+    [
+      "etudiants",
+      "statEtudiants",
+      "stat2Etudiants"
+    ],
+
+    [
+      "professeurs",
+      "statProfesseurs",
+      "stat2Professeurs"
+    ],
+
+    [
+      "classes",
+      "statClasses",
+      "stat2Classes"
+    ],
+
+    [
+      "matieres",
+      "statMatieres",
+      "stat2Matieres"
+    ]
 
   ];
 
 
   for(
-    const name
-    of names
+    const [
+      collectionName,
+      stat1,
+      stat2
+    ]
+    of collections
   ){
 
-    await chargerCollection(
-      name
-    );
+    try{
+
+      const snapshot =
+        await getDocs(
+          collection(
+            db,
+            collectionName
+          )
+        );
+
+
+      const total =
+        snapshot.docs.filter(
+          item =>
+            !item.id.startsWith("__")
+        ).length;
+
+
+      const a =
+        document.getElementById(
+          stat1
+        );
+
+      const b =
+        document.getElementById(
+          stat2
+        );
+
+
+      if(a){
+        a.textContent = total;
+      }
+
+      if(b){
+        b.textContent = total;
+      }
+
+    }catch(error){
+
+      console.error(
+        error
+      );
+
+    }
 
   }
 
@@ -3076,19 +3024,399 @@ async function chargerToutesLesListes(){
 
 
 /* =====================================================
-   SUPPRIMER
-===================================================== */
+   USERS ADMIN
+   ===================================================== */
 
-window.supprimerElement =
-async function(
-  collectionName,
-  id
-){
+async function chargerUsers(){
 
-  if(!isAdmin()){
+  const box =
+    document.getElementById(
+      "listeUsers"
+    );
 
-    alert(
-      "Seul l'administrateur peut supprimer ces données."
+  if(!box){
+    return;
+  }
+
+
+  if(
+    currentUserData?.role !==
+      "administrateur"
+  ){
+
+    box.innerHTML =
+      `
+      <tr>
+        <td colspan="5">
+          Accès réservé à l'administrateur.
+        </td>
+      </tr>
+      `;
+
+    return;
+
+  }
+
+
+  try{
+
+    const snapshot =
+      await getDocs(
+        collection(
+          db,
+          "users"
+        )
+      );
+
+
+    const docs =
+      snapshot.docs;
+
+
+    if(docs.length === 0){
+
+      box.innerHTML =
+        `
+        <tr>
+          <td colspan="5">
+            Aucun utilisateur.
+          </td>
+        </tr>
+        `;
+
+      return;
+
+    }
+
+
+    box.innerHTML =
+      docs.map(item=>{
+
+        const data =
+          item.data();
+
+
+        const status =
+          data.status || "pending";
+
+
+        let badge =
+          `<span class="badge badge-warning">
+             ${escapeHtml(status)}
+           </span>`;
+
+
+        if(status === "accepted"){
+
+          badge =
+            `<span class="badge badge-success">
+              accepté
+            </span>`;
+
+        }
+
+        if(status === "refused"){
+
+          badge =
+            `<span class="badge badge-danger">
+              refusé
+            </span>`;
+
+        }
+
+
+        return `
+          <tr>
+
+            <td>
+              ${escapeHtml(
+                data.nom || ""
+              )}
+            </td>
+
+            <td>
+              ${escapeHtml(
+                data.email || ""
+              )}
+            </td>
+
+            <td>
+              ${escapeHtml(
+                data.role || ""
+              )}
+            </td>
+
+            <td>
+              ${badge}
+            </td>
+
+            <td>
+
+              ${
+                status !== "accepted"
+                ?
+                `
+                <button
+                  class="action-btn accept-btn"
+                  onclick="accepterUtilisateur(
+                    '${item.id}'
+                  )">
+                  Accepter
+                </button>
+                `
+                :
+                ""
+              }
+
+              ${
+                status !== "refused"
+                &&
+                data.role !==
+                  "administrateur"
+                ?
+                `
+                <button
+                  class="action-btn reject-btn"
+                  onclick="refuserUtilisateur(
+                    '${item.id}'
+                  )">
+                  Refuser
+                </button>
+                `
+                :
+                ""
+              }
+
+              ${
+                data.role !==
+                  "administrateur"
+                ?
+                `
+                <button
+                  class="action-btn delete-btn"
+                  onclick="supprimerUtilisateur(
+                    '${item.id}'
+                  )">
+                  Supprimer
+                </button>
+                `
+                :
+                ""
+              }
+
+            </td>
+
+          </tr>
+        `;
+
+      }).join("");
+
+
+  }catch(error){
+
+    console.error(
+      error
+    );
+
+    box.innerHTML =
+      `
+      <tr>
+        <td colspan="5">
+          Erreur Firebase :
+          ${escapeHtml(error.message)}
+        </td>
+      </tr>
+      `;
+
+  }
+
+}
+
+
+/* =====================================================
+   ACCEPT USER
+   ===================================================== */
+
+window.accepterUtilisateur =
+async function(uid){
+
+  if(
+    currentUserData?.role !==
+      "administrateur"
+  ){
+
+    toast(
+      "Accès administrateur uniquement.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  const role =
+    prompt(
+      "Choisissez le rôle :\n\nprofesseur\netudiant",
+      "etudiant"
+    );
+
+
+  if(!role){
+    return;
+  }
+
+
+  if(
+    role !== "professeur" &&
+    role !== "etudiant"
+  ){
+
+    toast(
+      "Rôle invalide.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  try{
+
+    await updateDoc(
+      doc(
+        db,
+        "users",
+        uid
+      ),
+      {
+
+        role:role,
+
+        status:"accepted",
+
+        approvedBy:
+          currentUser.uid,
+
+        approvedAt:
+          serverTimestamp(),
+
+        updatedAt:
+          serverTimestamp()
+
+      }
+    );
+
+
+    toast(
+      "Utilisateur accepté.",
+      "success"
+    );
+
+
+    await chargerUsers();
+
+  }catch(error){
+
+    toast(
+      "Erreur : " +
+      error.message,
+      "error"
+    );
+
+  }
+
+};
+
+
+/* =====================================================
+   REFUSE USER
+   ===================================================== */
+
+window.refuserUtilisateur =
+async function(uid){
+
+  if(
+    currentUserData?.role !==
+      "administrateur"
+  ){
+    return;
+  }
+
+
+  if(
+    !confirm(
+      "Voulez-vous refuser cet utilisateur ?"
+    )
+  ){
+    return;
+  }
+
+
+  try{
+
+    await updateDoc(
+      doc(
+        db,
+        "users",
+        uid
+      ),
+      {
+
+        role:"attente",
+
+        status:"refused",
+
+        updatedAt:
+          serverTimestamp()
+
+      }
+    );
+
+
+    toast(
+      "Utilisateur refusé.",
+      "success"
+    );
+
+
+    await chargerUsers();
+
+  }catch(error){
+
+    toast(
+      error.message,
+      "error"
+    );
+
+  }
+
+};
+
+
+/* =====================================================
+   DELETE USER
+   ===================================================== */
+
+window.supprimerUtilisateur =
+async function(uid){
+
+  if(
+    currentUserData?.role !==
+      "administrateur"
+  ){
+    return;
+  }
+
+
+  if(
+    uid === currentUser.uid
+  ){
+
+    toast(
+      "Vous ne pouvez pas supprimer votre propre compte ici.",
+      "error"
     );
 
     return;
@@ -3098,12 +3426,75 @@ async function(
 
   if(
     !confirm(
-      "Êtes-vous sûr de vouloir supprimer cet élément ?"
+      "Supprimer définitivement cet utilisateur ?"
     )
   ){
+    return;
+  }
+
+
+  try{
+
+    await deleteDoc(
+      doc(
+        db,
+        "users",
+        uid
+      )
+    );
+
+
+    toast(
+      "Utilisateur supprimé.",
+      "success"
+    );
+
+
+    await chargerUsers();
+
+  }catch(error){
+
+    toast(
+      error.message,
+      "error"
+    );
+
+  }
+
+};
+
+
+/* =====================================================
+   GENERIC DELETE
+   ===================================================== */
+
+window.supprimerDocument =
+async function(
+  collectionName,
+  id
+){
+
+  if(
+    currentUserData?.role !==
+      "administrateur"
+  ){
+
+    toast(
+      "Action réservée à l'administrateur.",
+      "error"
+    );
 
     return;
 
+  }
+
+
+  if(
+    !confirm(
+      "Voulez-vous vraiment supprimer cet élément ?"
+    )
+  ){
+    return;
   }
 
 
@@ -3118,18 +3509,20 @@ async function(
     );
 
 
-    await chargerDashboard();
-
-
-    await chargerCollection(
-      collectionName
+    toast(
+      "Élément supprimé.",
+      "success"
     );
+
+
+    await chargerTout();
 
   }catch(error){
 
-    alert(
-      "Erreur Firebase : " +
-      error.message
+    toast(
+      "Erreur : " +
+      error.message,
+      "error"
     );
 
   }
@@ -3138,251 +3531,695 @@ async function(
 
 
 /* =====================================================
-   UTILISATEURS
-===================================================== */
+   FORMULAIRES
+   ===================================================== */
 
-async function chargerUsers(){
+window.ouvrirFormulaire =
+function(collectionName){
 
-  const container =
+  const modal =
     document.getElementById(
-      "liste-users"
+      "modal"
+    );
+
+  const title =
+    document.getElementById(
+      "modalTitle"
+    );
+
+  const content =
+    document.getElementById(
+      "modalContent"
     );
 
 
-  if(!isAdmin()){
+  title.textContent =
+    "Ajouter - " +
+    collectionName;
 
-    container.innerHTML =
-      `<div class="empty">
-        Accès réservé à l'administrateur.
-      </div>`;
 
-    return;
-
-  }
-
-
-  container.innerHTML =
-    `<div class="empty">
-      Chargement...
-    </div>`;
-
-
-  try{
-
-    const snapshot =
-      await getDocs(
-        collection(
-          db,
-          "users"
-        )
-      );
-
-
-    if(snapshot.empty){
-
-      container.innerHTML =
-        `<div class="empty">
-          Aucun utilisateur.
-        </div>`;
-
-      return;
-
-    }
-
-
-    let rows = "";
-
-
-    snapshot.forEach(
-      item => {
-
-        const data =
-          item.data();
-
-
-        const accepted =
-          data.status === "accepted";
-
-
-        rows += `
-
-          <tr>
-
-            <td>
-              ${escapeHTML(
-                data.nom || "—"
-              )}
-            </td>
-
-            <td>
-              ${escapeHTML(
-                data.email || "—"
-              )}
-            </td>
-
-            <td>
-              ${escapeHTML(
-                data.role || "attente"
-              )}
-            </td>
-
-            <td>
-
-              <span class="badge ${
-                accepted
-                  ? "badge-success"
-                  : "badge-warning"
-              }">
-
-                ${accepted
-                  ? "accepted"
-                  : "pending"}
-
-              </span>
-
-            </td>
-
-            <td>
-
-              ${
-                !accepted
-                ? `
-                  <button
-                    class="action-btn accept-btn"
-                    onclick="accepterUtilisateur('${item.id}')"
-                  >
-                    Accepter
-                  </button>
-                `
-                : ""
-              }
-
-              ${
-                item.id !== currentUser.uid
-                ? `
-                  <button
-                    class="action-btn delete-btn"
-                    onclick="supprimerElement('users','${item.id}')"
-                  >
-                    Supprimer
-                  </button>
-                `
-                : ""
-              }
-
-            </td>
-
-          </tr>
-
-        `;
-
-      }
-    );
-
-
-    container.innerHTML = `
-
-      <div class="table-container">
-
-        <table>
-
-          <thead>
-
-            <tr>
-
-              <th>
-                Nom
-              </th>
-
-              <th>
-                Email
-              </th>
-
-              <th>
-                Rôle
-              </th>
-
-              <th>
-                Statut
-              </th>
-
-              <th>
-                Actions
-              </th>
-
-            </tr>
-
-          </thead>
-
-          <tbody>
-
-            ${rows}
-
-          </tbody>
-
-        </table>
-
-      </div>
-
-    `;
-
-  }catch(error){
-
-    container.innerHTML =
-      `<div class="empty">
-        Erreur Firebase :
-        ${escapeHTML(error.message)}
-      </div>`;
-
-  }
-
-}
-
-
-/* =====================================================
-   ACCEPTER UTILISATEUR
-===================================================== */
-
-window.accepterUtilisateur =
-async function(
-  uid
-){
-
-  if(!isAdmin()){
-
-    return;
-
-  }
-
-
-  const role =
-    prompt(
-      "Choisissez le rôle : professeur ou etudiant",
-      "etudiant"
-    );
-
-
-  if(!role){
-
-    return;
-
-  }
-
-
-  const normalized =
-    role
-      .trim()
-      .toLowerCase();
+  let html = "";
 
 
   if(
-    normalized !== "professeur" &&
-    normalized !== "etudiant" &&
-    normalized !== "eleve"
+    collectionName ===
+      "etudiants"
   ){
 
-    alert(
-      "Rôle invalide."
+    html = `
+
+      <form
+        onsubmit="
+          enregistrerSimple(
+            event,
+            'etudiants'
+          )
+        ">
+
+        <div class="form-grid">
+
+          <div class="form-group full">
+            <label>Nom complet</label>
+            <input
+              name="nom"
+              required>
+          </div>
+
+          <div class="form-group">
+            <label>Email</label>
+            <input
+              name="email"
+              type="email">
+          </div>
+
+          <div class="form-group">
+            <label>Téléphone</label>
+            <input
+              name="telephone">
+          </div>
+
+          <div class="form-group full">
+            <label>Adresse</label>
+            <input
+              name="adresse">
+          </div>
+
+        </div>
+
+        <div class="modal-actions">
+
+          <button
+            type="button"
+            class="cancel-btn"
+            onclick="fermerModal()">
+            Annuler
+          </button>
+
+          <button
+            class="save-btn">
+            Enregistrer
+          </button>
+
+        </div>
+
+      </form>
+    `;
+
+  }
+
+  else if(
+    collectionName ===
+      "professeurs"
+  ){
+
+    html = `
+
+      <form
+        onsubmit="
+          enregistrerSimple(
+            event,
+            'professeurs'
+          )
+        ">
+
+        <div class="form-grid">
+
+          <div class="form-group full">
+            <label>Nom complet</label>
+            <input
+              name="nom"
+              required>
+          </div>
+
+          <div class="form-group">
+            <label>Email</label>
+            <input
+              name="email"
+              type="email">
+          </div>
+
+          <div class="form-group">
+            <label>Matière</label>
+            <input
+              name="matiere">
+          </div>
+
+          <div class="form-group full">
+            <label>Téléphone</label>
+            <input
+              name="telephone">
+          </div>
+
+        </div>
+
+        <div class="modal-actions">
+
+          <button
+            type="button"
+            class="cancel-btn"
+            onclick="fermerModal()">
+            Annuler
+          </button>
+
+          <button
+            class="save-btn">
+            Enregistrer
+          </button>
+
+        </div>
+
+      </form>
+    `;
+
+  }
+
+  else if(
+    collectionName ===
+      "classes"
+  ){
+
+    html = `
+
+      <form
+        onsubmit="
+          enregistrerSimple(
+            event,
+            'classes'
+          )
+        ">
+
+        <div class="form-grid">
+
+          <div class="form-group">
+            <label>Nom</label>
+            <input
+              name="nom"
+              required>
+          </div>
+
+          <div class="form-group">
+            <label>Niveau</label>
+            <input
+              name="niveau">
+          </div>
+
+          <div class="form-group full">
+            <label>Filière</label>
+            <input
+              name="filiere">
+          </div>
+
+        </div>
+
+        <div class="modal-actions">
+
+          <button
+            type="button"
+            class="cancel-btn"
+            onclick="fermerModal()">
+            Annuler
+          </button>
+
+          <button
+            class="save-btn">
+            Enregistrer
+          </button>
+
+        </div>
+
+      </form>
+    `;
+
+  }
+
+  else if(
+    collectionName ===
+      "filieres"
+  ){
+
+    html = `
+
+      <form
+        onsubmit="
+          enregistrerSimple(
+            event,
+            'filieres'
+          )
+        ">
+
+        <div class="form-grid">
+
+          <div class="form-group full">
+            <label>Nom de la filière</label>
+            <input
+              name="nom"
+              required>
+          </div>
+
+          <div class="form-group full">
+            <label>Description</label>
+            <textarea
+              name="description"
+              rows="4">
+            </textarea>
+          </div>
+
+        </div>
+
+        <div class="modal-actions">
+
+          <button
+            type="button"
+            class="cancel-btn"
+            onclick="fermerModal()">
+            Annuler
+          </button>
+
+          <button
+            class="save-btn">
+            Enregistrer
+          </button>
+
+        </div>
+
+      </form>
+    `;
+
+  }
+
+  else if(
+    collectionName ===
+      "matieres"
+  ){
+
+    html = `
+
+      <form
+        onsubmit="
+          enregistrerSimple(
+            event,
+            'matieres'
+          )
+        ">
+
+        <div class="form-grid">
+
+          <div class="form-group">
+            <label>Nom</label>
+            <input
+              name="nom"
+              required>
+          </div>
+
+          <div class="form-group">
+            <label>Code</label>
+            <input
+              name="code">
+          </div>
+
+          <div class="form-group">
+            <label>Coefficient</label>
+            <input
+              name="coefficient"
+              type="number"
+              min="0"
+              step="0.5">
+          </div>
+
+        </div>
+
+        <div class="modal-actions">
+
+          <button
+            type="button"
+            class="cancel-btn"
+            onclick="fermerModal()">
+            Annuler
+          </button>
+
+          <button
+            class="save-btn">
+            Enregistrer
+          </button>
+
+        </div>
+
+      </form>
+    `;
+
+  }
+
+  else if(
+    collectionName ===
+      "annees_academiques"
+  ){
+
+    html = `
+
+      <form
+        onsubmit="
+          enregistrerSimple(
+            event,
+            'annees_academiques'
+          )
+        ">
+
+        <div class="form-grid">
+
+          <div class="form-group full">
+            <label>Année académique</label>
+            <input
+              name="annee"
+              placeholder="2026-2027"
+              required>
+          </div>
+
+          <div class="form-group">
+            <label>Date début</label>
+            <input
+              name="debut"
+              type="date">
+          </div>
+
+          <div class="form-group">
+            <label>Date fin</label>
+            <input
+              name="fin"
+              type="date">
+          </div>
+
+        </div>
+
+        <div class="modal-actions">
+
+          <button
+            type="button"
+            class="cancel-btn"
+            onclick="fermerModal()">
+            Annuler
+          </button>
+
+          <button
+            class="save-btn">
+            Enregistrer
+          </button>
+
+        </div>
+
+      </form>
+    `;
+
+  }
+
+  else if(
+    collectionName === "cours"
+  ){
+
+    html = `
+
+      <form
+        onsubmit="
+          enregistrerSimple(
+            event,
+            'cours'
+          )
+        ">
+
+        <div class="form-group">
+          <label>Titre du cours</label>
+          <input
+            name="titre"
+            required>
+        </div>
+
+        <div class="form-group">
+          <label>Description</label>
+          <textarea
+            name="description"
+            rows="4">
+          </textarea>
+        </div>
+
+        <div class="modal-actions">
+
+          <button
+            type="button"
+            class="cancel-btn"
+            onclick="fermerModal()">
+            Annuler
+          </button>
+
+          <button
+            class="save-btn">
+            Enregistrer
+          </button>
+
+        </div>
+
+      </form>
+    `;
+
+  }
+
+  else if(
+    collectionName ===
+      "devoirs"
+  ){
+
+    html = `
+
+      <form
+        onsubmit="
+          enregistrerSimple(
+            event,
+            'devoirs'
+          )
+        ">
+
+        <div class="form-group">
+          <label>Titre du devoir</label>
+          <input
+            name="titre"
+            required>
+        </div>
+
+        <div class="form-group">
+          <label>Description</label>
+          <textarea
+            name="description"
+            rows="4">
+          </textarea>
+        </div>
+
+        <div class="form-group">
+          <label>Date limite</label>
+          <input
+            name="dateLimite"
+            type="date">
+        </div>
+
+        <div class="modal-actions">
+
+          <button
+            type="button"
+            class="cancel-btn"
+            onclick="fermerModal()">
+            Annuler
+          </button>
+
+          <button
+            class="save-btn">
+            Enregistrer
+          </button>
+
+        </div>
+
+      </form>
+    `;
+
+  }
+
+  else if(
+    collectionName ===
+      "remises"
+  ){
+
+    html = `
+
+      <form
+        onsubmit="
+          enregistrerSimple(
+            event,
+            'remises'
+          )
+        ">
+
+        <div class="form-group">
+          <label>Étudiant</label>
+          <input
+            name="etudiant"
+            required>
+        </div>
+
+        <div class="form-group">
+          <label>Devoir</label>
+          <input
+            name="devoir"
+            required>
+        </div>
+
+        <div class="form-group">
+          <label>Note /20</label>
+          <input
+            name="note"
+            type="number"
+            min="0"
+            max="20"
+            step="0.5">
+        </div>
+
+        <div class="form-group">
+          <label>Correction / commentaire</label>
+          <textarea
+            name="correction"
+            rows="4">
+          </textarea>
+        </div>
+
+        <div class="modal-actions">
+
+          <button
+            type="button"
+            class="cancel-btn"
+            onclick="fermerModal()">
+            Annuler
+          </button>
+
+          <button
+            class="save-btn">
+            Enregistrer
+          </button>
+
+        </div>
+
+      </form>
+    `;
+
+  }
+
+  else if(
+    collectionName ===
+      "resultats"
+  ){
+
+    html = `
+
+      <form
+        onsubmit="
+          enregistrerSimple(
+            event,
+            'resultats'
+          )
+        ">
+
+        <div class="form-group">
+          <label>Étudiant</label>
+          <input
+            name="etudiant"
+            required>
+        </div>
+
+        <div class="form-group">
+          <label>Matière</label>
+          <input
+            name="matiere"
+            required>
+        </div>
+
+        <div class="form-group">
+          <label>Note /20</label>
+          <input
+            name="note"
+            type="number"
+            min="0"
+            max="20"
+            step="0.5"
+            required>
+        </div>
+
+        <div class="form-group">
+          <label>Commentaire</label>
+          <textarea
+            name="commentaire"
+            rows="3">
+          </textarea>
+        </div>
+
+        <div class="modal-actions">
+
+          <button
+            type="button"
+            class="cancel-btn"
+            onclick="fermerModal()">
+            Annuler
+          </button>
+
+          <button
+            class="save-btn">
+            Enregistrer
+          </button>
+
+        </div>
+
+      </form>
+    `;
+
+  }
+
+  else{
+
+    html =
+      `
+      <div class="empty">
+        Formulaire bientôt disponible.
+      </div>
+      `;
+
+  }
+
+
+  content.innerHTML =
+    html;
+
+  modal.classList.add(
+    "show"
+  );
+
+};
+
+
+/* =====================================================
+   SAVE SIMPLE
+   ===================================================== */
+
+window.enregistrerSimple =
+async function(
+  event,
+  collectionName
+){
+
+  event.preventDefault();
+
+
+  if(
+    !currentUserData ||
+    currentUserData.status !==
+      "accepted"
+  ){
+
+    toast(
+      "Vous n'avez pas accès à cette action.",
+      "error"
     );
 
     return;
@@ -3390,45 +4227,56 @@ async function(
   }
 
 
-  try{
+  const form =
+    event.target;
 
-    await setDoc(
-      doc(
-        db,
-        "users",
-        uid
-      ),
-      {
-
-        role:
-          normalized === "eleve"
-            ? "etudiant"
-            : normalized,
-
-        status:
-          "accepted",
-
-        approvedBy:
-          currentUser.uid,
-
-        approvedAt:
-          serverTimestamp()
-
-      },
-      {
-        merge:true
-      }
+  const data =
+    Object.fromEntries(
+      new FormData(form)
     );
 
 
-    await chargerUsers();
+  data.createdBy =
+    currentUser.uid;
 
+  data.createdAt =
+    serverTimestamp();
+
+  data.updatedAt =
+    serverTimestamp();
+
+
+  try{
+
+    await addDoc(
+      collection(
+        db,
+        collectionName
+      ),
+      data
+    );
+
+
+    fermerModal();
+
+    toast(
+      "Enregistré avec succès.",
+      "success"
+    );
+
+
+    await chargerTout();
 
   }catch(error){
 
-    alert(
+    console.error(
+      error
+    );
+
+    toast(
       "Erreur Firebase : " +
-      error.message
+      error.message,
+      "error"
     );
 
   }
@@ -3437,117 +4285,99 @@ async function(
 
 
 /* =====================================================
-   STATISTIQUES
-===================================================== */
+   CLOSE MODAL
+   ===================================================== */
 
-async function chargerStatistiques(){
-
-  const box =
-    document.getElementById(
-      "statistiquesBox"
-    );
-
-
-  box.innerHTML =
-    `<div class="empty">
-      Chargement...
-    </div>`;
-
-
-  const data = [
-
-    ["Étudiants","statEtudiants","🎓"],
-
-    ["Professeurs","statProfesseurs","👨‍🏫"],
-
-    ["Classes","statClasses","🏫"],
-
-    ["Matières","statMatieres","📚"],
-
-    ["Devoirs","statDevoirs","📝"],
-
-    ["Remises","statRemises","📥"],
-
-    ["Résultats","statResultats","📊"],
-
-    ["Utilisateurs","statUsers","👥"]
-
-  ];
-
-
-  box.innerHTML =
-    data
-      .map(
-        item => `
-
-          <div class="stat-card">
-
-            <div>
-
-              <div class="stat-label">
-                ${item[0]}
-              </div>
-
-              <div class="stat-number">
-                ${
-                  document
-                    .getElementById(item[1])
-                    .textContent
-                }
-              </div>
-
-            </div>
-
-            <div class="stat-icon">
-              ${item[2]}
-            </div>
-
-          </div>
-
-        `
-      )
-      .join("");
-
-}
-
-
-/* =====================================================
-   LANGUE
-===================================================== */
-
-window.changerLangue =
+window.fermerModal =
 function(){
 
-  const language =
-    document
-      .getElementById(
-        "languageSelect"
-      )
-      .value;
-
-
-  localStorage.setItem(
-    "cfp_language",
-    language
-  );
-
-
-  /*
-   * Baz lang yo pare.
-   * Tout etikèt sistèm yo rete Français nan premye vèsyon an;
-   * Kreyòl la ka aktive nan pwochen dictionary san chanje Firebase.
-   */
+  document
+    .getElementById("modal")
+    .classList.remove(
+      "show"
+    );
 
 };
 
 
 /* =====================================================
-   PWA INSTALL
-===================================================== */
+   LANGUAGE
+   ===================================================== */
+
+window.changeLanguage =
+function(lang){
+
+  localStorage.setItem(
+    "language",
+    lang
+  );
+
+
+  if(lang === "ht"){
+
+    toast(
+      "Lang Kreyòl chwazi.",
+      "success"
+    );
+
+  }else{
+
+    toast(
+      "Langue française sélectionnée.",
+      "success"
+    );
+
+  }
+
+};
+
+
+/* =====================================================
+   INSTALL PWA
+   ===================================================== */
+
+window.installerApp =
+async function(){
+
+  if(!deferredPrompt){
+
+    toast(
+      "L'installation n'est pas disponible pour le moment.",
+      "info"
+    );
+
+    return;
+
+  }
+
+
+  deferredPrompt.prompt();
+
+  const result =
+    await deferredPrompt.userChoice;
+
+  console.log(
+    "Installation:",
+    result.outcome
+  );
+
+  deferredPrompt =
+    null;
+
+  document
+    .getElementById(
+      "installBtn"
+    )
+    .classList.add(
+      "hidden"
+    );
+
+};
+
 
 window.addEventListener(
   "beforeinstallprompt",
-  event => {
+  event=>{
 
     event.preventDefault();
 
@@ -3556,7 +4386,7 @@ window.addEventListener(
 
     document
       .getElementById(
-        "installButton"
+        "installBtn"
       )
       .classList.remove(
         "hidden"
@@ -3566,55 +4396,81 @@ window.addEventListener(
 );
 
 
-window.installerApplication =
-async function(){
+/* =====================================================
+   SERVICE WORKER
+   ===================================================== */
 
-  if(!deferredPrompt){
+if(
+  "serviceWorker"
+  in navigator
+){
 
-    return;
+  window.addEventListener(
+    "load",
+    ()=>{
 
-  }
+      navigator.serviceWorker
+        .register(
+          "./service-worker.js"
+        )
+        .catch(error=>{
 
+          console.log(
+            "Service Worker:",
+            error
+          );
 
-  deferredPrompt.prompt();
+        });
 
+    }
+  );
 
-  await deferredPrompt.userChoice;
-
-
-  deferredPrompt =
-    null;
-
-
-  document
-    .getElementById(
-      "installButton"
-    )
-    .classList.add(
-      "hidden"
-    );
-
-};
+}
 
 
 /* =====================================================
-   FIREBASE ERRORS
-===================================================== */
+   ESCAPE HTML
+   ===================================================== */
 
-function firebaseError(
-  error
-){
+function escapeHtml(value){
+
+  return String(
+    value ?? ""
+  )
+  .replaceAll("&","&amp;")
+  .replaceAll("<","&lt;")
+  .replaceAll(">","&gt;")
+  .replaceAll('"',"&quot;")
+  .replaceAll("'","&#039;");
+
+}
+
+
+/* =====================================================
+   FIREBASE ERROR TRANSLATION
+   ===================================================== */
+
+function traduireErreurFirebase(error){
+
+  const code =
+    error?.code || "";
 
   const messages = {
-
-    "auth/invalid-credential":
-      "Email ou mot de passe incorrect.",
 
     "auth/invalid-email":
       "Adresse email invalide.",
 
+    "auth/user-not-found":
+      "Aucun compte ne correspond à cet email.",
+
+    "auth/wrong-password":
+      "Mot de passe incorrect.",
+
+    "auth/invalid-credential":
+      "Email ou mot de passe incorrect.",
+
     "auth/email-already-in-use":
-      "Cette adresse email est déjà utilisée.",
+      "Cet email est déjà utilisé.",
 
     "auth/weak-password":
       "Le mot de passe est trop faible.",
@@ -3622,132 +4478,62 @@ function firebaseError(
     "auth/popup-closed-by-user":
       "La fenêtre Google a été fermée.",
 
-    "auth/network-request-failed":
-      "Problème de connexion internet.",
+    "auth/popup-blocked":
+      "Le navigateur a bloqué la fenêtre Google.",
 
-    "auth/too-many-requests":
-      "Trop de tentatives. Réessayez plus tard."
+    "auth/unauthorized-domain":
+      "Ce domaine n'est pas autorisé dans Firebase Authentication.",
+
+    "auth/operation-not-allowed":
+      "Cette méthode de connexion n'est pas activée dans Firebase.",
+
+    "permission-denied":
+      "Accès Firestore refusé. Vérifiez les règles Firestore.",
+
+    "auth/network-request-failed":
+      "Problème de connexion Internet."
 
   };
 
 
   return (
-    messages[error.code] ||
-    error.message ||
-    "Une erreur est survenue."
+    messages[code] ||
+    error?.message ||
+    "Une erreur Firebase est survenue."
   );
 
 }
 
 
 /* =====================================================
-   CHARGEMENT INITIAL DES DONNEES
-===================================================== */
+   CLOSE MODAL ON BACKGROUND
+   ===================================================== */
 
-async function chargerApplication(){
+document
+  .getElementById("modal")
+  .addEventListener(
+    "click",
+    event=>{
 
-  await chargerDashboard();
+      if(
+        event.target.id ===
+          "modal"
+      ){
 
-  await chargerToutesLesListes();
+        fermerModal();
 
-}
-
-
-</script>
-
-
-<script>
-
-/* =====================================================
-   PETITES FONCTIONS UI
-===================================================== */
-
-function ouvrirMenuMobile(){
-
-  document
-    .getElementById("sidebar")
-    .classList.toggle("open");
-
-}
-
-
-/*
- * Fermer le menu mobile lorsqu'une page est sélectionnée.
- */
-
-const oldOpenPage =
-  window.ouvrirPage;
-
-
-window.ouvrirPage =
-function(
-  page,
-  button
-){
-
-  oldOpenPage(
-    page,
-    button
-  );
-
-
-  document
-    .getElementById("sidebar")
-    .classList.remove(
-      "open"
-    );
-
-};
-
-
-/*
- * Langue sauvegardée
- */
-
-const savedLanguage =
-  localStorage.getItem(
-    "cfp_language"
-  );
-
-
-if(savedLanguage){
-
-  const selector =
-    document.getElementById(
-      "languageSelect"
-    );
-
-  if(selector){
-
-    selector.value =
-      savedLanguage;
-
-  }
-
-}
-
-
-/*
- * Fermer modal avec Escape
- */
-
-document.addEventListener(
-  "keydown",
-  event => {
-
-    if(
-      event.key === "Escape"
-    ){
-
-      document
-        .getElementById("modal")
-        .classList.remove(
-          "show"
-        );
+      }
 
     }
+  );
 
-  }
+
+/* =====================================================
+   START
+   ===================================================== */
+
+console.log(
+  "Centre de Formation Le Pédagogue démarré."
 );
 
 </script>
